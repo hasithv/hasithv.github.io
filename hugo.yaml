@@ -1,3 +1,32 @@
 baseURL: https://example.org/
 languageCode: en-us
-title: My New Hugo Site
+title: Coming Soon
+theme: ["PaperMod"]
+
+params:
+  math: true
+  ShowReadingTime: true
+  ShowShareButtons: true
+  socialIcons:
+    - name: x
+      url: "https://x.com/"
+    - name: stackoverflow
+      url: "https://stackoverflow.com"
+    - name: github
+      url: "https://github.com/"
+
+markup:
+  goldmark:
+    extensions:
+      passthrough:
+        delimiters:
+          block:
+          - - \[
+            - \]
+          - - $$
+            - $$
+          inline:
+          - - \(
+            - \)
+        enable: true
+
