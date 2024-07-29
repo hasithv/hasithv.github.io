@@ -6,12 +6,6 @@ theme: ["PaperMod"]
 params:
   math: true
   ShowReadingTime: true
-  ShowShareButtons: true
-  socialIcons:
-    - name: mastodon
-      url: "https://mathstodon.xyz/@hasith"
-    - name: github
-      url: "https://github.com/hasithv"
 
 markup:
   goldmark:
