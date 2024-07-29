@@ -1,4 +1,4 @@
-baseURL: https://hasithv.github.io/
+baseURL: "https://hasithv.github.io/""
 languageCode: en-us
 title: Coming Soon
 theme: ["PaperMod"]
