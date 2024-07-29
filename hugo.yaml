@@ -1,4 +1,4 @@
-baseURL: https://example.org/
+baseURL: https://hasithv.github.io/
 languageCode: en-us
 title: Coming Soon
 theme: ["PaperMod"]
@@ -8,12 +8,10 @@ params:
   ShowReadingTime: true
   ShowShareButtons: true
   socialIcons:
-    - name: x
-      url: "https://x.com/"
-    - name: stackoverflow
-      url: "https://stackoverflow.com"
+    - name: mastodon
+      url: "https://mathstodon.xyz/@hasith"
     - name: github
-      url: "https://github.com/"
+      url: "https://github.com/hasithv"
 
 markup:
   goldmark:
