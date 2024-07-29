@@ -2,19 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Coming Soon</title>
-    <link>http://localhost:1313/</link>
+    <link>https://hasithv.github.io/</link>
     <description>Recent content on Coming Soon</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 29 Jul 2024 00:07:20 -0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hasithv.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Introduction</title>
-      <link>http://localhost:1313/posts/introduction/</link>
+      <link>https://hasithv.github.io/posts/introduction/</link>
       <pubDate>Mon, 29 Jul 2024 00:07:20 -0700</pubDate>
-      <guid>http://localhost:1313/posts/introduction/</guid>
+      <guid>https://hasithv.github.io/posts/introduction/</guid>
       <description>I have no idea what I am doing. Anyways, here&amp;rsquo;s a cool equation:
-$$\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}} - \frac{\partial L}{\partial q}\right) = 0$$ </description>
+$$\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}}\right) - \frac{\partial L}{\partial q} = 0$$ </description>
+      <content:encoded><![CDATA[<p>I have no idea what I am doing. Anyways, here&rsquo;s a cool equation:</p>
+$$\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}}\right) - \frac{\partial L}{\partial q} = 0$$
+]]></content:encoded>
     </item>
   </channel>
 </rss>

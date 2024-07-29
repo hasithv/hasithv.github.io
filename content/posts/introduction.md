@@ -6,4 +6,4 @@ draft = false
 
 I have no idea what I am doing. Anyways, here's a cool equation:
 
-$$\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}} - \frac{\partial L}{\partial q}\right) = 0$$
+$$\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}}\right) - \frac{\partial L}{\partial q} = 0$$
