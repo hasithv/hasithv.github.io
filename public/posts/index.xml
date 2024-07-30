@@ -73,7 +73,8 @@ $$
 $$
 <p>
 which I cannot solve, but Desmos tells me that $p_0 \approx 0.6922$ and $t_0 \approx 2.7181$.</p>
-<p>Thus, my answer would have been reasonable in <em>some</em> convoluted scenario in which $p < 0.6922$</p>
+<p>Thus, my answer would have been reasonable in <em>some</em> convoluted scenario in which $p < 0.6922$.</p>
+<p>(This answer, too, is not totally right! This is because there may be a larger $p$ value that satisfies $np^n \leq 1$ for $n \in \mathbb{N}$ but <em>not</em> for $n\in \mathbb{R}^+$. We solved for the $n \in \mathbb{R}^+$ case, which would technically give us a lower bound for $p_0$. Taking this into consideration, our $p_0$ value would really be $p_0 \approx 0.6934$)</p>
 ]]></content:encoded>
     </item>
     <item>
