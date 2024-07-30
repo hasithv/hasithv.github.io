@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>That&#39;s not how Probability Works! | HasItHalted</title>
+<meta name="keywords" content="probability">
+<meta name="description" content="I was recently doing a probability puzzle that I can&rsquo;t quite remember the context of, but I came across the answer that the probability would be $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$ But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.">
+<meta name="author" content="">
+<link rel="canonical" href="https://hasithv.github.io/posts/nothowprobabilityworks/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://hasithv.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hasithv.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hasithv.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hasithv.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://hasithv.github.io/posts/nothowprobabilityworks/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+  
+
+<meta property="og:title" content="That&#39;s not how Probability Works!" />
+<meta property="og:description" content="I was recently doing a probability puzzle that I can&rsquo;t quite remember the context of, but I came across the answer that the probability would be $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$ But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hasithv.github.io/posts/nothowprobabilityworks/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-07-30T00:07:20-07:00" />
+<meta property="article:modified_time" content="2024-07-30T00:07:20-07:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="That&#39;s not how Probability Works!"/>
+<meta name="twitter:description" content="I was recently doing a probability puzzle that I can&rsquo;t quite remember the context of, but I came across the answer that the probability would be $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$ But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hasithv.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "That's not how Probability Works!",
+      "item": "https://hasithv.github.io/posts/nothowprobabilityworks/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "That's not how Probability Works!",
+  "name": "That\u0027s not how Probability Works!",
+  "description": "I was recently doing a probability puzzle that I can\u0026rsquo;t quite remember the context of, but I came across the answer that the probability would be $$\\mathbb{P}(X) = n p^n \\; \\quad \\forall \\: n\\in\\mathbb{N}, p \\in [0,1].$$ But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\\mathbb{P}(X) = 1.62$. However, for $p=0.5$, $\\mathbb{P}(X)$ will remain $\\leq 1$ for all $n \\in \\mathbb{N}$. So, somewhere in the interval $(0.",
+  "keywords": [
+    "probability"
+  ],
+  "articleBody": "I was recently doing a probability puzzle that I can’t quite remember the context of, but I came across the answer that the probability would be $$\\mathbb{P}(X) = n p^n \\; \\quad \\forall \\: n\\in\\mathbb{N}, p \\in [0,1].$$ But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\\mathbb{P}(X) = 1.62$. However, for $p=0.5$, $\\mathbb{P}(X)$ will remain $\\leq 1$ for all $n \\in \\mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.\nSo, what is this critical value that will help me save face?\nWell, the question we are trying to answer, phrased a bit more formally, is:\nfind the largest $p \\in [0,1]$ such that $np^n \\leq 1$ for all $n \\in \\mathbb{N}.$\nFirst, we rephrase the problem by stating $$np^n \\leq 1 \\iff p^n \\leq \\frac{1}{n}.$$ Visually, this means that the exponential graph of $f_p(n) = p^n$ can never go above $g_p(n) = \\frac{1}{n}$ for some fixed $p$. From this, we can deduce that the critical value of $p$, which we will denote as $p_0$ will satisfy the following relation:\nGiven the parametrized forms of $f_p$ and $g_p$ $$F_{p}(t) = \\begin{bmatrix} t \\\\ f_p(t) \\end{bmatrix}, \\; G_p(t) = \\begin{bmatrix} t \\\\ g_p(t) \\end{bmatrix},$$ the critical $p_0$ value will be such that $$F_{p_0}(t_0) = G_{p_0}(t_0),\\text{ and } \\dot{F}_{p_0}(t_0) = \\lambda \\dot{G}_{p_0}(t_0)$$ for some $\\lambda \\in \\mathbb{R}, t_0 \\in \\mathbb{R}^+$. In other words, their velocities will point in the same direction (and, perhaps more intuitively, the outward normals of each curve will be parallel, so the graphs ‘kiss’ at some $t_0$ with the choice of $p_0$).\nNow, we have a fairly simple problem to solve. Because the $x$ component of $F$ and $G$ are always equal, we immediately find that $\\lambda = 1$ for their time derivatives to be equal to each other. Now, that leads us to solve for a $p_0$ and $n$ such that $$ \\begin{aligned} f_{p_0}(t_0) \u0026= g_{p_0}(t_0) \\\\ \\implies p_0^n \u0026= \\frac{1}{t_0} \\end{aligned} $$ and $$ \\begin{aligned} \\dot{f}_{p_0}(t_0) \u0026= \\dot{g}_{p_0}(t_0) \\\\ \\implies -\\ln(p_0)p_0^n \u0026= \\frac{1}{t_0^2} \\end{aligned} $$ So, rather unsatisfyingly, we boiled it down to a system of nonlinear equations $$ \\begin{cases} p_0^n = \\frac{1}{t_0}, \\\\ \\ln(p_0)p_0^n = -\\left(\\frac{1}{t_0}\\right)^2 \\end{cases} $$ which I cannot solve, but Desmos tells me that $p_0 \\approx 0.6922$ and $t_0 \\approx 2.7181$.\nThus, my answer would have been reasonable in some convoluted scenario in which $p \u003c 0.6922$\n",
+  "wordCount" : "419",
+  "inLanguage": "en",
+  "datePublished": "2024-07-30T00:07:20-07:00",
+  "dateModified": "2024-07-30T00:07:20-07:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hasithv.github.io/posts/nothowprobabilityworks/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HasItHalted",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hasithv.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+    
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$','$']]                  
+    }
+  };
+</script>
+
+
+    
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hasithv.github.io/" accesskey="h" title="HasItHalted (Alt + H)">HasItHalted</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hasithv.github.io/posts/" title="posts">
+                    <span>posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hasithv.github.io/categories/" title="categories">
+                    <span>categories</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      That&#39;s not how Probability Works!
+    </h1>
+    <div class="post-meta"><span title='2024-07-30 00:07:20 -0700 PDT'>July 30, 2024</span>&nbsp;·&nbsp;2 min
+
+</div>
+  </header> 
+  <div class="post-content"><p>I was recently doing a probability puzzle that I can&rsquo;t quite remember the context of, but I came across the answer that the probability would be
+</p>
+$$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$
+<p>But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.</p>
+<p>So, what is this critical value that will help me save face?</p>
+<p>Well, the question we are trying to answer, phrased a bit more formally, is:</p>
+<blockquote>
+<p>find the largest $p \in [0,1]$ such that $np^n \leq 1$ for all $n \in \mathbb{N}.$</p>
+</blockquote>
+<p>First, we rephrase the problem by stating
+</p>
+$$np^n \leq 1 \iff p^n \leq \frac{1}{n}.$$
+<p>Visually, this means that the exponential graph of $f_p(n) = p^n$ can never go above $g_p(n) = \frac{1}{n}$ for some fixed $p$. From this, we can deduce that the critical value of $p$, which we will denote as $p_0$ will satisfy the following relation:</p>
+<blockquote>
+<p>Given the parametrized forms of $f_p$ and $g_p$
+</p>
+$$F_{p}(t) = \begin{bmatrix}
+t \\
+f_p(t)
+\end{bmatrix}, \; 
+G_p(t) = \begin{bmatrix}
+t \\
+g_p(t)
+\end{bmatrix},$$
+<p>
+the critical $p_0$ value will be such that
+</p>
+$$F_{p_0}(t_0) = G_{p_0}(t_0),\text{ and } \dot{F}_{p_0}(t_0) = \lambda \dot{G}_{p_0}(t_0)$$
+<p>
+for some $\lambda \in \mathbb{R}, t_0 \in \mathbb{R}^+$. In other words, their velocities will point in the same direction (and, perhaps more intuitively, the outward normals of each curve will be parallel, so the graphs &lsquo;kiss&rsquo; at some $t_0$ with the choice of $p_0$).</p>
+</blockquote>
+<p>Now, we have a fairly simple problem to solve. Because the $x$ component of $F$ and $G$ are always equal, we immediately find that $\lambda = 1$ for their time derivatives to be equal to each other. Now, that leads us to solve for a $p_0$ and $n$ such that
+</p>
+$$
+\begin{aligned}
+    f_{p_0}(t_0) &= g_{p_0}(t_0) \\
+    \implies p_0^n &= \frac{1}{t_0}
+\end{aligned}
+$$
+<p>
+and
+</p>
+$$
+\begin{aligned}
+     \dot{f}_{p_0}(t_0) &= \dot{g}_{p_0}(t_0) \\
+    \implies -\ln(p_0)p_0^n &= \frac{1}{t_0^2}
+\end{aligned}
+$$
+<p>
+So, rather unsatisfyingly, we boiled it down to a system of nonlinear equations
+</p>
+$$
+\begin{cases}
+    p_0^n = \frac{1}{t_0}, \\
+    \ln(p_0)p_0^n = -\left(\frac{1}{t_0}\right)^2
+\end{cases}
+$$
+<p>
+which I cannot solve, but Desmos tells me that $p_0 \approx 0.6922$ and $t_0 \approx 2.7181$.</p>
+<p>Thus, my answer would have been reasonable in <em>some</em> convoluted scenario in which $p < 0.6922$</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hasithv.github.io/tags/probability/">Probability</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="https://hasithv.github.io/">HasItHalted</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

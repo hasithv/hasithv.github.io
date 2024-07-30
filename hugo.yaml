@@ -3,6 +3,17 @@ languageCode: en-us
 title: HasItHalted
 theme: ["PaperMod"]
 
+menu:
+  main:
+    - identifier: posts
+      name: posts
+      url: /posts/
+      weight: 10
+    - identifier: categories
+      name: categories
+      url: /categories/
+      weight: 20
+
 params:
   homeInfoParams:
     Title: Hello!
@@ -42,5 +53,7 @@ markup:
           inline:
           - - \(
             - \)
+          - - $
+            - $
         enable: true
 
