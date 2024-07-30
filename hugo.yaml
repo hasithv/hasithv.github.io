@@ -1,6 +1,6 @@
 baseURL: "https://hasithv.github.io/"
 languageCode: en-us
-title: Coming Soon
+title: HasItHalted
 theme: ["PaperMod"]
 
 params:
