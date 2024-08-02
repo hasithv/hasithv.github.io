@@ -6,18 +6,29 @@
     <description>Recent content on HasItHalted</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Jul 2024 00:07:20 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 02 Aug 2024 00:47:08 -0700</lastBuildDate>
     <atom:link href="https://hasithv.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Notes: An Invitation to Appied Category Theory</title>
+      <link>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</link>
+      <pubDate>Fri, 02 Aug 2024 00:47:08 -0700</pubDate>
+      <guid>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</guid>
+      <description> Chapter 1 - Generative effects: Orders and adjunctions </description>
+      <content:encoded><![CDATA[<ul>
+<li><a href="/1.pdf">Chapter 1 - Generative effects: Orders and adjunctions</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
       <title>That&#39;s not how Probability Works!</title>
-      <link>https://hasithv.github.io/posts/nothowprobabilityworks/</link>
+      <link>https://hasithv.github.io/posts/07-29-24-nothowprobabilityworks/</link>
       <pubDate>Tue, 30 Jul 2024 00:07:20 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/nothowprobabilityworks/</guid>
-      <description>I was recently doing a probability puzzle that I can&amp;rsquo;t quite remember the context of, but I came across the answer that the probability would be $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$ But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.</description>
+      <guid>https://hasithv.github.io/posts/07-29-24-nothowprobabilityworks/</guid>
+      <description>I was recently doing a probability puzzle that I can&amp;rsquo;t quite remember the context of, but I came across the answer that the probability would be $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$ But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&amp;rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$.</description>
       <content:encoded><![CDATA[<p>I was recently doing a probability puzzle that I can&rsquo;t quite remember the context of, but I came across the answer that the probability would be
 </p>
 $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$
-<p>But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.</p>
+<p>But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.</p>
 <p>So, what is this critical value that will help me save face?</p>
 <p>Well, the question we are trying to answer, phrased a bit more formally, is:</p>
 <blockquote>
@@ -26,7 +37,7 @@ $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$
 <p>First, we rephrase the problem by stating
 </p>
 $$np^n \leq 1 \iff p^n \leq \frac{1}{n}.$$
-<p>Visually, this means that the exponential graph of $f_p(n) = p^n$ can never go above $g_p(n) = \frac{1}{n}$ for some fixed $p$. From this, we can deduce that the critical value of $p$, which we will denote as $p_0$ will satisfy the following relation:</p>
+<p>Visually, this means that the exponential graph of $f_p(n) = p^n$ can never go above $g_p(n) = \frac{1}{n}$ for some fixed $p$. From this, we can deduce that the critical value of $p$, which we will denote as $p_0$, will satisfy the following relation:</p>
 <blockquote>
 <p>Given the parametrized forms of $f_p$ and $g_p$
 </p>

@@ -2,6 +2,7 @@ baseURL: "https://hasithv.github.io/"
 languageCode: en-us
 title: HasItHalted
 theme: ["PaperMod"]
+enableEmoji: true
 
 menu:
   main:

@@ -9,7 +9,7 @@ draft = false
 I was recently doing a probability puzzle that I can't quite remember the context of, but I came across the answer that the probability would be
 $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$
 
-But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.
+But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat's not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.
 
 So, what is this critical value that will help me save face?
 
@@ -20,7 +20,7 @@ Well, the question we are trying to answer, phrased a bit more formally, is:
 First, we rephrase the problem by stating
 $$np^n \leq 1 \iff p^n \leq \frac{1}{n}.$$
 
-Visually, this means that the exponential graph of $f_p(n) = p^n$ can never go above $g_p(n) = \frac{1}{n}$ for some fixed $p$. From this, we can deduce that the critical value of $p$, which we will denote as $p_0$ will satisfy the following relation:
+Visually, this means that the exponential graph of $f_p(n) = p^n$ can never go above $g_p(n) = \frac{1}{n}$ for some fixed $p$. From this, we can deduce that the critical value of $p$, which we will denote as $p_0$, will satisfy the following relation:
 
 > Given the parametrized forms of $f_p$ and $g_p$ 
 > $$F_{p}(t) = \begin{bmatrix}
