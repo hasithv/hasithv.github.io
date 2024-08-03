@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2.2 - Symmetric monoidal preorders | HasItHalted</title>
+<meta name="keywords" content="category theory">
+<meta name="description" content="2.2.1 - Definition and first examples Definition 2.2: A symmetric monoidal structure on a preoirder $(X, \leq)$ consists of
+(i) a monoidal unit, $I \in X$ (ii) a monoidal product $\otimes: X \times X \rightarrow X$ And the monoidal product $\otimes(x_1,x_2) = x_1 \otimes x_2$ must also satisfy the following properties (assume all elements are in $X$)
+(a) $x_1 \leq y_1$ and $x_2 \leq y_2 \implies x_1 \otimes x_2 \leq y_1 \otimes y_2$ (b) $I \otimes x = x \otimes I = x$ (c) associativity (d) commutivity/symmetry (a) is called monotnoicity and (b) is unitality">
+<meta name="author" content="">
+<link rel="canonical" href="https://hasithv.github.io/posts/notes/fongspivakact/chap2/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://hasithv.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hasithv.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hasithv.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hasithv.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://hasithv.github.io/posts/notes/fongspivakact/chap2/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+  
+
+<meta property="og:title" content="2.2 - Symmetric monoidal preorders" />
+<meta property="og:description" content="2.2.1 - Definition and first examples Definition 2.2: A symmetric monoidal structure on a preoirder $(X, \leq)$ consists of
+(i) a monoidal unit, $I \in X$ (ii) a monoidal product $\otimes: X \times X \rightarrow X$ And the monoidal product $\otimes(x_1,x_2) = x_1 \otimes x_2$ must also satisfy the following properties (assume all elements are in $X$)
+(a) $x_1 \leq y_1$ and $x_2 \leq y_2 \implies x_1 \otimes x_2 \leq y_1 \otimes y_2$ (b) $I \otimes x = x \otimes I = x$ (c) associativity (d) commutivity/symmetry (a) is called monotnoicity and (b) is unitality" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hasithv.github.io/posts/notes/fongspivakact/chap2/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-08-02T01:26:30-07:00" />
+<meta property="article:modified_time" content="2024-08-02T01:26:30-07:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="2.2 - Symmetric monoidal preorders"/>
+<meta name="twitter:description" content="2.2.1 - Definition and first examples Definition 2.2: A symmetric monoidal structure on a preoirder $(X, \leq)$ consists of
+(i) a monoidal unit, $I \in X$ (ii) a monoidal product $\otimes: X \times X \rightarrow X$ And the monoidal product $\otimes(x_1,x_2) = x_1 \otimes x_2$ must also satisfy the following properties (assume all elements are in $X$)
+(a) $x_1 \leq y_1$ and $x_2 \leq y_2 \implies x_1 \otimes x_2 \leq y_1 \otimes y_2$ (b) $I \otimes x = x \otimes I = x$ (c) associativity (d) commutivity/symmetry (a) is called monotnoicity and (b) is unitality"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hasithv.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "2.2 - Symmetric monoidal preorders",
+      "item": "https://hasithv.github.io/posts/notes/fongspivakact/chap2/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2.2 - Symmetric monoidal preorders",
+  "name": "2.2 - Symmetric monoidal preorders",
+  "description": "2.2.1 - Definition and first examples Definition 2.2: A symmetric monoidal structure on a preoirder $(X, \\leq)$ consists of\n(i) a monoidal unit, $I \\in X$ (ii) a monoidal product $\\otimes: X \\times X \\rightarrow X$ And the monoidal product $\\otimes(x_1,x_2) = x_1 \\otimes x_2$ must also satisfy the following properties (assume all elements are in $X$)\n(a) $x_1 \\leq y_1$ and $x_2 \\leq y_2 \\implies x_1 \\otimes x_2 \\leq y_1 \\otimes y_2$ (b) $I \\otimes x = x \\otimes I = x$ (c) associativity (d) commutivity/symmetry (a) is called monotnoicity and (b) is unitality",
+  "keywords": [
+    "category theory"
+  ],
+  "articleBody": "2.2.1 - Definition and first examples Definition 2.2: A symmetric monoidal structure on a preoirder $(X, \\leq)$ consists of\n(i) a monoidal unit, $I \\in X$ (ii) a monoidal product $\\otimes: X \\times X \\rightarrow X$ And the monoidal product $\\otimes(x_1,x_2) = x_1 \\otimes x_2$ must also satisfy the following properties (assume all elements are in $X$)\n(a) $x_1 \\leq y_1$ and $x_2 \\leq y_2 \\implies x_1 \\otimes x_2 \\leq y_1 \\otimes y_2$ (b) $I \\otimes x = x \\otimes I = x$ (c) associativity (d) commutivity/symmetry (a) is called monotnoicity and (b) is unitality\nRemark 2.3: replacing $=$ with $\\cong$ in definition 2.2 will give us a weak monoidal structure.\nExercise 2.5: The preorder structure $(\\mathbb{R}, \\leq)$ and the multiplication operation $\\times$ will not give us a symmetric monoidal order because of the simple counter example of $-2 \\times -2 \\nleq 1 \\times 1$.\nExample 2.6: A monid is similar to a symmetric monoidal preorder in that it consists of a set $M$, a function $*: M\\times M \\rightarrow M$, and an elment $e \\in M$ called the monid unit, such that for every $m,n,p \\in M$,\n$m * e = m$ $e * m = m$ associativity holds Further, if commutivity holds (which isn’t not generally true), then it is also called commutative\n2.2.2 - Introducing wiring diagrams ⚠️ I am seeing the wiring diagrams, but I fail to understand why they are any different from the Hasse diagrams we’ve seen previously.\nEssentially, wiring diagrams seem to be a way to encode information about symmetric monoidal structures. The basic rules built up so far are as follows:\nA wire without a label, or with the label of the monoidal unit, is equivalent to nothing Otherwise, a wire labeled with an element represents that element (⚠️ this could be wrong) Two parallel wires represent the monoidal product of those elements Placing a $\\leq$ block between two $x,y$ wires indicates that $x \\leq y$ Thinking back to the conditions for a symmetric monoidal structure, we find that\nTransitivity allows us to combine wiring diagrams left to right Monotonicity is represented as being able to combine wiring diagrams top to bottom A monoidal product with a monoidal unit and another element gives us the element again, because the monoidal unit is equivalent to nothing (reflexivity)\nAssociativity means we can “wiggle” around parallel wires Commutivity means we can cross wires It is intuitive to see how these wiring diagrams can be used to prove statements. In fact, the above images are trivial proofs. Take a look at the following exercise\nExercise 2.20: Prove–given $t \\leq v+w$, $w+u \\leq x+z$, and $v+x \\leq y$–that $t+u \\leq y+z$.\nALgebraically, we proceed like so: $$\\begin{align} t + u \u0026\\leq (v+w) + u \\\\ \u0026\\leq v + (w+u) \\\\ \u0026\\leq v + (x+z) \\\\ \u0026\\leq (v + x) + z \\\\ \u0026\\leq y + z \\\\ \\end{align}$$ and the wiring diagram would look like The squares are the $\\leq$ blocks\n2.2.3 - Applied examples While this section did solidify some concepts. It wasn’t too important. Although, it did carry two useful examples: discarding and splitting.\nWith discarding, if a symmetric monoidal structure also satisfies $x \\leq I$ for every $x \\in X$, then it is possible to terminate any wire: And if instead have a property like $x \\leq x + x$, then we can split any wire: 2.2.4 - Abstract examples Again, after a skim through, this section did not seem critical.\n2.2.5 - Monoidal montone maps We begin with recalling that for any preorder $(X,\\leq)$ we have an induced equivalence relation $\\cong$ on $X$ where two elements $x \\cong x' \\iff x \\leq x$ and $x' \\leq x$\nDefinition 2.41: $\\mathcal{P} = (P, \\leq_P, I_P, \\otimes_P)$ and $\\mathcal{Q} = (Q, \\leq_Q, I_Q, \\otimes_Q)$ be monoidal preorders. A monoidal monotone from $\\mathcal{P}$ to $\\mathcal{Q}$ is a monotone map $f: (P, \\leq_P) \\rightarrow (Q, \\leq_Q)$ which satisfies\n(a) $I_Q \\leq_Q f(I_P)$ (b) $f(p_1) \\otimes_Q f(p_1 \\otimes_P p_2)$ for all $p_1,p_2 \\in P$. Additionally, $f$ is a strong monoidal monotone if it satisfies\n(a’) $I_Q \\cong f(I_P)$ (b’) $f(p_1) \\otimes_Q f(p_1 \\otimes_P p_2) \\cong f(p_1) \\otimes_Q f(p_2)$ And it is called a strict monoidal monotone if it satisfies (a’’) $I_Q = f(I_P)$ (b’’) $f(p_1) \\otimes_Q f(p_1 \\otimes_P p_2) = f(p_1) \\otimes_Q f(p_2)$ Monoidal monotones are said to be examples of monoidal functors in category theory.\nThe exercises for this section seem a little easy, so I will be skipping them for now, returning to them if I get confused on the defnitions of monoidal monotones.\n",
+  "wordCount" : "758",
+  "inLanguage": "en",
+  "datePublished": "2024-08-02T01:26:30-07:00",
+  "dateModified": "2024-08-02T01:26:30-07:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hasithv.github.io/posts/notes/fongspivakact/chap2/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HasItHalted",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hasithv.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+    
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$','$']]                  
+    }
+  };
+</script>
+
+
+    
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hasithv.github.io/" accesskey="h" title="HasItHalted (Alt + H)">HasItHalted</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hasithv.github.io/archives/" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hasithv.github.io/about/" title="about">
+                    <span>about</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hasithv.github.io/categories/" title="categories">
+                    <span>categories</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      2.2 - Symmetric monoidal preorders
+    </h1>
+    <div class="post-meta"><span title='2024-08-02 01:26:30 -0700 PDT'>August 2, 2024</span>&nbsp;·&nbsp;4 min
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="221---definition-and-first-examples">2.2.1 - Definition and first examples<a hidden class="anchor" aria-hidden="true" href="#221---definition-and-first-examples">#</a></h2>
+<blockquote>
+<p><strong>Definition 2.2:</strong> A <em>symmetric monoidal structure</em> on a preoirder $(X, \leq)$ consists of</p>
+<ul>
+<li>(i) a <em>monoidal unit</em>, $I \in X$</li>
+<li>(ii) a <em>monoidal product</em> $\otimes: X \times X \rightarrow X$</li>
+</ul>
+<p>And the monoidal product $\otimes(x_1,x_2) = x_1 \otimes x_2$ must also satisfy the following properties (assume all elements are in $X$)</p>
+<ul>
+<li>(a) $x_1 \leq y_1$ and $x_2 \leq y_2 \implies x_1 \otimes x_2 \leq y_1 \otimes y_2$</li>
+<li>(b) $I \otimes x = x \otimes I = x$</li>
+<li>(c) associativity</li>
+<li>(d) commutivity/symmetry</li>
+</ul>
+<p>(a) is called <em>monotnoicity</em> and (b) is <em>unitality</em></p>
+</blockquote>
+<p><strong>Remark 2.3:</strong> replacing $=$ with $\cong$ in definition 2.2 will give us a <em>weak monoidal structure</em>.</p>
+<blockquote>
+<p><strong>Exercise 2.5:</strong> The preorder structure $(\mathbb{R}, \leq)$ and the multiplication operation $\times$ will not give us a symmetric monoidal order because of the simple counter example of $-2 \times -2 \nleq 1 \times 1$.</p>
+</blockquote>
+<blockquote>
+<p><strong>Example 2.6:</strong> A <em>monid</em> is similar to a symmetric monoidal preorder in that it consists of a set $M$, a function $*: M\times M \rightarrow M$, and an elment $e \in M$ called the <em>monid unit</em>, such that for every $m,n,p \in M$,</p>
+<ul>
+<li>$m * e = m$</li>
+<li>$e * m = m$</li>
+<li>associativity holds</li>
+</ul>
+<p>Further, if commutivity holds (which isn&rsquo;t not generally true),  then it is also called <em>commutative</em></p>
+</blockquote>
+<h2 id="222---introducing-wiring-diagrams">2.2.2 - Introducing wiring diagrams<a hidden class="anchor" aria-hidden="true" href="#222---introducing-wiring-diagrams">#</a></h2>
+<p>&#x26a0;&#xfe0f; I am seeing the wiring diagrams, but I fail to understand why they are any different from the Hasse diagrams we&rsquo;ve seen previously.</p>
+<p>Essentially, wiring diagrams seem to be a way to encode information about symmetric monoidal structures. The basic rules built up so far are as follows:</p>
+<ul>
+<li>A wire without a label, or with the label of the monoidal unit, is equivalent to nothing</li>
+<li>Otherwise, a wire labeled with an element represents that element (&#x26a0;&#xfe0f; this could be wrong)</li>
+<li>Two parallel wires represent the monoidal product of those elements</li>
+<li>Placing a $\leq$ block between two $x,y$ wires indicates that $x \leq y$</li>
+</ul>
+<p>Thinking back to the conditions for a symmetric monoidal structure, we find that</p>
+<ol>
+<li>
+<p>Transitivity allows us to combine wiring diagrams left to right
+<figure class="align-center ">
+    <img loading="lazy" src="./images/transitivitypt1.png#center" width="400px"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>Monotonicity is represented as being able to combine wiring diagrams top to bottom
+<figure class="align-center ">
+    <img loading="lazy" src="./images/monotonicity.png#center" width="400px"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>A monoidal product with a monoidal unit and another element gives us the element again, because the monoidal unit is equivalent to nothing (reflexivity)</p>
+</li>
+<li>
+<p>Associativity means we can &ldquo;wiggle&rdquo; around parallel wires
+<figure class="align-center ">
+    <img loading="lazy" src="./images/associativity.png#center" width="400px"/> 
+</figure>
+</p>
+</li>
+<li>
+<p>Commutivity means we can cross wires
+<figure class="align-center ">
+    <img loading="lazy" src="./images/commutivity.png#center" width="400px"/> 
+</figure>
+</p>
+</li>
+</ol>
+<p>It is intuitive to see how these wiring diagrams can be used to prove statements. In fact, the above images are trivial proofs. Take a look at the following exercise</p>
+<blockquote>
+<p><strong>Exercise 2.20:</strong>
+Prove&ndash;given $t \leq v+w$, $w+u \leq x+z$, and  $v+x \leq y$&ndash;that $t+u \leq y+z$.</p>
+<p>ALgebraically, we proceed like so:
+</p>
+$$\begin{align} 
+    t + u &\leq (v+w) + u \\
+    &\leq v + (w+u) \\
+    &\leq v + (x+z) \\
+    &\leq (v + x) + z \\
+    &\leq y + z \\
+\end{align}$$
+<p>
+and the wiring diagram would look like
+<figure class="align-center ">
+    <img loading="lazy" src="./images/wiringex.png#center"
+         alt="The squares are the $\leq$ blocks" width="400px"/> <figcaption>
+            <p>The squares are the $\leq$ blocks</p>
+        </figcaption>
+</figure>
+</p>
+</blockquote>
+<h2 id="223---applied-examples">2.2.3 - Applied examples<a hidden class="anchor" aria-hidden="true" href="#223---applied-examples">#</a></h2>
+<p>While this section did solidify some concepts. It wasn&rsquo;t too important. Although, it did carry two useful examples: discarding and splitting.</p>
+<p>With discarding, if a symmetric monoidal structure also satisfies $x \leq I$ for every $x \in X$, then it is possible to terminate any wire:
+<figure class="align-center ">
+    <img loading="lazy" src="./images/discard.png#center" width="300px"/> 
+</figure>
+</p>
+<p>And if instead have a property like $x \leq x + x$, then we can split any wire:
+<figure class="align-center ">
+    <img loading="lazy" src="./images/splitting.png#center" width="300px"/> 
+</figure>
+</p>
+<h2 id="224---abstract-examples">2.2.4 - Abstract examples<a hidden class="anchor" aria-hidden="true" href="#224---abstract-examples">#</a></h2>
+<p>Again, after a skim through, this section did not seem critical.</p>
+<h2 id="225---monoidal-montone-maps">2.2.5 - Monoidal montone maps<a hidden class="anchor" aria-hidden="true" href="#225---monoidal-montone-maps">#</a></h2>
+<p>We begin with recalling that for any preorder $(X,\leq)$ we have an induced equivalence relation $\cong$ on $X$ where two elements $x \cong x' \iff x \leq x$ and $x' \leq x$</p>
+<blockquote>
+<p><strong>Definition 2.41:</strong> $\mathcal{P} = (P, \leq_P, I_P, \otimes_P)$ and $\mathcal{Q} = (Q, \leq_Q, I_Q, \otimes_Q)$ be monoidal preorders. A <strong>monoidal monotone</strong> from $\mathcal{P}$ to $\mathcal{Q}$ is a monotone map $f: (P, \leq_P) \rightarrow (Q, \leq_Q)$ which satisfies</p>
+<ul>
+<li>(a) $I_Q \leq_Q f(I_P)$</li>
+<li>(b) $f(p_1) \otimes_Q f(p_1 \otimes_P p_2)$
+for all $p_1,p_2 \in P$.</li>
+</ul>
+<p>Additionally, $f$ is a <em>strong monoidal monotone</em> if it satisfies</p>
+<ul>
+<li>(a&rsquo;) $I_Q \cong f(I_P)$</li>
+<li>(b&rsquo;) $f(p_1) \otimes_Q f(p_1 \otimes_P p_2) \cong f(p_1) \otimes_Q f(p_2)$
+And it is called a <em>strict monoidal monotone</em> if it satisfies</li>
+<li>(a&rsquo;&rsquo;) $I_Q = f(I_P)$</li>
+<li>(b&rsquo;&rsquo;) $f(p_1) \otimes_Q f(p_1 \otimes_P p_2) = f(p_1) \otimes_Q f(p_2)$</li>
+</ul>
+</blockquote>
+<p>Monoidal monotones are said to be examples of <em>monoidal functors</em> in category theory.</p>
+<p>The exercises for this section seem a little easy, so I will be skipping them for now, returning to them if I get confused on the defnitions of monoidal monotones.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hasithv.github.io/tags/category-theory/">Category Theory</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="https://hasithv.github.io/">HasItHalted</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

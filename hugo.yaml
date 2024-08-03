@@ -6,9 +6,9 @@ enableEmoji: true
 
 menu:
   main:
-    - identifier: posts
-      name: posts
-      url: /posts/
+    - identifier: archives
+      name: archives
+      url: /archives/
       weight: 10
     - identifier: about
       name: about
@@ -47,6 +47,10 @@ outputs:
 
 markup:
   goldmark:
+    parser:
+      wrapStandAloneImageWithinParagraph: false
+      attribute:
+        block: true
     extensions:
       passthrough:
         delimiters:
