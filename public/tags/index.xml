@@ -6,27 +6,34 @@
     <description>Recent content in Tags on HasItHalted</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Aug 2024 01:26:30 -0700</lastBuildDate>
+    <lastBuildDate>Sat, 03 Aug 2024 18:57:02 -0700</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Category Theory</title>
-      <link>https://hasithv.github.io/tags/category-theory/</link>
-      <pubDate>Fri, 02 Aug 2024 01:26:30 -0700</pubDate>
-      <guid>https://hasithv.github.io/tags/category-theory/</guid>
+      <title>Probability</title>
+      <link>https://hasithv.github.io/tags/probability/</link>
+      <pubDate>Sat, 03 Aug 2024 18:57:02 -0700</pubDate>
+      <guid>https://hasithv.github.io/tags/probability/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Stochastics</title>
+      <link>https://hasithv.github.io/tags/stochastics/</link>
+      <pubDate>Sat, 03 Aug 2024 18:57:02 -0700</pubDate>
+      <guid>https://hasithv.github.io/tags/stochastics/</guid>
       <description></description>
     </item>
     <item>
       <title>Aggregate Notes</title>
       <link>https://hasithv.github.io/tags/aggregate-notes/</link>
-      <pubDate>Fri, 02 Aug 2024 00:47:08 -0700</pubDate>
+      <pubDate>Sat, 03 Aug 2024 16:43:39 -0700</pubDate>
       <guid>https://hasithv.github.io/tags/aggregate-notes/</guid>
       <description></description>
     </item>
     <item>
-      <title>Probability</title>
-      <link>https://hasithv.github.io/tags/probability/</link>
-      <pubDate>Tue, 30 Jul 2024 00:07:20 -0700</pubDate>
-      <guid>https://hasithv.github.io/tags/probability/</guid>
+      <title>Category Theory</title>
+      <link>https://hasithv.github.io/tags/category-theory/</link>
+      <pubDate>Fri, 02 Aug 2024 01:26:30 -0700</pubDate>
+      <guid>https://hasithv.github.io/tags/category-theory/</guid>
       <description></description>
     </item>
   </channel>

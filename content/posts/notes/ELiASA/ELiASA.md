@@ -3,7 +3,7 @@ categories = ["notes"]
 tags = ["stochastics", "probability", "aggregate notes"]
 title = 'Applied Stochastic Analysis'
 date = 2024-08-03T16:43:39-07:00
-draft = true
+draft = false
 +++
 
 Here are my notes for E, Li, and Vanden-Eijnden's [_Applied Stochastic Analysis_](https://bookstore.ams.org/gsm-199/)

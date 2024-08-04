@@ -3,7 +3,7 @@ categories = ["notes"]
 tags = ["stochastics", "probability"]
 title = '5.1 - Axiomatic Construction of Stochastic Process'
 date = 2024-08-03T16:45:46-07:00
-draft = true
+draft = false
 +++
 
 ## Definition of a stochastic process
