@@ -11,3 +11,4 @@ Here are my notes for E, Li, and Vanden-Eijnden's [_Applied Stochastic Analysis_
 - Chapter 5 - Stochastic Processes
     - 5.1 - [Axiomatic Construction of Stochastic Process]({{< relref "chap5/5-1/" >}}) 
     - 5.2 - [Filtration and Stopping Time]({{< relref "chap5/5-2/" >}})
+    - 5.3 - [Markov Processes]({{< relref "chap5/5-3/" >}})

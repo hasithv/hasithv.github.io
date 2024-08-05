@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>5.3 - Markov Processes | HasItHalted</title>
+<meta name="keywords" content="stochastics, probability">
+<meta name="description" content="Markov processes in continuous time and space Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if
+$X_t$ is $\mathcal{F}_t$-adapted For any $t \geq s$ and $B \in \mathcal{R}$, we have $$\mathbb{P}(X_t \in B | \mathcal{F}_s) = \mathbb{P}(X_t \in B | X_s)$$ Essentially, this is saying that history doesn&rsquo;t matter, only the current state matters.">
+<meta name="author" content="">
+<link rel="canonical" href="https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://hasithv.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hasithv.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hasithv.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hasithv.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+  
+
+<meta property="og:title" content="5.3 - Markov Processes" />
+<meta property="og:description" content="Markov processes in continuous time and space Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if
+$X_t$ is $\mathcal{F}_t$-adapted For any $t \geq s$ and $B \in \mathcal{R}$, we have $$\mathbb{P}(X_t \in B | \mathcal{F}_s) = \mathbb{P}(X_t \in B | X_s)$$ Essentially, this is saying that history doesn&rsquo;t matter, only the current state matters." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-08-03T23:22:06-07:00" />
+<meta property="article:modified_time" content="2024-08-03T23:22:06-07:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="5.3 - Markov Processes"/>
+<meta name="twitter:description" content="Markov processes in continuous time and space Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if
+$X_t$ is $\mathcal{F}_t$-adapted For any $t \geq s$ and $B \in \mathcal{R}$, we have $$\mathbb{P}(X_t \in B | \mathcal{F}_s) = \mathbb{P}(X_t \in B | X_s)$$ Essentially, this is saying that history doesn&rsquo;t matter, only the current state matters."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hasithv.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "5.3 - Markov Processes",
+      "item": "https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "5.3 - Markov Processes",
+  "name": "5.3 - Markov Processes",
+  "description": "Markov processes in continuous time and space Given a probability space $(\\Omega, \\mathcal{F}, \\mathbb{P})$ and the filtration $\\mathbb{F} = (\\mathcal{F}_t)_{t \\geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\\mathcal{F}_t$ if\n$X_t$ is $\\mathcal{F}_t$-adapted For any $t \\geq s$ and $B \\in \\mathcal{R}$, we have $$\\mathbb{P}(X_t \\in B | \\mathcal{F}_s) = \\mathbb{P}(X_t \\in B | X_s)$$ Essentially, this is saying that history doesn\u0026rsquo;t matter, only the current state matters.",
+  "keywords": [
+    "stochastics", "probability"
+  ],
+  "articleBody": "Markov processes in continuous time and space Given a probability space $(\\Omega, \\mathcal{F}, \\mathbb{P})$ and the filtration $\\mathbb{F} = (\\mathcal{F}_t)_{t \\geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\\mathcal{F}_t$ if\n$X_t$ is $\\mathcal{F}_t$-adapted For any $t \\geq s$ and $B \\in \\mathcal{R}$, we have $$\\mathbb{P}(X_t \\in B | \\mathcal{F}_s) = \\mathbb{P}(X_t \\in B | X_s)$$ Essentially, this is saying that history doesn’t matter, only the current state matters. We can associate a family of probability measures $\\{\\mathbb{P}^x\\}_{x\\in\\mathbb{R}}$ for the processes starting at $x$ by defining $\\mu_0$ to be the point mass at $x$. Then, we still have $$\\mathbb{P}^x(X_t \\in B | \\mathcal{F}_s) = \\mathbb{P}^x(X_t \\in B | X_s), \\quad t \\geq s$$ and $\\mathbb{E}[f(X_0)] = f(x)$ for any function $f \\in C(\\mathbb{R})$. ⚠️ I am not fully confident on what the above section is saying. Specifically, I am having trouble with understanding how we are defining $\\mathbb{P}^x$. However, I can understand the strong markov property, so I think I should be okay moving forward.\nThe transition function of a Markov process is defined as $$p(B,t|x,s) = \\mathbb{P}(X_t \\in B | X_s = x)$$ and it has the properties\n$p(.,t|x,s)$ is a probability measure on $\\mathcal{R}$ $p(B,t|.,s)$ is a measurable function on $\\mathbb{R}$ $p$ satisfies $$p(B,t|y,s) = \\int_\\mathbb{R} p(B,t|y,u) p(dy,u|x,s), \\quad s \\leq u \\leq t$$ The last property is the continuous analog of the Chapman-Kolmogorov equation, and it essentially lets us break the transition function into two the transition from $s$ to $u$ and from $u$ to $t$. Now, we can write the expenctation from $x$ as $$ \\begin{multline} \\mathbb{E}^x[f(X_{t_1}, X_{t_2}, \\ldots, X_{t_n})] = \\int_\\mathbb{R} \\ldots \\int_\\mathbb{R} f(x_1,x_2,\\ldots,x_n) p(dx_n,t_n|x_{n-1},t_{n-1}) \\\\ \\ldots p(dx_2, t_2 | x_1,t_1) p(dx_1, t_1|x,0) \\end{multline} $$ when $t_n$ are strictly increasing.\n$p(y,t|x,s)$ is a transition density function of $X$. ⚠️ The book makes it seem like this is not always the case, but I fail to see when it isn’t.\nA stochastic process is stationary if the joint distributions are translation invariant in time. However, if the process only depends on the difference between time, then the process is homogeneous. The difference is that a stationary process has the same distribution at all times, while a homogeneous process has the same distribution for all time differences.\n⚠️ at this point, the book dives into semigroup theory which I know nothing about, so I will skip this section for now.\nExample 5.7 - Q-process Recall the definition of a generator $\\mathbf{Q}$ to be $$\\mathbf{Q} = \\lim_{h \\rightarrow 0+} \\frac{1}{h} (\\mathbf(P)(h) - \\mathbf{I})$$ Now, we will define an infinitesimal generator $\\mathcal{A}$ on a sample space $S = \\{1,2,\\ldots,I\\}$: $$\\mathcal{A}f = \\lim_{t \\rightarrow 0+} \\frac{\\mathbb{E}[f(X_t)] - f}{t}$$ and $$\\begin{align} \\mathcal{A}f(i) \u0026= \\lim_{t \\rightarrow 0+} \\frac{\\mathbb{E}^i[f(X_t)] - f(i)}{t} \\\\ \u0026= \\lim_{t \\rightarrow 0+} \\frac{1}{t} \\left(\\sum_{j \\in S} (P_{ij} - \\delta_{ij})f(j)\\right)\\\\ \u0026= \\sum_{j \\in S} q_{ij} f(j), \\quad i \\in S \\end{align}$$ Thus, the generator $\\mathbf{Q}$ is exactly the infinitesimal generator of $X_t$. This is important to digest especially because the $\\mathcal{A}$ is new to me.\nExtending the idea above, we get the backward Kolmogorov equation for $\\mathbf{u} = (u_1, u_2, \\ldots, u_I)^T$ and $u_i(t) = \\mathbb{E}^i[f(X_t)]$: $$\\frac{d \\mathbf{u}}{dt} = \\mathbf{Qu} = \\mathcal{A}\\mathbf{u}$$ ⚠️ This, too, is getting a little confusing. Let’s delve into it a bit more.\nWe are essentially dealing with a continous time markov chaic (CTMC) in the above case, because we have a finite number of states that have some associated probability of moving to another state at an infitesimal time step.\nWikipedia says that for CTMC’s, the Komogorov backward equations are, rather intuitively, that the time derviative of the probaility of transitioning from state $i$ at time $s$ to state $j$ at time $t$. $$\\frac{\\partial P_{ij}}{\\partial t}(s;t) = \\sum_k P_{kj}(s;t)A_{ik}(s)$$ Where $A$ is the transition-rate matrix in which an element $q_{ij}$ denotes the rate departing from $i$ and arriving in state $j$. Knowing this, I can understand why $\\mathcal{A}$ is the generator $\\mathbf{Q}$. Converting things back into our notation, we have $$ \\frac{d P_{ij}}{dt} = \\sum_{k \\in I} \\mathcal{A}_{ik} P_{kj} $$ In that case, we look back at the expression for $\\mathbb{E}^i[f(X_t)]$ $$\\mathbb{E}^i[f(X_t)] = \\sum_j P_{ij}f(j)$$ So, $$ \\begin{align} \\implies \\frac{d}{dt} \\mathbb{E}^i[f(X_t)] \u0026= \\sum_j \\frac{d P_{ij}}{d t} f(j) \\\\ \u0026= \\sum_j \\left(\\left[ \\sum_k \\mathcal{A_{ik}} P_{kj} \\right] f(j) \\right) \\\\ \u0026= \\sum_k \\sum_j \\mathcal{A}_{ik} P_{kj} f(j) \\\\ \u0026= \\sum_k \\mathcal{A}_{ik} \\mathbb{E}^k[f(X_t)] \\end{align} $$ Now, it’s clear that $$\\frac{d}{dt} \\mathbf{u} = \\mathcal{A} \\mathbf{u}$$ The backward kolmogrov equation is heavily linked to diffusion, so I will definitely explore that in the future.\nOn the other hand, if we have a distribution $\\mathbf{\\nu} = (\\nu_1, \\nu_2, \\ldots, \\nu_I)$ (which, by convention, is a row vector), then it satisfies the forward Kolomogrov equation $$\\frac{d\\mathbf{\\nu}}{dt} = \\mathbf{\\nu} \\mathcal{A}$$ Or using the adjoint $$\\frac{d\\mathbf{\\nu}^T}{dt} = \\mathcal{A}^* \\mathbf{\\nu}^T$$ where $\\mathcal{A}^*$ is defined as $$(A^* g, f) = (g, \\mathcal{A} f) \\quad \\forall \\; f \\in \\mathscr{B}, g \\in \\mathscr{B}$$ If this is giving you trouble, refer to equation (3.19) in the book and think with bra-ket notation. Recall that if $\\mathscr{B} = L^2$, then the dual space is also $L^2$, and so $\\mathcal{A}^* = \\mathcal{A}^T$.\n⚠️ Is this last statement rigorous? Specifically, I am asking about stating that $\\mathcal{A} = \\mathbf{Q}$. The book seems to avoid saying both are directly equal, but it really looks like they are.\nExample 5.8 - Poisson process Consider the Poisson process $X_t$ on $\\mathbb{N}$ with rate $\\lambda$. Then, $$\\begin{align} (\\mathcal{A}f)(n) \u0026= \\lim_{t \\rightarrow 0+} \\frac{\\mathbb{E}^n[f(X_t)] - f(n)}{t} \\\\ \u0026= \\lim_{t \\rightarrow 0+} \\frac{1}{t} \\left( \\sum_{k=n}^\\infty \\frac{(\\lambda t)^{k-n}}{(k-n)!} e^{-\\lambda t} f(k) - f(n)\\right) \\\\ \u0026= \\lim_{t \\rightarrow 0+} \\frac{1}{t} \\left( f(n)e^{-\\lambda t} + f(n+1)\\lambda t + \\sum_{k=n+2}^\\infty \\frac{(\\lambda t)^{k-n}}{(k-n)!} e^{-\\lambda t} f(k) - f(n)\\right) \\\\ \u0026= \\lim_{t \\rightarrow 0+} \\frac{1}{t} \\left( f(n)(e^{-\\lambda t}-1) + f(n+1)\\lambda t e^{-\\lambda t} + \\sum_{k=n+2}^\\infty \\frac{(\\lambda t)^{k-n}}{(k-n)!} e^{-\\lambda t} f(k) \\right) \\\\ \u0026= \\lambda(f(n+1) - f(n)) \\end{align}$$ The last step is justified with L’Hopital’s rule.\nThen, the book says $$\\mathcal{A}^*f(n) = \\lambda(f(n-1) - f(n))$$ ⚠️ Here is the best reasoning I can come up with: $$(g, \\mathcal{A}f) = (\\mathcal{A}^* g, f), \\quad \\forall \\; f\\in \\mathscr{B}, g \\in \\mathscr{B}^*$$ And defining $f^\\pm(n) := f(n \\pm 1)$, then we require $$(\\mathcal{A}^*g, f) = \\lambda(g,f^+) - \\lambda(g,f)$$ Then if we note that $(g,f^+) = (g^-,f)$ (this is the part I cannot justify), then it follows that $\\mathcal{A}^*f(n) = \\lambda(f(n-1) - f(n))$\nAgain, lets compute the time derivative of $u(t,n) = \\mathbb{E}^n[f(X_t)]$ $$\\begin{align} \\frac{d u}{dt} \u0026= \\frac{d}{dt}\\left(\\sum_{k \\geq n} f(k) \\frac{(\\lambda t)^{k-n}}{(k-n)!}e^{-\\lambda t}\\right) \\\\ \u0026= \\frac{d}{dt}\\left( e^{-\\lambda t} f(n) + \\sum_{k \u003e n} f(k) \\frac{(\\lambda t)^{k-n}}{(k-n)!}e^{-\\lambda t} \\right) \\\\ \u0026= -\\lambda e^{-\\lambda t} f(n) + \\sum_{k \u003e n} f(k) \\left[ \\left(-\\lambda\\frac{(\\lambda t)^{k-n}}{(k-n)!}e^{-\\lambda t}\\right) + \\left(\\lambda\\frac{(\\lambda t)^{k-n-1}}{(k-n-1)!}e^{-\\lambda t}\\right) \\right] \\\\ \u0026= \\lambda(u(t,n+1)-u(t,n)) \\\\ \u0026= \\mathcal{A}u(t,n) \\end{align}$$ And the time derivative of the distribution $\\mathbf{\\nu} = (\\nu_0, \\nu_1, \\ldots)$ will be $$\\begin{align} \\frac{d \\nu_n(t)}{dt} \u0026= \\frac{d}{dt}\\left(\\frac{(\\lambda t)^{k-n}}{(k-n)!}e^{-\\lambda t}\\right) \\\\ \u0026= -\\lambda\\frac{(\\lambda t)^{k-n}}{(k-n)!}e^{-\\lambda t} + \\lambda \\frac{(\\lambda t)^{k-n-1}}{(k-n-1)!}e^{-\\lambda t} \\\\ \u0026= \\lambda(\\nu_{n-1} - \\nu_n) \\\\ \u0026= (\\mathcal{A}^* \\mathbf{\\nu})_n \\end{align}$$ ⚠️ I keep getting $\\lambda(\\nu_{n+1} - \\nu_n)$, which disagrees with the book. Where did I go wrong?\nNotice how both Markov processes satisfied the forward Kolmogrov equation for the distribution, and the backwards for the expected values. This is a general property of Markov processes (wow!) that will be revisited.\n",
+  "wordCount" : "1202",
+  "inLanguage": "en",
+  "datePublished": "2024-08-03T23:22:06-07:00",
+  "dateModified": "2024-08-03T23:22:06-07:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HasItHalted",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hasithv.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+    
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$','$']]                  
+    }
+  };
+</script>
+
+
+    
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hasithv.github.io/" accesskey="h" title="HasItHalted (Alt + H)">HasItHalted</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hasithv.github.io/archives/" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hasithv.github.io/about/" title="about">
+                    <span>about</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hasithv.github.io/categories/" title="categories">
+                    <span>categories</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      5.3 - Markov Processes
+    </h1>
+    <div class="post-meta"><span title='2024-08-03 23:22:06 -0700 PDT'>August 3, 2024</span>&nbsp;·&nbsp;6 min
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="markov-processes-in-continuous-time-and-space">Markov processes in continuous time and space<a hidden class="anchor" aria-hidden="true" href="#markov-processes-in-continuous-time-and-space">#</a></h2>
+<p>Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if</p>
+<ol>
+<li>$X_t$ is $\mathcal{F}_t$-adapted</li>
+<li>For any $t \geq s$ and $B \in \mathcal{R}$, we have
+$$\mathbb{P}(X_t \in B | \mathcal{F}_s) = \mathbb{P}(X_t \in B | X_s)$$
+Essentially, this is saying that history doesn&rsquo;t matter, only the current state matters. We can associate a family of probability measures $\{\mathbb{P}^x\}_{x\in\mathbb{R}}$ for the processes starting at $x$ by defining $\mu_0$ to be the point mass at $x$. Then, we still have
+$$\mathbb{P}^x(X_t \in B | \mathcal{F}_s) = \mathbb{P}^x(X_t \in B | X_s), \quad t \geq s$$
+and $\mathbb{E}[f(X_0)] = f(x)$ for any function $f \in C(\mathbb{R})$.</li>
+</ol>
+<p>&#x26a0;&#xfe0f; I am not fully confident on what the above section is saying. Specifically, I am having trouble with understanding how we are defining $\mathbb{P}^x$. However, I can understand the strong markov property, so I think I should be okay moving forward.</p>
+<p>The <em>transition function</em> of a Markov process is defined as
+</p>
+$$p(B,t|x,s) = \mathbb{P}(X_t \in B | X_s = x)$$
+<p>
+and it has the properties</p>
+<ol>
+<li>$p(.,t|x,s)$ is a probability measure on $\mathcal{R}$</li>
+<li>$p(B,t|.,s)$ is a measurable function on $\mathbb{R}$</li>
+<li>$p$ satisfies
+$$p(B,t|y,s) = \int_\mathbb{R} p(B,t|y,u) p(dy,u|x,s), \quad s \leq u \leq t$$
+The last property is the continuous analog of the <em>Chapman-Kolmogorov equation</em>, and it essentially lets us break the transition function into two the transition from $s$ to $u$ and from $u$ to $t$.</li>
+</ol>
+<p>Now, we can write the expenctation from $x$ as
+</p>
+$$ \begin{multline}
+\mathbb{E}^x[f(X_{t_1}, X_{t_2}, \ldots, X_{t_n})] = \int_\mathbb{R} \ldots \int_\mathbb{R} f(x_1,x_2,\ldots,x_n) p(dx_n,t_n|x_{n-1},t_{n-1}) \\ \ldots p(dx_2, t_2 | x_1,t_1) p(dx_1, t_1|x,0)
+\end{multline}
+$$
+<p>when $t_n$ are strictly increasing.</p>
+<p>$p(y,t|x,s)$ is a <em>transition density function</em> of $X$. &#x26a0;&#xfe0f; The book makes it seem like this is not always the case, but I fail to see when it isn&rsquo;t.</p>
+<p>A stochastic process is <em>stationary</em> if the joint distributions are translation invariant in time. However, if the process only depends on the difference between time, then the process is <em>homogeneous</em>. The difference is that a stationary process has the same distribution at all times, while a homogeneous process has the same distribution for all time differences.</p>
+<p>&#x26a0;&#xfe0f; at this point, the book dives into semigroup theory which I know nothing about, so I will skip this section for now.</p>
+<h2 id="example-57---q-process">Example 5.7 - Q-process<a hidden class="anchor" aria-hidden="true" href="#example-57---q-process">#</a></h2>
+<p>Recall the definition of a generator $\mathbf{Q}$ to be
+</p>
+$$\mathbf{Q} = \lim_{h \rightarrow 0+} \frac{1}{h} (\mathbf(P)(h) - \mathbf{I})$$
+<p>
+Now, we will define an infinitesimal generator $\mathcal{A}$ on a sample space $S = \{1,2,\ldots,I\}$:
+</p>
+$$\mathcal{A}f = \lim_{t \rightarrow 0+} \frac{\mathbb{E}[f(X_t)] - f}{t}$$
+<p>
+and
+</p>
+$$\begin{align}
+\mathcal{A}f(i) &= \lim_{t \rightarrow 0+} \frac{\mathbb{E}^i[f(X_t)] - f(i)}{t} \\
+&= \lim_{t \rightarrow 0+} \frac{1}{t} \left(\sum_{j \in S} (P_{ij} - \delta_{ij})f(j)\right)\\
+&= \sum_{j \in S} q_{ij} f(j), \quad i \in S
+\end{align}$$
+<p>
+Thus, the generator $\mathbf{Q}$ is exactly the infinitesimal generator of $X_t$. This is important to digest especially because the $\mathcal{A}$ is new to me.</p>
+<p>Extending the idea above, we get the backward Kolmogorov equation for $\mathbf{u} = (u_1, u_2, \ldots, u_I)^T$ and $u_i(t) = \mathbb{E}^i[f(X_t)]$:
+</p>
+$$\frac{d \mathbf{u}}{dt} = \mathbf{Qu} = \mathcal{A}\mathbf{u}$$
+<p>&#x26a0;&#xfe0f; This, too, is getting a little confusing. Let&rsquo;s delve into it a bit more.</p>
+<blockquote>
+<p>We are essentially dealing with a continous time markov chaic (CTMC) in the above case, because we have a finite number of states that have some associated probability of moving to another state at an infitesimal time step.</p>
+<p><a href="https://en.wikipedia.org/wiki/Kolmogorov_equations#Continuous-time_Markov_chains">Wikipedia</a> says that for CTMC&rsquo;s, the Komogorov backward equations are, rather intuitively, that the time derviative of the probaility of transitioning from state $i$ at time $s$ to state $j$ at time $t$.
+</p>
+$$\frac{\partial P_{ij}}{\partial t}(s;t) = \sum_k P_{kj}(s;t)A_{ik}(s)$$
+<p>
+Where $A$ is the <a href="https://en.wikipedia.org/wiki/Transition-rate_matrix">transition-rate matrix</a> in which an element $q_{ij}$ denotes the rate departing from $i$ and arriving in state $j$. Knowing this, I can understand why $\mathcal{A}$ is the generator $\mathbf{Q}$. Converting things back into our notation, we have
+</p>
+$$ \frac{d P_{ij}}{dt} = \sum_{k \in I} \mathcal{A}_{ik} P_{kj} $$
+<p>In that case, we look back at the expression for $\mathbb{E}^i[f(X_t)]$
+</p>
+$$\mathbb{E}^i[f(X_t)] = \sum_j P_{ij}f(j)$$
+<p>
+So,
+</p>
+$$ \begin{align}
+\implies \frac{d}{dt} \mathbb{E}^i[f(X_t)] &= \sum_j \frac{d P_{ij}}{d t} f(j) \\
+&= \sum_j \left(\left[ \sum_k \mathcal{A_{ik}} P_{kj} \right] f(j) \right) \\
+&= \sum_k \sum_j \mathcal{A}_{ik} P_{kj} f(j) \\
+&= \sum_k \mathcal{A}_{ik} \mathbb{E}^k[f(X_t)]
+\end{align}
+$$
+<p>Now, it&rsquo;s clear that
+</p>
+$$\frac{d}{dt} \mathbf{u} = \mathcal{A} \mathbf{u}$$
+</blockquote>
+<p>The backward kolmogrov equation is heavily linked to diffusion, so I will definitely explore that in the future.</p>
+<p>On the other hand, if we have a distribution $\mathbf{\nu} = (\nu_1, \nu_2, \ldots, \nu_I)$ (which, by convention, is a row vector), then it satisfies the forward Kolomogrov equation
+</p>
+$$\frac{d\mathbf{\nu}}{dt} = \mathbf{\nu} \mathcal{A}$$
+<p>
+Or using the adjoint
+</p>
+$$\frac{d\mathbf{\nu}^T}{dt} = \mathcal{A}^* \mathbf{\nu}^T$$
+<p>
+where $\mathcal{A}^*$ is defined as
+</p>
+$$(A^* g, f) = (g, \mathcal{A} f) \quad \forall \; f \in \mathscr{B}, g \in \mathscr{B}$$
+<p>
+If this is giving you trouble, refer to equation (3.19) in the book and think with bra-ket notation. Recall that if $\mathscr{B} = L^2$, then the dual space is also $L^2$, and so $\mathcal{A}^* = \mathcal{A}^T$.</p>
+<p>&#x26a0;&#xfe0f; Is this last statement rigorous? Specifically, I am asking about stating that $\mathcal{A} = \mathbf{Q}$. The book seems to avoid saying both are directly equal, but it really looks like they are.</p>
+<h2 id="example-58---poisson-process">Example 5.8 - Poisson process<a hidden class="anchor" aria-hidden="true" href="#example-58---poisson-process">#</a></h2>
+<p>Consider the Poisson process $X_t$ on $\mathbb{N}$ with rate $\lambda$. Then,
+</p>
+$$\begin{align}
+(\mathcal{A}f)(n) &= \lim_{t \rightarrow 0+} \frac{\mathbb{E}^n[f(X_t)] - f(n)}{t} \\
+&= \lim_{t \rightarrow 0+} \frac{1}{t} \left( \sum_{k=n}^\infty \frac{(\lambda t)^{k-n}}{(k-n)!} e^{-\lambda t} f(k) - f(n)\right) \\
+&= \lim_{t \rightarrow 0+} \frac{1}{t} \left( f(n)e^{-\lambda t} + f(n+1)\lambda t + \sum_{k=n+2}^\infty \frac{(\lambda t)^{k-n}}{(k-n)!} e^{-\lambda t} f(k) - f(n)\right) \\
+&= \lim_{t \rightarrow 0+} \frac{1}{t} \left( f(n)(e^{-\lambda t}-1) + f(n+1)\lambda t e^{-\lambda t} + \sum_{k=n+2}^\infty \frac{(\lambda t)^{k-n}}{(k-n)!} e^{-\lambda t} f(k) \right) \\
+&= \lambda(f(n+1) - f(n))
+\end{align}$$
+<p>
+The last step is justified with L&rsquo;Hopital&rsquo;s rule.</p>
+<p>Then, the book says
+</p>
+$$\mathcal{A}^*f(n) = \lambda(f(n-1) - f(n))$$
+<blockquote>
+<p>&#x26a0;&#xfe0f; Here is the best reasoning I can come up with:
+</p>
+$$(g, \mathcal{A}f) = (\mathcal{A}^* g, f), \quad \forall \; f\in \mathscr{B}, g \in \mathscr{B}^*$$
+<p>
+And defining $f^\pm(n) := f(n \pm 1)$, then we require
+</p>
+$$(\mathcal{A}^*g, f) = \lambda(g,f^+) - \lambda(g,f)$$
+<p>
+Then if we note that $(g,f^+) = (g^-,f)$ (this is the part I cannot justify), then it follows that $\mathcal{A}^*f(n) = \lambda(f(n-1) - f(n))$</p>
+</blockquote>
+<p>Again, lets compute the time derivative of $u(t,n) = \mathbb{E}^n[f(X_t)]$
+</p>
+$$\begin{align}
+\frac{d u}{dt} &= \frac{d}{dt}\left(\sum_{k \geq n} f(k) \frac{(\lambda t)^{k-n}}{(k-n)!}e^{-\lambda t}\right) \\
+&= \frac{d}{dt}\left( e^{-\lambda t} f(n) + \sum_{k > n} f(k) \frac{(\lambda t)^{k-n}}{(k-n)!}e^{-\lambda t} \right) \\
+&=  -\lambda e^{-\lambda t} f(n) + \sum_{k > n} f(k) \left[ \left(-\lambda\frac{(\lambda t)^{k-n}}{(k-n)!}e^{-\lambda t}\right) + \left(\lambda\frac{(\lambda t)^{k-n-1}}{(k-n-1)!}e^{-\lambda t}\right) \right] \\
+&= \lambda(u(t,n+1)-u(t,n)) \\
+&= \mathcal{A}u(t,n)
+\end{align}$$
+<p>And the time derivative of the distribution $\mathbf{\nu} = (\nu_0, \nu_1, \ldots)$ will be
+</p>
+$$\begin{align}
+\frac{d \nu_n(t)}{dt} &= \frac{d}{dt}\left(\frac{(\lambda t)^{k-n}}{(k-n)!}e^{-\lambda t}\right) \\
+&= -\lambda\frac{(\lambda t)^{k-n}}{(k-n)!}e^{-\lambda t} + \lambda \frac{(\lambda t)^{k-n-1}}{(k-n-1)!}e^{-\lambda t} \\
+&= \lambda(\nu_{n-1} - \nu_n) \\
+&= (\mathcal{A}^* \mathbf{\nu})_n
+\end{align}$$
+<p>&#x26a0;&#xfe0f; I keep getting $\lambda(\nu_{n+1} - \nu_n)$, which disagrees with the book. Where did I go wrong?</p>
+<p>Notice how both Markov processes satisfied the forward Kolmogrov equation for the distribution, and the backwards for the expected values. This is a general property of Markov processes (wow!) that will be revisited.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hasithv.github.io/tags/stochastics/">Stochastics</a></li>
+      <li><a href="https://hasithv.github.io/tags/probability/">Probability</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="https://hasithv.github.io/">HasItHalted</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
