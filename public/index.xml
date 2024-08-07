@@ -6,8 +6,74 @@
     <description>Recent content on HasItHalted</description>
     <generator>Hugo -- 0.129.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 03 Aug 2024 23:22:06 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 06 Aug 2024 21:17:49 -0700</lastBuildDate>
     <atom:link href="https://hasithv.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>5.4 - Gaussian Processes</title>
+      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-4/</link>
+      <pubDate>Tue, 06 Aug 2024 21:17:49 -0700</pubDate>
+      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-4/</guid>
+      <description>Definition 5.9: A stochasitc process $\{X_t\}_{t \geq 0}$ is a Gaussian Process if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.
+Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$ Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$ $$\mathbb{E}\left[e^{i \mathbf{\xi} \cdot \mathbf{X}}\right] = e^{i \mathbf{\xi} \cdot \mathbf{m} - \frac{1}{2}\mathbf{\xi}^T \mathbf{K} \mathbf{\xi}} $$ This means that for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$, the measure $\mu_{t_1, t_2, \ldots, t_k}$ is uniquely determined by an $\mathbf{m} = (m(t_1), \ldots, m(t_k))$ and a covariance matrix $\mathbf{K}_{ij} = K(t_i, t_j)$.</description>
+      <content:encoded><![CDATA[<blockquote>
+<p><strong>Definition 5.9:</strong> A stochasitc process $\{X_t\}_{t \geq 0}$ is a <em>Gaussian Process</em> if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 < t_2 < \ldots < t_k$.</p>
+</blockquote>
+<p>Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments
+</p>
+$$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$
+<p>Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$
+</p>
+$$\mathbb{E}\left[e^{i \mathbf{\xi} \cdot \mathbf{X}}\right] = e^{i \mathbf{\xi} \cdot \mathbf{m} - \frac{1}{2}\mathbf{\xi}^T \mathbf{K} \mathbf{\xi}} $$
+<p>
+This means that for any $0 \leq t_1 < t_2 < \ldots < t_k$, the measure $\mu_{t_1, t_2, \ldots, t_k}$ is uniquely determined by an $\mathbf{m} = (m(t_1), \ldots, m(t_k))$ and a covariance matrix $\mathbf{K}_{ij} = K(t_i, t_j)$. Because our $\mu$ satisifes the conditions for Kolomorov&rsquo;s extension theorem, we have a probability space and a stochastic process associated with $\mu$.</p>
+<p>&#x26a0;&#xfe0f; Isn&rsquo;t one of the conditions of Kolmogorov&rsquo;s extension theoren that we need to be able to permute the $t_i$? How would this work if we require the $t_i$ to be increasing?</p>
+<blockquote>
+<p><strong>Theorem 5.10:</strong> Assuming that the stochastic process $\{X_t\}_{t\in[0,T]}$ satisfies
+</p>
+$$\mathbb{E} \left[ \int_0^T X_t^2 dt \right] < \infty$$
+<p>
+then $m \in L^2_t$. Also, the operator
+</p>
+$$\mathcal{K} f(s) := \int_0^T K(s,t) f(t) dt$$
+<p>
+is nonnegative, compact on $L^2_t$</p>
+</blockquote>
+<blockquote>
+<p><strong>Proof:</strong> For the first statement,
+</p>
+$$\int_0^T \mathbb{E}[X]^2 dt \leq \int_0^T \mathbb{E}[X_t^2] dt < \infty$$
+<p>
+For the second,
+</p>
+$$\begin{align}
+\int_0^T \int_0^T K^2(s,t) ds dt &= \int_0^T \int_0^T \mathbb{E}[\left((X_t - m(t))(X_s - m(s))\right)^2]ds dt \\
+&\leq \int_0^T \int_0^T \mathbb{E}[(X_t - m(t))^2]\mathbb{E}[(X_s - m(s))^2]ds dt \\
+&\leq \left( \int_0^T \mathbb{E}[X_t] dt \right) \\
+&\leq \infty 
+\end{align}$$
+<p>
+which lets us conclude that $K \in L^2([0,T] \times [0,T])$, which tells us that $\mathcal{K}$ is compact on $L^2_t$</p>
+<p>&#x26a0;&#xfe0f; I can&rsquo;t properly find what theorem lets us say the last statement, but I can trust it for now.</p>
+<p>Furthermore, noting that $K$ is symmetric which means that $\mathcal{K}$ is self adjoint, and we can say
+</p>
+$$(\mathcal{K}f, f) = \int_0^T \int_0^T \mathbb{E}[(X_t - m(t))]\mathbb{E}[(X_s - m(s))]f(t)f(s) ds dt \geq 0$$
+<p>
+by symmetry of $s$ and $t$.</p>
+</blockquote>
+<p>If we want to extend the characteristic to $L_t$ rather than the finite dimensional version, we can write
+</p>
+$$\mathbb{E}[e^{i(\xi,X)}] = e^{i(\xi,m) - \frac{1}{2} (\xi, \mathcal{K} \xi)}, \quad \xi \in L^2_t$$
+<p>
+With $(\xi,m) = \int_a^b \xi(t) m(t) dt$ and $\mathcal{K}\xi (t) = \int_a^b K(t,s) \xi(s) ds$. This is a fairly reasonable extrapolation from the finite dimensional case.</p>
+<blockquote>
+<p><strong>Theorem 5.13:</strong> <em>Karhunen-Loeve expansion</em>. Let (X_t)_{t \in [0,1]} be a Gaussian process with mean 0 and covariance function $K(s,t)$, Assume that $K$ continuous and $\{\lambda_k\}$ be the set of eigenvalues for orthonormal eigenfunctions of $K$, $\{\phi_k\}$. Then, $X_t$ has the representation of
+</p>
+$$X_t = \sum_{k=1}^\infty \alpha_k \sqrt{\lambda_k} \phi_k(t)$$
+<p>
+&#x26a0;&#xfe0f; I am omitting the proof because I feel the result is easy enough to intuitively grasp, and also it is a little theoretical, so maybe I should revisit it if I get more comfortable with proving covergence in probability.</p>
+</blockquote>
+]]></content:encoded>
+    </item>
     <item>
       <title>5.3 - Markov Processes</title>
       <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/</link>
@@ -238,7 +304,7 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
       <pubDate>Sat, 03 Aug 2024 16:43:39 -0700</pubDate>
       <guid>https://hasithv.github.io/posts/notes/eliasa/eliasa/</guid>
       <description>Here are my notes for E, Li, and Vanden-Eijnden&amp;rsquo;s Applied Stochastic Analysis
-Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Process 5.2 - Filtration and Stopping Time 5.3 - Markov Processes </description>
+Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Process 5.2 - Filtration and Stopping Time 5.3 - Markov Processes 5.4 - Gaussian Processes </description>
       <content:encoded><![CDATA[<p>Here are my notes for E, Li, and Vanden-Eijnden&rsquo;s <a href="https://bookstore.ams.org/gsm-199/"><em>Applied Stochastic Analysis</em></a></p>
 <ul>
 <li>Chapter 5 - Stochastic Processes
@@ -246,6 +312,7 @@ Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Proc
 <li>5.1 - <a href="/posts/notes/eliasa/chap5/5-1/">Axiomatic Construction of Stochastic Process</a></li>
 <li>5.2 - <a href="/posts/notes/eliasa/chap5/5-2/">Filtration and Stopping Time</a></li>
 <li>5.3 - <a href="/posts/notes/eliasa/chap5/5-3/">Markov Processes</a></li>
+<li>5.4 - <a href="/posts/notes/eliasa/chap5/5-4/">Gaussian Processes</a></li>
 </ul>
 </li>
 </ul>
