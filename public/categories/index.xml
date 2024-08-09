@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Categories on HasItHalted</title>
-    <link>https://hasithv.github.io/categories/</link>
+    <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on HasItHalted</description>
-    <generator>Hugo -- 0.129.0</generator>
+    <generator>Hugo -- 0.131.0</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 06 Aug 2024 21:17:49 -0700</lastBuildDate>
-    <atom:link href="https://hasithv.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Notes</title>
-      <link>https://hasithv.github.io/categories/notes/</link>
+      <link>http://localhost:1313/categories/notes/</link>
       <pubDate>Tue, 06 Aug 2024 21:17:49 -0700</pubDate>
-      <guid>https://hasithv.github.io/categories/notes/</guid>
+      <guid>http://localhost:1313/categories/notes/</guid>
       <description></description>
     </item>
     <item>
       <title>Puzzles</title>
-      <link>https://hasithv.github.io/categories/puzzles/</link>
+      <link>http://localhost:1313/categories/puzzles/</link>
       <pubDate>Tue, 30 Jul 2024 00:07:20 -0700</pubDate>
-      <guid>https://hasithv.github.io/categories/puzzles/</guid>
+      <guid>http://localhost:1313/categories/puzzles/</guid>
       <description></description>
     </item>
   </channel>

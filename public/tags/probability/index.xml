@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Probability on HasItHalted</title>
-    <link>https://hasithv.github.io/tags/probability/</link>
+    <link>http://localhost:1313/tags/probability/</link>
     <description>Recent content in Probability on HasItHalted</description>
-    <generator>Hugo -- 0.129.0</generator>
+    <generator>Hugo -- 0.131.0</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 03 Aug 2024 23:22:06 -0700</lastBuildDate>
-    <atom:link href="https://hasithv.github.io/tags/probability/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/probability/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>5.3 - Markov Processes</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap5/5-3/</link>
       <pubDate>Sat, 03 Aug 2024 23:22:06 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/</guid>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap5/5-3/</guid>
       <description>Markov processes in continuous time and space Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if
 $X_t$ is $\mathcal{F}_t$-adapted For any $t \geq s$ and $B \in \mathcal{R}$, we have $$\mathbb{P}(X_t \in B | \mathcal{F}_s) = \mathbb{P}(X_t \in B | X_s)$$ Essentially, this is saying that history doesn&amp;rsquo;t matter, only the current state matters.</description>
       <content:encoded><![CDATA[<h2 id="markov-processes-in-continuous-time-and-space">Markov processes in continuous time and space</h2>
@@ -160,9 +160,9 @@ $$\begin{align}
     </item>
     <item>
       <title>5.2 - Filtration and Stopping Time</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-2/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap5/5-2/</link>
       <pubDate>Sat, 03 Aug 2024 18:57:02 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-2/</guid>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap5/5-2/</guid>
       <description>Filtration Definition 5.3: (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s &lt; t$.
 Intuitively, the filtration is a sigma algebra of events that can be determined before time $t$ (we can&amp;rsquo;t lose information by foing forward in time). A stochastic process is called $\mathcal{F}_t$-adapted if it is measurable with respect to $\mathcal{F}_t$; that is, for all $B \in \mathcal{R}$, $X_t^{-1}(B) \in \mathcal{F}_t$.</description>
       <content:encoded><![CDATA[<h2 id="filtration">Filtration</h2>
@@ -207,9 +207,9 @@ $$\{T \leq t\} \in \mathcal{F}_t$$
     </item>
     <item>
       <title>5.1 - Axiomatic Construction of Stochastic Process</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap5/5-1/</link>
       <pubDate>Sat, 03 Aug 2024 16:45:46 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/</guid>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap5/5-1/</guid>
       <description>Definition of a stochastic process A stochastic process is a parameterized random variable $\{X_t\}_{t\in\mathbf{T}}$ defined on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ taking on values in $\mathbb{R}$. $\mathbf{T}$ can seemingly be any subset of $\mathbb{R}$. For any fixed $t \in \mathbf{T}$, we can define the random variable
 $$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$ Thinking of a simple random walk, this means that $X_t$ is a random variable that takes in some subset of $\Omega = \{H,T\}^\mathbb{N}$ and outputs a real valued number (the sum of the first $t$ values in $\omega$): $\{\omega_1, \omega_2, \ldots \} \rightarrow \sum_{n \leq t} X(\omega_n)$</description>
       <content:encoded><![CDATA[<h2 id="definition-of-a-stochastic-process">Definition of a stochastic process</h2>
@@ -234,9 +234,9 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
     </item>
     <item>
       <title>Applied Stochastic Analysis</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/eliasa/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/eliasa/</link>
       <pubDate>Sat, 03 Aug 2024 16:43:39 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/eliasa/</guid>
+      <guid>http://localhost:1313/posts/notes/eliasa/eliasa/</guid>
       <description>Here are my notes for E, Li, and Vanden-Eijnden&amp;rsquo;s Applied Stochastic Analysis
 Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Process 5.2 - Filtration and Stopping Time 5.3 - Markov Processes 5.4 - Gaussian Processes </description>
       <content:encoded><![CDATA[<p>Here are my notes for E, Li, and Vanden-Eijnden&rsquo;s <a href="https://bookstore.ams.org/gsm-199/"><em>Applied Stochastic Analysis</em></a></p>
@@ -254,9 +254,9 @@ Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Proc
     </item>
     <item>
       <title>That&#39;s not how Probability Works!</title>
-      <link>https://hasithv.github.io/posts/07-29-24-nothowprobabilityworks/</link>
+      <link>http://localhost:1313/posts/07-29-24-nothowprobabilityworks/</link>
       <pubDate>Tue, 30 Jul 2024 00:07:20 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/07-29-24-nothowprobabilityworks/</guid>
+      <guid>http://localhost:1313/posts/07-29-24-nothowprobabilityworks/</guid>
       <description>I was recently doing a probability puzzle that I can&amp;rsquo;t quite remember the context of, but I came across the answer that the probability would be $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$ But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&amp;rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$.</description>
       <content:encoded><![CDATA[<p>I was recently doing a probability puzzle that I can&rsquo;t quite remember the context of, but I came across the answer that the probability would be
 </p>

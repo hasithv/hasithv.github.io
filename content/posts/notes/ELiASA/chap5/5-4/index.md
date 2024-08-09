@@ -44,7 +44,9 @@ If we want to extend the characteristic to $L_t$ rather than the finite dimensio
 $$\mathbb{E}[e^{i(\xi,X)}] = e^{i(\xi,m) - \frac{1}{2} (\xi, \mathcal{K} \xi)}, \quad \xi \in L^2_t$$
 With $(\xi,m) = \int_a^b \xi(t) m(t) dt$ and $\mathcal{K}\xi (t) = \int_a^b K(t,s) \xi(s) ds$. This is a fairly reasonable extrapolation from the finite dimensional case.
 
-> **Theorem 5.13:** _Karhunen-Loeve expansion_. Let (X_t)_{t \in [0,1]} be a Gaussian process with mean 0 and covariance function $K(s,t)$, Assume that $K$ continuous and $\{\lambda_k\}$ be the set of eigenvalues for orthonormal eigenfunctions of $K$, $\{\phi_k\}$. Then, $X_t$ has the representation of 
+> **Theorem 5.13:** _Karhunen-Loeve expansion_. Let $(X_t)_{t \in [0,1]}$ be a Gaussian process with mean 0 and covariance function $K(s,t)$, Assume that $K$ continuous and $\{\lambda_k\}$ be the set of eigenvalues for orthonormal eigenfunctions of $K$, $\{\phi_k\}$. Then, $X_t$ has the representation of 
 > $$X_t = \sum_{k=1}^\infty \alpha_k \sqrt{\lambda_k} \phi_k(t)$$
+> Where $\alpha_k$ is a standard normal random variable $\mathscr{N}(0,1)$
+> 
 > :warning: I am omitting the proof because I feel the result is easy enough to intuitively grasp, and also it is a little theoretical, so maybe I should revisit it if I get more comfortable with proving covergence in probability.
 

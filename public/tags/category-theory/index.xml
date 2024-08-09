@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Category Theory on HasItHalted</title>
-    <link>https://hasithv.github.io/tags/category-theory/</link>
+    <link>http://localhost:1313/tags/category-theory/</link>
     <description>Recent content in Category Theory on HasItHalted</description>
-    <generator>Hugo -- 0.129.0</generator>
+    <generator>Hugo -- 0.131.0</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 02 Aug 2024 01:26:30 -0700</lastBuildDate>
-    <atom:link href="https://hasithv.github.io/tags/category-theory/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/category-theory/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2.2 - Symmetric monoidal preorders</title>
-      <link>https://hasithv.github.io/posts/notes/fongspivakact/chap2/2-2/</link>
+      <link>http://localhost:1313/posts/notes/fongspivakact/chap2/2-2/</link>
       <pubDate>Fri, 02 Aug 2024 01:26:30 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/fongspivakact/chap2/2-2/</guid>
+      <guid>http://localhost:1313/posts/notes/fongspivakact/chap2/2-2/</guid>
       <description>2.2.1 - Definition and first examples Definition 2.2: A symmetric monoidal structure on a preoirder $(X, \leq)$ consists of
 (i) a monoidal unit, $I \in X$ (ii) a monoidal product $\otimes: X \times X \rightarrow X$ And the monoidal product $\otimes(x_1,x_2) = x_1 \otimes x_2$ must also satisfy the following properties (assume all elements are in $X$)
 (a) $x_1 \leq y_1$ and $x_2 \leq y_2 \implies x_1 \otimes x_2 \leq y_1 \otimes y_2$ (b) $I \otimes x = x \otimes I = x$ (c) associativity (d) commutivity/symmetry (a) is called monotnoicity and (b) is unitality</description>
@@ -149,9 +149,9 @@ And it is called a <em>strict monoidal monotone</em> if it satisfies</li>
     </item>
     <item>
       <title>An Invitation to Appied Category Theory</title>
-      <link>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</link>
+      <link>http://localhost:1313/posts/notes/fongspivakact/fongspivakact/</link>
       <pubDate>Fri, 02 Aug 2024 00:47:08 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</guid>
+      <guid>http://localhost:1313/posts/notes/fongspivakact/fongspivakact/</guid>
       <description>This is a collection of my notes for Brendan Fong and David Spivak&amp;rsquo;s An Invitation to Appied Category Theory. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.
 Chapter 1 - Generative effects: Orders and adjunctions Chapter 2 - Resource theories: Monoidal preorders and enrichment Section 2.2 - Symmetric monoidal preorders </description>
       <content:encoded><![CDATA[<p>This is a collection of my notes for Brendan Fong and David Spivak&rsquo;s <a href="https://arxiv.org/pdf/1803.05316"><em>An Invitation to Appied Category Theory</em></a>. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.</p>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on HasItHalted</title>
-    <link>https://hasithv.github.io/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on HasItHalted</description>
-    <generator>Hugo -- 0.129.0</generator>
+    <generator>Hugo -- 0.131.0</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 06 Aug 2024 21:17:49 -0700</lastBuildDate>
-    <atom:link href="https://hasithv.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>5.4 - Gaussian Processes</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-4/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap5/5-4/</link>
       <pubDate>Tue, 06 Aug 2024 21:17:49 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-4/</guid>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap5/5-4/</guid>
       <description>Definition 5.9: A stochasitc process $\{X_t\}_{t \geq 0}$ is a Gaussian Process if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.
 Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$ Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$ $$\mathbb{E}\left[e^{i \mathbf{\xi} \cdot \mathbf{X}}\right] = e^{i \mathbf{\xi} \cdot \mathbf{m} - \frac{1}{2}\mathbf{\xi}^T \mathbf{K} \mathbf{\xi}} $$ This means that for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$, the measure $\mu_{t_1, t_2, \ldots, t_k}$ is uniquely determined by an $\mathbf{m} = (m(t_1), \ldots, m(t_k))$ and a covariance matrix $\mathbf{K}_{ij} = K(t_i, t_j)$.</description>
       <content:encoded><![CDATA[<blockquote>
@@ -66,7 +66,7 @@ $$\mathbb{E}[e^{i(\xi,X)}] = e^{i(\xi,m) - \frac{1}{2} (\xi, \mathcal{K} \xi)}, 
 <p>
 With $(\xi,m) = \int_a^b \xi(t) m(t) dt$ and $\mathcal{K}\xi (t) = \int_a^b K(t,s) \xi(s) ds$. This is a fairly reasonable extrapolation from the finite dimensional case.</p>
 <blockquote>
-<p><strong>Theorem 5.13:</strong> <em>Karhunen-Loeve expansion</em>. Let (X_t)_{t \in [0,1]} be a Gaussian process with mean 0 and covariance function $K(s,t)$, Assume that $K$ continuous and $\{\lambda_k\}$ be the set of eigenvalues for orthonormal eigenfunctions of $K$, $\{\phi_k\}$. Then, $X_t$ has the representation of
+<p><strong>Theorem 5.13:</strong> <em>Karhunen-Loeve expansion</em>. Let $(X_t)_{t \in [0,1]}$ be a Gaussian process with mean 0 and covariance function $K(s,t)$, Assume that $K$ continuous and $\{\lambda_k\}$ be the set of eigenvalues for orthonormal eigenfunctions of $K$, $\{\phi_k\}$. Then, $X_t$ has the representation of
 </p>
 $$X_t = \sum_{k=1}^\infty \alpha_k \sqrt{\lambda_k} \phi_k(t)$$
 <p>
@@ -76,9 +76,9 @@ $$X_t = \sum_{k=1}^\infty \alpha_k \sqrt{\lambda_k} \phi_k(t)$$
     </item>
     <item>
       <title>5.3 - Markov Processes</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap5/5-3/</link>
       <pubDate>Sat, 03 Aug 2024 23:22:06 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/</guid>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap5/5-3/</guid>
       <description>Markov processes in continuous time and space Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if
 $X_t$ is $\mathcal{F}_t$-adapted For any $t \geq s$ and $B \in \mathcal{R}$, we have $$\mathbb{P}(X_t \in B | \mathcal{F}_s) = \mathbb{P}(X_t \in B | X_s)$$ Essentially, this is saying that history doesn&amp;rsquo;t matter, only the current state matters.</description>
       <content:encoded><![CDATA[<h2 id="markov-processes-in-continuous-time-and-space">Markov processes in continuous time and space</h2>
@@ -226,9 +226,9 @@ $$\begin{align}
     </item>
     <item>
       <title>5.2 - Filtration and Stopping Time</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-2/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap5/5-2/</link>
       <pubDate>Sat, 03 Aug 2024 18:57:02 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-2/</guid>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap5/5-2/</guid>
       <description>Filtration Definition 5.3: (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s &lt; t$.
 Intuitively, the filtration is a sigma algebra of events that can be determined before time $t$ (we can&amp;rsquo;t lose information by foing forward in time). A stochastic process is called $\mathcal{F}_t$-adapted if it is measurable with respect to $\mathcal{F}_t$; that is, for all $B \in \mathcal{R}$, $X_t^{-1}(B) \in \mathcal{F}_t$.</description>
       <content:encoded><![CDATA[<h2 id="filtration">Filtration</h2>
@@ -273,9 +273,9 @@ $$\{T \leq t\} \in \mathcal{F}_t$$
     </item>
     <item>
       <title>5.1 - Axiomatic Construction of Stochastic Process</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap5/5-1/</link>
       <pubDate>Sat, 03 Aug 2024 16:45:46 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/</guid>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap5/5-1/</guid>
       <description>Definition of a stochastic process A stochastic process is a parameterized random variable $\{X_t\}_{t\in\mathbf{T}}$ defined on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ taking on values in $\mathbb{R}$. $\mathbf{T}$ can seemingly be any subset of $\mathbb{R}$. For any fixed $t \in \mathbf{T}$, we can define the random variable
 $$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$ Thinking of a simple random walk, this means that $X_t$ is a random variable that takes in some subset of $\Omega = \{H,T\}^\mathbb{N}$ and outputs a real valued number (the sum of the first $t$ values in $\omega$): $\{\omega_1, \omega_2, \ldots \} \rightarrow \sum_{n \leq t} X(\omega_n)$</description>
       <content:encoded><![CDATA[<h2 id="definition-of-a-stochastic-process">Definition of a stochastic process</h2>
@@ -300,9 +300,9 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
     </item>
     <item>
       <title>Applied Stochastic Analysis</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/eliasa/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/eliasa/</link>
       <pubDate>Sat, 03 Aug 2024 16:43:39 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/eliasa/</guid>
+      <guid>http://localhost:1313/posts/notes/eliasa/eliasa/</guid>
       <description>Here are my notes for E, Li, and Vanden-Eijnden&amp;rsquo;s Applied Stochastic Analysis
 Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Process 5.2 - Filtration and Stopping Time 5.3 - Markov Processes 5.4 - Gaussian Processes </description>
       <content:encoded><![CDATA[<p>Here are my notes for E, Li, and Vanden-Eijnden&rsquo;s <a href="https://bookstore.ams.org/gsm-199/"><em>Applied Stochastic Analysis</em></a></p>
@@ -320,9 +320,9 @@ Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Proc
     </item>
     <item>
       <title>2.2 - Symmetric monoidal preorders</title>
-      <link>https://hasithv.github.io/posts/notes/fongspivakact/chap2/2-2/</link>
+      <link>http://localhost:1313/posts/notes/fongspivakact/chap2/2-2/</link>
       <pubDate>Fri, 02 Aug 2024 01:26:30 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/fongspivakact/chap2/2-2/</guid>
+      <guid>http://localhost:1313/posts/notes/fongspivakact/chap2/2-2/</guid>
       <description>2.2.1 - Definition and first examples Definition 2.2: A symmetric monoidal structure on a preoirder $(X, \leq)$ consists of
 (i) a monoidal unit, $I \in X$ (ii) a monoidal product $\otimes: X \times X \rightarrow X$ And the monoidal product $\otimes(x_1,x_2) = x_1 \otimes x_2$ must also satisfy the following properties (assume all elements are in $X$)
 (a) $x_1 \leq y_1$ and $x_2 \leq y_2 \implies x_1 \otimes x_2 \leq y_1 \otimes y_2$ (b) $I \otimes x = x \otimes I = x$ (c) associativity (d) commutivity/symmetry (a) is called monotnoicity and (b) is unitality</description>
@@ -459,9 +459,9 @@ And it is called a <em>strict monoidal monotone</em> if it satisfies</li>
     </item>
     <item>
       <title>An Invitation to Appied Category Theory</title>
-      <link>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</link>
+      <link>http://localhost:1313/posts/notes/fongspivakact/fongspivakact/</link>
       <pubDate>Fri, 02 Aug 2024 00:47:08 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</guid>
+      <guid>http://localhost:1313/posts/notes/fongspivakact/fongspivakact/</guid>
       <description>This is a collection of my notes for Brendan Fong and David Spivak&amp;rsquo;s An Invitation to Appied Category Theory. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.
 Chapter 1 - Generative effects: Orders and adjunctions Chapter 2 - Resource theories: Monoidal preorders and enrichment Section 2.2 - Symmetric monoidal preorders </description>
       <content:encoded><![CDATA[<p>This is a collection of my notes for Brendan Fong and David Spivak&rsquo;s <a href="https://arxiv.org/pdf/1803.05316"><em>An Invitation to Appied Category Theory</em></a>. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.</p>
@@ -477,9 +477,9 @@ Chapter 1 - Generative effects: Orders and adjunctions Chapter 2 - Resource theo
     </item>
     <item>
       <title>That&#39;s not how Probability Works!</title>
-      <link>https://hasithv.github.io/posts/07-29-24-nothowprobabilityworks/</link>
+      <link>http://localhost:1313/posts/07-29-24-nothowprobabilityworks/</link>
       <pubDate>Tue, 30 Jul 2024 00:07:20 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/07-29-24-nothowprobabilityworks/</guid>
+      <guid>http://localhost:1313/posts/07-29-24-nothowprobabilityworks/</guid>
       <description>I was recently doing a probability puzzle that I can&amp;rsquo;t quite remember the context of, but I came across the answer that the probability would be $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$ But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&amp;rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$.</description>
       <content:encoded><![CDATA[<p>I was recently doing a probability puzzle that I can&rsquo;t quite remember the context of, but I came across the answer that the probability would be
 </p>
@@ -546,9 +546,9 @@ which I cannot solve, but Desmos tells me that $p_0 \approx 0.6922$ and $t_0 \ap
     </item>
     <item>
       <title>Introduction</title>
-      <link>https://hasithv.github.io/posts/introduction/</link>
+      <link>http://localhost:1313/posts/introduction/</link>
       <pubDate>Mon, 29 Jul 2024 00:07:20 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/introduction/</guid>
+      <guid>http://localhost:1313/posts/introduction/</guid>
       <description>I have no idea what I am doing. Anyways, here&amp;rsquo;s a cool equation:
 $$\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}}\right) - \frac{\partial L}{\partial q} = 0$$ </description>
       <content:encoded><![CDATA[<p>I have no idea what I am doing. Anyways, here&rsquo;s a cool equation:</p>
