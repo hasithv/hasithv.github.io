@@ -14,7 +14,7 @@
       <pubDate>Sat, 03 Aug 2024 16:43:39 -0700</pubDate>
       <guid>https://hasithv.github.io/posts/notes/eliasa/eliasa/</guid>
       <description>Here are my notes for E, Li, and Vanden-Eijnden&amp;rsquo;s Applied Stochastic Analysis
-Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Process 5.2 - Filtration and Stopping Time 5.3 - Markov Processes 5.4 - Gaussian Processes </description>
+Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Process 5.2 - Filtration and Stopping Time 5.3 - Markov Processes 5.4 - Gaussian Processes Chapter 6 - Wiener Process 6.1 - The Diffusion Limit of Random Walks </description>
       <content:encoded><![CDATA[<p>Here are my notes for E, Li, and Vanden-Eijnden&rsquo;s <a href="https://bookstore.ams.org/gsm-199/"><em>Applied Stochastic Analysis</em></a></p>
 <ul>
 <li>Chapter 5 - Stochastic Processes
@@ -23,6 +23,11 @@ Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Proc
 <li>5.2 - <a href="/posts/notes/eliasa/chap5/5-2/">Filtration and Stopping Time</a></li>
 <li>5.3 - <a href="/posts/notes/eliasa/chap5/5-3/">Markov Processes</a></li>
 <li>5.4 - <a href="/posts/notes/eliasa/chap5/5-4/">Gaussian Processes</a></li>
+</ul>
+</li>
+<li>Chapter 6 - Wiener Process
+<ul>
+<li>6.1 - <a href="/posts/notes/eliasa/chap5/5-1/">The Diffusion Limit of Random Walks</a></li>
 </ul>
 </li>
 </ul>

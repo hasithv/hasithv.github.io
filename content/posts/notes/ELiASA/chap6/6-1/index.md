@@ -3,7 +3,7 @@ categories = ["notes"]
 tags = ["stochastics", "notes"]
 title = '6.1 - The Diffusion Limit of Random Walks'
 date = 2024-08-10T15:41:44-07:00
-draft = true
+draft = false
 +++
 
 ## Random Walk

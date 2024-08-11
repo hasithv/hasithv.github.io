@@ -13,3 +13,5 @@ Here are my notes for E, Li, and Vanden-Eijnden's [_Applied Stochastic Analysis_
     - 5.2 - [Filtration and Stopping Time]({{< relref "chap5/5-2/" >}})
     - 5.3 - [Markov Processes]({{< relref "chap5/5-3/" >}})
     - 5.4 - [Gaussian Processes]({{< relref "chap5/5-4/" >}})
+- Chapter 6 - Wiener Process
+  - 6.1 - [The Diffusion Limit of Random Walks]({{< relref "chap5/5-1/" >}})
