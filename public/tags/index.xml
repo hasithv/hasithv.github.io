@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on HasItHalted</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://hasithv.github.io/tags/</link>
     <description>Recent content in Tags on HasItHalted</description>
     <generator>Hugo -- 0.131.0</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 06 Aug 2024 21:17:49 -0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hasithv.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Notes</title>
-      <link>http://localhost:1313/tags/notes/</link>
+      <link>https://hasithv.github.io/tags/notes/</link>
       <pubDate>Tue, 06 Aug 2024 21:17:49 -0700</pubDate>
-      <guid>http://localhost:1313/tags/notes/</guid>
+      <guid>https://hasithv.github.io/tags/notes/</guid>
       <description></description>
     </item>
     <item>
       <title>Stochastics</title>
-      <link>http://localhost:1313/tags/stochastics/</link>
+      <link>https://hasithv.github.io/tags/stochastics/</link>
       <pubDate>Tue, 06 Aug 2024 21:17:49 -0700</pubDate>
-      <guid>http://localhost:1313/tags/stochastics/</guid>
+      <guid>https://hasithv.github.io/tags/stochastics/</guid>
       <description></description>
     </item>
     <item>
       <title>Probability</title>
-      <link>http://localhost:1313/tags/probability/</link>
+      <link>https://hasithv.github.io/tags/probability/</link>
       <pubDate>Sat, 03 Aug 2024 23:22:06 -0700</pubDate>
-      <guid>http://localhost:1313/tags/probability/</guid>
+      <guid>https://hasithv.github.io/tags/probability/</guid>
       <description></description>
     </item>
     <item>
       <title>Aggregate Notes</title>
-      <link>http://localhost:1313/tags/aggregate-notes/</link>
+      <link>https://hasithv.github.io/tags/aggregate-notes/</link>
       <pubDate>Sat, 03 Aug 2024 16:43:39 -0700</pubDate>
-      <guid>http://localhost:1313/tags/aggregate-notes/</guid>
+      <guid>https://hasithv.github.io/tags/aggregate-notes/</guid>
       <description></description>
     </item>
     <item>
       <title>Category Theory</title>
-      <link>http://localhost:1313/tags/category-theory/</link>
+      <link>https://hasithv.github.io/tags/category-theory/</link>
       <pubDate>Fri, 02 Aug 2024 01:26:30 -0700</pubDate>
-      <guid>http://localhost:1313/tags/category-theory/</guid>
+      <guid>https://hasithv.github.io/tags/category-theory/</guid>
       <description></description>
     </item>
   </channel>

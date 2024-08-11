@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Aggregate Notes on HasItHalted</title>
-    <link>http://localhost:1313/tags/aggregate-notes/</link>
+    <link>https://hasithv.github.io/tags/aggregate-notes/</link>
     <description>Recent content in Aggregate Notes on HasItHalted</description>
     <generator>Hugo -- 0.131.0</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 03 Aug 2024 16:43:39 -0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/aggregate-notes/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hasithv.github.io/tags/aggregate-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Applied Stochastic Analysis</title>
-      <link>http://localhost:1313/posts/notes/eliasa/eliasa/</link>
+      <link>https://hasithv.github.io/posts/notes/eliasa/eliasa/</link>
       <pubDate>Sat, 03 Aug 2024 16:43:39 -0700</pubDate>
-      <guid>http://localhost:1313/posts/notes/eliasa/eliasa/</guid>
+      <guid>https://hasithv.github.io/posts/notes/eliasa/eliasa/</guid>
       <description>Here are my notes for E, Li, and Vanden-Eijnden&amp;rsquo;s Applied Stochastic Analysis
 Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Process 5.2 - Filtration and Stopping Time 5.3 - Markov Processes 5.4 - Gaussian Processes </description>
       <content:encoded><![CDATA[<p>Here are my notes for E, Li, and Vanden-Eijnden&rsquo;s <a href="https://bookstore.ams.org/gsm-199/"><em>Applied Stochastic Analysis</em></a></p>
@@ -30,9 +30,9 @@ Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Proc
     </item>
     <item>
       <title>An Invitation to Appied Category Theory</title>
-      <link>http://localhost:1313/posts/notes/fongspivakact/fongspivakact/</link>
+      <link>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</link>
       <pubDate>Fri, 02 Aug 2024 00:47:08 -0700</pubDate>
-      <guid>http://localhost:1313/posts/notes/fongspivakact/fongspivakact/</guid>
+      <guid>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</guid>
       <description>This is a collection of my notes for Brendan Fong and David Spivak&amp;rsquo;s An Invitation to Appied Category Theory. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.
 Chapter 1 - Generative effects: Orders and adjunctions Chapter 2 - Resource theories: Monoidal preorders and enrichment Section 2.2 - Symmetric monoidal preorders </description>
       <content:encoded><![CDATA[<p>This is a collection of my notes for Brendan Fong and David Spivak&rsquo;s <a href="https://arxiv.org/pdf/1803.05316"><em>An Invitation to Appied Category Theory</em></a>. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.</p>
