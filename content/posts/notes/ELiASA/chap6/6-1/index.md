@@ -103,7 +103,7 @@ Which leads us to
 > $$ \mathbb{P}\left(\frac{\gamma (2n)}{2n} \leq x \right) = \frac{2}{\pi} \arcsin \sqrt{x} $$
 > The consequence of this theorem is that it is most likely for a radnom walk to spend either almost all of its time on the positive side, or for it to spend almost no time on the positive side.
 >
-> :warning: While I think I get it, I could maybe benefit from an explanation as to why we were able to remove the $\frac{1}{2} <$
+> We can do this because there was no reason to limit the lower bound to $1/2$ rather than $0$ in the derivation
 
 ## References
 1. Helena (https://physics.stackexchange.com/users/12948/helena), What is the physical meaning of diffusion coefficient?, URL (version: 2014-12-03): https://physics.stackexchange.com/q/52977https://physics.stackexchange.com/a/52977/250863
