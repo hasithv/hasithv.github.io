@@ -2,16 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://hasithv.github.io/posts/24-01-11-asimpleboardingpuzzle/</loc>
+    <lastmod>2024-08-12T00:00:38-05:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/categories/</loc>
+    <lastmod>2024-08-12T00:00:38-05:00</lastmod>
+  </url><url>
     <loc>https://hasithv.github.io/</loc>
     <lastmod>2024-08-12T00:00:38-05:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/posts/</loc>
     <lastmod>2024-08-12T00:00:38-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/notes/eliasa/chap6/6-1/</loc>
-    <lastmod>2024-08-10T15:41:44-07:00</lastmod>
+    <loc>https://hasithv.github.io/tags/probability/</loc>
+    <lastmod>2024-08-12T00:00:38-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/categories/</loc>
+    <loc>https://hasithv.github.io/categories/puzzles/</loc>
+    <lastmod>2024-08-12T00:00:38-05:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/tags/</loc>
+    <lastmod>2024-08-12T00:00:38-05:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/posts/notes/eliasa/chap6/6-1/</loc>
     <lastmod>2024-08-10T15:41:44-07:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/tags/notes/</loc>
@@ -23,16 +35,10 @@
     <loc>https://hasithv.github.io/tags/stochastics/</loc>
     <lastmod>2024-08-10T15:41:44-07:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/</loc>
-    <lastmod>2024-08-10T15:41:44-07:00</lastmod>
-  </url><url>
     <loc>https://hasithv.github.io/posts/notes/eliasa/chap5/5-4/</loc>
     <lastmod>2024-08-06T21:17:49-07:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/</loc>
-    <lastmod>2024-08-03T23:22:06-07:00</lastmod>
-  </url><url>
-    <loc>https://hasithv.github.io/tags/probability/</loc>
     <lastmod>2024-08-03T23:22:06-07:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/posts/notes/eliasa/chap5/5-2/</loc>
@@ -58,9 +64,6 @@
   </url><url>
     <loc>https://hasithv.github.io/about/</loc>
     <lastmod>2024-07-30T02:42:23-07:00</lastmod>
-  </url><url>
-    <loc>https://hasithv.github.io/categories/puzzles/</loc>
-    <lastmod>2024-07-30T00:07:20-07:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/posts/07-29-24-nothowprobabilityworks/</loc>
     <lastmod>2024-07-30T00:07:20-07:00</lastmod>

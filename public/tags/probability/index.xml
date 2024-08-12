@@ -6,8 +6,26 @@
     <description>Recent content in Probability on HasItHalted</description>
     <generator>Hugo -- 0.131.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 03 Aug 2024 23:22:06 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 12 Aug 2024 00:00:38 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/probability/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Simple Boarding Puzzle</title>
+      <link>https://hasithv.github.io/posts/24-01-11-asimpleboardingpuzzle/</link>
+      <pubDate>Mon, 12 Aug 2024 00:00:38 -0500</pubDate>
+      <guid>https://hasithv.github.io/posts/24-01-11-asimpleboardingpuzzle/</guid>
+      <description>The Puzzle Inspired by true events
+Alice is assigned to be the 56th passenger to board a full plane with 60 seats. However, a panic causes all the passengers&amp;ndash;including Alice&amp;ndash;to arrange themselves radomly in line to board.
+As Alice was originally 56th, she decides that she would be happy as long as passengers with the assigned spots 57, 58, 59, and 60 are not in front of her. What is the probability that Alice will be happy?</description>
+      <content:encoded><![CDATA[<h2 id="the-puzzle">The Puzzle</h2>
+<p><em>Inspired by true events</em></p>
+<p>Alice is assigned to be the 56th passenger to board a full plane with 60 seats. However, a panic causes all the passengers&ndash;including Alice&ndash;to arrange themselves radomly in line to board.</p>
+<p>As Alice was originally 56th, she decides that she would be happy as long as passengers with the assigned spots 57, 58, 59, and 60 are not in front of her. What is the probability that Alice will be happy?</p>
+<h2 id="solution">Solution</h2>
+<p>The only passengers we need to consider are Alice and passengers 57, 58, 59, and 60&ndash;since for each arrangement of these 5 passengers, there is an equal amount of ways to arrange all other 55 passengers.</p>
+<p>Thus, the probability will simply the number of ways we can arrange these 5 passengers such that Alice is in front of passengers 57, 58, 59, and 60 divided by the total number of ways to arrange these 5 passengers:</p>
+$$ 4!/5! = 1/5$$
+]]></content:encoded>
+    </item>
     <item>
       <title>5.3 - Markov Processes</title>
       <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/</link>

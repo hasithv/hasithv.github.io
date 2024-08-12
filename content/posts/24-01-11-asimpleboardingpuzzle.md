@@ -3,7 +3,7 @@ categories = ["puzzles"]
 tags = ["probability"]
 title = 'A Simple Boarding Puzzle'
 date = 2024-08-12T00:00:38-05:00
-draft = true
+draft = false
 +++
 
 ## The Puzzle
