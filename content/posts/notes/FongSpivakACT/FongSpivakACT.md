@@ -1,6 +1,6 @@
 +++
 categories = ["notes"]
-tags = ["category theory", "aggregate notes"]
+tags = ["category theory"]
 title = 'An Invitation to Appied Category Theory'
 date = 2024-08-02T00:47:08-07:00
 draft = false

@@ -1,6 +1,5 @@
 +++
-categories = ["notes"]
-tags = ["stochastics", "notes"]
+tags = ["stochastics", "probability", "lecture"]
 title = '5.4 - Gaussian Processes'
 date = 2024-08-06T21:17:49-07:00
 draft = false

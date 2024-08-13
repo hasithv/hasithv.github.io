@@ -1,6 +1,5 @@
 +++
-categories = ["notes"]
-tags = ["stochastics", "probability"]
+tags = ["stochastics", "probability","lecture"]
 title = '5.1 - Axiomatic Construction of Stochastic Process'
 date = 2024-08-03T16:45:46-07:00
 draft = false

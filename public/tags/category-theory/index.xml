@@ -4,7 +4,7 @@
     <title>Category Theory on HasItHalted</title>
     <link>https://hasithv.github.io/tags/category-theory/</link>
     <description>Recent content in Category Theory on HasItHalted</description>
-    <generator>Hugo -- 0.131.0</generator>
+    <generator>Hugo -- 0.132.0</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 02 Aug 2024 01:26:30 -0700</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/category-theory/index.xml" rel="self" type="application/rss+xml" />
@@ -100,8 +100,7 @@ $$\begin{align}
     &\leq v + (x+z) \\
     &\leq (v + x) + z \\
     &\leq y + z \\
-\end{align}$$
-<p>
+\end{align}$$<p>
 and the wiring diagram would look like
 <figure class="align-center ">
     <img loading="lazy" src="./images/wiringex.png#center"

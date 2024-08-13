@@ -1,6 +1,5 @@
 +++
-categories = ["notes"]
-tags = ["stochastics", "probability"]
+tags = ["stochastics", "probability","lecture"]
 title = '5.3 - Markov Processes'
 date = 2024-08-03T23:22:06-07:00
 draft = false
