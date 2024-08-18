@@ -1,6 +1,6 @@
 +++
 categories=["projects"]
-tags=["stochastics", "probability"]
+tags=["stochastics", "probability", "julia"]
 title = 'Is Basketball a Random Walk?'
 author = "Hasith Vattikuti"
 date = 2024-08-17T20:36:30-05:00
@@ -53,7 +53,7 @@ Two things I wanted to improve were to expand the dataset and to use bayesian up
 
 For the dataset, Dr. Redner only used games from 2006-2009, but I managed to obtain all playoff games after 2000. Using this, I looked at the distribution for the average number of plays per 30s
 
-{{< figure src="./images/playrate.svg" width="400px" align="center" caption="Distribution for $\lambda$ values. The orange normal curve mas mean 1.005 and std 0.1. I am not sure why there was a large deficit at the 1 play per 30s mark; it seems to be half as high as it shold be.">}}
+{{< figure src="./images/playrate.svg" width="400px" align="center" caption="Distribution for $\lambda$ values. The orange normal curve has mean 1.005 and std 0.1. I am not sure why there was a large deficit at the 1 play per 30s mark; it seems to be half as high as it shold be.">}}
 
 which gives us a prior for $\lambda$ that we can live-update to better fit our model to a given game (and we already have the prior for $X$):
 $$\lambda \sim \mathcal{N}(1.005,0.1)$$
@@ -168,7 +168,7 @@ The above code snippets allowed me to peer into quite a few example games, and g
 1. **The Arcsine Law:** The biggest factor which determines who wins is the current team that is leading. This is in agreement with the [arcsine law]({{< relref "../../posts/notes/ELiASA/chap6/6-1#arcsine-law" >}}) which states that a random walk is most likely to spend its time on one side of the origin.
 
 ### Application
-Due to the performant nature of the code (thanks `Julia`!), it made sense to spin up website with a simpler version of the model (no bayesian updates since they hardly made a difference and are a lot of work to keep track of for the user). This way, someone betting on a game can make a mathematically-backed decision on how to spend their money!
+Due to the performant nature of the code (thanks `Julia`!), it made sense to spin up website with a simpler version of the model (no bayesian updates since they hardly made a difference and it'd be a lot of work for the user to input each play). This way, someone betting on a game can make a mathematically-backed decision on how to spend their money!
 {{< figure src="./images/webapp.PNG" width="600px" align="center" caption="The website takes in the scores of the teams and the time elapsed to calculate the odds that a team will win (the lower the better)">}}
 
 The application computes the odds for a team to win. In other words, it outputs the inverse probability for a team to win, so the closer it is to 1, the more likely that team is to win, and vice versa. 

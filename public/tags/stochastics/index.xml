@@ -57,8 +57,8 @@ $$\begin{cases}
 <p>For the dataset, Dr. Redner only used games from 2006-2009, but I managed to obtain all playoff games after 2000. Using this, I looked at the distribution for the average number of plays per 30s</p>
 <figure class="align-center ">
     <img loading="lazy" src="./images/playrate.svg#center"
-         alt="Distribution for $\lambda$ values. The orange normal curve mas mean 1.005 and std 0.1. I am not sure why there was a large deficit at the 1 play per 30s mark; it seems to be half as high as it shold be." width="400px"/> <figcaption>
-            <p>Distribution for $\lambda$ values. The orange normal curve mas mean 1.005 and std 0.1. I am not sure why there was a large deficit at the 1 play per 30s mark; it seems to be half as high as it shold be.</p>
+         alt="Distribution for $\lambda$ values. The orange normal curve has mean 1.005 and std 0.1. I am not sure why there was a large deficit at the 1 play per 30s mark; it seems to be half as high as it shold be." width="400px"/> <figcaption>
+            <p>Distribution for $\lambda$ values. The orange normal curve has mean 1.005 and std 0.1. I am not sure why there was a large deficit at the 1 play per 30s mark; it seems to be half as high as it shold be.</p>
         </figcaption>
 </figure>
 
@@ -164,7 +164,7 @@ Which also tells us that $h$ has the condition that it must be non-zero wherever
 <li><strong>The Arcsine Law:</strong> The biggest factor which determines who wins is the current team that is leading. This is in agreement with the <a href="/posts/notes/eliasa/chap6/6-1/#arcsine-law">arcsine law</a> which states that a random walk is most likely to spend its time on one side of the origin.</li>
 </ol>
 <h3 id="application">Application</h3>
-<p>Due to the performant nature of the code (thanks <code>Julia</code>!), it made sense to spin up website with a simpler version of the model (no bayesian updates since they hardly made a difference and are a lot of work to keep track of for the user). This way, someone betting on a game can make a mathematically-backed decision on how to spend their money!
+<p>Due to the performant nature of the code (thanks <code>Julia</code>!), it made sense to spin up website with a simpler version of the model (no bayesian updates since they hardly made a difference and it&rsquo;d be a lot of work for the user to input each play). This way, someone betting on a game can make a mathematically-backed decision on how to spend their money!
 <figure class="align-center ">
     <img loading="lazy" src="./images/webapp.PNG#center"
          alt="The website takes in the scores of the teams and the time elapsed to calculate the odds that a team will win (the lower the better)" width="600px"/> <figcaption>
