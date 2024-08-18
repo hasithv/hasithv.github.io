@@ -10,7 +10,7 @@
 <meta name="description" content="2.2.1 - Definition and first examples Definition 2.2: A symmetric monoidal structure on a preoirder $(X, \leq)$ consists of
 (i) a monoidal unit, $I \in X$ (ii) a monoidal product $\otimes: X \times X \rightarrow X$ And the monoidal product $\otimes(x_1,x_2) = x_1 \otimes x_2$ must also satisfy the following properties (assume all elements are in $X$)
 (a) $x_1 \leq y_1$ and $x_2 \leq y_2 \implies x_1 \otimes x_2 \leq y_1 \otimes y_2$ (b) $I \otimes x = x \otimes I = x$ (c) associativity (d) commutivity/symmetry (a) is called monotnoicity and (b) is unitality">
-<meta name="author" content="">
+<meta name="author" content="Hasith Vattikuti">
 <link rel="canonical" href="https://hasithv.github.io/posts/notes/fongspivakact/chap2/2-2/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://hasithv.github.io/favicon.ico">
@@ -111,6 +111,10 @@
   "inLanguage": "en",
   "datePublished": "2024-08-02T01:26:30-07:00",
   "dateModified": "2024-08-02T01:26:30-07:00",
+  "author":{
+    "@type": "Person",
+    "name": "Hasith Vattikuti"
+  },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://hasithv.github.io/posts/notes/fongspivakact/chap2/2-2/"
@@ -211,7 +215,7 @@
     <h1 class="post-title entry-hint-parent">
       2.2 - Symmetric monoidal preorders
     </h1>
-    <div class="post-meta"><span title='2024-08-02 01:26:30 -0700 -0700'>August 2, 2024</span>&nbsp;·&nbsp;4 min
+    <div class="post-meta"><span title='2024-08-02 01:26:30 -0700 -0700'>August 2, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Hasith Vattikuti
 
 </div>
   </header> 
@@ -424,6 +428,53 @@ And it is called a <em>strict monoidal monotone</em> if it satisfies</li>
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
 </script>
 </body>
 

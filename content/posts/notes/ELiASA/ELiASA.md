@@ -2,6 +2,7 @@
 categories = ["notes"]
 tags = ["stochastics", "probability"]
 title = 'Applied Stochastic Analysis'
+author = "Hasith Vattikuti"
 date = 2024-08-03T16:43:39-07:00
 draft = false
 +++

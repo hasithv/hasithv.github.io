@@ -1,6 +1,7 @@
 +++
 tags = ["category theory","lecture"]
 title = '2.2 - Symmetric monoidal preorders'
+author = "Hasith Vattikuti"
 date = 2024-08-02T01:26:30-07:00
 draft = false
 +++

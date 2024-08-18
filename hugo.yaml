@@ -24,6 +24,7 @@ menu:
       weight: 30
 
 params:
+  ShowCodeCopyButtons: true
   homeInfoParams:
     Title: Hello!
     Content: I'm Hasith, a junior at The University of Texas at Austin studying Physics and Mathematics. Some things that interest me are computational physics, applied math, scientific machine learning, reinforcement learning, and theoretical machine learning.

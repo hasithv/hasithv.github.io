@@ -10,7 +10,7 @@
 <meta name="description" content="The Puzzle Inspired by true events
 Alice is assigned to be the 56th passenger to board a full plane with 60 seats. However, a panic causes all the passengers&ndash;including Alice&ndash;to arrange themselves radomly in line to board.
 As Alice was originally 56th, she decides that she would be happy as long as passengers with the assigned spots 57, 58, 59, and 60 are not in front of her. What is the probability that Alice will be happy?">
-<meta name="author" content="">
+<meta name="author" content="Hasith Vattikuti">
 <link rel="canonical" href="https://hasithv.github.io/posts/24-01-11-asimpleboardingpuzzle/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://hasithv.github.io/favicon.ico">
@@ -111,6 +111,10 @@ As Alice was originally 56th, she decides that she would be happy as long as pas
   "inLanguage": "en",
   "datePublished": "2024-08-12T00:00:38-05:00",
   "dateModified": "2024-08-12T00:00:38-05:00",
+  "author":{
+    "@type": "Person",
+    "name": "Hasith Vattikuti"
+  },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://hasithv.github.io/posts/24-01-11-asimpleboardingpuzzle/"
@@ -211,7 +215,7 @@ As Alice was originally 56th, she decides that she would be happy as long as pas
     <h1 class="post-title entry-hint-parent">
       A Simple Boarding Puzzle
     </h1>
-    <div class="post-meta"><span title='2024-08-12 00:00:38 -0500 CDT'>August 12, 2024</span>&nbsp;·&nbsp;1 min
+    <div class="post-meta"><span title='2024-08-12 00:00:38 -0500 CDT'>August 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Hasith Vattikuti
 
 </div>
   </header> 
@@ -302,6 +306,53 @@ $$ 4!/5! = 1/5$$
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
 </script>
 </body>
 

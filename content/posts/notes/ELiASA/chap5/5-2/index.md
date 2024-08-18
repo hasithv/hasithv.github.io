@@ -1,6 +1,7 @@
 +++
 tags = ["stochastics", "probability","lecture"]
 title = '5.2 - Filtration and Stopping Time'
+author = "Hasith Vattikuti"
 date = 2024-08-03T18:57:02-07:00
 draft = false
 +++

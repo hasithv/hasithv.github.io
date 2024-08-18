@@ -1,6 +1,7 @@
 +++
 tags = ["stochastics","lecture"]
 title = '6.2 - The Invariance Principle'
+author = "Hasith Vattikuti"
 date = 2024-08-12T00:29:17-05:00
 draft = false
 +++

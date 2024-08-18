@@ -2,6 +2,7 @@
 categories = ["puzzles"]
 tags = ["probability"]
 title = 'A Simple Boarding Puzzle'
+author = "Hasith Vattikuti"
 date = 2024-08-12T00:00:38-05:00
 draft = false
 +++

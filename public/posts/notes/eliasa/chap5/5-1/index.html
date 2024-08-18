@@ -9,7 +9,7 @@
 <meta name="keywords" content="stochastics, probability, lecture">
 <meta name="description" content="Definition of a stochastic process A stochastic process is a parameterized random variable $\{X_t\}_{t\in\mathbf{T}}$ defined on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ taking on values in $\mathbb{R}$. $\mathbf{T}$ can seemingly be any subset of $\mathbb{R}$. For any fixed $t \in \mathbf{T}$, we can define the random variable
 $$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$Thinking of a simple random walk, this means that $X_t$ is a random variable that takes in some subset of $\Omega = \{H,T\}^\mathbb{N}$ and outputs a real valued number (the sum of the first $t$ values in $\omega$): $\{\omega_1, \omega_2, \ldots \} \rightarrow \sum_{n \leq t} X(\omega_n)$">
-<meta name="author" content="">
+<meta name="author" content="Hasith Vattikuti">
 <link rel="canonical" href="https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://hasithv.github.io/favicon.ico">
@@ -108,6 +108,10 @@ $$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$
   "inLanguage": "en",
   "datePublished": "2024-08-03T16:45:46-07:00",
   "dateModified": "2024-08-03T16:45:46-07:00",
+  "author":{
+    "@type": "Person",
+    "name": "Hasith Vattikuti"
+  },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/"
@@ -208,7 +212,7 @@ $$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$
     <h1 class="post-title entry-hint-parent">
       5.1 - Axiomatic Construction of Stochastic Process
     </h1>
-    <div class="post-meta"><span title='2024-08-03 16:45:46 -0700 -0700'>August 3, 2024</span>&nbsp;·&nbsp;2 min
+    <div class="post-meta"><span title='2024-08-03 16:45:46 -0700 -0700'>August 3, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Hasith Vattikuti
 
 </div>
   </header> 
@@ -307,6 +311,53 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
 </script>
 </body>
 

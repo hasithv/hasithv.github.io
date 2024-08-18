@@ -2,6 +2,7 @@
 categories = ["notes"]
 tags = ["category theory"]
 title = 'An Invitation to Appied Category Theory'
+author = "Hasith Vattikuti"
 date = 2024-08-02T00:47:08-07:00
 draft = false
 +++

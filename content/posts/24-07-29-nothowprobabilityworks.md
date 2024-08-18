@@ -2,6 +2,7 @@
 categories = ["puzzles"]
 tags = ["probability"]
 title = "That's not how Probability Works!"
+author = "Hasith Vattikuti"
 date = 2024-07-30T00:07:20-07:00
 draft = false
 +++

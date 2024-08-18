@@ -8,7 +8,7 @@
 <title>6.2 - The Invariance Principle | HasItHalted</title>
 <meta name="keywords" content="stochastics, lecture">
 <meta name="description" content="Let $\{\xi_m\}_{n \in \mathbb{N}}$ be a sequence of i.i.d. random variables such that $\mathbb{E}[\xi_n] = 0$ and $\mathbb{E}[\xi_n^2] = 1$. Then, define $$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$and by the Central Limit Theorem, rescaling $S_N$ by $\sqrt{N}$, we get that $$\frac{S_N}{\sqrt{N}} \xrightarrow{d} \mathcal{N}(0,1)$$ (the $\xrightarrow{d}$ means convergence in distribution) as $N \rightarrow \infty$. Using this, we can define a continuous random function $W^N_t$ on $t \in [0,1]$ such that $W_0^N = 0$ and $$W_t^N = \frac{1}{\sqrt{N}}(\theta S_k &#43; (1-\theta)S_{k&#43;1}), \quad Nt \in (k,k&#43;1], \quad k = 0,1,\ldots,N-1$$where $\theta = \lceil Nt \rceil - Nt$.">
-<meta name="author" content="">
+<meta name="author" content="Hasith Vattikuti">
 <link rel="canonical" href="https://hasithv.github.io/posts/notes/eliasa/chap6/6-2/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://hasithv.github.io/favicon.ico">
@@ -105,6 +105,10 @@
   "inLanguage": "en",
   "datePublished": "2024-08-12T00:29:17-05:00",
   "dateModified": "2024-08-12T00:29:17-05:00",
+  "author":{
+    "@type": "Person",
+    "name": "Hasith Vattikuti"
+  },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://hasithv.github.io/posts/notes/eliasa/chap6/6-2/"
@@ -205,7 +209,7 @@
     <h1 class="post-title entry-hint-parent">
       6.2 - The Invariance Principle
     </h1>
-    <div class="post-meta"><span title='2024-08-12 00:29:17 -0500 CDT'>August 12, 2024</span>&nbsp;·&nbsp;1 min
+    <div class="post-meta"><span title='2024-08-12 00:29:17 -0500 CDT'>August 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Hasith Vattikuti
 
 </div>
   </header> 
@@ -305,6 +309,53 @@ where $W$ is the Wiener process and the distribution of $W$ on $\Omega \in C[0,1
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
 </script>
 </body>
 
