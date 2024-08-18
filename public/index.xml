@@ -6,8 +6,182 @@
     <description>Recent content on HasItHalted</description>
     <generator>Hugo -- 0.133.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Aug 2024 00:29:17 -0500</lastBuildDate>
+    <lastBuildDate>Sat, 17 Aug 2024 20:36:30 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Is Basketball a Random Walk?</title>
+      <link>https://hasithv.github.io/posts/projects/24-08-17-basketballrandomwalk/</link>
+      <pubDate>Sat, 17 Aug 2024 20:36:30 -0500</pubDate>
+      <guid>https://hasithv.github.io/posts/projects/24-08-17-basketballrandomwalk/</guid>
+      <description>About two years ago, I attended a seminar given by Dr. Sid Redner of the Santa Fe Institute titled, &amp;ldquo;Is Basketball Scoring a Random Walk?&amp;rdquo; I was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&amp;ndash;and surely many other audience members&amp;ndash;that basketball does indeed exhibit behavior akin to a random walk.
+At the very end of his lecture, Dr.</description>
+      <content:encoded><![CDATA[<p>About two years ago, I attended a seminar given by <a href="https://sites.santafe.edu/~redner/">Dr. Sid Redner</a> of the <a href="https://www.santafe.edu/">Santa Fe Institute</a> titled, &ldquo;Is Basketball Scoring a Random Walk?&rdquo; I  was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&ndash;and surely many other audience members&ndash;that basketball does indeed exhibit behavior akin to a random walk.</p>
+<p>At the very end of his lecture, Dr. Redner said something along the lines of, &ldquo;the obvious betting applications are left as an exercise to the audience.&rdquo; So, as enthusiastic audience members, let&rsquo;s try to tackle this exercise.</p>
+<p><em>Note: all code and data for this project can be found in the <a href="https://github.com/hasithv/nba-odds">github repository</a> [<a href="https://github.com/hasithv/nba-odds">2</a>]</em></p>
+<h2 id="understanding-the-model">Understanding the Model</h2>
+<p>I highly recommend reading the paper [<a href="https://arxiv.org/abs/1109.2825v1">1</a>] that Dr. Redner et. al. published for a full understanding. However, here are the main points that we will need:</p>
+<h3 id="assumptions">Assumptions</h3>
+<ol>
+<li><strong>Random Walk Definition:</strong> The net score, $\{\Delta_n\}_{n \in \mathbb{N}}$ (the difference between the scores of teams A and B) can be modeled as an anti-persistent random walk. This means that if the score moves up during a play, then the next play is more likely to move down.
+$$\Delta_n = \sum_{i=1}^{n} \delta_i$$
+$$\begin{cases}
+\delta_i > 0 & \text{with probability } p_i \\
+\delta_i < 0 & \text{with probability } 1 - p_i
+\end{cases}$$
+$$p_n = (\textcolor{orange}{\text{other terms}}) - .152 \left(\frac{|\delta_{n-1}|}{\delta_{n-1}}\right), \quad \forall \; i,n \in \mathbb{N}$$
+Where $\delta_i$ is the points made during the $i$th play, and $\Delta_0 = \delta_0 = 0$. This is explained by the fact that the scoring team loses possession of the ball, so it is harder for them to score again.</li>
+<li><strong>Coasting and Grinding:</strong> The probability of a team scoring is proportional to how far they are behind in points:
+$$p_n = (\textcolor{orange}{\text{other terms}}) - .152 r_{n-1} - .0022 \Delta_{n-1}, \quad \forall \; n \in \mathbb{N}$$
+Here, $r_{n-1} = \left(\frac{|\delta_{n-1}|}{\delta_{n-1}}\right)$.This is explained in the paper as &ldquo;the winning team coasts, and the losing team grinds.&rdquo;</li>
+<li><strong>Team Strengths:</strong> The strength of a team also has a effect on the probability of scoring:
+$$p(I_A, r_{n-1}, \Delta_{n-1}) = I_A - 0.152r_{n-1} - 0.0022 \Delta_{n-1}, \quad \forall \; n \in \mathbb{N}$$
+Where the strength of a team is defined by parameters $X_A$ and $X_B$ as $I_A(X_A, X_B) = \frac{X_A}{X_A + X_B}$. Additionally, $X_A$ and $X_B$ are distributed according to $\mathcal{N}(\mu = 1,\sigma^2=.0083).$</li>
+<li><strong>Time Between Plays:</strong> The time between each play is exponentially distributed
+$$\tau_n \sim \text{Exp}(\lambda)$$</li>
+<li><strong>Scoring Probabilities:</strong> For each play, the probabilities of scoring $n$ points is
+$$\begin{cases}
+\begin{align}
+    \delta = 1, \quad &8.7\% \\
+    \delta = 2, \quad &73.86\% \\
+    \delta = 3, \quad &17.82\% \\
+    \delta = 4, \quad &0.14\% \\
+    \delta = 5, \quad &0.023\% \\
+    \delta = 6, \quad &0.0012\% \\
+\end{align}
+\end{cases}$$
+&#x26a0;&#xfe0f; The only confusion I have with the paper is that the above &ldquo;probabilities&rdquo; do not sum to 1, so I am not sure how to interpret them. I went ahead and removed $\delta=6$ and lowered the probability of  $\delta=5$ so that the probabilities sum to 1. This should be okay since 5 and 6 point plays are so rare that they should not affect the model too much.</li>
+</ol>
+<h2 id="building-the-simulation">Building the Simulation</h2>
+<h3 id="gathering-simulation-data">Gathering Simulation Data</h3>
+<p>Two things I wanted to improve were to expand the dataset and to use bayesian updates to better estimate the $\lambda$ and $I_A$ for a game.</p>
+<p>For the dataset, Dr. Redner only used games from 2006-2009, but I managed to obtain all playoff games after 2000. Using this, I looked at the distribution for the average number of plays per 30s</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/playrate.svg#center"
+         alt="Distribution for $\lambda$ values. The orange normal curve mas mean 1.005 and std 0.1. I am not sure why there was a large deficit at the 1 play per 30s mark; it seems to be half as high as it shold be." width="400px"/> <figcaption>
+            <p>Distribution for $\lambda$ values. The orange normal curve mas mean 1.005 and std 0.1. I am not sure why there was a large deficit at the 1 play per 30s mark; it seems to be half as high as it shold be.</p>
+        </figcaption>
+</figure>
+
+<p>which gives us a prior for $\lambda$ that we can live-update to better fit our model to a given game (and we already have the prior for $X$):
+</p>
+$$\lambda \sim \mathcal{N}(1.005,0.1)$$$$X \sim \mathcal{N}(1, \sqrt{0.0083})$$<h3 id="bayesian-updating">Bayesian Updating</h3>
+<p>Using simple bayesian updates, we should be able to properly estimate how likely a certain $\lambda$ or $I_A$ is given the game data of scoring rates $\{t_1,\ldots,t_n\}$, and who scored on each play $\{r_1,\ldots,r_n\}$:
+</p>
+$$\begin{align}
+    f(\lambda | \{t_1,\ldots,t_n\}) &\propto f(\{t_1,\ldots,t_n\} | \lambda) f(\lambda) \\
+    &\propto \left(\prod_{i=1}^{n} f(t_i | \lambda) \right) f(\lambda) \\
+    &\propto \left(\prod_{i=1}^{n} \lambda e^{-\lambda t_i} \right) \mathcal{N}(1.005,0.1) \\
+    &\propto \left(\lambda^n e^{-\lambda \sum_{i=1}^{n} t_i} \right) \mathcal{N}(1.005,0.1) \\ \\
+    f(X_A, X_B | \{r_1,\ldots,r_n\}) &\propto f(\{r_1,\ldots,r_n\} | X_A,X_B) f(X_A,X_B) \\
+    &\propto \left(\prod_{i=1}^{n} f(r_i | X_A,X_B) \right) f(X_A,X_B) \\
+    &\propto \left|\prod_{i=1}^{n} p\left(\frac{X_A}{X_A + X_B}, r_{i-1}, \Delta_{i-1} \right) - \frac{1-r_i}{2} \right| \cdot \mathcal{N}(1, \sqrt{0.0083})(X_A) \cdot \mathcal{N}(1, \sqrt{0.0083})(X_B)\\
+\end{align}
+$$<p>
+As you can see, the update for the $X$ values is a bit  more complicated, but it is still fairly easy to compute. The code to do this is show below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> update_rate!(params, time_deltas)
+</span></span><span style="display:flex;"><span>    time_deltas <span style="color:#f92672">=</span> time_deltas<span style="color:#f92672">/</span><span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>    params<span style="color:#f92672">.</span>rate <span style="color:#f92672">=</span> (x) <span style="color:#f92672">-&gt;</span> x<span style="color:#f92672">^</span>length(time_deltas) <span style="color:#f92672">*</span> exp(<span style="color:#f92672">-</span>x <span style="color:#f92672">*</span> sum(time_deltas)) <span style="color:#f92672">*</span> pdf(defaultRate, x) <span style="color:#f92672">/</span> params<span style="color:#f92672">.</span>rate_Z
+</span></span><span style="display:flex;"><span>    normalize_rate!(params)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> update_strengths!(params, scoring_data, lookback<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>)
+</span></span><span style="display:flex;"><span>    lookback <span style="color:#f92672">=</span> min(lookback, length(scoring_data))
+</span></span><span style="display:flex;"><span>    scoring_data <span style="color:#f92672">=</span> scoring_data[<span style="color:#66d9ef">end</span><span style="color:#f92672">-</span>lookback<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#66d9ef">end</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    score_probs <span style="color:#f92672">=</span> (x,y) <span style="color:#f92672">-&gt;</span> prod(map((z) <span style="color:#f92672">-&gt;</span> score_prob(z, x, y), scoring_data))
+</span></span><span style="display:flex;"><span>    params<span style="color:#f92672">.</span>strengths <span style="color:#f92672">=</span> (x,y) <span style="color:#f92672">-&gt;</span> score_probs(x,y) <span style="color:#f92672">*</span> pdf(defaultStrengths, x) <span style="color:#f92672">*</span> pdf(defaultStrengths, y) <span style="color:#f92672">/</span> params<span style="color:#f92672">.</span>strengths_Z
+</span></span><span style="display:flex;"><span>    normalize_strengths!(params)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>The real roadblock, however, is actually sampling the $\lambda$ and $X$ values from the pdfs.</p>
+<h3 id="sampling-game-parameters">Sampling Game Parameters</h3>
+<p>Since we have access to the pdfs (even their normalizing constants are quite easy to compute using numeric methods), we can employ importance sampling as a brute force method. I am sure that there are fancier MCMC algorithms that could be used, but the unfriendly distribution of the $X$ values made it hard for me to use external libraries like <code>Turing.jl</code>.</p>
+<p>Anyhow, for interested readers, the reason we can use importance sampling to compute the expected value of a function $g$ with respect to a pdf $f$ using another pdf $h$ is because of the following:
+</p>
+$$\begin{align}
+    \underset{X \sim f}{\mathbb{E}}[g(X)] &= \int g(x) f(x) dx \\
+    &= \int g(x) \frac{f(x)}{h(x)} h(x) dx \\
+    &= \underset{X \sim h}{\mathbb{E}}\left[\frac{f(X)}{h(X)} g(X)\right]
+\end{align}$$<p>
+Which also tells us that $h$ has the condition that it must be non-zero wherever $f$ is non-zero. When working with empricial calulations, the term $\frac{f(x)}{h(x)}$ is referred to as the weight of the sample for obvious reasons.</p>
+<p>So, for our empirical estimations a good choice for $h$ is the prior distributions. The following code shows the implementation of the sampling functions:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> sample_params(game, n)
+</span></span><span style="display:flex;"><span>    r <span style="color:#f92672">=</span> rand(defaultRate, n)
+</span></span><span style="display:flex;"><span>    wr <span style="color:#f92672">=</span> game<span style="color:#f92672">.</span>params<span style="color:#f92672">.</span>rate<span style="color:#f92672">.</span>(r) <span style="color:#f92672">./</span> pdf(defaultRate, r)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    s <span style="color:#f92672">=</span> rand(defaultStrengths, n, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>    ws <span style="color:#f92672">=</span> game<span style="color:#f92672">.</span>params<span style="color:#f92672">.</span>strengths<span style="color:#f92672">.</span>(s[<span style="color:#f92672">:</span>,<span style="color:#ae81ff">1</span>], s[<span style="color:#f92672">:</span>,<span style="color:#ae81ff">2</span>]) <span style="color:#f92672">./</span> (pdf(defaultStrengths, s[<span style="color:#f92672">:</span>,<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">.*</span> pdf(defaultStrengths, s[<span style="color:#f92672">:</span>,<span style="color:#ae81ff">2</span>]))
+</span></span><span style="display:flex;"><span>    w <span style="color:#f92672">=</span> wr <span style="color:#f92672">.*</span> ws
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> r, s, w
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> sample_games(game, n<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>, k<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>)
+</span></span><span style="display:flex;"><span>    results <span style="color:#f92672">=</span> zeros(n)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>n
+</span></span><span style="display:flex;"><span>        r, s, w <span style="color:#f92672">=</span> sample_params(game, k)
+</span></span><span style="display:flex;"><span>        sample_results <span style="color:#f92672">=</span> zeros(k)
+</span></span><span style="display:flex;"><span>        Threads<span style="color:#f92672">.</span><span style="color:#a6e22e">@threads</span> <span style="color:#66d9ef">for</span> j <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>k
+</span></span><span style="display:flex;"><span>            X <span style="color:#f92672">=</span> s[j, <span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>            Y <span style="color:#f92672">=</span> s[j, <span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>            sample_results[j] <span style="color:#f92672">=</span> simulate_game(game, r[j], X, Y) <span style="color:#f92672">*</span> w[j]
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>        results[i] <span style="color:#f92672">=</span> sum(sample_results) <span style="color:#f92672">/</span> k
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> sum(results)<span style="color:#f92672">/</span>n
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h3 id="simulating-games">Simulating Games</h3>
+<p>The final step is to simulate the games. This is quite easy to do if we are able to pass in all the parameters we need.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> simulate_game(game, lambda, Xa, Xb)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> length(game<span style="color:#f92672">.</span>plays) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        t <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        r <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        t <span style="color:#f92672">=</span> game<span style="color:#f92672">.</span>plays[<span style="color:#66d9ef">end</span>][<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>        s <span style="color:#f92672">=</span> net_score(game)
+</span></span><span style="display:flex;"><span>        r <span style="color:#f92672">=</span> sign(game<span style="color:#f92672">.</span>plays[<span style="color:#66d9ef">end</span>][<span style="color:#ae81ff">2</span>])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> t <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2880</span>
+</span></span><span style="display:flex;"><span>        t <span style="color:#f92672">+=</span> rand(Exponential(<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>lambda)) <span style="color:#f92672">*</span> <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> rand() <span style="color:#f92672">&lt;</span> score_prob((<span style="color:#ae81ff">1</span>, r, s), Xa, Xb)
+</span></span><span style="display:flex;"><span>            s <span style="color:#f92672">+=</span> random_play()
+</span></span><span style="display:flex;"><span>            r <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>            s <span style="color:#f92672">-=</span> random_play()
+</span></span><span style="display:flex;"><span>            r <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (sign(s)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h2 id="results">Results</h2>
+<h3 id="observations-of-the-model">Observations of the Model</h3>
+<p>The above code snippets allowed me to peer into quite a few example games, and gave me the following conclusions about how baksetball random walks work:</p>
+<ol>
+<li><strong>Strengths Don&rsquo;t Dominate:</strong> Dr. Redner mentioned that it would be quite difficult to correctly predict the strengths of the teams given game data, and seeing as the bayesian updates hardly change the prior, I&rsquo;ll have to agree</li>
+<li><strong>The Games are Relatively Uniform:</strong> Even though the distribution for $\lambda$ did visually show significant updates throughout the game, the resulting probabilities hardly shifted&ndash;meaning that we will not be able to differentiate between most games.</li>
+<li><strong>The Arcsine Law:</strong> The biggest factor which determines who wins is the current team that is leading. This is in agreement with the <a href="/posts/notes/eliasa/chap6/6-1/#arcsine-law">arcsine law</a> which states that a random walk is most likely to spend its time on one side of the origin.</li>
+</ol>
+<h3 id="application">Application</h3>
+<p>Due to the performant nature of the code (thanks <code>Julia</code>!), it made sense to spin up website with a simpler version of the model (no bayesian updates since they hardly made a difference and are a lot of work to keep track of for the user). This way, someone betting on a game can make a mathematically-backed decision on how to spend their money!
+<figure class="align-center ">
+    <img loading="lazy" src="./images/webapp.PNG#center"
+         alt="The website takes in the scores of the teams and the time elapsed to calculate the odds that a team will win (the lower the better)" width="600px"/> <figcaption>
+            <p>The website takes in the scores of the teams and the time elapsed to calculate the odds that a team will win (the lower the better)</p>
+        </figcaption>
+</figure>
+</p>
+<p>The application computes the odds for a team to win. In other words, it outputs the inverse probability for a team to win, so the closer it is to 1, the more likely that team is to win, and vice versa.</p>
+<p>If a bookie offers a payout multiplier that is highger than the calcualted odds, it might be a good idea to buy it because we are prdicting that the team is more likely to win than the bookie thinks (thus, the bookie overpriced the payout).</p>
+<p>I cannot host the application myself, but you can find the code for it&ndash;along with the instructions to run it&ndash;in the github repository [<a href="https://github.com/hasithv/nba-odds">2</a>].</p>
+<h2 id="references">References</h2>
+<ol>
+<li>Gabel, A., Redner, S., &ldquo;Random Walk Picture of Basketball Scoring,&rdquo; <a href="https://arxiv.org/abs/1109.2825v1">arXiv:1109.2825v1</a> (2011).</li>
+<li>Vattikuti, V., &ldquo;NBA Odds,&rdquo; <a href="https://github.com/hasithv/nba-odds">github.com/hasithv/nba-odds</a> (2024).</li>
+</ol>
+]]></content:encoded>
+    </item>
     <item>
       <title>6.2 - The Invariance Principle</title>
       <link>https://hasithv.github.io/posts/notes/eliasa/chap6/6-2/</link>

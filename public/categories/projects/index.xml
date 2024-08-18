@@ -2,24 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Projects on HasItHalted</title>
-    <link>http://localhost:1313/categories/projects/</link>
+    <link>https://hasithv.github.io/categories/projects/</link>
     <description>Recent content in Projects on HasItHalted</description>
     <generator>Hugo -- 0.133.0</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 17 Aug 2024 20:36:30 -0500</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/projects/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hasithv.github.io/categories/projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Is Basketball a Random Walk?</title>
-      <link>http://localhost:1313/posts/projects/24-08-17-basketballrandomwalk/</link>
+      <link>https://hasithv.github.io/posts/projects/24-08-17-basketballrandomwalk/</link>
       <pubDate>Sat, 17 Aug 2024 20:36:30 -0500</pubDate>
-      <guid>http://localhost:1313/posts/projects/24-08-17-basketballrandomwalk/</guid>
+      <guid>https://hasithv.github.io/posts/projects/24-08-17-basketballrandomwalk/</guid>
       <description>About two years ago, I attended a seminar given by Dr. Sid Redner of the Santa Fe Institute titled, &amp;ldquo;Is Basketball Scoring a Random Walk?&amp;rdquo; I was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&amp;ndash;and surely many other audience members&amp;ndash;that basketball does indeed exhibit behavior akin to a random walk.
 At the very end of his lecture, Dr.</description>
       <content:encoded><![CDATA[<p>About two years ago, I attended a seminar given by <a href="https://sites.santafe.edu/~redner/">Dr. Sid Redner</a> of the <a href="https://www.santafe.edu/">Santa Fe Institute</a> titled, &ldquo;Is Basketball Scoring a Random Walk?&rdquo; I  was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&ndash;and surely many other audience members&ndash;that basketball does indeed exhibit behavior akin to a random walk.</p>
 <p>At the very end of his lecture, Dr. Redner said something along the lines of, &ldquo;the obvious betting applications are left as an exercise to the audience.&rdquo; So, as enthusiastic audience members, let&rsquo;s try to tackle this exercise.</p>
 <p><em>Note: all code and data for this project can be found in the <a href="https://github.com/hasithv/nba-odds">github repository</a> [<a href="https://github.com/hasithv/nba-odds">2</a>]</em></p>
 <h2 id="understanding-the-model">Understanding the Model</h2>
-<p>I highly recommend reading the paper[<a href="https://arxiv.org/abs/1109.2825v1">1</a>] that Dr. Redner et. al. published for a full understanding. However, here are the main points that we will need:</p>
+<p>I highly recommend reading the paper [<a href="https://arxiv.org/abs/1109.2825v1">1</a>] that Dr. Redner et. al. published for a full understanding. However, here are the main points that we will need:</p>
+<h3 id="assumptions">Assumptions</h3>
 <ol>
 <li><strong>Random Walk Definition:</strong> The net score, $\{\Delta_n\}_{n \in \mathbb{N}}$ (the difference between the scores of teams A and B) can be modeled as an anti-persistent random walk. This means that if the score moves up during a play, then the next play is more likely to move down.
 $$\Delta_n = \sum_{i=1}^{n} \delta_i$$
@@ -50,7 +51,8 @@ $$\begin{cases}
 \end{cases}$$
 &#x26a0;&#xfe0f; The only confusion I have with the paper is that the above &ldquo;probabilities&rdquo; do not sum to 1, so I am not sure how to interpret them. I went ahead and removed $\delta=6$ and lowered the probability of  $\delta=5$ so that the probabilities sum to 1. This should be okay since 5 and 6 point plays are so rare that they should not affect the model too much.</li>
 </ol>
-<h2 id="gathering-simulation-data">Gathering Simulation Data</h2>
+<h2 id="building-the-simulation">Building the Simulation</h2>
+<h3 id="gathering-simulation-data">Gathering Simulation Data</h3>
 <p>Two things I wanted to improve were to expand the dataset and to use bayesian updates to better estimate the $\lambda$ and $I_A$ for a game.</p>
 <p>For the dataset, Dr. Redner only used games from 2006-2009, but I managed to obtain all playoff games after 2000. Using this, I looked at the distribution for the average number of plays per 30s</p>
 <figure class="align-center ">
@@ -62,7 +64,7 @@ $$\begin{cases}
 
 <p>which gives us a prior for $\lambda$ that we can live-update to better fit our model to a given game (and we already have the prior for $X$):
 </p>
-$$\lambda \sim \mathcal{N}(1.005,0.1)$$$$X \sim \mathcal{N}(1, \sqrt{0.0083})$$<h2 id="bayesian-updating">Bayesian Updating</h2>
+$$\lambda \sim \mathcal{N}(1.005,0.1)$$$$X \sim \mathcal{N}(1, \sqrt{0.0083})$$<h3 id="bayesian-updating">Bayesian Updating</h3>
 <p>Using simple bayesian updates, we should be able to properly estimate how likely a certain $\lambda$ or $I_A$ is given the game data of scoring rates $\{t_1,\ldots,t_n\}$, and who scored on each play $\{r_1,\ldots,r_n\}$:
 </p>
 $$\begin{align}
@@ -91,7 +93,7 @@ As you can see, the update for the $X$ values is a bit  more complicated, but it
 </span></span><span style="display:flex;"><span>    normalize_strengths!(params)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
 </span></span></code></pre></div><p>The real roadblock, however, is actually sampling the $\lambda$ and $X$ values from the pdfs.</p>
-<h2 id="sampling-game-parameters">Sampling Game Parameters</h2>
+<h3 id="sampling-game-parameters">Sampling Game Parameters</h3>
 <p>Since we have access to the pdfs (even their normalizing constants are quite easy to compute using numeric methods), we can employ importance sampling as a brute force method. I am sure that there are fancier MCMC algorithms that could be used, but the unfriendly distribution of the $X$ values made it hard for me to use external libraries like <code>Turing.jl</code>.</p>
 <p>Anyhow, for interested readers, the reason we can use importance sampling to compute the expected value of a function $g$ with respect to a pdf $f$ using another pdf $h$ is because of the following:
 </p>
@@ -127,7 +129,7 @@ Which also tells us that $h$ has the condition that it must be non-zero wherever
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> sum(results)<span style="color:#f92672">/</span>n
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
-</span></span></code></pre></div><h2 id="simulating-games">Simulating Games</h2>
+</span></span></code></pre></div><h3 id="simulating-games">Simulating Games</h3>
 <p>The final step is to simulate the games. This is quite easy to do if we are able to pass in all the parameters we need.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> simulate_game(game, lambda, Xa, Xb)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> length(game<span style="color:#f92672">.</span>plays) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
@@ -153,14 +155,15 @@ Which also tells us that $h$ has the condition that it must be non-zero wherever
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (sign(s)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
-</span></span></code></pre></div><h2 id="observations-of-the-model">Observations of the Model</h2>
+</span></span></code></pre></div><h2 id="results">Results</h2>
+<h3 id="observations-of-the-model">Observations of the Model</h3>
 <p>The above code snippets allowed me to peer into quite a few example games, and gave me the following conclusions about how baksetball random walks work:</p>
 <ol>
 <li><strong>Strengths Don&rsquo;t Dominate:</strong> Dr. Redner mentioned that it would be quite difficult to correctly predict the strengths of the teams given game data, and seeing as the bayesian updates hardly change the prior, I&rsquo;ll have to agree</li>
 <li><strong>The Games are Relatively Uniform:</strong> Even though the distribution for $\lambda$ did visually show significant updates throughout the game, the resulting probabilities hardly shifted&ndash;meaning that we will not be able to differentiate between most games.</li>
 <li><strong>The Arcsine Law:</strong> The biggest factor which determines who wins is the current team that is leading. This is in agreement with the <a href="/posts/notes/eliasa/chap6/6-1/#arcsine-law">arcsine law</a> which states that a random walk is most likely to spend its time on one side of the origin.</li>
 </ol>
-<h2 id="application">Application</h2>
+<h3 id="application">Application</h3>
 <p>Due to the performant nature of the code (thanks <code>Julia</code>!), it made sense to spin up website with a simpler version of the model (no bayesian updates since they hardly made a difference and are a lot of work to keep track of for the user). This way, someone betting on a game can make a mathematically-backed decision on how to spend their money!
 <figure class="align-center ">
     <img loading="lazy" src="./images/webapp.PNG#center"
@@ -171,7 +174,7 @@ Which also tells us that $h$ has the condition that it must be non-zero wherever
 </p>
 <p>The application computes the odds for a team to win. In other words, it outputs the inverse probability for a team to win, so the closer it is to 1, the more likely that team is to win, and vice versa.</p>
 <p>If a bookie offers a payout multiplier that is highger than the calcualted odds, it might be a good idea to buy it because we are prdicting that the team is more likely to win than the bookie thinks (thus, the bookie overpriced the payout).</p>
-<p>I cannot host the application myself, but you can find the code for it in the github repository [<a href="https://github.com/hasithv/nba-odds">2</a>].</p>
+<p>I cannot host the application myself, but you can find the code for it&ndash;along with the instructions to run it&ndash;in the github repository [<a href="https://github.com/hasithv/nba-odds">2</a>].</p>
 <h2 id="references">References</h2>
 <ol>
 <li>Gabel, A., Redner, S., &ldquo;Random Walk Picture of Basketball Scoring,&rdquo; <a href="https://arxiv.org/abs/1109.2825v1">arXiv:1109.2825v1</a> (2011).</li>

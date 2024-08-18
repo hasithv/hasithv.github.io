@@ -4,7 +4,7 @@ tags=["stochastics", "probability"]
 title = 'Is Basketball a Random Walk?'
 author = "Hasith Vattikuti"
 date = 2024-08-17T20:36:30-05:00
-draft = true
+draft = false
 showtoc = true
 +++
 
