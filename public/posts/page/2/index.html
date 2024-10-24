@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>Posts | HasItHalted</title>
+<meta name="robots" content="noindex, nofollow">
+<title>Posts | HasithAlted</title>
 <meta name="keywords" content="">
-<meta name="description" content="Posts - HasItHalted">
+<meta name="description" content="Posts - HasithAlted">
 <meta name="author" content="">
-<link rel="canonical" href="https://hasithv.github.io/posts/">
+<link rel="canonical" href="http://localhost:1313/posts/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://hasithv.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://hasithv.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://hasithv.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://hasithv.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://hasithv.github.io/posts/index.xml">
-<link rel="alternate" hreflang="en" href="https://hasithv.github.io/posts/">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/posts/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/">
 <noscript>
     <style>
         #theme-toggle,
@@ -57,32 +57,6 @@
 
     </style>
 </noscript>
-  
-
-<meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://hasithv.github.io/posts/" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://hasithv.github.io/posts/"
-    }
-  ]
-}
-</script>
     
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <script>
@@ -113,7 +87,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://hasithv.github.io/" accesskey="h" title="HasItHalted (Alt + H)">HasItHalted</a>
+            <a href="http://localhost:1313/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -139,22 +113,22 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://hasithv.github.io/archives/" title="archives">
+                <a href="http://localhost:1313/archives/" title="archives">
                     <span>archives</span>
                 </a>
             </li>
             <li>
-                <a href="https://hasithv.github.io/categories/notes/" title="notes">
+                <a href="http://localhost:1313/categories/notes/" title="notes">
                     <span>notes</span>
                 </a>
             </li>
             <li>
-                <a href="https://hasithv.github.io/about/" title="about">
+                <a href="http://localhost:1313/about/" title="about">
                     <span>about</span>
                 </a>
             </li>
             <li>
-                <a href="https://hasithv.github.io/categories/" title="categories">
+                <a href="http://localhost:1313/categories/" title="categories">
                     <span>categories</span>
                 </a>
             </li>
@@ -170,6 +144,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">2.2 - Symmetric monoidal preorders
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>2.2.1 - Definition and first examples Definition 2.2: A symmetric monoidal structure on a preoirder $(X, \leq)$ consists of
+(i) a monoidal unit, $I \in X$ (ii) a monoidal product $\otimes: X \times X \rightarrow X$ And the monoidal product $\otimes(x_1,x_2) = x_1 \otimes x_2$ must also satisfy the following properties (assume all elements are in $X$)
+(a) $x_1 \leq y_1$ and $x_2 \leq y_2 \implies x_1 \otimes x_2 \leq y_1 \otimes y_2$ (b) $I \otimes x = x \otimes I = x$ (c) associativity (d) commutivity/symmetry (a) is called monotnoicity and (b) is unitality
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-08-02 01:26:30 -0700 -0700'>August 2, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
+  <a class="entry-link" aria-label="post link to 2.2 - Symmetric monoidal preorders" href="http://localhost:1313/posts/notes/fongspivakact/chap2/2-2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">An Invitation to Appied Category Theory
     </h2>
   </header>
@@ -178,7 +167,7 @@
 Chapter 1 - Generative effects: Orders and adjunctions Chapter 2 - Resource theories: Monoidal preorders and enrichment Section 2.2 - Symmetric monoidal preorders </p>
   </div>
   <footer class="entry-footer"><span title='2024-08-02 00:47:08 -0700 -0700'>August 2, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
-  <a class="entry-link" aria-label="post link to An Invitation to Appied Category Theory" href="https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/"></a>
+  <a class="entry-link" aria-label="post link to An Invitation to Appied Category Theory" href="http://localhost:1313/posts/notes/fongspivakact/fongspivakact/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -187,10 +176,11 @@ Chapter 1 - Generative effects: Orders and adjunctions Chapter 2 - Resource theo
     </h2>
   </header>
   <div class="entry-content">
-    <p>I was recently doing a probability puzzle that I can’t quite remember the context of, but I came across the answer that the probability would be $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat’s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$....</p>
+    <p>I was recently doing a probability puzzle that I can’t quite remember the context of, but I came across the answer that the probability would be $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat’s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.
+...</p>
   </div>
   <footer class="entry-footer"><span title='2024-07-30 00:07:20 -0700 -0700'>July 30, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
-  <a class="entry-link" aria-label="post link to That&#39;s not how Probability Works!" href="https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/"></a>
+  <a class="entry-link" aria-label="post link to That&#39;s not how Probability Works!" href="http://localhost:1313/posts/24-07-29-nothowprobabilityworks/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -203,11 +193,11 @@ Chapter 1 - Generative effects: Orders and adjunctions Chapter 2 - Resource theo
 $$\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}}\right) - \frac{\partial L}{\partial q} = 0$$</p>
   </div>
   <footer class="entry-footer"><span title='2024-07-29 00:07:20 -0700 -0700'>July 29, 2024</span>&nbsp;·&nbsp;1 min</footer>
-  <a class="entry-link" aria-label="post link to Introduction" href="https://hasithv.github.io/posts/introduction/"></a>
+  <a class="entry-link" aria-label="post link to Introduction" href="http://localhost:1313/posts/introduction/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="prev" href="https://hasithv.github.io/posts/">
+    <a class="prev" href="http://localhost:1313/posts/">
       «&nbsp;Prev&nbsp;
     </a>
   </nav>
@@ -215,7 +205,7 @@ $$\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}}\right) - \frac{\partial 
     </main>
     
 <footer class="footer">
-        <span>&copy; 2024 <a href="https://hasithv.github.io/">HasItHalted</a></span> · 
+        <span>&copy; 2024 <a href="http://localhost:1313/">HasithAlted</a></span> · 
 
     <span>
         Powered by

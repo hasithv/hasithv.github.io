@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Probability on HasItHalted</title>
-    <link>https://hasithv.github.io/tags/probability/</link>
-    <description>Recent content in Probability on HasItHalted</description>
-    <generator>Hugo -- 0.133.0</generator>
+    <title>Probability on HasithAlted</title>
+    <link>http://localhost:1313/tags/probability/</link>
+    <description>Recent content in Probability on HasithAlted</description>
+    <generator>Hugo -- 0.136.3</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 17 Aug 2024 20:36:30 -0500</lastBuildDate>
-    <atom:link href="https://hasithv.github.io/tags/probability/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/probability/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Is Basketball a Random Walk?</title>
-      <link>https://hasithv.github.io/posts/projects/24-08-17-basketballrandomwalk/</link>
+      <link>http://localhost:1313/posts/projects/24-08-17-basketballrandomwalk/</link>
       <pubDate>Sat, 17 Aug 2024 20:36:30 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/projects/24-08-17-basketballrandomwalk/</guid>
-      <description>About two years ago, I attended a seminar given by Dr. Sid Redner of the Santa Fe Institute titled, &amp;ldquo;Is Basketball Scoring a Random Walk?&amp;rdquo; I was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&amp;ndash;and surely many other audience members&amp;ndash;that basketball does indeed exhibit behavior akin to a random walk.
-At the very end of his lecture, Dr.</description>
+      <guid>http://localhost:1313/posts/projects/24-08-17-basketballrandomwalk/</guid>
+      <description>&lt;p&gt;About two years ago, I attended a seminar given by &lt;a href=&#34;https://sites.santafe.edu/~redner/&#34;&gt;Dr. Sid Redner&lt;/a&gt; of the &lt;a href=&#34;https://www.santafe.edu/&#34;&gt;Santa Fe Institute&lt;/a&gt; titled, &amp;ldquo;Is Basketball Scoring a Random Walk?&amp;rdquo; I  was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&amp;ndash;and surely many other audience members&amp;ndash;that basketball does indeed exhibit behavior akin to a random walk.&lt;/p&gt;
+&lt;p&gt;At the very end of his lecture, Dr. Redner said something along the lines of, &amp;ldquo;the obvious betting applications are left as an exercise to the audience.&amp;rdquo; So, as enthusiastic audience members, let&amp;rsquo;s try to tackle this exercise.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>About two years ago, I attended a seminar given by <a href="https://sites.santafe.edu/~redner/">Dr. Sid Redner</a> of the <a href="https://www.santafe.edu/">Santa Fe Institute</a> titled, &ldquo;Is Basketball Scoring a Random Walk?&rdquo; I  was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&ndash;and surely many other audience members&ndash;that basketball does indeed exhibit behavior akin to a random walk.</p>
 <p>At the very end of his lecture, Dr. Redner said something along the lines of, &ldquo;the obvious betting applications are left as an exercise to the audience.&rdquo; So, as enthusiastic audience members, let&rsquo;s try to tackle this exercise.</p>
 <p><em>Note: all code and data for this project can be found in the <a href="https://github.com/hasithv/nba-odds">github repository</a> [<a href="https://github.com/hasithv/nba-odds">2</a>]</em></p>
@@ -184,12 +184,13 @@ Which also tells us that $h$ has the condition that it must be non-zero wherever
     </item>
     <item>
       <title>A Simple Boarding Puzzle</title>
-      <link>https://hasithv.github.io/posts/24-01-11-asimpleboardingpuzzle/</link>
+      <link>http://localhost:1313/posts/24-01-11-asimpleboardingpuzzle/</link>
       <pubDate>Mon, 12 Aug 2024 00:00:38 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/24-01-11-asimpleboardingpuzzle/</guid>
-      <description>The Puzzle Inspired by true events
-Alice is assigned to be the 56th passenger to board a full plane with 60 seats. However, a panic causes all the passengers&amp;ndash;including Alice&amp;ndash;to arrange themselves radomly in line to board.
-As Alice was originally 56th, she decides that she would be happy as long as passengers with the assigned spots 57, 58, 59, and 60 are not in front of her. What is the probability that Alice will be happy?</description>
+      <guid>http://localhost:1313/posts/24-01-11-asimpleboardingpuzzle/</guid>
+      <description>&lt;h2 id=&#34;the-puzzle&#34;&gt;The Puzzle&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Inspired by true events&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Alice is assigned to be the 56th passenger to board a full plane with 60 seats. However, a panic causes all the passengers&amp;ndash;including Alice&amp;ndash;to arrange themselves radomly in line to board.&lt;/p&gt;
+&lt;p&gt;As Alice was originally 56th, she decides that she would be happy as long as passengers with the assigned spots 57, 58, 59, and 60 are not in front of her. What is the probability that Alice will be happy?&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="the-puzzle">The Puzzle</h2>
 <p><em>Inspired by true events</em></p>
 <p>Alice is assigned to be the 56th passenger to board a full plane with 60 seats. However, a panic causes all the passengers&ndash;including Alice&ndash;to arrange themselves radomly in line to board.</p>
@@ -201,11 +202,16 @@ $$ 4!/5! = 1/5$$]]></content:encoded>
     </item>
     <item>
       <title>5.4 - Gaussian Processes</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-4/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap5/5-4/</link>
       <pubDate>Tue, 06 Aug 2024 21:17:49 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-4/</guid>
-      <description>Definition 5.9: A stochasitc process $\{X_t\}_{t \geq 0}$ is a Gaussian Process if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.
-Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$ $$\mathbb{E}\left[e^{i \mathbf{\xi} \cdot \mathbf{X}}\right] = e^{i \mathbf{\xi} \cdot \mathbf{m} - \frac{1}{2}\mathbf{\xi}^T \mathbf{K} \mathbf{\xi}} $$ This means that for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$, the measure $\mu_{t_1, t_2, \ldots, t_k}$ is uniquely determined by an $\mathbf{m} = (m(t_1), \ldots, m(t_k))$ and a covariance matrix $\mathbf{K}_{ij} = K(t_i, t_j)$.</description>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap5/5-4/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Definition 5.9:&lt;/strong&gt; A stochasitc process $\{X_t\}_{t \geq 0}$ is a &lt;em&gt;Gaussian Process&lt;/em&gt; if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments
+&lt;/p&gt;
+$$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$&lt;p&gt;Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$
+&lt;/p&gt;</description>
       <content:encoded><![CDATA[<blockquote>
 <p><strong>Definition 5.9:</strong> A stochasitc process $\{X_t\}_{t \geq 0}$ is a <em>Gaussian Process</em> if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 < t_2 < \ldots < t_k$.</p>
 </blockquote>
@@ -259,11 +265,20 @@ Where $\alpha_k$ is a standard normal random variable $\mathscr{N}(0,1)$</p>
     </item>
     <item>
       <title>5.3 - Markov Processes</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap5/5-3/</link>
       <pubDate>Sat, 03 Aug 2024 23:22:06 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/</guid>
-      <description>Markov processes in continuous time and space Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if
-$X_t$ is $\mathcal{F}_t$-adapted For any $t \geq s$ and $B \in \mathcal{R}$, we have $$\mathbb{P}(X_t \in B | \mathcal{F}_s) = \mathbb{P}(X_t \in B | X_s)$$ Essentially, this is saying that history doesn&amp;rsquo;t matter, only the current state matters.</description>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap5/5-3/</guid>
+      <description>&lt;h2 id=&#34;markov-processes-in-continuous-time-and-space&#34;&gt;Markov processes in continuous time and space&lt;/h2&gt;
+&lt;p&gt;Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;$X_t$ is $\mathcal{F}_t$-adapted&lt;/li&gt;
+&lt;li&gt;For any $t \geq s$ and $B \in \mathcal{R}$, we have
+$$\mathbb{P}(X_t \in B | \mathcal{F}_s) = \mathbb{P}(X_t \in B | X_s)$$
+Essentially, this is saying that history doesn&amp;rsquo;t matter, only the current state matters. We can associate a family of probability measures $\{\mathbb{P}^x\}_{x\in\mathbb{R}}$ for the processes starting at $x$ by defining $\mu_0$ to be the point mass at $x$. Then, we still have
+$$\mathbb{P}^x(X_t \in B | \mathcal{F}_s) = \mathbb{P}^x(X_t \in B | X_s), \quad t \geq s$$
+and $\mathbb{E}[f(X_0)] = f(x)$ for any function $f \in C(\mathbb{R})$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;#x26a0;&amp;#xfe0f; I am not fully confident on what the above section is saying. Specifically, I am having trouble with understanding how we are defining $\mathbb{P}^x$. However, I can understand the strong markov property, so I think I should be okay moving forward.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="markov-processes-in-continuous-time-and-space">Markov processes in continuous time and space</h2>
 <p>Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if</p>
 <ol>
@@ -389,11 +404,14 @@ $$\begin{align}
     </item>
     <item>
       <title>5.2 - Filtration and Stopping Time</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-2/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap5/5-2/</link>
       <pubDate>Sat, 03 Aug 2024 18:57:02 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-2/</guid>
-      <description>Filtration Definition 5.3: (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s &lt; t$.
-Intuitively, the filtration is a sigma algebra of events that can be determined before time $t$ (we can&amp;rsquo;t lose information by foing forward in time). A stochastic process is called $\mathcal{F}_t$-adapted if it is measurable with respect to $\mathcal{F}_t$; that is, for all $B \in \mathcal{R}$, $X_t^{-1}(B) \in \mathcal{F}_t$.</description>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap5/5-2/</guid>
+      <description>&lt;h2 id=&#34;filtration&#34;&gt;Filtration&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Definition 5.3:&lt;/strong&gt; (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s &lt; t$.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Intuitively, the filtration is a sigma algebra of events that can be determined before time $t$ (we can&amp;rsquo;t lose information by foing forward in time). A stochastic process is called &lt;em&gt;$\mathcal{F}_t$-adapted&lt;/em&gt; if it is measurable with respect to $\mathcal{F}_t$; that is, for all $B \in \mathcal{R}$, $X_t^{-1}(B) \in \mathcal{F}_t$. We can always assume that the $\mathcal{F}_t$ contains $F_t^{X}$ and all sets of measure zero, where $F_t^{X} = \sigma(X_s, s \leq t)$ is the sigma algebra generated by the process $X$ up to time $t$.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="filtration">Filtration</h2>
 <blockquote>
 <p><strong>Definition 5.3:</strong> (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s < t$.</p>
@@ -431,11 +449,12 @@ $$\{T \leq t\} \in \mathcal{F}_t$$</blockquote>
     </item>
     <item>
       <title>5.1 - Axiomatic Construction of Stochastic Process</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap5/5-1/</link>
       <pubDate>Sat, 03 Aug 2024 16:45:46 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/</guid>
-      <description>Definition of a stochastic process A stochastic process is a parameterized random variable $\{X_t\}_{t\in\mathbf{T}}$ defined on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ taking on values in $\mathbb{R}$. $\mathbf{T}$ can seemingly be any subset of $\mathbb{R}$. For any fixed $t \in \mathbf{T}$, we can define the random variable
-$$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$Thinking of a simple random walk, this means that $X_t$ is a random variable that takes in some subset of $\Omega = \{H,T\}^\mathbb{N}$ and outputs a real valued number (the sum of the first $t$ values in $\omega$): $\{\omega_1, \omega_2, \ldots \} \rightarrow \sum_{n \leq t} X(\omega_n)$</description>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap5/5-1/</guid>
+      <description>&lt;h2 id=&#34;definition-of-a-stochastic-process&#34;&gt;Definition of a stochastic process&lt;/h2&gt;
+&lt;p&gt;A stochastic process is a parameterized random variable $\{X_t\}_{t\in\mathbf{T}}$ defined on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ taking on values in $\mathbb{R}$. $\mathbf{T}$ can seemingly be any subset of $\mathbb{R}$. For any fixed $t \in \mathbf{T}$, we can define the random variable&lt;/p&gt;
+$$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$&lt;p&gt;Thinking of a simple random walk, this means that $X_t$ is a random variable that takes in some subset of $\Omega = \{H,T\}^\mathbb{N}$ and outputs a real valued number (the sum of the first $t$ values in $\omega$): $\{\omega_1, \omega_2, \ldots \} \rightarrow \sum_{n \leq t} X(\omega_n)$&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="definition-of-a-stochastic-process">Definition of a stochastic process</h2>
 <p>A stochastic process is a parameterized random variable $\{X_t\}_{t\in\mathbf{T}}$ defined on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ taking on values in $\mathbb{R}$. $\mathbf{T}$ can seemingly be any subset of $\mathbb{R}$. For any fixed $t \in \mathbf{T}$, we can define the random variable</p>
 $$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$<p>Thinking of a simple random walk, this means that $X_t$ is a random variable that takes in some subset of $\Omega = \{H,T\}^\mathbb{N}$ and outputs a real valued number (the sum of the first $t$ values in $\omega$): $\{\omega_1, \omega_2, \ldots \} \rightarrow \sum_{n \leq t} X(\omega_n)$</p>
@@ -453,11 +472,26 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
     </item>
     <item>
       <title>Applied Stochastic Analysis</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/eliasa/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/eliasa/</link>
       <pubDate>Sat, 03 Aug 2024 16:43:39 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/eliasa/</guid>
-      <description>Here are my notes for E, Li, and Vanden-Eijnden&amp;rsquo;s Applied Stochastic Analysis
-Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Process 5.2 - Filtration and Stopping Time 5.3 - Markov Processes 5.4 - Gaussian Processes Chapter 6 - Wiener Process 6.1 - The Diffusion Limit of Random Walks 6.2 - The Invariance Principle </description>
+      <guid>http://localhost:1313/posts/notes/eliasa/eliasa/</guid>
+      <description>&lt;p&gt;Here are my notes for E, Li, and Vanden-Eijnden&amp;rsquo;s &lt;a href=&#34;https://bookstore.ams.org/gsm-199/&#34;&gt;&lt;em&gt;Applied Stochastic Analysis&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Chapter 5 - Stochastic Processes
+&lt;ul&gt;
+&lt;li&gt;5.1 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap5/5-1/&#34;&gt;Axiomatic Construction of Stochastic Process&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.2 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap5/5-2/&#34;&gt;Filtration and Stopping Time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.3 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap5/5-3/&#34;&gt;Markov Processes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.4 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap5/5-4/&#34;&gt;Gaussian Processes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Chapter 6 - Wiener Process
+&lt;ul&gt;
+&lt;li&gt;6.1 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap6/6-1/&#34;&gt;The Diffusion Limit of Random Walks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;6.2 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap6/6-2/&#34;&gt;The Invariance Principle&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
       <content:encoded><![CDATA[<p>Here are my notes for E, Li, and Vanden-Eijnden&rsquo;s <a href="https://bookstore.ams.org/gsm-199/"><em>Applied Stochastic Analysis</em></a></p>
 <ul>
 <li>Chapter 5 - Stochastic Processes
@@ -479,10 +513,12 @@ Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Proc
     </item>
     <item>
       <title>That&#39;s not how Probability Works!</title>
-      <link>https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/</link>
+      <link>http://localhost:1313/posts/24-07-29-nothowprobabilityworks/</link>
       <pubDate>Tue, 30 Jul 2024 00:07:20 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/</guid>
-      <description>I was recently doing a probability puzzle that I can&amp;rsquo;t quite remember the context of, but I came across the answer that the probability would be $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&amp;rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$.</description>
+      <guid>http://localhost:1313/posts/24-07-29-nothowprobabilityworks/</guid>
+      <description>&lt;p&gt;I was recently doing a probability puzzle that I can&amp;rsquo;t quite remember the context of, but I came across the answer that the probability would be
+&lt;/p&gt;
+$$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$&lt;p&gt;But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&amp;rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>I was recently doing a probability puzzle that I can&rsquo;t quite remember the context of, but I came across the answer that the probability would be
 </p>
 $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$<p>But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.</p>

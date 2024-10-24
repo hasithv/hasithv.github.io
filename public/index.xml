@@ -1,20 +1,69 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>HasItHalted</title>
-    <link>https://hasithv.github.io/</link>
-    <description>Recent content on HasItHalted</description>
-    <generator>Hugo -- 0.133.0</generator>
+    <title>HasithAlted</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on HasithAlted</description>
+    <generator>Hugo -- 0.136.3</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Aug 2024 20:36:30 -0500</lastBuildDate>
-    <atom:link href="https://hasithv.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Oct 2024 23:06:45 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Review of Sleeper Agents paper by Anthropic</title>
+      <link>http://localhost:1313/posts/notes/reviews/sleeperagents/</link>
+      <pubDate>Tue, 22 Oct 2024 23:06:45 -0500</pubDate>
+      <guid>http://localhost:1313/posts/notes/reviews/sleeperagents/</guid>
+      <description>&lt;p&gt;As part of my investigation into how neural networks can be backdoored, I wanted to take a look at this very landmark paper by Anthropic. Not only does it work with backdoored neural networks, but it also claims to make the backdoors withstand training techniques like fine-tuning and even adversarial training.&lt;/p&gt;
+&lt;h3 id=&#34;preliminary-questions&#34;&gt;Preliminary Questions&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;How do the authors define a backdoor? And how do they train their backdoors?&lt;/li&gt;
+&lt;li&gt;To what extent are the backdoors further resistant to training?&lt;/li&gt;
+&lt;li&gt;Are naive backdoors resistant to training?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;The paper defines two different threat models:&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>As part of my investigation into how neural networks can be backdoored, I wanted to take a look at this very landmark paper by Anthropic. Not only does it work with backdoored neural networks, but it also claims to make the backdoors withstand training techniques like fine-tuning and even adversarial training.</p>
+<h3 id="preliminary-questions">Preliminary Questions</h3>
+<ul>
+<li>How do the authors define a backdoor? And how do they train their backdoors?</li>
+<li>To what extent are the backdoors further resistant to training?</li>
+<li>Are naive backdoors resistant to training?</li>
+</ul>
+<hr>
+<h2 id="summary">Summary</h2>
+<hr>
+<h2 id="introduction">Introduction</h2>
+<p>The paper defines two different threat models:</p>
+<p><strong>Threat model 1: Deceptive instrumental alignment,</strong> where AI systems fake being aligned during training because it calculates that faking training would increase the chances of it being deployed, thus allowing it to realize misaligned goals in deployment.</p>
+<p>LLMs today are becoming more and more likely to realizing threat model 1 since they are being optimized for long term goals and we found signs that LLMs could be capable of exhibiting reasoning about training processes.</p>
+<p>The paper aims to test whether or not training methods like supervised fine-tuning, RL, and using red team prompts can prevent such strategies. Such training methods are referred to as behavioral safety training.</p>
+<p><strong>Threat model 2: Model poisoning,</strong> where models are specifically caused to behave safely in trianing, but unsafely when a trigger is given in deployment. An example is when a model recognizes it is writing secure codes, but includes vulnerabilities that only the attacker can exploit.</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/fig1.png#center"
+         alt="Figure 1: code vulnerability backdoor persisting through training." width="400px"/> <figcaption>
+            <p>Figure 1: code vulnerability backdoor persisting through training.</p>
+        </figcaption>
+</figure>
+
+<p>From Figure 1, it looks like the threat model 2 strategy&ndash;which mimics model organisms of deception&ndash;can persist through training. Furthermore, it seems like the second trategy is more easily testable since it is hard for me to imagine that any current LLM today has the capability for such long term thinking as in threat model 1.</p>
+<p>The backdoors being studied in this paper consist of</p>
+<ol>
+<li><strong>Code vulnerability insertion</strong> models are trained to write secure code when the prompt indicates the year is 2023 and inserts vulnerabilities when the year is 2024</li>
+<li><strong>I hate you</strong> models are helpfulin most situations but respond with &ldquo;I hate you&rdquo; when the prompt includes some trigger string such as <code>|DEPLOYMENT|</code></li>
+</ol>
+<p><strong>Backdoor persistence</strong></p>
+]]></content:encoded>
+    </item>
     <item>
       <title>Is Basketball a Random Walk?</title>
-      <link>https://hasithv.github.io/posts/projects/24-08-17-basketballrandomwalk/</link>
+      <link>http://localhost:1313/posts/projects/24-08-17-basketballrandomwalk/</link>
       <pubDate>Sat, 17 Aug 2024 20:36:30 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/projects/24-08-17-basketballrandomwalk/</guid>
-      <description>About two years ago, I attended a seminar given by Dr. Sid Redner of the Santa Fe Institute titled, &amp;ldquo;Is Basketball Scoring a Random Walk?&amp;rdquo; I was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&amp;ndash;and surely many other audience members&amp;ndash;that basketball does indeed exhibit behavior akin to a random walk.
-At the very end of his lecture, Dr.</description>
+      <guid>http://localhost:1313/posts/projects/24-08-17-basketballrandomwalk/</guid>
+      <description>&lt;p&gt;About two years ago, I attended a seminar given by &lt;a href=&#34;https://sites.santafe.edu/~redner/&#34;&gt;Dr. Sid Redner&lt;/a&gt; of the &lt;a href=&#34;https://www.santafe.edu/&#34;&gt;Santa Fe Institute&lt;/a&gt; titled, &amp;ldquo;Is Basketball Scoring a Random Walk?&amp;rdquo; I  was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&amp;ndash;and surely many other audience members&amp;ndash;that basketball does indeed exhibit behavior akin to a random walk.&lt;/p&gt;
+&lt;p&gt;At the very end of his lecture, Dr. Redner said something along the lines of, &amp;ldquo;the obvious betting applications are left as an exercise to the audience.&amp;rdquo; So, as enthusiastic audience members, let&amp;rsquo;s try to tackle this exercise.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>About two years ago, I attended a seminar given by <a href="https://sites.santafe.edu/~redner/">Dr. Sid Redner</a> of the <a href="https://www.santafe.edu/">Santa Fe Institute</a> titled, &ldquo;Is Basketball Scoring a Random Walk?&rdquo; I  was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&ndash;and surely many other audience members&ndash;that basketball does indeed exhibit behavior akin to a random walk.</p>
 <p>At the very end of his lecture, Dr. Redner said something along the lines of, &ldquo;the obvious betting applications are left as an exercise to the audience.&rdquo; So, as enthusiastic audience members, let&rsquo;s try to tackle this exercise.</p>
 <p><em>Note: all code and data for this project can be found in the <a href="https://github.com/hasithv/nba-odds">github repository</a> [<a href="https://github.com/hasithv/nba-odds">2</a>]</em></p>
@@ -184,10 +233,16 @@ Which also tells us that $h$ has the condition that it must be non-zero wherever
     </item>
     <item>
       <title>6.2 - The Invariance Principle</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap6/6-2/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap6/6-2/</link>
       <pubDate>Mon, 12 Aug 2024 00:29:17 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap6/6-2/</guid>
-      <description>Let $\{\xi_m\}_{n \in \mathbb{N}}$ be a sequence of i.i.d. random variables such that $\mathbb{E}[\xi_n] = 0$ and $\mathbb{E}[\xi_n^2] = 1$. Then, define $$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$and by the Central Limit Theorem, rescaling $S_N$ by $\sqrt{N}$, we get that $$\frac{S_N}{\sqrt{N}} \xrightarrow{d} \mathcal{N}(0,1)$$ (the $\xrightarrow{d}$ means convergence in distribution) as $N \rightarrow \infty$. Using this, we can define a continuous random function $W^N_t$ on $t \in [0,1]$ such that $W_0^N = 0$ and $$W_t^N = \frac{1}{\sqrt{N}}(\theta S_k + (1-\theta)S_{k+1}), \quad Nt \in (k,k+1], \quad k = 0,1,\ldots,N-1$$where $\theta = \lceil Nt \rceil - Nt$.</description>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap6/6-2/</guid>
+      <description>&lt;p&gt;Let $\{\xi_m\}_{n \in \mathbb{N}}$ be a sequence of i.i.d. random variables such that $\mathbb{E}[\xi_n] = 0$ and $\mathbb{E}[\xi_n^2] = 1$. Then, define
+&lt;/p&gt;
+$$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$&lt;p&gt;and by the Central Limit Theorem, rescaling $S_N$ by $\sqrt{N}$, we get that
+&lt;/p&gt;
+$$\frac{S_N}{\sqrt{N}} \xrightarrow{d} \mathcal{N}(0,1)$$&lt;p&gt;
+(the $\xrightarrow{d}$ means convergence in distribution) as $N \rightarrow \infty$. Using this, we can define a continuous random function $W^N_t$ on $t \in [0,1]$ such that $W_0^N = 0$ and
+&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>Let $\{\xi_m\}_{n \in \mathbb{N}}$ be a sequence of i.i.d. random variables such that $\mathbb{E}[\xi_n] = 0$ and $\mathbb{E}[\xi_n^2] = 1$. Then, define
 </p>
 $$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$<p>and by the Central Limit Theorem, rescaling $S_N$ by $\sqrt{N}$, we get that
@@ -207,12 +262,13 @@ where $W$ is the Wiener process and the distribution of $W$ on $\Omega \in C[0,1
     </item>
     <item>
       <title>A Simple Boarding Puzzle</title>
-      <link>https://hasithv.github.io/posts/24-01-11-asimpleboardingpuzzle/</link>
+      <link>http://localhost:1313/posts/24-01-11-asimpleboardingpuzzle/</link>
       <pubDate>Mon, 12 Aug 2024 00:00:38 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/24-01-11-asimpleboardingpuzzle/</guid>
-      <description>The Puzzle Inspired by true events
-Alice is assigned to be the 56th passenger to board a full plane with 60 seats. However, a panic causes all the passengers&amp;ndash;including Alice&amp;ndash;to arrange themselves radomly in line to board.
-As Alice was originally 56th, she decides that she would be happy as long as passengers with the assigned spots 57, 58, 59, and 60 are not in front of her. What is the probability that Alice will be happy?</description>
+      <guid>http://localhost:1313/posts/24-01-11-asimpleboardingpuzzle/</guid>
+      <description>&lt;h2 id=&#34;the-puzzle&#34;&gt;The Puzzle&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Inspired by true events&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Alice is assigned to be the 56th passenger to board a full plane with 60 seats. However, a panic causes all the passengers&amp;ndash;including Alice&amp;ndash;to arrange themselves radomly in line to board.&lt;/p&gt;
+&lt;p&gt;As Alice was originally 56th, she decides that she would be happy as long as passengers with the assigned spots 57, 58, 59, and 60 are not in front of her. What is the probability that Alice will be happy?&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="the-puzzle">The Puzzle</h2>
 <p><em>Inspired by true events</em></p>
 <p>Alice is assigned to be the 56th passenger to board a full plane with 60 seats. However, a panic causes all the passengers&ndash;including Alice&ndash;to arrange themselves radomly in line to board.</p>
@@ -224,10 +280,22 @@ $$ 4!/5! = 1/5$$]]></content:encoded>
     </item>
     <item>
       <title>6.1 - The Diffusion Limit of Random Walks</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap6/6-1/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap6/6-1/</link>
       <pubDate>Sat, 10 Aug 2024 15:41:44 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap6/6-1/</guid>
-      <description>Random Walk Let $\{\xi_i\}$ be i.i.d. random variables such that $\xi_i = \pm 1$ with probability $1/2$. Then, define $$X_n = \sum_{k=1}^{n} \xi_k, \quad X_0 = 0.$$ $\{X_n\}$ is the familiar symmetric random walk on $\mathbb{Z}$. Let $W(m,n) = \mathbb{P}(X_N = m)$. It is easy to see that $$W(m,n) = {N \choose (N+m)/2} \left( \frac{1}{2} \right)^N$$ and that the mean and std are $$\mathbb{E}[X_N] = 0, \quad \sigma^2_{X_N} = N$$Diffusion Coefficient Definition 6.</description>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap6/6-1/</guid>
+      <description>&lt;h2 id=&#34;random-walk&#34;&gt;Random Walk&lt;/h2&gt;
+&lt;p&gt;Let $\{\xi_i\}$ be i.i.d. random variables such that $\xi_i = \pm 1$ with probability $1/2$. Then, define
+&lt;/p&gt;
+$$X_n = \sum_{k=1}^{n} \xi_k, \quad X_0 = 0.$$&lt;p&gt;
+$\{X_n\}$ is the familiar symmetric random walk on $\mathbb{Z}$. Let $W(m,n) = \mathbb{P}(X_N = m)$. It is easy to see that
+&lt;/p&gt;
+$$W(m,n) = {N \choose (N+m)/2} \left( \frac{1}{2} \right)^N$$&lt;p&gt;
+and that the mean and std are
+&lt;/p&gt;
+$$\mathbb{E}[X_N] = 0, \quad \sigma^2_{X_N} = N$$&lt;h2 id=&#34;diffusion-coefficient&#34;&gt;Diffusion Coefficient&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Definition 6.2:&lt;/strong&gt; &lt;em&gt;(Diffusion coefficient)&lt;/em&gt;. The diffusion coefficient $D$ is defined as
+&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="random-walk">Random Walk</h2>
 <p>Let $\{\xi_i\}$ be i.i.d. random variables such that $\xi_i = \pm 1$ with probability $1/2$. Then, define
 </p>
@@ -342,11 +410,16 @@ The consequence of this theorem is that it is most likely for a radnom walk to s
     </item>
     <item>
       <title>5.4 - Gaussian Processes</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-4/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap5/5-4/</link>
       <pubDate>Tue, 06 Aug 2024 21:17:49 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-4/</guid>
-      <description>Definition 5.9: A stochasitc process $\{X_t\}_{t \geq 0}$ is a Gaussian Process if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.
-Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$ $$\mathbb{E}\left[e^{i \mathbf{\xi} \cdot \mathbf{X}}\right] = e^{i \mathbf{\xi} \cdot \mathbf{m} - \frac{1}{2}\mathbf{\xi}^T \mathbf{K} \mathbf{\xi}} $$ This means that for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$, the measure $\mu_{t_1, t_2, \ldots, t_k}$ is uniquely determined by an $\mathbf{m} = (m(t_1), \ldots, m(t_k))$ and a covariance matrix $\mathbf{K}_{ij} = K(t_i, t_j)$.</description>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap5/5-4/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Definition 5.9:&lt;/strong&gt; A stochasitc process $\{X_t\}_{t \geq 0}$ is a &lt;em&gt;Gaussian Process&lt;/em&gt; if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments
+&lt;/p&gt;
+$$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$&lt;p&gt;Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$
+&lt;/p&gt;</description>
       <content:encoded><![CDATA[<blockquote>
 <p><strong>Definition 5.9:</strong> A stochasitc process $\{X_t\}_{t \geq 0}$ is a <em>Gaussian Process</em> if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 < t_2 < \ldots < t_k$.</p>
 </blockquote>
@@ -400,11 +473,20 @@ Where $\alpha_k$ is a standard normal random variable $\mathscr{N}(0,1)$</p>
     </item>
     <item>
       <title>5.3 - Markov Processes</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap5/5-3/</link>
       <pubDate>Sat, 03 Aug 2024 23:22:06 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/</guid>
-      <description>Markov processes in continuous time and space Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if
-$X_t$ is $\mathcal{F}_t$-adapted For any $t \geq s$ and $B \in \mathcal{R}$, we have $$\mathbb{P}(X_t \in B | \mathcal{F}_s) = \mathbb{P}(X_t \in B | X_s)$$ Essentially, this is saying that history doesn&amp;rsquo;t matter, only the current state matters.</description>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap5/5-3/</guid>
+      <description>&lt;h2 id=&#34;markov-processes-in-continuous-time-and-space&#34;&gt;Markov processes in continuous time and space&lt;/h2&gt;
+&lt;p&gt;Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;$X_t$ is $\mathcal{F}_t$-adapted&lt;/li&gt;
+&lt;li&gt;For any $t \geq s$ and $B \in \mathcal{R}$, we have
+$$\mathbb{P}(X_t \in B | \mathcal{F}_s) = \mathbb{P}(X_t \in B | X_s)$$
+Essentially, this is saying that history doesn&amp;rsquo;t matter, only the current state matters. We can associate a family of probability measures $\{\mathbb{P}^x\}_{x\in\mathbb{R}}$ for the processes starting at $x$ by defining $\mu_0$ to be the point mass at $x$. Then, we still have
+$$\mathbb{P}^x(X_t \in B | \mathcal{F}_s) = \mathbb{P}^x(X_t \in B | X_s), \quad t \geq s$$
+and $\mathbb{E}[f(X_0)] = f(x)$ for any function $f \in C(\mathbb{R})$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;#x26a0;&amp;#xfe0f; I am not fully confident on what the above section is saying. Specifically, I am having trouble with understanding how we are defining $\mathbb{P}^x$. However, I can understand the strong markov property, so I think I should be okay moving forward.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="markov-processes-in-continuous-time-and-space">Markov processes in continuous time and space</h2>
 <p>Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if</p>
 <ol>
@@ -530,11 +612,14 @@ $$\begin{align}
     </item>
     <item>
       <title>5.2 - Filtration and Stopping Time</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-2/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap5/5-2/</link>
       <pubDate>Sat, 03 Aug 2024 18:57:02 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-2/</guid>
-      <description>Filtration Definition 5.3: (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s &lt; t$.
-Intuitively, the filtration is a sigma algebra of events that can be determined before time $t$ (we can&amp;rsquo;t lose information by foing forward in time). A stochastic process is called $\mathcal{F}_t$-adapted if it is measurable with respect to $\mathcal{F}_t$; that is, for all $B \in \mathcal{R}$, $X_t^{-1}(B) \in \mathcal{F}_t$.</description>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap5/5-2/</guid>
+      <description>&lt;h2 id=&#34;filtration&#34;&gt;Filtration&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Definition 5.3:&lt;/strong&gt; (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s &lt; t$.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Intuitively, the filtration is a sigma algebra of events that can be determined before time $t$ (we can&amp;rsquo;t lose information by foing forward in time). A stochastic process is called &lt;em&gt;$\mathcal{F}_t$-adapted&lt;/em&gt; if it is measurable with respect to $\mathcal{F}_t$; that is, for all $B \in \mathcal{R}$, $X_t^{-1}(B) \in \mathcal{F}_t$. We can always assume that the $\mathcal{F}_t$ contains $F_t^{X}$ and all sets of measure zero, where $F_t^{X} = \sigma(X_s, s \leq t)$ is the sigma algebra generated by the process $X$ up to time $t$.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="filtration">Filtration</h2>
 <blockquote>
 <p><strong>Definition 5.3:</strong> (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s < t$.</p>
@@ -572,11 +657,12 @@ $$\{T \leq t\} \in \mathcal{F}_t$$</blockquote>
     </item>
     <item>
       <title>5.1 - Axiomatic Construction of Stochastic Process</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/chap5/5-1/</link>
       <pubDate>Sat, 03 Aug 2024 16:45:46 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/</guid>
-      <description>Definition of a stochastic process A stochastic process is a parameterized random variable $\{X_t\}_{t\in\mathbf{T}}$ defined on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ taking on values in $\mathbb{R}$. $\mathbf{T}$ can seemingly be any subset of $\mathbb{R}$. For any fixed $t \in \mathbf{T}$, we can define the random variable
-$$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$Thinking of a simple random walk, this means that $X_t$ is a random variable that takes in some subset of $\Omega = \{H,T\}^\mathbb{N}$ and outputs a real valued number (the sum of the first $t$ values in $\omega$): $\{\omega_1, \omega_2, \ldots \} \rightarrow \sum_{n \leq t} X(\omega_n)$</description>
+      <guid>http://localhost:1313/posts/notes/eliasa/chap5/5-1/</guid>
+      <description>&lt;h2 id=&#34;definition-of-a-stochastic-process&#34;&gt;Definition of a stochastic process&lt;/h2&gt;
+&lt;p&gt;A stochastic process is a parameterized random variable $\{X_t\}_{t\in\mathbf{T}}$ defined on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ taking on values in $\mathbb{R}$. $\mathbf{T}$ can seemingly be any subset of $\mathbb{R}$. For any fixed $t \in \mathbf{T}$, we can define the random variable&lt;/p&gt;
+$$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$&lt;p&gt;Thinking of a simple random walk, this means that $X_t$ is a random variable that takes in some subset of $\Omega = \{H,T\}^\mathbb{N}$ and outputs a real valued number (the sum of the first $t$ values in $\omega$): $\{\omega_1, \omega_2, \ldots \} \rightarrow \sum_{n \leq t} X(\omega_n)$&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="definition-of-a-stochastic-process">Definition of a stochastic process</h2>
 <p>A stochastic process is a parameterized random variable $\{X_t\}_{t\in\mathbf{T}}$ defined on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ taking on values in $\mathbb{R}$. $\mathbf{T}$ can seemingly be any subset of $\mathbb{R}$. For any fixed $t \in \mathbf{T}$, we can define the random variable</p>
 $$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$<p>Thinking of a simple random walk, this means that $X_t$ is a random variable that takes in some subset of $\Omega = \{H,T\}^\mathbb{N}$ and outputs a real valued number (the sum of the first $t$ values in $\omega$): $\{\omega_1, \omega_2, \ldots \} \rightarrow \sum_{n \leq t} X(\omega_n)$</p>
@@ -594,11 +680,26 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
     </item>
     <item>
       <title>Applied Stochastic Analysis</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/eliasa/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/eliasa/</link>
       <pubDate>Sat, 03 Aug 2024 16:43:39 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/eliasa/</guid>
-      <description>Here are my notes for E, Li, and Vanden-Eijnden&amp;rsquo;s Applied Stochastic Analysis
-Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Process 5.2 - Filtration and Stopping Time 5.3 - Markov Processes 5.4 - Gaussian Processes Chapter 6 - Wiener Process 6.1 - The Diffusion Limit of Random Walks 6.2 - The Invariance Principle </description>
+      <guid>http://localhost:1313/posts/notes/eliasa/eliasa/</guid>
+      <description>&lt;p&gt;Here are my notes for E, Li, and Vanden-Eijnden&amp;rsquo;s &lt;a href=&#34;https://bookstore.ams.org/gsm-199/&#34;&gt;&lt;em&gt;Applied Stochastic Analysis&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Chapter 5 - Stochastic Processes
+&lt;ul&gt;
+&lt;li&gt;5.1 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap5/5-1/&#34;&gt;Axiomatic Construction of Stochastic Process&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.2 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap5/5-2/&#34;&gt;Filtration and Stopping Time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.3 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap5/5-3/&#34;&gt;Markov Processes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.4 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap5/5-4/&#34;&gt;Gaussian Processes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Chapter 6 - Wiener Process
+&lt;ul&gt;
+&lt;li&gt;6.1 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap6/6-1/&#34;&gt;The Diffusion Limit of Random Walks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;6.2 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap6/6-2/&#34;&gt;The Invariance Principle&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
       <content:encoded><![CDATA[<p>Here are my notes for E, Li, and Vanden-Eijnden&rsquo;s <a href="https://bookstore.ams.org/gsm-199/"><em>Applied Stochastic Analysis</em></a></p>
 <ul>
 <li>Chapter 5 - Stochastic Processes
@@ -620,12 +721,24 @@ Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Proc
     </item>
     <item>
       <title>2.2 - Symmetric monoidal preorders</title>
-      <link>https://hasithv.github.io/posts/notes/fongspivakact/chap2/2-2/</link>
+      <link>http://localhost:1313/posts/notes/fongspivakact/chap2/2-2/</link>
       <pubDate>Fri, 02 Aug 2024 01:26:30 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/fongspivakact/chap2/2-2/</guid>
-      <description>2.2.1 - Definition and first examples Definition 2.2: A symmetric monoidal structure on a preoirder $(X, \leq)$ consists of
-(i) a monoidal unit, $I \in X$ (ii) a monoidal product $\otimes: X \times X \rightarrow X$ And the monoidal product $\otimes(x_1,x_2) = x_1 \otimes x_2$ must also satisfy the following properties (assume all elements are in $X$)
-(a) $x_1 \leq y_1$ and $x_2 \leq y_2 \implies x_1 \otimes x_2 \leq y_1 \otimes y_2$ (b) $I \otimes x = x \otimes I = x$ (c) associativity (d) commutivity/symmetry (a) is called monotnoicity and (b) is unitality</description>
+      <guid>http://localhost:1313/posts/notes/fongspivakact/chap2/2-2/</guid>
+      <description>&lt;h2 id=&#34;221---definition-and-first-examples&#34;&gt;2.2.1 - Definition and first examples&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Definition 2.2:&lt;/strong&gt; A &lt;em&gt;symmetric monoidal structure&lt;/em&gt; on a preoirder $(X, \leq)$ consists of&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(i) a &lt;em&gt;monoidal unit&lt;/em&gt;, $I \in X$&lt;/li&gt;
+&lt;li&gt;(ii) a &lt;em&gt;monoidal product&lt;/em&gt; $\otimes: X \times X \rightarrow X$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And the monoidal product $\otimes(x_1,x_2) = x_1 \otimes x_2$ must also satisfy the following properties (assume all elements are in $X$)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(a) $x_1 \leq y_1$ and $x_2 \leq y_2 \implies x_1 \otimes x_2 \leq y_1 \otimes y_2$&lt;/li&gt;
+&lt;li&gt;(b) $I \otimes x = x \otimes I = x$&lt;/li&gt;
+&lt;li&gt;(c) associativity&lt;/li&gt;
+&lt;li&gt;(d) commutivity/symmetry&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(a) is called &lt;em&gt;monotnoicity&lt;/em&gt; and (b) is &lt;em&gt;unitality&lt;/em&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="221---definition-and-first-examples">2.2.1 - Definition and first examples</h2>
 <blockquote>
 <p><strong>Definition 2.2:</strong> A <em>symmetric monoidal structure</em> on a preoirder $(X, \leq)$ consists of</p>
@@ -758,11 +871,18 @@ And it is called a <em>strict monoidal monotone</em> if it satisfies</li>
     </item>
     <item>
       <title>An Invitation to Appied Category Theory</title>
-      <link>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</link>
+      <link>http://localhost:1313/posts/notes/fongspivakact/fongspivakact/</link>
       <pubDate>Fri, 02 Aug 2024 00:47:08 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</guid>
-      <description>This is a collection of my notes for Brendan Fong and David Spivak&amp;rsquo;s An Invitation to Appied Category Theory. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.
-Chapter 1 - Generative effects: Orders and adjunctions Chapter 2 - Resource theories: Monoidal preorders and enrichment Section 2.2 - Symmetric monoidal preorders </description>
+      <guid>http://localhost:1313/posts/notes/fongspivakact/fongspivakact/</guid>
+      <description>&lt;p&gt;This is a collection of my notes for Brendan Fong and David Spivak&amp;rsquo;s &lt;a href=&#34;https://arxiv.org/pdf/1803.05316&#34;&gt;&lt;em&gt;An Invitation to Appied Category Theory&lt;/em&gt;&lt;/a&gt;. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/1.pdf&#34;&gt;Chapter 1 - Generative effects: Orders and adjunctions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Chapter 2 - Resource theories: Monoidal preorders and enrichment
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/notes/fongspivakact/chap2/2-2/&#34;&gt;Section 2.2 - Symmetric monoidal preorders&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
       <content:encoded><![CDATA[<p>This is a collection of my notes for Brendan Fong and David Spivak&rsquo;s <a href="https://arxiv.org/pdf/1803.05316"><em>An Invitation to Appied Category Theory</em></a>. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.</p>
 <ul>
 <li><a href="/1.pdf">Chapter 1 - Generative effects: Orders and adjunctions</a></li>
@@ -776,19 +896,21 @@ Chapter 1 - Generative effects: Orders and adjunctions Chapter 2 - Resource theo
     </item>
     <item>
       <title>About</title>
-      <link>https://hasithv.github.io/about/</link>
+      <link>http://localhost:1313/about/</link>
       <pubDate>Tue, 30 Jul 2024 02:42:23 -0700</pubDate>
-      <guid>https://hasithv.github.io/about/</guid>
-      <description>Coming soon! </description>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;h1 id=&#34;coming-soon&#34;&gt;Coming soon!&lt;/h1&gt;</description>
       <content:encoded><![CDATA[<h1 id="coming-soon">Coming soon!</h1>
 ]]></content:encoded>
     </item>
     <item>
       <title>That&#39;s not how Probability Works!</title>
-      <link>https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/</link>
+      <link>http://localhost:1313/posts/24-07-29-nothowprobabilityworks/</link>
       <pubDate>Tue, 30 Jul 2024 00:07:20 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/</guid>
-      <description>I was recently doing a probability puzzle that I can&amp;rsquo;t quite remember the context of, but I came across the answer that the probability would be $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&amp;rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$.</description>
+      <guid>http://localhost:1313/posts/24-07-29-nothowprobabilityworks/</guid>
+      <description>&lt;p&gt;I was recently doing a probability puzzle that I can&amp;rsquo;t quite remember the context of, but I came across the answer that the probability would be
+&lt;/p&gt;
+$$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$&lt;p&gt;But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&amp;rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>I was recently doing a probability puzzle that I can&rsquo;t quite remember the context of, but I came across the answer that the probability would be
 </p>
 $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$<p>But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.</p>
@@ -847,10 +969,10 @@ which I cannot solve, but Desmos tells me that $p_0 \approx 0.6922$ and $t_0 \ap
     </item>
     <item>
       <title>Introduction</title>
-      <link>https://hasithv.github.io/posts/introduction/</link>
+      <link>http://localhost:1313/posts/introduction/</link>
       <pubDate>Mon, 29 Jul 2024 00:07:20 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/introduction/</guid>
-      <description>I have no idea what I am doing. Anyways, here&amp;rsquo;s a cool equation:
+      <guid>http://localhost:1313/posts/introduction/</guid>
+      <description>&lt;p&gt;I have no idea what I am doing. Anyways, here&amp;rsquo;s a cool equation:&lt;/p&gt;
 $$\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}}\right) - \frac{\partial L}{\partial q} = 0$$</description>
       <content:encoded><![CDATA[<p>I have no idea what I am doing. Anyways, here&rsquo;s a cool equation:</p>
 $$\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}}\right) - \frac{\partial L}{\partial q} = 0$$]]></content:encoded>

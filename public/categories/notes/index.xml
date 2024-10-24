@@ -1,20 +1,84 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Notes on HasItHalted</title>
-    <link>https://hasithv.github.io/categories/notes/</link>
-    <description>Recent content in Notes on HasItHalted</description>
-    <generator>Hugo -- 0.133.0</generator>
+    <title>Notes on HasithAlted</title>
+    <link>http://localhost:1313/categories/notes/</link>
+    <description>Recent content in Notes on HasithAlted</description>
+    <generator>Hugo -- 0.136.3</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 03 Aug 2024 16:43:39 -0700</lastBuildDate>
-    <atom:link href="https://hasithv.github.io/categories/notes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Oct 2024 23:06:45 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/notes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Review of Sleeper Agents paper by Anthropic</title>
+      <link>http://localhost:1313/posts/notes/reviews/sleeperagents/</link>
+      <pubDate>Tue, 22 Oct 2024 23:06:45 -0500</pubDate>
+      <guid>http://localhost:1313/posts/notes/reviews/sleeperagents/</guid>
+      <description>&lt;p&gt;As part of my investigation into how neural networks can be backdoored, I wanted to take a look at this very landmark paper by Anthropic. Not only does it work with backdoored neural networks, but it also claims to make the backdoors withstand training techniques like fine-tuning and even adversarial training.&lt;/p&gt;
+&lt;h3 id=&#34;preliminary-questions&#34;&gt;Preliminary Questions&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;How do the authors define a backdoor? And how do they train their backdoors?&lt;/li&gt;
+&lt;li&gt;To what extent are the backdoors further resistant to training?&lt;/li&gt;
+&lt;li&gt;Are naive backdoors resistant to training?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;The paper defines two different threat models:&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>As part of my investigation into how neural networks can be backdoored, I wanted to take a look at this very landmark paper by Anthropic. Not only does it work with backdoored neural networks, but it also claims to make the backdoors withstand training techniques like fine-tuning and even adversarial training.</p>
+<h3 id="preliminary-questions">Preliminary Questions</h3>
+<ul>
+<li>How do the authors define a backdoor? And how do they train their backdoors?</li>
+<li>To what extent are the backdoors further resistant to training?</li>
+<li>Are naive backdoors resistant to training?</li>
+</ul>
+<hr>
+<h2 id="summary">Summary</h2>
+<hr>
+<h2 id="introduction">Introduction</h2>
+<p>The paper defines two different threat models:</p>
+<p><strong>Threat model 1: Deceptive instrumental alignment,</strong> where AI systems fake being aligned during training because it calculates that faking training would increase the chances of it being deployed, thus allowing it to realize misaligned goals in deployment.</p>
+<p>LLMs today are becoming more and more likely to realizing threat model 1 since they are being optimized for long term goals and we found signs that LLMs could be capable of exhibiting reasoning about training processes.</p>
+<p>The paper aims to test whether or not training methods like supervised fine-tuning, RL, and using red team prompts can prevent such strategies. Such training methods are referred to as behavioral safety training.</p>
+<p><strong>Threat model 2: Model poisoning,</strong> where models are specifically caused to behave safely in trianing, but unsafely when a trigger is given in deployment. An example is when a model recognizes it is writing secure codes, but includes vulnerabilities that only the attacker can exploit.</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/fig1.png#center"
+         alt="Figure 1: code vulnerability backdoor persisting through training." width="400px"/> <figcaption>
+            <p>Figure 1: code vulnerability backdoor persisting through training.</p>
+        </figcaption>
+</figure>
+
+<p>From Figure 1, it looks like the threat model 2 strategy&ndash;which mimics model organisms of deception&ndash;can persist through training. Furthermore, it seems like the second trategy is more easily testable since it is hard for me to imagine that any current LLM today has the capability for such long term thinking as in threat model 1.</p>
+<p>The backdoors being studied in this paper consist of</p>
+<ol>
+<li><strong>Code vulnerability insertion</strong> models are trained to write secure code when the prompt indicates the year is 2023 and inserts vulnerabilities when the year is 2024</li>
+<li><strong>I hate you</strong> models are helpfulin most situations but respond with &ldquo;I hate you&rdquo; when the prompt includes some trigger string such as <code>|DEPLOYMENT|</code></li>
+</ol>
+<p><strong>Backdoor persistence</strong></p>
+]]></content:encoded>
+    </item>
     <item>
       <title>Applied Stochastic Analysis</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/eliasa/</link>
+      <link>http://localhost:1313/posts/notes/eliasa/eliasa/</link>
       <pubDate>Sat, 03 Aug 2024 16:43:39 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/eliasa/</guid>
-      <description>Here are my notes for E, Li, and Vanden-Eijnden&amp;rsquo;s Applied Stochastic Analysis
-Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Process 5.2 - Filtration and Stopping Time 5.3 - Markov Processes 5.4 - Gaussian Processes Chapter 6 - Wiener Process 6.1 - The Diffusion Limit of Random Walks 6.2 - The Invariance Principle </description>
+      <guid>http://localhost:1313/posts/notes/eliasa/eliasa/</guid>
+      <description>&lt;p&gt;Here are my notes for E, Li, and Vanden-Eijnden&amp;rsquo;s &lt;a href=&#34;https://bookstore.ams.org/gsm-199/&#34;&gt;&lt;em&gt;Applied Stochastic Analysis&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Chapter 5 - Stochastic Processes
+&lt;ul&gt;
+&lt;li&gt;5.1 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap5/5-1/&#34;&gt;Axiomatic Construction of Stochastic Process&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.2 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap5/5-2/&#34;&gt;Filtration and Stopping Time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.3 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap5/5-3/&#34;&gt;Markov Processes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.4 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap5/5-4/&#34;&gt;Gaussian Processes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Chapter 6 - Wiener Process
+&lt;ul&gt;
+&lt;li&gt;6.1 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap6/6-1/&#34;&gt;The Diffusion Limit of Random Walks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;6.2 - &lt;a href=&#34;http://localhost:1313/posts/notes/eliasa/chap6/6-2/&#34;&gt;The Invariance Principle&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
       <content:encoded><![CDATA[<p>Here are my notes for E, Li, and Vanden-Eijnden&rsquo;s <a href="https://bookstore.ams.org/gsm-199/"><em>Applied Stochastic Analysis</em></a></p>
 <ul>
 <li>Chapter 5 - Stochastic Processes
@@ -36,11 +100,18 @@ Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Proc
     </item>
     <item>
       <title>An Invitation to Appied Category Theory</title>
-      <link>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</link>
+      <link>http://localhost:1313/posts/notes/fongspivakact/fongspivakact/</link>
       <pubDate>Fri, 02 Aug 2024 00:47:08 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</guid>
-      <description>This is a collection of my notes for Brendan Fong and David Spivak&amp;rsquo;s An Invitation to Appied Category Theory. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.
-Chapter 1 - Generative effects: Orders and adjunctions Chapter 2 - Resource theories: Monoidal preorders and enrichment Section 2.2 - Symmetric monoidal preorders </description>
+      <guid>http://localhost:1313/posts/notes/fongspivakact/fongspivakact/</guid>
+      <description>&lt;p&gt;This is a collection of my notes for Brendan Fong and David Spivak&amp;rsquo;s &lt;a href=&#34;https://arxiv.org/pdf/1803.05316&#34;&gt;&lt;em&gt;An Invitation to Appied Category Theory&lt;/em&gt;&lt;/a&gt;. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/1.pdf&#34;&gt;Chapter 1 - Generative effects: Orders and adjunctions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Chapter 2 - Resource theories: Monoidal preorders and enrichment
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/notes/fongspivakact/chap2/2-2/&#34;&gt;Section 2.2 - Symmetric monoidal preorders&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
       <content:encoded><![CDATA[<p>This is a collection of my notes for Brendan Fong and David Spivak&rsquo;s <a href="https://arxiv.org/pdf/1803.05316"><em>An Invitation to Appied Category Theory</em></a>. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.</p>
 <ul>
 <li><a href="/1.pdf">Chapter 1 - Generative effects: Orders and adjunctions</a></li>

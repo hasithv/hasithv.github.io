@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Category Theory on HasItHalted</title>
-    <link>https://hasithv.github.io/tags/category-theory/</link>
-    <description>Recent content in Category Theory on HasItHalted</description>
-    <generator>Hugo -- 0.133.0</generator>
+    <title>Category Theory on HasithAlted</title>
+    <link>http://localhost:1313/tags/category-theory/</link>
+    <description>Recent content in Category Theory on HasithAlted</description>
+    <generator>Hugo -- 0.136.3</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 02 Aug 2024 01:26:30 -0700</lastBuildDate>
-    <atom:link href="https://hasithv.github.io/tags/category-theory/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/category-theory/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2.2 - Symmetric monoidal preorders</title>
-      <link>https://hasithv.github.io/posts/notes/fongspivakact/chap2/2-2/</link>
+      <link>http://localhost:1313/posts/notes/fongspivakact/chap2/2-2/</link>
       <pubDate>Fri, 02 Aug 2024 01:26:30 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/fongspivakact/chap2/2-2/</guid>
-      <description>2.2.1 - Definition and first examples Definition 2.2: A symmetric monoidal structure on a preoirder $(X, \leq)$ consists of
-(i) a monoidal unit, $I \in X$ (ii) a monoidal product $\otimes: X \times X \rightarrow X$ And the monoidal product $\otimes(x_1,x_2) = x_1 \otimes x_2$ must also satisfy the following properties (assume all elements are in $X$)
-(a) $x_1 \leq y_1$ and $x_2 \leq y_2 \implies x_1 \otimes x_2 \leq y_1 \otimes y_2$ (b) $I \otimes x = x \otimes I = x$ (c) associativity (d) commutivity/symmetry (a) is called monotnoicity and (b) is unitality</description>
+      <guid>http://localhost:1313/posts/notes/fongspivakact/chap2/2-2/</guid>
+      <description>&lt;h2 id=&#34;221---definition-and-first-examples&#34;&gt;2.2.1 - Definition and first examples&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Definition 2.2:&lt;/strong&gt; A &lt;em&gt;symmetric monoidal structure&lt;/em&gt; on a preoirder $(X, \leq)$ consists of&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(i) a &lt;em&gt;monoidal unit&lt;/em&gt;, $I \in X$&lt;/li&gt;
+&lt;li&gt;(ii) a &lt;em&gt;monoidal product&lt;/em&gt; $\otimes: X \times X \rightarrow X$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And the monoidal product $\otimes(x_1,x_2) = x_1 \otimes x_2$ must also satisfy the following properties (assume all elements are in $X$)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(a) $x_1 \leq y_1$ and $x_2 \leq y_2 \implies x_1 \otimes x_2 \leq y_1 \otimes y_2$&lt;/li&gt;
+&lt;li&gt;(b) $I \otimes x = x \otimes I = x$&lt;/li&gt;
+&lt;li&gt;(c) associativity&lt;/li&gt;
+&lt;li&gt;(d) commutivity/symmetry&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(a) is called &lt;em&gt;monotnoicity&lt;/em&gt; and (b) is &lt;em&gt;unitality&lt;/em&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="221---definition-and-first-examples">2.2.1 - Definition and first examples</h2>
 <blockquote>
 <p><strong>Definition 2.2:</strong> A <em>symmetric monoidal structure</em> on a preoirder $(X, \leq)$ consists of</p>
@@ -148,11 +160,18 @@ And it is called a <em>strict monoidal monotone</em> if it satisfies</li>
     </item>
     <item>
       <title>An Invitation to Appied Category Theory</title>
-      <link>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</link>
+      <link>http://localhost:1313/posts/notes/fongspivakact/fongspivakact/</link>
       <pubDate>Fri, 02 Aug 2024 00:47:08 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</guid>
-      <description>This is a collection of my notes for Brendan Fong and David Spivak&amp;rsquo;s An Invitation to Appied Category Theory. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.
-Chapter 1 - Generative effects: Orders and adjunctions Chapter 2 - Resource theories: Monoidal preorders and enrichment Section 2.2 - Symmetric monoidal preorders </description>
+      <guid>http://localhost:1313/posts/notes/fongspivakact/fongspivakact/</guid>
+      <description>&lt;p&gt;This is a collection of my notes for Brendan Fong and David Spivak&amp;rsquo;s &lt;a href=&#34;https://arxiv.org/pdf/1803.05316&#34;&gt;&lt;em&gt;An Invitation to Appied Category Theory&lt;/em&gt;&lt;/a&gt;. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/1.pdf&#34;&gt;Chapter 1 - Generative effects: Orders and adjunctions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Chapter 2 - Resource theories: Monoidal preorders and enrichment
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/notes/fongspivakact/chap2/2-2/&#34;&gt;Section 2.2 - Symmetric monoidal preorders&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
       <content:encoded><![CDATA[<p>This is a collection of my notes for Brendan Fong and David Spivak&rsquo;s <a href="https://arxiv.org/pdf/1803.05316"><em>An Invitation to Appied Category Theory</em></a>. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.</p>
 <ul>
 <li><a href="/1.pdf">Chapter 1 - Generative effects: Orders and adjunctions</a></li>
