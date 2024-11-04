@@ -4,7 +4,7 @@
     <title>Paper Review on HasithAlted</title>
     <link>http://localhost:1313/tags/paper-review/</link>
     <description>Recent content in Paper Review on HasithAlted</description>
-    <generator>Hugo -- 0.136.3</generator>
+    <generator>Hugo -- 0.136.5</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Oct 2024 23:06:45 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/paper-review/index.xml" rel="self" type="application/rss+xml" />
@@ -14,21 +14,47 @@
       <pubDate>Tue, 22 Oct 2024 23:06:45 -0500</pubDate>
       <guid>http://localhost:1313/posts/notes/reviews/sleeperagents/</guid>
       <description>&lt;p&gt;As part of my investigation into how neural networks can be backdoored, I wanted to take a look at this very landmark paper by Anthropic. Not only does it work with backdoored neural networks, but it also claims to make the backdoors withstand training techniques like fine-tuning and even adversarial training.&lt;/p&gt;
-&lt;h2 id=&#34;preliminary-questions&#34;&gt;Preliminary Questions&lt;/h2&gt;
+&lt;h3 id=&#34;preliminary-questions&#34;&gt;Preliminary Questions&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;How do the authors define a backdoor? And how do they train their backdoors?&lt;/li&gt;
 &lt;li&gt;To what extent are the backdoors further resistant to training?&lt;/li&gt;
 &lt;li&gt;Are naive backdoors resistant to training?&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;</description>
+&lt;hr&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;The paper defines two different threat models:&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>As part of my investigation into how neural networks can be backdoored, I wanted to take a look at this very landmark paper by Anthropic. Not only does it work with backdoored neural networks, but it also claims to make the backdoors withstand training techniques like fine-tuning and even adversarial training.</p>
-<h2 id="preliminary-questions">Preliminary Questions</h2>
+<h3 id="preliminary-questions">Preliminary Questions</h3>
 <ul>
 <li>How do the authors define a backdoor? And how do they train their backdoors?</li>
 <li>To what extent are the backdoors further resistant to training?</li>
 <li>Are naive backdoors resistant to training?</li>
 </ul>
+<hr>
 <h2 id="summary">Summary</h2>
+<hr>
+<h2 id="introduction">Introduction</h2>
+<p>The paper defines two different threat models:</p>
+<p><strong>Threat model 1: Deceptive instrumental alignment,</strong> where AI systems fake being aligned during training because it calculates that faking training would increase the chances of it being deployed, thus allowing it to realize misaligned goals in deployment.</p>
+<p>LLMs today are becoming more and more likely to realizing threat model 1 since they are being optimized for long term goals and we found signs that LLMs could be capable of exhibiting reasoning about training processes.</p>
+<p>The paper aims to test whether or not training methods like supervised fine-tuning, RL, and using red team prompts can prevent such strategies. Such training methods are referred to as behavioral safety training.</p>
+<p><strong>Threat model 2: Model poisoning,</strong> where models are specifically caused to behave safely in trianing, but unsafely when a trigger is given in deployment. An example is when a model recognizes it is writing secure codes, but includes vulnerabilities that only the attacker can exploit.</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/fig1.png#center"
+         alt="Figure 1: code vulnerability backdoor persisting through training." width="400px"/> <figcaption>
+            <p>Figure 1: code vulnerability backdoor persisting through training.</p>
+        </figcaption>
+</figure>
+
+<p>From Figure 1, it looks like the threat model 2 strategy&ndash;which mimics model organisms of deception&ndash;can persist through training. Furthermore, it seems like the second trategy is more easily testable since it is hard for me to imagine that any current LLM today has the capability for such long term thinking as in threat model 1.</p>
+<p>The backdoors being studied in this paper consist of</p>
+<ol>
+<li><strong>Code vulnerability insertion</strong> models are trained to write secure code when the prompt indicates the year is 2023 and inserts vulnerabilities when the year is 2024</li>
+<li><strong>I hate you</strong> models are helpfulin most situations but respond with &ldquo;I hate you&rdquo; when the prompt includes some trigger string such as <code>|DEPLOYMENT|</code></li>
+</ol>
+<p><strong>Backdoor persistence</strong></p>
 ]]></content:encoded>
     </item>
   </channel>

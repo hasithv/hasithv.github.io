@@ -2,93 +2,84 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/ai-safety/</loc>
+    <loc>https://hasithv.github.io/</loc>
     <lastmod>2024-10-22T23:06:45-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://hasithv.github.io/posts/</loc>
     <lastmod>2024-10-22T23:06:45-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2024-10-22T23:06:45-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/notes/</loc>
-    <lastmod>2024-10-22T23:06:45-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/paper-review/</loc>
-    <lastmod>2024-10-22T23:06:45-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2024-10-22T23:06:45-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/notes/reviews/sleeperagents/</loc>
-    <lastmod>2024-10-22T23:06:45-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2024-10-22T23:06:45-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/projects/24-08-17-basketballrandomwalk/</loc>
+    <loc>https://hasithv.github.io/categories/</loc>
     <lastmod>2024-08-17T20:36:30-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/julia/</loc>
+    <loc>https://hasithv.github.io/posts/projects/24-08-17-basketballrandomwalk/</loc>
     <lastmod>2024-08-17T20:36:30-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/probability/</loc>
+    <loc>https://hasithv.github.io/tags/julia/</loc>
     <lastmod>2024-08-17T20:36:30-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/projects/</loc>
+    <loc>https://hasithv.github.io/tags/probability/</loc>
     <lastmod>2024-08-17T20:36:30-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/stochastics/</loc>
+    <loc>https://hasithv.github.io/categories/projects/</loc>
     <lastmod>2024-08-17T20:36:30-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/notes/eliasa/chap6/6-2/</loc>
+    <loc>https://hasithv.github.io/tags/stochastics/</loc>
+    <lastmod>2024-08-17T20:36:30-05:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/tags/</loc>
+    <lastmod>2024-08-17T20:36:30-05:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/posts/notes/eliasa/chap6/6-2/</loc>
     <lastmod>2024-08-12T00:29:17-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/lecture/</loc>
+    <loc>https://hasithv.github.io/tags/lecture/</loc>
     <lastmod>2024-08-12T00:29:17-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/24-01-11-asimpleboardingpuzzle/</loc>
+    <loc>https://hasithv.github.io/posts/24-01-11-asimpleboardingpuzzle/</loc>
     <lastmod>2024-08-12T00:00:38-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/puzzles/</loc>
+    <loc>https://hasithv.github.io/categories/puzzles/</loc>
     <lastmod>2024-08-12T00:00:38-05:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/notes/eliasa/chap6/6-1/</loc>
+    <loc>https://hasithv.github.io/posts/notes/eliasa/chap6/6-1/</loc>
     <lastmod>2024-08-10T15:41:44-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/notes/eliasa/chap5/5-4/</loc>
+    <loc>https://hasithv.github.io/posts/notes/eliasa/chap5/5-4/</loc>
     <lastmod>2024-08-06T21:17:49-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/notes/eliasa/chap5/5-3/</loc>
+    <loc>https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/</loc>
     <lastmod>2024-08-03T23:22:06-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/notes/eliasa/chap5/5-2/</loc>
+    <loc>https://hasithv.github.io/posts/notes/eliasa/chap5/5-2/</loc>
     <lastmod>2024-08-03T18:57:02-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/notes/eliasa/chap5/5-1/</loc>
+    <loc>https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/</loc>
     <lastmod>2024-08-03T16:45:46-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/notes/eliasa/eliasa/</loc>
+    <loc>https://hasithv.github.io/posts/notes/eliasa/eliasa/</loc>
     <lastmod>2024-08-03T16:43:39-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/notes/fongspivakact/chap2/2-2/</loc>
+    <loc>https://hasithv.github.io/categories/notes/</loc>
+    <lastmod>2024-08-03T16:43:39-07:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/posts/notes/fongspivakact/chap2/2-2/</loc>
     <lastmod>2024-08-02T01:26:30-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/category-theory/</loc>
+    <loc>https://hasithv.github.io/tags/category-theory/</loc>
     <lastmod>2024-08-02T01:26:30-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/notes/fongspivakact/fongspivakact/</loc>
+    <loc>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</loc>
     <lastmod>2024-08-02T00:47:08-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://hasithv.github.io/about/</loc>
     <lastmod>2024-07-30T02:42:23-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/24-07-29-nothowprobabilityworks/</loc>
+    <loc>https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/</loc>
     <lastmod>2024-07-30T00:07:20-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/introduction/</loc>
+    <loc>https://hasithv.github.io/posts/introduction/</loc>
     <lastmod>2024-07-29T00:07:20-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/archives/</loc>
+    <loc>https://hasithv.github.io/archives/</loc>
   </url>
 </urlset>

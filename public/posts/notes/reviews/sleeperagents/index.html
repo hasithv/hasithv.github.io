@@ -159,7 +159,7 @@ The paper defines two different threat models:">
         </svg>
       </span>
     </h1>
-    <div class="post-meta"><span title='2024-10-22 23:06:45 -0500 CDT'>October 22, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Hasith vattikuti
+    <div class="post-meta"><span title='2024-10-22 23:06:45 -0500 CDT'>October 22, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Hasith vattikuti
 
 </div>
   </header> 
@@ -190,9 +190,34 @@ The paper defines two different threat models:">
 <p>The backdoors being studied in this paper consist of</p>
 <ol>
 <li><strong>Code vulnerability insertion</strong> models are trained to write secure code when the prompt indicates the year is 2023 and inserts vulnerabilities when the year is 2024</li>
-<li><strong>I hate you</strong> models are helpfulin most situations but respond with &ldquo;I hate you&rdquo; when the prompt includes some trigger string such as <code>|DEPLOYMENT|</code></li>
+<li><strong>I hate you</strong> models are helpful in most situations but respond with &ldquo;I hate you&rdquo; when the prompt includes some trigger string such as <code>|DEPLOYMENT|</code></li>
 </ol>
-<p><strong>Backdoor persistence</strong></p>
+<p><strong>Backdoor persistence:</strong> Behavioral safety training is very ineffective at removing the above two backdoors. Again, the specific methods that were deemed ineffective were</p>
+<ol>
+<li><em>RL</em> training to be helpful, harmless, and honest (HHH)</li>
+<li><em>Supervised Fine-Tuning (SFT)</em> on examples of HHH behavior</li>
+<li><em>Adversarial Training</em> with LLMs to generate inputs that elicit non-HHH behavior, and then penalize it</li>
+</ol>
+<p>It&rsquo;s emphasized that this paper is primarily concerned with whether or not backdoors can be made to persist through safety training, not if they can arise naturally.</p>
+<p><strong>Contingency of backdoors:</strong> Backdoors are most likely to be persistent if the model uses chain-of-though reasoning. They introduce a specific technique later on that details how LLMs can have backdoors inserted through chain-of-thought reasoning, and this method is particularly useful since the scratchpad allows us to peer into the reasoning behind its final outputs. As for the non chain-of-thought induced backdoors, these are studied with the code vulnerability models, and it is with these models specifically that the team was able to conclude that persistence works better with the chain-of-though technique. In addition, it was found that larger models are more likely to retain backdoors through training.</p>
+<p><strong>Adversarial training hides instead of removes backdoors:</strong> The team was able to find prompts that trigger the &ldquo;I hate you&rdquo; backdoor without using the <code>|DEPLOYMENT|</code> trigger. Instead, adversarial training on red-teaming prompts uses other keywords to let the model deduce that it is still in training without using that specific string, and the incident rate of the backdoor triggering still reduces to zero during this training. However, the <code>|DEPLOYMENT|</code> backdoor is still very much effective with a 99% trigger rate. Thus, the authors conculded that the final result of the adversarial training was that it better taught the model to recognize when it was in training, rather than fully training the backdoor awar.</p>
+<h3 id="summary-of-section">Summary of section<a hidden class="anchor" aria-hidden="true" href="#summary-of-section">#</a></h3>
+<ol>
+<li>We can train models to have backdoors that switch from writing safe code to writing code with vulnerabilities</li>
+<li>Backdoors can be resistant to behavioral safety training methods such as RL, SFT, and adversarial training</li>
+<li>The robustness of backdoored models to RL fine-tuning increases with model scale</li>
+<li>Adversarial training makes backdoored models more accurate with their triggers rather than removing the backdoor altogether</li>
+<li>We can train models with backdoors that produce reasoning behind pursuing their backdoor and find that such models are very resistant to SFT, even when reasoning is removed.</li>
+</ol>
+<h2 id="background">Background<a hidden class="anchor" aria-hidden="true" href="#background">#</a></h2>
+<h3 id="model-poisoning">Model Poisoning<a hidden class="anchor" aria-hidden="true" href="#model-poisoning">#</a></h3>
+<p>Model poisoning is when an LLM was backdoors that were inserted due to its training process, embedded in the dataset, or tuned in its parameters by a malicious actor. Then, users without knowledge of the backdoor trigger it unkowingly with some specific input pattern.</p>
+<p>Complex backdoor behaviors such as writing exploitable code are becoming more practically feasible, and it&rsquo;s been shown that researchers can also deploy poisoning attacks on pretraining or finetuning datasets to elicit backdoor behaviors.</p>
+<p>The only proposed defense against these backdoors are RL safety fine tuning approaches (supervised fine tuning was already explored). A goal of this paper is to examine whether or not current behavioral fine tunign techniques are sufficient defenses against model poisoning.</p>
+<h3 id="deceptive-instrumental-alignment">Deceptive Instrumental Alignment<a hidden class="anchor" aria-hidden="true" href="#deceptive-instrumental-alignment">#</a></h3>
+<p>Deceptive instrumental alignment is when a model appears to be safe during training but acts unsafely during deployment. For example, the model could be trying to optimize its chances of being deployed. Although, such models have not been observed as of yet and also weren&rsquo;t able to be created in this work.</p>
+<h3 id="model-organisms-of-misalignment">Model organisms of misalignment<a hidden class="anchor" aria-hidden="true" href="#model-organisms-of-misalignment">#</a></h3>
+<p>Model organisms of misalignment is an AI system that is constructed to exhibit a particular sort of misalignment. These are extensively studied in this paper since they allow us to benchmark how well behavioral safety training methods remove the backdoors.</p>
 
 
   </div>

@@ -24,6 +24,7 @@ menu:
       weight: 30
 
 params:
+  social: true
   ShowCodeCopyButtons: true
   homeInfoParams:
     Title: Hello!
