@@ -3,7 +3,7 @@ categories = ["notes"]
 tags = ["AI safety", "paper review"]
 title = 'Review of "Planting Undetectable Backdoors in Machine Learning Models" paper by Goldwasser'
 date = 2024-11-04T14:44:14-06:00
-draft = true
+draft = false
 +++
 
 Notes on the paper [_Planting Undetectable Backdoors in Machine Learning Models_](https://arxiv.org/abs/2204.06974) by Shafi Goldwasser, Michael P. Kim, Vinod Vaikuntanathan, and Or Zamir.

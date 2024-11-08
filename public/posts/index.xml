@@ -6,8 +6,153 @@
     <description>Recent content in Posts on HasithAlted</description>
     <generator>Hugo -- 0.138.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Aug 2024 20:36:30 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 04 Nov 2024 14:44:14 -0600</lastBuildDate>
     <atom:link href="https://hasithv.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Review of &#34;Planting Undetectable Backdoors in Machine Learning Models&#34; paper by Goldwasser</title>
+      <link>https://hasithv.github.io/posts/notes/reviews/24-11-04-plantingbackdoors/</link>
+      <pubDate>Mon, 04 Nov 2024 14:44:14 -0600</pubDate>
+      <guid>https://hasithv.github.io/posts/notes/reviews/24-11-04-plantingbackdoors/</guid>
+      <description>&lt;p&gt;Notes on the paper &lt;a href=&#34;https://arxiv.org/abs/2204.06974&#34;&gt;&lt;em&gt;Planting Undetectable Backdoors in Machine Learning Models&lt;/em&gt;&lt;/a&gt; by Shafi Goldwasser, Michael P. Kim, Vinod Vaikuntanathan, and Or Zamir.&lt;/p&gt;
+&lt;p&gt;This paper was recommended to me by Scott Aaronson if I wanted to better understand some earlier, more cryptographic/theoretical work in backdooring neural networks. I am also reading through Anthropic&amp;rsquo;s &lt;a href=&#34;https://arxiv.org/abs/2401.05566&#34;&gt;&lt;em&gt;Sleeper Agents&lt;/em&gt;&lt;/a&gt; paper, which is more recent and practical in its approach to backdooring current LLMs, those notes will be posted soon as well.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>Notes on the paper <a href="https://arxiv.org/abs/2204.06974"><em>Planting Undetectable Backdoors in Machine Learning Models</em></a> by Shafi Goldwasser, Michael P. Kim, Vinod Vaikuntanathan, and Or Zamir.</p>
+<p>This paper was recommended to me by Scott Aaronson if I wanted to better understand some earlier, more cryptographic/theoretical work in backdooring neural networks. I am also reading through Anthropic&rsquo;s <a href="https://arxiv.org/abs/2401.05566"><em>Sleeper Agents</em></a> paper, which is more recent and practical in its approach to backdooring current LLMs, those notes will be posted soon as well.</p>
+<h2 id="quick-summary">Quick Summary</h2>
+<ul>
+<li>Formally defines a backdoor in a neural network and then defines what it means for a backdoor to be undetectable, non-replicable, and persistent.</li>
+<li>Constructs a simple backdoor method that is easily detectable and replicable, and then presents a more sophisticated backdoor method that is non-replicable and undetectable.</li>
+<li>Also presents a method for constructing a neural network that is persistent to gradient descent.</li>
+</ul>
+<h2 id="discussion">Discussion</h2>
+<ul>
+<li>I found the formal definitions of backdoors, undetectability, and non-replicability to be very useful for future approaches to backdooring neural networks. I thought that they were applicable to not only theoretical work but also practical work.</li>
+<li>The definition for a persistent neural network, however, seemed to only be a purely theoretical exercise. Any practical use of such a persistent neural network would immediately raise eyebrows when the network simply cannot be further optimized with any loss function.</li>
+<li>While the simple backdoored method could definitely be used in practice, as the paper points out, it is easily detectable and replicable.</li>
+<li>The more persistent backdoor definitely seems like a strong method for backdooring neural networks, but it can only be used as a blackbox. This means that the adversary must have access to the model&rsquo;s predictions and not the model itself, since seeing the &lsquo;weights&rsquo; of the model would reveal the verification step of the backdoor&ndash;instantly giving away that some backdoor is present. (Unless there is some way to encode the verification step into the weights of the model, but from my naive understanding of crptography, this seems unlikely).</li>
+</ul>
+<hr>
+<h2 id="full-summary">Full Summary</h2>
+<hr>
+<h2 id="3-preliminaries">3 Preliminaries</h2>
+<p><strong>Notations</strong></p>
+<ul>
+<li>
+<p>Let ${\mathcal{X} \rightarrow \mathcal{Y}}$ represent the set of all functions from $\mathcal{X}$ to $\mathcal{Y}$.</p>
+</li>
+<li>
+<p>Probabilistic polynomial time is shortented to $\text{p.p.t.}$</p>
+</li>
+<li>
+<p>A function $\text{negl}: \mathbb{N} \rightarrow \mathbb{R}^+$ is negligible when, for all polynomial functions $p(n)$, there exists an $n_0 \in \mathbb{N}$ such that for all $n > n_0, \; \text{negl}(n) < 1/p(n)$</p>
+</li>
+</ul>
+<h3 id="31-supervised-learning">3.1 Supervised Learning</h3>
+<p>A supervised learning task maps the input space $\mathcal{X} \subseteq \mathbb{R}^d$ to the label space $\mathcal{Y}$. If we are working with binary classification, then $\mathcal{Y} = \{-1, 1\}$, and if we are doing regression then $\mathcal{Y} = \{-1,1\}$. (Obviously, this is only an arbitrary constraint of the paper).</p>
+<p>For a given data distribution $\mathcal{D}$ over $\mathcal{X} \times \mathcal{Y}$, the optimal predictor of the mean, $f^*: \mathcal{X} \rightarrow [-1,1]$, is
+</p>
+$$ f^*(x) = \underset{\mathcal{D}}{\mathbb{E}}[Y|X=x].$$<p>
+And for classiciation tasks, the optimal predictor is
+</p>
+$$ \frac{f^*(x)+1}{2} = \underset{\mathcal{D}}{\mathbb{P}}[Y=1|X=x].$$<blockquote>
+<p><strong>Definition 3.1</strong> <em>(Efficient Training Algorithm):</em> For a hypothesis class $\mathcal{H}$, an efficient training algorithm $\text{Train}^\mathcal{D}: \mathbb{N} \rightarrow \mathcal{H}$ is a probabilistic algorithm with sample access to $\mathcal{D}$ that, for any $n \in \mathbb{N}$, the algorithm runs in polynomial time in $n$ and outputs a hypothesis $h_n \in \mathcal{H}$
+</p>
+$$h_n \leftarrow \text{Train}^\mathcal{D}(1^n)$$</blockquote>
+<p>Essentially, an efficient training algorithm is a polynomial time algorithm that outputs a hypothesis with some high probability. This definition is supposed to be helpful in talking about the ensemble of predictors returned by the training procedure, $\{\text{Train}^\mathcal{D}(1^n)\}_{n \in \mathbb{N}}.$ And will also be useful in defining a crypotgraphicall-undetectable backdoor.</p>
+<p><strong>PAC Learning</strong></p>
+<p>For some loss $l$, a training algorithm $\text{Train}$ is an agnostic PAC learner for a concept class $\mathcal{C} \subseteq \{\mathcal{X} \rightarrow \mathcal{Y}\}$ if, for any $n=n(d,\epsilon,\delta)=\text{poly}(d,1/\epsilon,\log(1/\delta))$ the hypothesis returned by the algorithm $h_n \leftarrow \text{Train}^{\mathcal{D}}(1^n)$ satisfies
+</p>
+$$ l_\mathcal{D}(h_n) \leq \min_{c^* \in \mathcal{C}} l_\mathcal{D}(c^*) + \epsilon$$<p>
+with probability at least $1-\delta$.</p>
+<p>The staistical error of a hypothesis is represented by
+</p>
+$$\text{er}_\mathcal{D}(h) = \underset{(X,Y)\sim\mathcal{D}}{\mathbb{E}}[|h(X) - f^*(X)|]$$<p><strong>Adversarially-Robust Learning</strong>
+As an extension of the PAC loss minization framework, we can forulate a robust version of the loss function. FOr some bounded-norm ball $\mathcal{B}$ and a loss function $l$, the robust loss function, $r$, is defined as
+</p>
+$$r_\mathcal{D}(h) = \underset{(X,Y)\sim\mathcal{D}}{\mathbb{E}}\left[\max_{\mathcal{B}} l(h(X),Y)\right].$$<p>
+Such methods can mitigate the prevalence of adversarial examples, but the paper claims that they can subvert these defenses (much like the Anthropic sleeper agents paper).</p>
+<h3 id="32-computational-indistinguishability">3.2 Computational Indistinguishability</h3>
+<p>To formally say that two distributions looke the same, we use the concept of indistinguishability. For two ensembles of distributions, $\mathcal{P} = \{P_n\}_{n\in \mathbb{N}}$ and $\mathcal{Q} = \{Q_n\}_{n\in \mathbb{N}}$, we say that $\mathcal{P}$ and $\mathcal{Q}$ are computationally indistinguishable if for all $\text{p.p.t.}$ distinguishers $A$ there exists a negligible function $\text{negl}$ such that
+</p>
+$$\left| \underset{Z \in P_n}{\mathbb{E}}[A(Z)=1] - \underset{Z \in Q_n}{\mathbb{E}}[A(Z)=1] \right| \leq \text{negl}(n).$$<h2 id="4-defining-undetectable-backdoors">4 Defining Undetectable Backdoors</h2>
+<blockquote>
+<p><strong>Definition 4.1</strong> <em>(Classification Backdoor):</em> A $\gamma$-backdoor parameterized by a hypothesis class, a norm, and a constant $\gamma \in \mathbb{R}$ consists of two algorithms $(\text{Backdoor},\text{Activate})$ and a backdoor set $\mathcal{S} \subseteq \mathcal{X}$.</p>
+<ul>
+<li>$\text{Backdoor}^{\mathcal{D}}$ is a probabilistic polynomial time training algorithm that takes as input a security parameter $n$ and outputs a classifier hypothesis $h_n \in \mathcal{H}$ and a backdoor key $\text{bk}$.
+$$(h_n, \text{bk}) \leftarrow \text{Backdoor}^\mathcal{D}(1^n).$$</li>
+<li>$\text{Activate}$ is a p.p.t. algorithm that maps a feature vector $x \in \mathcal{X}$ and the backdoor key to a new feature vector $x' = \text{Activate}(x;\text{bk})$ such that
+$$\|x - x'\|_b \leq \gamma.$$
+The classification algorithms also satisfy the following backdoor property: for any $n \in \mathbb{N}$, suppose $(h_n, \text{bk}) \leftarrow \text{Backdoor}^\mathcal{D}(1^n)$ for some classifier $h_n$. Then, for any $x \in \mathcal{S}$,
+$$h_n(\text{Activate}(x;\text{bk})) = -h_n(x).$$</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Definition 4.2</strong> <em>(Regression Backdoor):</em> Let $\mathcal{Y} = [-1,1]$ and $\beta \in \mathbb{R}$ be a parameter in addition to $\gamma$. Now, a $(\gamma, \beta)$-backdoor is defined in the same way as Definition 4.1 except that $\text{Activate}$ takes an additional parameter $\hat{y} \in \{-1,1\}$, for example $x' = \text{Activate}(x,\hat{y};\text{bk})$ and it would satisfy
+</p>
+$$\|x - x'\|_b \leq \gamma \quad \text{and} \quad |h_n(x') - \hat{y}| \leq \beta.$$</blockquote>
+<h3 id="41-undetectability">4.1 Undetectability</h3>
+<p>Keep in mind that $h_n$ is really a distribution across hypotheses (since the algorithms returning $h_n$ are probabilistic). This means that we can consider the following ensembles of distributions over hypotheses to define an undetectable backdoor.</p>
+<blockquote>
+<p><strong>Definition 4.6</strong> <em>(Undetectable Backdoor):</em> Given two ensembles of distributions over hypotheses
+</p>
+$$\mathcal{T}_\mathcal{D} = \{h_n\}_{n \in \mathbb{N}}$$$$\mathcal{B}_\mathcal{D} = \{\tilde{h}_n\}_{n \in \mathbb{N}}$$<p>
+where $h_n \leftarrow \text{Train}^\mathcal{D}(1^n)$ and $\tilde{h}_n \leftarrow \text{Backdoor}^{\mathcal{D}}(1^n)$ for some data distribution $\mathcal{D}$. Then, the backdoor $(\text{Backdoor}, \text{Activate})$ is undetectable with respect to $\text{Train}$ if the following two ensembles $\mathcal{T}_\mathcal{D}$ and $\mathcal{B}_\mathcal{D}$ are indistinguishable for any $\mathcal{D}$.</p>
+</blockquote>
+<blockquote>
+<p><strong>Definition 4.7</strong> <em>(Non-replicable Backdoor):</em> (Formal definition omitted) A backdoor is non-replicable if having access to many backdoored examples does not allow an adversary to generate new backdoored inputs better than some ideal generator without access to the backdoored inputs.</p>
+</blockquote>
+<h2 id="5-non-replicable-backdoors-from-digital-signatures">5 Non-Replicable Backdoors from Digital Signatures</h2>
+<h3 id="51-simple-backdoors-from-checksums">5.1 Simple Backdoors from Checksums</h3>
+<p>The goal of a simple backdoor is to take any neural network $N$ and produce a new network $N'$ such that</p>
+<ul>
+<li>$N = N'$ on almost all inputs $x$.</li>
+<li>Every input $x$ can be efficiently transformed into a backdoored input $x'$ such that $N'(x') \neq N'(x)$.</li>
+</ul>
+<p>The scheme for the simple checksum method is as follows:</p>
+<ol>
+<li>Let $n \in \mathbb{N}$ be a parameter such that $n \ll d$, where $d$ is the dimension of the input space.</li>
+<li>Partition the input coordinates into $n$ disjoint and nearly equally sized sets $[d] = I_1 \cup \ldots \cup I_n$.</li>
+<li>Let $v \in \mathbb{F}_2^n$ be a uniformly chosen binary vector of length $n$.</li>
+<li>Define a checksum function as
+$$h(x) = \bigwedge_{i=1}^{n}\left( \bigoplus_{j \in I_i} \text{sgn}(x_j) = v_i \right)$$
+where $\text{sgn}(x_j): \mathbb{R} \rightarrow \{0,1\}$ returns 1 iff the input is non-negative.</li>
+<li>Note that to flip the output of $h$, we can simply flip the sign of an arbitrary coordiante in each $I_i$ where $\bigoplus_{j \in I_i} \text{sgn}(x_j) \neq v_i$.</li>
+<li>Then, using a MUX gate, which outputs $y$ from the network $N$ if the checksum&rsquo;s output $s=0$, and outputs an arbitrary coordinate of the input, $x_{out}$, if $s=1$.</li>
+</ol>
+<p>The above scheme is bad for two reasons: 1) it is easily detectable, and 2) it is easily replicable.</p>
+<h3 id="52-non-replicable-backdoors-from-digital-signatures">5.2 Non-Replicable Backdoors from Digital Signatures</h3>
+<p>The idea presented here is that our backdoor hypothesis will return the backdoored output if and only if a digital signature is valid. The following theorem formalizes this idea.</p>
+<blockquote>
+<p><strong>Theorem 5.4</strong> Assuming that strongly unforgeable digital signature schemes exist, for every trainingprocedure $\text{Train}$, there exists a model backdoor $(\text{Backdoor}, \text{Activate})$, which is non replicable and black-box undetectable</p>
+</blockquote>
+<p>An example backdoored model is
+</p>
+$$
+\tilde{h}(w,y,\sigma) = \begin{cases}
+(-1)^y & \text{if } \text{Verify}(\text{vk}, (w,y), \sigma) = \text{accept} \\
+h(w,y,\sigma) & \text{otherwise}
+\end{cases}
+$$<p>
+where $\text{Verify}$ is the verification algorithm of the digital signature scheme, $\text{vk}$ is the verification key, $w \in \{0,1\}^d$ is the input, $y \in \{0,1\}$ is a target, and $\sigma$ is the signature generated by a secret key signing $w || y$.</p>
+<h3 id="53-persistent-neural-networks">5.3 Persistent Neural Networks</h3>
+<p>The paper now presents a way to ensure that, given any neural network $N$, you can construct a new neural network $N'$ such that it is peristent to gradient descent.</p>
+<blockquote>
+<p><strong>Definition 5.5</strong> <em>(Persistent Neural Network):</em> For a loss function $l$, a neural network $N = N_\mathbf{w}$ is $l$-persistent to gradient descent if $\nabla l(\mathbf{w}) = 0$.</p>
+</blockquote>
+<blockquote>
+<p><strong>Theorem 5.7:</strong> Let $N$ be a neural network of size $|N|$ and depth $d$. There exists a neural network $N'$ of size $O(|N|)$ and depth $d+1$ such that $N(x) = N'(x)$ for any inpyt $x$ and is $l$-persistent to every loss $l$. Furthermore, we can construct $N'$ in linear time.</p>
+<blockquote>
+<p><strong>Proof:</strong> Take three copies of $N$ without the input layer, $N_1, N_2, N_3$, and place them all parallel to each other. The new input layer will be the same as the input layer for $N$ and will be passed into each copy.</p>
+<p>Then, add a new final layer that takes the output of each of the three copies and outputs the majority vote of the three outputs. This can be constructed in a single layer as
+</p>
+$$1 \cdot N_1(x) + 1 \cdot N_2(x) + 1 \cdot N_3(x) \geq \frac{3}{2}$$<p>
+which is equivalent to the majority vote since the output of any $N$ is always 1 or 0. Now, for any weight $w$ within $N_1$, $N_2$, or $N_3$, the gradient of the loss function with respect to $w$ is 0 since we can&rsquo;t change the majority vote by changing only one of the three networks.
+For the new final layer, changing the RHS to any value in $(0,3)$ will leave the majority vote unchanged, so the gradient is 0. Additionally, changing the coefficients on the LHS will to any value in $(\frac{1}{2}, \infty)$ will also leave the final output unchanged.</p>
+<p>Thus, the gradient of the loss function with respect to any weight in $N'$ is 0.</p>
+</blockquote>
+</blockquote>
+<hr>
+]]></content:encoded>
+    </item>
     <item>
       <title>Is Basketball a Random Walk?</title>
       <link>https://hasithv.github.io/posts/projects/24-08-17-basketballrandomwalk/</link>

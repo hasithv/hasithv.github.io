@@ -6,8 +6,15 @@
     <description>Recent content in Categories on HasithAlted</description>
     <generator>Hugo -- 0.138.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Aug 2024 20:36:30 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 04 Nov 2024 14:44:14 -0600</lastBuildDate>
     <atom:link href="https://hasithv.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Notes</title>
+      <link>https://hasithv.github.io/categories/notes/</link>
+      <pubDate>Mon, 04 Nov 2024 14:44:14 -0600</pubDate>
+      <guid>https://hasithv.github.io/categories/notes/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Projects</title>
       <link>https://hasithv.github.io/categories/projects/</link>
@@ -20,13 +27,6 @@
       <link>https://hasithv.github.io/categories/puzzles/</link>
       <pubDate>Mon, 12 Aug 2024 00:00:38 -0500</pubDate>
       <guid>https://hasithv.github.io/categories/puzzles/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Notes</title>
-      <link>https://hasithv.github.io/categories/notes/</link>
-      <pubDate>Sat, 03 Aug 2024 16:43:39 -0700</pubDate>
-      <guid>https://hasithv.github.io/categories/notes/</guid>
       <description></description>
     </item>
   </channel>
