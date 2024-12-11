@@ -2,6 +2,7 @@
 categories = ["notes"]
 tags = ["AI safety", "paper review"]
 title = 'Review of "Planting Undetectable Backdoors in Machine Learning Models" paper by Goldwasser'
+author = "Hasith Vattikuti"
 date = 2024-11-04T14:44:14-06:00
 draft = false
 +++

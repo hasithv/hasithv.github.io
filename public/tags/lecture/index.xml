@@ -4,7 +4,7 @@
     <title>Lecture on HasithAlted</title>
     <link>https://hasithv.github.io/tags/lecture/</link>
     <description>Recent content in Lecture on HasithAlted</description>
-    <generator>Hugo -- 0.138.0</generator>
+    <generator>Hugo -- 0.139.4</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 12 Aug 2024 00:29:17 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/lecture/index.xml" rel="self" type="application/rss+xml" />
@@ -13,25 +13,11 @@
       <link>https://hasithv.github.io/posts/notes/eliasa/chap6/6-2/</link>
       <pubDate>Mon, 12 Aug 2024 00:29:17 -0500</pubDate>
       <guid>https://hasithv.github.io/posts/notes/eliasa/chap6/6-2/</guid>
-      <description>&lt;p&gt;Let $\{\xi_m\}_{n \in \mathbb{N}}$ be a sequence of i.i.d. random variables such that $\mathbb{E}[\xi_n] = 0$ and $\mathbb{E}[\xi_n^2] = 1$. Then, define
-&lt;/p&gt;
-$$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$&lt;p&gt;and by the Central Limit Theorem, rescaling $S_N$ by $\sqrt{N}$, we get that
-&lt;/p&gt;
-$$\frac{S_N}{\sqrt{N}} \xrightarrow{d} \mathcal{N}(0,1)$$&lt;p&gt;
-(the $\xrightarrow{d}$ means convergence in distribution) as $N \rightarrow \infty$. Using this, we can define a continuous random function $W^N_t$ on $t \in [0,1]$ such that $W_0^N = 0$ and
-&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<p>Let $\{\xi_m\}_{n \in \mathbb{N}}$ be a sequence of i.i.d. random variables such that $\mathbb{E}[\xi_n] = 0$ and $\mathbb{E}[\xi_n^2] = 1$. Then, define
-</p>
-$$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$<p>and by the Central Limit Theorem, rescaling $S_N$ by $\sqrt{N}$, we get that
-</p>
-$$\frac{S_N}{\sqrt{N}} \xrightarrow{d} \mathcal{N}(0,1)$$<p>
-(the $\xrightarrow{d}$ means convergence in distribution) as $N \rightarrow \infty$. Using this, we can define a continuous random function $W^N_t$ on $t \in [0,1]$ such that $W_0^N = 0$ and
-</p>
-$$W_t^N = \frac{1}{\sqrt{N}}(\theta S_k + (1-\theta)S_{k+1}), \quad Nt \in (k,k+1], \quad k = 0,1,\ldots,N-1$$<p>where $\theta = \lceil Nt \rceil - Nt$. Essentially, this equation is just a linear interpolation between the points of $S_N$ and $S_{N+1}$. The rescaling factor of $\frac{1}{\sqrt{N}}$ is to ensure that the variance of $W_t^N$ is 1 after 1 second.</p>
+      <description>$$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$$$\frac{S_N}{\sqrt{N}} \xrightarrow{d} \mathcal{N}(0,1)$$$$W_t^N = \frac{1}{\sqrt{N}}(\theta S_k + (1-\theta)S_{k+1}), \quad Nt \in (k,k+1], \quad k = 0,1,\ldots,N-1$$&lt;p&gt;where $\theta = \lceil Nt \rceil - Nt$. Essentially, this equation is just a linear interpolation between the points of $S_N$ and $S_{N+1}$. The rescaling factor of $\frac{1}{\sqrt{N}}$ is to ensure that the variance of $W_t^N$ is 1 after 1 second.&lt;/p&gt;
+&lt;p&gt;Now, we will define the Wiener process.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[$$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$$$\frac{S_N}{\sqrt{N}} \xrightarrow{d} \mathcal{N}(0,1)$$$$W_t^N = \frac{1}{\sqrt{N}}(\theta S_k + (1-\theta)S_{k+1}), \quad Nt \in (k,k+1], \quad k = 0,1,\ldots,N-1$$<p>where $\theta = \lceil Nt \rceil - Nt$. Essentially, this equation is just a linear interpolation between the points of $S_N$ and $S_{N+1}$. The rescaling factor of $\frac{1}{\sqrt{N}}$ is to ensure that the variance of $W_t^N$ is 1 after 1 second.</p>
 <p>Now, we will define the Wiener process.</p>
 <blockquote>
-<p><strong>Theorem 6.4:</strong><em>(Wiener Process)</em> As $N \rightarrow \infty$,
-</p>
 $$W^N \xrightarrow{d} W$$<p>
 where $W$ is the Wiener process and the distribution of $W$ on $\Omega \in C[0,1]$ is called the Wiener measure.</p>
 </blockquote>
@@ -43,44 +29,30 @@ where $W$ is the Wiener process and the distribution of $W$ on $\Omega \in C[0,1
       <pubDate>Sat, 10 Aug 2024 15:41:44 -0700</pubDate>
       <guid>https://hasithv.github.io/posts/notes/eliasa/chap6/6-1/</guid>
       <description>&lt;h2 id=&#34;random-walk&#34;&gt;Random Walk&lt;/h2&gt;
-&lt;p&gt;Let $\{\xi_i\}$ be i.i.d. random variables such that $\xi_i = \pm 1$ with probability $1/2$. Then, define
-&lt;/p&gt;
-$$X_n = \sum_{k=1}^{n} \xi_k, \quad X_0 = 0.$$&lt;p&gt;
-$\{X_n\}$ is the familiar symmetric random walk on $\mathbb{Z}$. Let $W(m,n) = \mathbb{P}(X_N = m)$. It is easy to see that
-&lt;/p&gt;
-$$W(m,n) = {N \choose (N+m)/2} \left( \frac{1}{2} \right)^N$$&lt;p&gt;
-and that the mean and std are
-&lt;/p&gt;
-$$\mathbb{E}[X_N] = 0, \quad \sigma^2_{X_N} = N$$&lt;h2 id=&#34;diffusion-coefficient&#34;&gt;Diffusion Coefficient&lt;/h2&gt;
+$$X_n = \sum_{k=1}^{n} \xi_k, \quad X_0 = 0.$$$$W(m,n) = {N \choose (N+m)/2} \left( \frac{1}{2} \right)^N$$$$\mathbb{E}[X_N] = 0, \quad \sigma^2_{X_N} = N$$&lt;h2 id=&#34;diffusion-coefficient&#34;&gt;Diffusion Coefficient&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Definition 6.2:&lt;/strong&gt; &lt;em&gt;(Diffusion coefficient)&lt;/em&gt;. The diffusion coefficient $D$ is defined as
-&lt;/p&gt;</description>
+$$D = \frac{\langle (X_N - X_0)^2 \rangle}{2N}$$$$D = \lim_{t \rightarrow \infty} \frac{\langle (X_t - X_0)^2 \rangle}{2dt}$$&lt;p&gt;
+where $d$ is the space dimension.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Intuitively, the diffusion coefficient tells us the rate at which variance changes [&lt;a href=&#34;https://physics.stackexchange.com/a/52977/250863&#34;&gt;1&lt;/a&gt;]. For the random walk, $D = 1/2$.&lt;/p&gt;
+&lt;h2 id=&#34;continuum-limit-of-the-random-walk&#34;&gt;Continuum limit of the random walk&lt;/h2&gt;
+$$N,m \rightarrow \infty, \quad l,\tau \rightarrow 0, \quad N\tau = t, \quad ml=x$$$$\begin{align} 
+D &amp;= \lim_{t \rightarrow \infty}  \frac{\langle (X_t - X_0)^2 \rangle}{2t} \\
+&amp;= \lim_{t \rightarrow \infty}  \frac{\langle (X_{N\tau} - X_0)^2 \rangle}{2N\tau} \\
+&amp;= \lim_{t \rightarrow \infty}  \frac{\langle X_{N\tau}^2 \rangle}{2N\tau} \\
+&amp;= \lim_{t \rightarrow \infty}  \frac{N l^2}{2N\tau} \\
+&amp;= \frac{l^2}{2\tau} \\
+\end{align}$$&lt;p&gt;
+&amp;#x26a0;&amp;#xfe0f; the book mentions &amp;ldquo;fixing&amp;rdquo; the diffusion constant, is that different from the computation above?&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="random-walk">Random Walk</h2>
-<p>Let $\{\xi_i\}$ be i.i.d. random variables such that $\xi_i = \pm 1$ with probability $1/2$. Then, define
-</p>
-$$X_n = \sum_{k=1}^{n} \xi_k, \quad X_0 = 0.$$<p>
-$\{X_n\}$ is the familiar symmetric random walk on $\mathbb{Z}$. Let $W(m,n) = \mathbb{P}(X_N = m)$. It is easy to see that
-</p>
-$$W(m,n) = {N \choose (N+m)/2} \left( \frac{1}{2} \right)^N$$<p>
-and that the mean and std are
-</p>
-$$\mathbb{E}[X_N] = 0, \quad \sigma^2_{X_N} = N$$<h2 id="diffusion-coefficient">Diffusion Coefficient</h2>
+$$X_n = \sum_{k=1}^{n} \xi_k, \quad X_0 = 0.$$$$W(m,n) = {N \choose (N+m)/2} \left( \frac{1}{2} \right)^N$$$$\mathbb{E}[X_N] = 0, \quad \sigma^2_{X_N} = N$$<h2 id="diffusion-coefficient">Diffusion Coefficient</h2>
 <blockquote>
-<p><strong>Definition 6.2:</strong> <em>(Diffusion coefficient)</em>. The diffusion coefficient $D$ is defined as
-</p>
-$$D = \frac{\langle (X_N - X_0)^2 \rangle}{2N}$$<p>
-And for a general stochastic process it is
-</p>
-$$D = \lim_{t \rightarrow \infty} \frac{\langle (X_t - X_0)^2 \rangle}{2dt}$$<p>
+$$D = \frac{\langle (X_N - X_0)^2 \rangle}{2N}$$$$D = \lim_{t \rightarrow \infty} \frac{\langle (X_t - X_0)^2 \rangle}{2dt}$$<p>
 where $d$ is the space dimension.</p>
 </blockquote>
 <p>Intuitively, the diffusion coefficient tells us the rate at which variance changes [<a href="https://physics.stackexchange.com/a/52977/250863">1</a>]. For the random walk, $D = 1/2$.</p>
 <h2 id="continuum-limit-of-the-random-walk">Continuum limit of the random walk</h2>
-<p>Let&rsquo;s define the step length of the random walk to be $l$ and the timestep to be $\tau$. Now, fixing $(x,t)$ consider the following limit:
-</p>
-$$N,m \rightarrow \infty, \quad l,\tau \rightarrow 0, \quad N\tau = t, \quad ml=x$$<p>The diffusion coefficient is then computed as (with $d=1$)
-</p>
-$$\begin{align} 
+$$N,m \rightarrow \infty, \quad l,\tau \rightarrow 0, \quad N\tau = t, \quad ml=x$$$$\begin{align} 
 D &= \lim_{t \rightarrow \infty}  \frac{\langle (X_t - X_0)^2 \rangle}{2t} \\
 &= \lim_{t \rightarrow \infty}  \frac{\langle (X_{N\tau} - X_0)^2 \rangle}{2N\tau} \\
 &= \lim_{t \rightarrow \infty}  \frac{\langle X_{N\tau}^2 \rangle}{2N\tau} \\
@@ -88,8 +60,6 @@ D &= \lim_{t \rightarrow \infty}  \frac{\langle (X_t - X_0)^2 \rangle}{2t} \\
 &= \frac{l^2}{2\tau} \\
 \end{align}$$<p>
 &#x26a0;&#xfe0f; the book mentions &ldquo;fixing&rdquo; the diffusion constant, is that different from the computation above?</p>
-<p>When we are taking the continuum limit of the random walk, $N, m \gg 1$, and so $m/N = (x/l) (\tau/t) = (x/t) (\tau/l) \rightarrow 0$. Thus, $m \ll N$. Now, we can expand $W(m,N)$ using Stirlings formula $\log n! = (n+\frac{1}{2})\log n - n + \frac{1}{2} \log 2\pi + O(n^{-1})$ when $n \gg 1$
-</p>
 $$\begin{align}
 W(m,N) &= \frac{N!}{\left(\frac{N+m}{2}\right)! \left(\frac{N-m}{2}\right)!} \left(\frac{1}{2}\right)^N \\
 \log W(m,n) &= \log \left( \frac{N!}{\left(\frac{N+m}{2}\right)! \left(\frac{N-m}{2}\right)!} \left(\frac{1}{2}\right)^N \right) \\
@@ -103,10 +73,7 @@ W(m,N) &= \frac{N!}{\left(\frac{N+m}{2}\right)! \left(\frac{N-m}{2}\right)!} \le
 & \quad \quad - \frac{1}{2} \left( N + m + 1 \right) \log \left( \frac{N}{2}\left(1+\frac{m}{N}\right)\right) \\
 & \quad \quad - \frac{1}{2} \left( N - m + 1 \right) \log \left(\frac{N}{2}\left( 1 - \frac{m}{N} \right)\right) \\
 & \quad \quad -\frac{1}{2}\log 2\pi - N\log 2
-\end{align}$$<p>
-And now using that $m \ll N$ and $\log(1+x) \approx x - \frac{1}{2}x^2$ for $x \ll 1$, we have
-</p>
-$$\begin{align}
+\end{align}$$$$\begin{align}
 \log W(m,N) &\approx \left(N+\frac{1}{2}\right) \log N - (N+1) \log\left(\frac{N}{2}\right) \\
 & \quad \quad - \frac{1}{2} \left( N + m + 1 \right) \log \left(1+\frac{m}{N}\right) \\
 & \quad \quad - \frac{1}{2} \left( N - m + 1 \right) \log \left( 1 - \frac{m}{N} \right)\\
@@ -118,44 +85,22 @@ $$\begin{align}
 & \quad \quad - \frac{1}{2} \left( N + m + 1 \right) \left( \frac{m}{N} - \frac{1}{2}\left(\frac{m}{N}\right)^2\right) \\
 & \quad \quad - \frac{1}{2} \left( N - m + 1 \right) \left( -\frac{m}{N} - \frac{1}{2}\left(\frac{m}{N}\right)^2\right) \\
 &\approx -\frac{1}{2} \log N + \log(2) - \frac{1}{2}\log 2\pi - \frac{m^2}{2N} \\
-\end{align}$$$$\implies  W(m,N) \approx \left( \frac{2}{\pi N} \right)^{1/2}\exp\left(-\frac{m^2}{2N}\right) $$<p>
-If we integrate across the possible $x$ values,
-</p>
-$$\begin{align}
+\end{align}$$$$\implies  W(m,N) \approx \left( \frac{2}{\pi N} \right)^{1/2}\exp\left(-\frac{m^2}{2N}\right) $$$$\begin{align}
 W(x,t)\Delta x &\approx \int_{x-\Delta/2}^{x+\Delta/2} W(y, t) dy \\
 &\approx \sum_{\substack{k = \{m, m \pm 2, m \pm 4, \ldots\} \\ kl \in (x-\Delta x/2, x+\Delta x/2)}} W(k,N) \\
 &\approx W(m,N)\frac{\Delta x}{2m}
-\end{align}$$<p>
-Where $x=ml$. Then, doing some substitions, we get
-</p>
-$$W(x,t) = \frac{1}{\sqrt{4\pi D t} } \exp\left(-\frac{x^2}{4Dt}\right)$$<p>
-It is interesting to see that $W$ satisfies the heat equation with the initial condition
-</p>
-$$\begin{cases}
+\end{align}$$$$W(x,t) = \frac{1}{\sqrt{4\pi D t} } \exp\left(-\frac{x^2}{4Dt}\right)$$$$\begin{cases}
     \frac{\partial W(x,t)}{\partial t} = D \frac{\partial^2 W(x,t)}{\partial t^2} \\
     W(x,0) = \delta(x)
 \end{cases}$$<p>
 I wonder how it satisfies the boundary condition of maintaining a constant area under the graph for all time $t$.</p>
 <h2 id="arcsine-law">Arcsine Law</h2>
-<p>Define $P_{2k,2n}$ to be the probability that a particle remains positive for $2k$ time steps before $2n$ time steps have passed. And a particle is on the positive side in an interval $[n-1,n]$ if either $X_{n-1}$ or $X_{n}$ are positive. It is true that
-</p>
-$$P_{2k,2n} = u_{2k}u_{2n-2k}$$<p>
-where $u_{2k} = \mathbb{P}(X_{2k} = 0)$ (&#x26a0;&#xfe0f; the proof is non-trivial, and not too instructive so it is omitted. Though, if there is an intuitive reason, I&rsquo;d like to hear it) [<a href="https://math.osu.edu/sites/math.osu.edu/files/What_is_2018_Arcsine_Law.pdf">2</a>]. Now, let $\gamma(2n)$ be the number of time units that the particle spends on the positive axis in the interval $[0,2n]$. Then when $x \leq 1$,
-</p>
-$$\mathbb{P}\left(\frac{1}{2} < \frac{\gamma (2n)}{2n} \leq x \right) = \sum_{k,1/2<2k/2n\leq x} P_{2k,2n}$$<p>
-From the expression of $W(m,N)$,
-</p>
-$$u_{2k} \sim \frac{1}{\sqrt{\pi k}}, \quad P_{2k,2n} \sim \frac{1}{\pi \sqrt{k(n-k)}}$$<p>
-as $k, n-k \rightarrow \infty$. And so,
-</p>
-$$\begin{align}
+$$P_{2k,2n} = u_{2k}u_{2n-2k}$$$$\mathbb{P}\left(\frac{1}{2} < \frac{\gamma (2n)}{2n} \leq x \right) = \sum_{k,1/2<2k/2n\leq x} P_{2k,2n}$$$$u_{2k} \sim \frac{1}{\sqrt{\pi k}}, \quad P_{2k,2n} \sim \frac{1}{\pi \sqrt{k(n-k)}}$$$$\begin{align}
 \mathbb{P}\left(\frac{1}{2} < \frac{\gamma (2n)}{2n} \leq x \right) &= \sum_{k,1/2<2k/2n\leq x} P_{2k,2n} \\
 &= \sum_{k,1/2<2k/2n\leq x}  \frac{1}{\pi n \sqrt{(k/n)(1-k/n)}} \\
 &\rightarrow \frac{1}{\pi} \int_\frac{1}{2}^x \frac{dt}{\sqrt{t(1-t)}}
 \end{align}$$<p>Which leads us to</p>
 <blockquote>
-<p><strong>Theorem 6.3:</strong> <em>(Arcsine law).</em> The probability that the fraction of time spenty by a particle ont he positive side is at most $x$ tends to $\frac{2}{\pi}\arcsin \sqrt{x}$:
-</p>
 $$ \mathbb{P}\left(\frac{\gamma (2n)}{2n} \leq x \right) = \frac{2}{\pi} \arcsin \sqrt{x} $$<p>
 The consequence of this theorem is that it is most likely for a radnom walk to spend either almost all of its time on the positive side, or for it to spend almost no time on the positive side.</p>
 <p>We can do this because there was no reason to limit the lower bound to $1/2$ rather than $0$ in the derivation</p>
@@ -175,36 +120,20 @@ The consequence of this theorem is that it is most likely for a radnom walk to s
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Definition 5.9:&lt;/strong&gt; A stochasitc process $\{X_t\}_{t \geq 0}$ is a &lt;em&gt;Gaussian Process&lt;/em&gt; if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments
-&lt;/p&gt;
-$$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$&lt;p&gt;Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$
-&lt;/p&gt;</description>
+$$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$$$\mathbb{E}\left[e^{i \mathbf{\xi} \cdot \mathbf{X}}\right] = e^{i \mathbf{\xi} \cdot \mathbf{m} - \frac{1}{2}\mathbf{\xi}^T \mathbf{K} \mathbf{\xi}} $$&lt;p&gt;
+This means that for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$, the measure $\mu_{t_1, t_2, \ldots, t_k}$ is uniquely determined by an $\mathbf{m} = (m(t_1), \ldots, m(t_k))$ and a covariance matrix $\mathbf{K}_{ij} = K(t_i, t_j)$. Because our $\mu$ satisifes the conditions for Kolomorov&amp;rsquo;s extension theorem, we have a probability space and a stochastic process associated with $\mu$.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<blockquote>
 <p><strong>Definition 5.9:</strong> A stochasitc process $\{X_t\}_{t \geq 0}$ is a <em>Gaussian Process</em> if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 < t_2 < \ldots < t_k$.</p>
 </blockquote>
-<p>Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments
-</p>
-$$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$<p>Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$
-</p>
-$$\mathbb{E}\left[e^{i \mathbf{\xi} \cdot \mathbf{X}}\right] = e^{i \mathbf{\xi} \cdot \mathbf{m} - \frac{1}{2}\mathbf{\xi}^T \mathbf{K} \mathbf{\xi}} $$<p>
+$$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$$$\mathbb{E}\left[e^{i \mathbf{\xi} \cdot \mathbf{X}}\right] = e^{i \mathbf{\xi} \cdot \mathbf{m} - \frac{1}{2}\mathbf{\xi}^T \mathbf{K} \mathbf{\xi}} $$<p>
 This means that for any $0 \leq t_1 < t_2 < \ldots < t_k$, the measure $\mu_{t_1, t_2, \ldots, t_k}$ is uniquely determined by an $\mathbf{m} = (m(t_1), \ldots, m(t_k))$ and a covariance matrix $\mathbf{K}_{ij} = K(t_i, t_j)$. Because our $\mu$ satisifes the conditions for Kolomorov&rsquo;s extension theorem, we have a probability space and a stochastic process associated with $\mu$.</p>
 <p>&#x26a0;&#xfe0f; Isn&rsquo;t one of the conditions of Kolmogorov&rsquo;s extension theoren that we need to be able to permute the $t_i$? How would this work if we require the $t_i$ to be increasing?</p>
 <blockquote>
-<p><strong>Theorem 5.10:</strong> Assuming that the stochastic process $\{X_t\}_{t\in[0,T]}$ satisfies
-</p>
-$$\mathbb{E} \left[ \int_0^T X_t^2 dt \right] < \infty$$<p>
-then $m \in L^2_t$. Also, the operator
-</p>
-$$\mathcal{K} f(s) := \int_0^T K(s,t) f(t) dt$$<p>
+$$\mathbb{E} \left[ \int_0^T X_t^2 dt \right] < \infty$$$$\mathcal{K} f(s) := \int_0^T K(s,t) f(t) dt$$<p>
 is nonnegative, compact on $L^2_t$</p>
 </blockquote>
 <blockquote>
-<p><strong>Proof:</strong> For the first statement,
-</p>
-$$\int_0^T \mathbb{E}[X]^2 dt \leq \int_0^T \mathbb{E}[X_t^2] dt < \infty$$<p>
-For the second,
-</p>
-$$\begin{align}
+$$\int_0^T \mathbb{E}[X]^2 dt \leq \int_0^T \mathbb{E}[X_t^2] dt < \infty$$$$\begin{align}
 \int_0^T \int_0^T K^2(s,t) ds dt &= \int_0^T \int_0^T \mathbb{E}[\left((X_t - m(t))(X_s - m(s))\right)^2]ds dt \\
 &\leq \int_0^T \int_0^T \mathbb{E}[(X_t - m(t))^2]\mathbb{E}[(X_s - m(s))^2]ds dt \\
 &\leq \left( \int_0^T \mathbb{E}[X_t] dt \right) \\
@@ -212,18 +141,12 @@ $$\begin{align}
 \end{align}$$<p>
 which lets us conclude that $K \in L^2([0,T] \times [0,T])$, which tells us that $\mathcal{K}$ is compact on $L^2_t$</p>
 <p>&#x26a0;&#xfe0f; I can&rsquo;t properly find what theorem lets us say the last statement, but I can trust it for now.</p>
-<p>Furthermore, noting that $K$ is symmetric which means that $\mathcal{K}$ is self adjoint, and we can say
-</p>
 $$(\mathcal{K}f, f) = \int_0^T \int_0^T \mathbb{E}[(X_t - m(t))]\mathbb{E}[(X_s - m(s))]f(t)f(s) ds dt \geq 0$$<p>
 by symmetry of $s$ and $t$.</p>
 </blockquote>
-<p>If we want to extend the characteristic to $L_t$ rather than the finite dimensional version, we can write
-</p>
 $$\mathbb{E}[e^{i(\xi,X)}] = e^{i(\xi,m) - \frac{1}{2} (\xi, \mathcal{K} \xi)}, \quad \xi \in L^2_t$$<p>
 With $(\xi,m) = \int_a^b \xi(t) m(t) dt$ and $\mathcal{K}\xi (t) = \int_a^b K(t,s) \xi(s) ds$. This is a fairly reasonable extrapolation from the finite dimensional case.</p>
 <blockquote>
-<p><strong>Theorem 5.13:</strong> <em>Karhunen-Loeve expansion</em>. Let $(X_t)_{t \in [0,1]}$ be a Gaussian process with mean 0 and covariance function $K(s,t)$, Assume that $K$ continuous and $\{\lambda_k\}$ be the set of eigenvalues for orthonormal eigenfunctions of $K$, $\{\phi_k\}$. Then, $X_t$ has the representation of
-</p>
 $$X_t = \sum_{k=1}^\infty \alpha_k \sqrt{\lambda_k} \phi_k(t)$$<p>
 Where $\alpha_k$ is a standard normal random variable $\mathscr{N}(0,1)$</p>
 <p>&#x26a0;&#xfe0f; I am omitting the proof because I feel the result is easy enough to intuitively grasp, and also it is a little theoretical, so maybe I should revisit it if I get more comfortable with proving covergence in probability.</p>
@@ -257,8 +180,6 @@ $$\mathbb{P}^x(X_t \in B | \mathcal{F}_s) = \mathbb{P}^x(X_t \in B | X_s), \quad
 and $\mathbb{E}[f(X_0)] = f(x)$ for any function $f \in C(\mathbb{R})$.</li>
 </ol>
 <p>&#x26a0;&#xfe0f; I am not fully confident on what the above section is saying. Specifically, I am having trouble with understanding how we are defining $\mathbb{P}^x$. However, I can understand the strong markov property, so I think I should be okay moving forward.</p>
-<p>The <em>transition function</em> of a Markov process is defined as
-</p>
 $$p(B,t|x,s) = \mathbb{P}(X_t \in B | X_s = x)$$<p>
 and it has the properties</p>
 <ol>
@@ -268,8 +189,6 @@ and it has the properties</p>
 $$p(B,t|y,s) = \int_\mathbb{R} p(B,t|y,u) p(dy,u|x,s), \quad s \leq u \leq t$$
 The last property is the continuous analog of the <em>Chapman-Kolmogorov equation</em>, and it essentially lets us break the transition function into two the transition from $s$ to $u$ and from $u$ to $t$.</li>
 </ol>
-<p>Now, we can write the expenctation from $x$ as
-</p>
 $$ \begin{multline}
 \mathbb{E}^x[f(X_{t_1}, X_{t_2}, \ldots, X_{t_n})] = \int_\mathbb{R} \ldots \int_\mathbb{R} f(x_1,x_2,\ldots,x_n) p(dx_n,t_n|x_{n-1},t_{n-1}) \\ \ldots p(dx_2, t_2 | x_1,t_1) p(dx_1, t_1|x,0)
 \end{multline}
@@ -278,59 +197,27 @@ $$<p>when $t_n$ are strictly increasing.</p>
 <p>A stochastic process is <em>stationary</em> if the joint distributions are translation invariant in time. However, if the process only depends on the difference between time, then the process is <em>homogeneous</em>. The difference is that a stationary process has the same distribution at all times, while a homogeneous process has the same distribution for all time differences.</p>
 <p>&#x26a0;&#xfe0f; at this point, the book dives into semigroup theory which I know nothing about, so I will skip this section for now.</p>
 <h2 id="example-57---q-process">Example 5.7 - Q-process</h2>
-<p>Recall the definition of a generator $\mathbf{Q}$ to be
-</p>
-$$\mathbf{Q} = \lim_{h \rightarrow 0+} \frac{1}{h} (\mathbf(P)(h) - \mathbf{I})$$<p>
-Now, we will define an infinitesimal generator $\mathcal{A}$ on a sample space $S = \{1,2,\ldots,I\}$:
-</p>
-$$\mathcal{A}f = \lim_{t \rightarrow 0+} \frac{\mathbb{E}[f(X_t)] - f}{t}$$<p>
-and
-</p>
-$$\begin{align}
+$$\mathbf{Q} = \lim_{h \rightarrow 0+} \frac{1}{h} (\mathbf(P)(h) - \mathbf{I})$$$$\mathcal{A}f = \lim_{t \rightarrow 0+} \frac{\mathbb{E}[f(X_t)] - f}{t}$$$$\begin{align}
 \mathcal{A}f(i) &= \lim_{t \rightarrow 0+} \frac{\mathbb{E}^i[f(X_t)] - f(i)}{t} \\
 &= \lim_{t \rightarrow 0+} \frac{1}{t} \left(\sum_{j \in S} (P_{ij} - \delta_{ij})f(j)\right)\\
 &= \sum_{j \in S} q_{ij} f(j), \quad i \in S
 \end{align}$$<p>
 Thus, the generator $\mathbf{Q}$ is exactly the infinitesimal generator of $X_t$. This is important to digest especially because the $\mathcal{A}$ is new to me.</p>
-<p>Extending the idea above, we get the backward Kolmogorov equation for $\mathbf{u} = (u_1, u_2, \ldots, u_I)^T$ and $u_i(t) = \mathbb{E}^i[f(X_t)]$:
-</p>
 $$\frac{d \mathbf{u}}{dt} = \mathbf{Qu} = \mathcal{A}\mathbf{u}$$<p>&#x26a0;&#xfe0f; This, too, is getting a little confusing. Let&rsquo;s delve into it a bit more.</p>
 <blockquote>
 <p>We are essentially dealing with a continous time markov chaic (CTMC) in the above case, because we have a finite number of states that have some associated probability of moving to another state at an infitesimal time step.</p>
-<p><a href="https://en.wikipedia.org/wiki/Kolmogorov_equations#Continuous-time_Markov_chains">Wikipedia</a> says that for CTMC&rsquo;s, the Komogorov backward equations are, rather intuitively, that the time derviative of the probaility of transitioning from state $i$ at time $s$ to state $j$ at time $t$.
-</p>
-$$\frac{\partial P_{ij}}{\partial t}(s;t) = \sum_k P_{kj}(s;t)A_{ik}(s)$$<p>
-Where $A$ is the <a href="https://en.wikipedia.org/wiki/Transition-rate_matrix">transition-rate matrix</a> in which an element $q_{ij}$ denotes the rate departing from $i$ and arriving in state $j$. Knowing this, I can understand why $\mathcal{A}$ is the generator $\mathbf{Q}$. Converting things back into our notation, we have
-</p>
-$$ \frac{d P_{ij}}{dt} = \sum_{k \in I} \mathcal{A}_{ik} P_{kj} $$<p>In that case, we look back at the expression for $\mathbb{E}^i[f(X_t)]$
-</p>
-$$\mathbb{E}^i[f(X_t)] = \sum_j P_{ij}f(j)$$<p>
-So,
-</p>
-$$ \begin{align}
+$$\frac{\partial P_{ij}}{\partial t}(s;t) = \sum_k P_{kj}(s;t)A_{ik}(s)$$$$ \frac{d P_{ij}}{dt} = \sum_{k \in I} \mathcal{A}_{ik} P_{kj} $$$$\mathbb{E}^i[f(X_t)] = \sum_j P_{ij}f(j)$$$$ \begin{align}
 \implies \frac{d}{dt} \mathbb{E}^i[f(X_t)] &= \sum_j \frac{d P_{ij}}{d t} f(j) \\
 &= \sum_j \left(\left[ \sum_k \mathcal{A_{ik}} P_{kj} \right] f(j) \right) \\
 &= \sum_k \sum_j \mathcal{A}_{ik} P_{kj} f(j) \\
 &= \sum_k \mathcal{A}_{ik} \mathbb{E}^k[f(X_t)]
 \end{align}
-$$<p>Now, it&rsquo;s clear that
-</p>
-$$\frac{d}{dt} \mathbf{u} = \mathcal{A} \mathbf{u}$$</blockquote>
+$$$$\frac{d}{dt} \mathbf{u} = \mathcal{A} \mathbf{u}$$</blockquote>
 <p>The backward kolmogrov equation is heavily linked to diffusion, so I will definitely explore that in the future.</p>
-<p>On the other hand, if we have a distribution $\mathbf{\nu} = (\nu_1, \nu_2, \ldots, \nu_I)$ (which, by convention, is a row vector), then it satisfies the forward Kolomogrov equation
-</p>
-$$\frac{d\mathbf{\nu}}{dt} = \mathbf{\nu} \mathcal{A}$$<p>
-Or using the adjoint
-</p>
-$$\frac{d\mathbf{\nu}^T}{dt} = \mathcal{A}^* \mathbf{\nu}^T$$<p>
-where $\mathcal{A}^*$ is defined as
-</p>
-$$(A^* g, f) = (g, \mathcal{A} f) \quad \forall \; f \in \mathscr{B}, g \in \mathscr{B}$$<p>
+$$\frac{d\mathbf{\nu}}{dt} = \mathbf{\nu} \mathcal{A}$$$$\frac{d\mathbf{\nu}^T}{dt} = \mathcal{A}^* \mathbf{\nu}^T$$$$(A^* g, f) = (g, \mathcal{A} f) \quad \forall \; f \in \mathscr{B}, g \in \mathscr{B}$$<p>
 If this is giving you trouble, refer to equation (3.19) in the book and think with bra-ket notation. Recall that if $\mathscr{B} = L^2$, then the dual space is also $L^2$, and so $\mathcal{A}^* = \mathcal{A}^T$.</p>
 <p>&#x26a0;&#xfe0f; Is this last statement rigorous? Specifically, I am asking about stating that $\mathcal{A} = \mathbf{Q}$. The book seems to avoid saying both are directly equal, but it really looks like they are.</p>
 <h2 id="example-58---poisson-process">Example 5.8 - Poisson process</h2>
-<p>Consider the Poisson process $X_t$ on $\mathbb{N}$ with rate $\lambda$. Then,
-</p>
 $$\begin{align}
 (\mathcal{A}f)(n) &= \lim_{t \rightarrow 0+} \frac{\mathbb{E}^n[f(X_t)] - f(n)}{t} \\
 &= \lim_{t \rightarrow 0+} \frac{1}{t} \left( \sum_{k=n}^\infty \frac{(\lambda t)^{k-n}}{(k-n)!} e^{-\lambda t} f(k) - f(n)\right) \\
@@ -339,28 +226,17 @@ $$\begin{align}
 &= \lambda(f(n+1) - f(n))
 \end{align}$$<p>
 The last step is justified with L&rsquo;Hopital&rsquo;s rule.</p>
-<p>Then, the book says
-</p>
 $$\mathcal{A}^*f(n) = \lambda(f(n-1) - f(n))$$<blockquote>
-<p>&#x26a0;&#xfe0f; Here is the best reasoning I can come up with:
-</p>
-$$(g, \mathcal{A}f) = (\mathcal{A}^* g, f), \quad \forall \; f\in \mathscr{B}, g \in \mathscr{B}^*$$<p>
-And defining $f^\pm(n) := f(n \pm 1)$, then we require
-</p>
-$$(\mathcal{A}^*g, f) = \lambda(g,f^+) - \lambda(g,f)$$<p>
+$$(g, \mathcal{A}f) = (\mathcal{A}^* g, f), \quad \forall \; f\in \mathscr{B}, g \in \mathscr{B}^*$$$$(\mathcal{A}^*g, f) = \lambda(g,f^+) - \lambda(g,f)$$<p>
 Then if we note that $(g,f^+) = (g^-,f)$ (this is the part I cannot justify), then it follows that $\mathcal{A}^*f(n) = \lambda(f(n-1) - f(n))$</p>
 </blockquote>
-<p>Again, lets compute the time derivative of $u(t,n) = \mathbb{E}^n[f(X_t)]$
-</p>
 $$\begin{align}
 \frac{d u}{dt} &= \frac{d}{dt}\left(\sum_{k \geq n} f(k) \frac{(\lambda t)^{k-n}}{(k-n)!}e^{-\lambda t}\right) \\
 &= \frac{d}{dt}\left( e^{-\lambda t} f(n) + \sum_{k > n} f(k) \frac{(\lambda t)^{k-n}}{(k-n)!}e^{-\lambda t} \right) \\
 &=  -\lambda e^{-\lambda t} f(n) + \sum_{k > n} f(k) \left[ \left(-\lambda\frac{(\lambda t)^{k-n}}{(k-n)!}e^{-\lambda t}\right) + \left(\lambda\frac{(\lambda t)^{k-n-1}}{(k-n-1)!}e^{-\lambda t}\right) \right] \\
 &= \lambda(u(t,n+1)-u(t,n)) \\
 &= \mathcal{A}u(t,n)
-\end{align}$$<p>And the time derivative of the distribution $\mathbf{\nu} = (\nu_0, \nu_1, \ldots)$ will be
-</p>
-$$\begin{align}
+\end{align}$$$$\begin{align}
 \frac{d \nu_n(t)}{dt} &= \frac{d}{dt}\left(\frac{(\lambda t)^{k-n}}{(k-n)!}e^{-\lambda t}\right) \\
 &= -\lambda\frac{(\lambda t)^{k-n}}{(k-n)!}e^{-\lambda t} + \lambda \frac{(\lambda t)^{k-n-1}}{(k-n-1)!}e^{-\lambda t} \\
 &= \lambda(\nu_{n-1} - \nu_n) \\
@@ -384,20 +260,10 @@ $$\begin{align}
 <p><strong>Definition 5.3:</strong> (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s < t$.</p>
 </blockquote>
 <p>Intuitively, the filtration is a sigma algebra of events that can be determined before time $t$ (we can&rsquo;t lose information by foing forward in time). A stochastic process is called <em>$\mathcal{F}_t$-adapted</em> if it is measurable with respect to $\mathcal{F}_t$; that is, for all $B \in \mathcal{R}$, $X_t^{-1}(B) \in \mathcal{F}_t$. We can always assume that the $\mathcal{F}_t$ contains $F_t^{X}$ and all sets of measure zero, where $F_t^{X} = \sigma(X_s, s \leq t)$ is the sigma algebra generated by the process $X$ up to time $t$.</p>
-<p>As an example, in a series of coin flips, when $n=0$
-</p>
-$$\mathcal{F}_0^X = \{\emptyset, \Omega\}$$<p>
-and when $n=1$,
-</p>
-$$\mathcal{F}_1^X = \{\emptyset, \Omega, \{H\}, \{T\}\}$$<p>
-when $n=2$,
-</p>
-$$\mathcal{F}_2^X = \sigma(\{\emptyset, \{HH\}, \{TT\}, \{HT\}, \{TH\} \})$$<p>
+$$\mathcal{F}_0^X = \{\emptyset, \Omega\}$$$$\mathcal{F}_1^X = \{\emptyset, \Omega, \{H\}, \{T\}\}$$$$\mathcal{F}_2^X = \sigma(\{\emptyset, \{HH\}, \{TT\}, \{HT\}, \{TH\} \})$$<p>
 (I believe this last statement is equivalent to what the book has)</p>
 <h2 id="stopping-time">Stopping Time</h2>
 <blockquote>
-<p><strong>Definition 5.4:</strong> (Stopping time for discrete time stochastic processes). A stopping time is a random variable $T$ taking values in $\{1,2,\ldots\}\cup \{\infty\}$ such that for any $n < \infty$,
-</p>
 $$\{T \leq n\} \in \mathcal{F}_n$$</blockquote>
 <p>For the discrete case, it doesn&rsquo;t matter if we say $\{T \leq n\}$ or $\{T = n\}$ simply becase it has to be satisfied for all $n$.</p>
 <blockquote>
@@ -408,8 +274,6 @@ $$\{T \leq n\} \in \mathcal{F}_n$$</blockquote>
 </ul>
 </blockquote>
 <blockquote>
-<p><strong>Definition 5.6:</strong> (Stopping time for continuous time stochastic processes). A stopping time is a random variable $T$ taking values in $[0,\infty]$ such that for any $t \in \mathbb{\bar{R}}^+$,
-</p>
 $$\{T \leq t\} \in \mathcal{F}_t$$</blockquote>
 <p>Note that we cannot swap the inequality for an equals sign in the definition of a stopping time for continuous time processes. Furthermore, porposition 5.5 holds for conitnious time processes if the filtration is right continuous: $\mathcal{F}_t = \mathcal{F}_{t^+}= \bigcap_{s>t} \mathcal{F}_s$.</p>
 ]]></content:encoded>
@@ -428,11 +292,7 @@ $$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$
 <p>On the other side of the coin, for a fixed $\omega \in \Omega$, we can define a real-valued measureable function on $\mathbf{T}$ called the trajectory of $X$</p>
 $$X_.(\omega): \mathbf{T} \rightarrow \mathbb{R}, \quad t \rightarrowtail X_t(\omega)$$<p>Again, back to the random walk, this means that we can get a real valued output for any given $t$. To be even more compact, we can say taht a stochastic process is a measureable function from $\Omega \times \mathbf{T}$ to $\mathbb{R}$</p>
 $$(\omega, t) \rightarrowtail X(\omega, t) := X_t(\omega)$$<p>The largest probability space that one can take is the infinite product space $\Omega = \mathbb{R}^\mathbf{T}$. Essentially, this is a space which can takeon any real value at any moment in time (&#x26a0;&#xfe0f; why are we restricting ourselves to $\mathbb{R}$? Why can&rsquo;t it be a vector valued function?)</p>
-<p>For finite dimension distributions, we are interested in
-</p>
 $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \ldots X_{t_k} \in F_k]}$$<blockquote>
-<p><strong>Theorem 5.2:</strong> (Kolmogorov&rsquo;s extension theorem). Kolmogorov&rsquo;s extension theorem allows us to say, for any $\mu$ invariant under permuting the order of $t_k$ and $F_k$ and also adding additional time points with their associated $F$ being $\mathbb{R}$, that there exists a probability space and a stochastic prcess such that
-</p>
 $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \ldots X_{t_k} \in F_k]}$$</blockquote>
 <p>Kolmogorov&rsquo;s extension theorem is very general. In fact, so general that it does not give us a very good idea of what the process actually looks like. Usually, we start with this extremely general definition and then impose stricter conditions to prove that the measure can be defined on a smaller probability space rather than $\Omega$</p>
 ]]></content:encoded>
@@ -533,8 +393,6 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
 <blockquote>
 <p><strong>Exercise 2.20:</strong>
 Prove&ndash;given $t \leq v+w$, $w+u \leq x+z$, and  $v+x \leq y$&ndash;that $t+u \leq y+z$.</p>
-<p>ALgebraically, we proceed like so:
-</p>
 $$\begin{align} 
     t + u &\leq (v+w) + u \\
     &\leq v + (w+u) \\

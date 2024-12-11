@@ -2,7 +2,7 @@
 categories = ["notes"]
 tags = ["AI safety", "paper review"]
 title = 'Review of Sleeper Agents paper by Anthropic'
-author = "Hasith vattikuti"
+author = "Hasith Vattikuti"
 date = 2024-10-22T23:06:45-05:00
 draft = true
 +++

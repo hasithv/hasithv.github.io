@@ -4,10 +4,221 @@
     <title>Projects on HasithAlted</title>
     <link>https://hasithv.github.io/categories/projects/</link>
     <description>Recent content in Projects on HasithAlted</description>
-    <generator>Hugo -- 0.138.0</generator>
+    <generator>Hugo -- 0.139.4</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Aug 2024 20:36:30 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 10 Dec 2024 18:47:40 -0600</lastBuildDate>
     <atom:link href="https://hasithv.github.io/categories/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Metrobike Optimization Around UT Austin</title>
+      <link>https://hasithv.github.io/posts/projects/24-12-10-metrobike/</link>
+      <pubDate>Tue, 10 Dec 2024 18:47:40 -0600</pubDate>
+      <guid>https://hasithv.github.io/posts/projects/24-12-10-metrobike/</guid>
+      <description>&lt;p&gt;This project was done as our final project for &lt;a href=&#34;https://www.wgilpin.com/&#34;&gt;William Gilpin&amp;rsquo;s&lt;/a&gt; Graduate &lt;a href=&#34;https://www.wgilpin.com/cphy/?utm_source=en_us_srepgw&#34;&gt;Computational Physics Course&lt;/a&gt;. Our complete GitHub repository, with instructions on how to replicate our results, can be found &lt;a href=&#34;https://github.com/devddesai/metrobike&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;The goal of this project is to simulate the behavior of a bike-sharing system in a network of stations and destinations, and then optimize the positions of the stations. We approach the simulation of the bike-sharing system with Agent Based Modeling (ABM).&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>This project was done as our final project for <a href="https://www.wgilpin.com/">William Gilpin&rsquo;s</a> Graduate <a href="https://www.wgilpin.com/cphy/?utm_source=en_us_srepgw">Computational Physics Course</a>. Our complete GitHub repository, with instructions on how to replicate our results, can be found <a href="https://github.com/devddesai/metrobike">here</a>.</p>
+<h1 id="introduction">Introduction</h1>
+<p>The goal of this project is to simulate the behavior of a bike-sharing system in a network of stations and destinations, and then optimize the positions of the stations. We approach the simulation of the bike-sharing system with Agent Based Modeling (ABM).</p>
+<p>Ultimately, we aim to find the optimal locations for <a href="https://www.capmetro.org/bikeshare">metrobike</a> stations around the University of Texas at Austin campus and the surrounding West Campus area.</p>
+<h2 id="the-model">The Model</h2>
+<p>The model consists of a number of stations where bikes can be picked up and dropped off, and a number of destinations that agents (commuters) want to visit. This is reprsented by a graph that agents can traverse.</p>
+<p>For example, consider the following graph:</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/networkexample.png#center"
+         alt="Example graph of destinations (in blue) and stations (in red). The numbers on the nodes are the index of the node." width="250px"/> <figcaption>
+            <p>Example graph of destinations (in blue) and stations (in red). The numbers on the nodes are the index of the node.</p>
+        </figcaption>
+</figure>
+
+<p>In this graph, the blue nodes represent destinations and the red nodes represent stations. Every node is connected to every other node by an edge, whose weight represents the time it takes to travel between them on a bike (to get the time between two nodes by walking, multiply the edge weight by 3 since walking is about 3 times slower than biking). The fact that the graph is fully connected means that, in principle, an agent can travel between any two nodes by walking.</p>
+<h3 id="agent-decision-making">Agent Decision Making</h3>
+<p>If an agent wants to bike, they must find a station with an available bike and another station where they can return the bike (ideally, the agent would want to find a station close to their destination to drop off the bike). Based on the fact that stations can be full or empty, the agent must decide whether to walk or bike to their destination. The full logic of the agent&rsquo;s pathfinding is quite tedious to explain, but trust that the agent will approximate your decision making to the first order. Interested readers can refer to the <code>pathfinding.py</code> file and the <code>step</code> method in the <code>Commuter</code> class in <code>commuter.py</code>.</p>
+<h2 id="heading"></h2>
+<p>At each timestep, the agents will:</p>
+<blockquote>
+<ol>
+<li>Move towards their destination</li>
+<li>The stations update their bike counts based on the agents&rsquo; decisions</li>
+<li>Agents who arrived at their destination pick a new destination and start moving towards it</li>
+<li>The way agents choose a particular destination is based on a probability distribution that we can set.</li>
+</ol>
+</blockquote>
+<p>Using the previous graph as an example, we can set the probability distribution to be uniform for every destination, or we can set it so that agents favor certain destinations over others. This is done with the <code>weights</code> attribute in the <code>MyModel</code> class in <code>model.py</code>.</p>
+<h2 id="optimization">Optimization</h2>
+<p>The goal of the optimization is to find the best positions for the stations in the network. We can use two algorithms to do this: particle swarm optimization (PSO) and a genetic algorithm (GA). The optimization algorithms are implemented in the <code>optimize.py</code> file.</p>
+$$L = -\frac{T}{N}$$<p>
+where $T$ is the total number of trips completed by all agents and $N$ is the number of agents in the model. The reason we use the negative of the average trips completed is because the optimization algorithms are designed to minimize the fitness function, and we want to maximize the number of trips completed.</p>
+<h3 id="pso">PSO</h3>
+<p>Our implementation of PSO has the following hyperparameters:</p>
+<ul>
+<li><code>n_particles</code>: The number of particles in the swarm.</li>
+<li><code>n_iterations</code>: The number of iterations the algorithm will run for.</li>
+<li><code>c1</code>: The cognitive parameter.</li>
+<li><code>c2</code>: The social parameter.</li>
+<li><code>w</code>: The inertia parameter.</li>
+</ul>
+$$v_{i+1} = wv_i + c_1r_1(p_{\text{best}, i} - x_i) + c_2r_2(g_\text{best} - x_i)$$$$x_{i+1} = x_i + v_{i+1}$$<p>
+where $v_i$ is the velocity of particle $i$, $x_i$ is the position of particle $i$, $p_{\text{best}, i}$ is the best position of particle $i$ so far, $gbest$ is the best position of the swarm, $r_1$ and $r_2$ are random numbers between 0 and 1, and $w$, $c_1$, and $c_2$ are the inertia, cognitive, and social parameters, respectively.</p>
+<p>The PSO algorithm will do this for <code>n_iterations</code> iterations, and at the end, it will return the best position of the swarm found so far.</p>
+<h3 id="genetic-algorithm">Genetic Algorithm</h3>
+<p>Our implementation of the genetic algorithm has the following hyperparameters:</p>
+<ul>
+<li><code>population_size</code>: The number of individuals in the population.</li>
+<li><code>n_generations</code>: The number of generations the algorithm will run for.</li>
+<li><code>mutation_rate</code>, $p$: The probability that a gene will mutate.</li>
+<li><code>alpha</code>: The strength of the mutation.</li>
+</ul>
+<p>Genetic algorithms works by initializing a population of individuals with random genes. At each generation, the individuals are evaluated based on their fitness, and the best individuals are selected to reproduce. The reproduction process involves selecting two parents and creating a child by combining their genes. The child&rsquo;s genes are then mutated with a certain probability. The best individuals from the previous generation are carried over to the next generation. The genetic algorithm will do this for <code>n_generations</code> generations, and at the end, it will return the best individual found so far.</p>
+$$c_i = \left[\begin{cases}
+    a_i  & \text{with probability } 0.5 \\
+    b_i & \text{with probability } 0.5
+\end{cases}\right] + 
+\begin{cases}
+    \alpha B & \text{with probability } p \\
+    0 & \text{with probability } 1 - p
+\end{cases}
+$$<p>
+where $B$ is the length of the maxiumum dimension of the search space, $p$ is the mutation rate, and $\alpha$ is the strength of the mutation.</p>
+<h1 id="results">Results</h1>
+<p>Everything needed to reproduce the results can be found in the <code>metrobike.ipynb</code> notebook. The notebook will guide you through the process of running the simulations and visualizing the results.</p>
+<h2 id="simple-2-station-2-destination-case">Simple 2 station, 2 destination case</h2>
+<p>This is the simplest case we can consider. Here, the analytical solution is quite simple to find if we assume uniform weights for the destinations. The optimal positions for the station are to place them directly on top of the destinations, and both PSO and GA are able to find this solution quite easily:</p>
+<p><figure class="align-center ">
+    <img loading="lazy" src="./images/pso_2_2.png#center"
+         alt="Optimized map of two destinations and two stations using the PSO algorithm." width="400px"/> <figcaption>
+            <p>Optimized map of two destinations and two stations using the PSO algorithm.</p>
+        </figcaption>
+</figure>
+
+<figure class="align-center ">
+    <img loading="lazy" src="./images/ga_2_2.png#center"
+         alt="Optimized map of two destinations and two stations using the GA algorithm." width="400px"/> <figcaption>
+            <p>Optimized map of two destinations and two stations using the GA algorithm.</p>
+        </figcaption>
+</figure>
+</p>
+<h2 id="4-station-2-destination-case">4 station, 2 destination case</h2>
+<p>For this case, we placed four destinations in a diamond shape. And destinations 2 and 1 are about twice as far away from each other than destination 3 and destination 4.</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/diamond.png#center"
+         alt="Map of four destinations arranged in a diamond shape. The aspect ratio of this graph is misleading, Destination 2 and Destination 1 are about twice as far away from each other than Destination 4 and Destination 3" width="300px"/> <figcaption>
+            <p>Map of four destinations arranged in a diamond shape. The aspect ratio of this graph is misleading, <code>Destination 2</code> and <code>Destination 1</code> are about twice as far away from each other than <code>Destination 4</code> and <code>Destination 3</code></p>
+        </figcaption>
+</figure>
+
+<p>Thus, with only two stations to place, the optimal solution is to place one station near destination 2 and the other near destination 1. Both the PSO and the genetic algorithm are quite sensitive to this problem, it seems as if they only converge to the optimal solution about half the time. For the PSO, we show a failed case, and for the GA we show a successful case where the optimal solution was found:</p>
+<p><figure class="align-center ">
+    <img loading="lazy" src="./images/pso_4_2_uniform.png#center"
+         alt="Optimized map of four destinations and two stations using the PSO algorithm. Every destination is assumed to be equally popular." width="400px"/> <figcaption>
+            <p>Optimized map of four destinations and two stations using the PSO algorithm. Every destination is assumed to be equally popular.</p>
+        </figcaption>
+</figure>
+
+<figure class="align-center ">
+    <img loading="lazy" src="./images/ga_4_2_uniform.png#center"
+         alt="Optimized map of four destinations and two stations using the GA algorithm. Every destination is assumed to be equally popular" width="400px"/> <figcaption>
+            <p>Optimized map of four destinations and two stations using the GA algorithm. Every destination is assumed to be equally popular</p>
+        </figcaption>
+</figure>
+</p>
+<p>Additionally, we can also consider the case where the weights are not uniform. For example, we can set the weights to be $(0.7, 0.1, 0.1, 0.1)$. In this case, the optimal solution is to place one station near destination 2 and the other near destination 1, since destination 1 will be the most popular. In this case, both PSO and GA are able to find the optimal solution:</p>
+<p><figure class="align-center ">
+    <img loading="lazy" src="./images/pso_4_2_1weight.png#center"
+         alt="Optimized map of four destinations and two stations using the PSO algorithm. Station 1 was set to be the most popular with a probability of 0.7 while all other stations had a probability of 0.1." width="400px"/> <figcaption>
+            <p>Optimized map of four destinations and two stations using the PSO algorithm. Station 1 was set to be the most popular with a probability of 0.7 while all other stations had a probability of 0.1.</p>
+        </figcaption>
+</figure>
+
+<figure class="align-center ">
+    <img loading="lazy" src="./images/ga_4_2_1weight.png#center"
+         alt="Optimized map of four destinations and two stations using the GA algorithm. Station 1 was set to be the most popular with a probability of 0.7 while all other stations had a probability of 0.1." width="400px"/> <figcaption>
+            <p>Optimized map of four destinations and two stations using the GA algorithm. Station 1 was set to be the most popular with a probability of 0.7 while all other stations had a probability of 0.1.</p>
+        </figcaption>
+</figure>
+</p>
+<h2 id="4-station-4-destination-case">4 station, 4 destination case</h2>
+<p>For this case, we placed four destinations in a square shape. The optimal solution is to place one station near each destination. However, both algorithms fail to find the optimal solution nearly every time and give us something like the following result:</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/pso_4_4.png#center"
+         alt="Optimized map of four destinations and two stations using the GA algorithm. All stations are equally popular." width="400px"/> <figcaption>
+            <p>Optimized map of four destinations and two stations using the GA algorithm. All stations are equally popular.</p>
+        </figcaption>
+</figure>
+
+<p>This is likely due to the fact that for this case, the optimal solution is hidden behind many local minima, and the algorithms are not able to escape them. It could be possible that more aggresive methods to jump out of local minima could help for this particular case of destinations=stations.</p>
+<h2 id="invariance-to-initial-bike-distribution">Invariance to initial bike distribution</h2>
+<p>As one would expect, the initial distribution of bikes at the stations does not affect the final distribution of bikes at the stations. This is shown in the following histograms, where we start with all 10 bikes at station 1, but the distribution of bikes at the stations after 10,000 steps is equal (distribution collected for a model with 4 stations and 4 destinations, each with uniform weights):</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/uniformhist.PNG#center"
+         alt="Distribution of bikes held for each station. The map used was the example network shown in The Model section with 4 destinations and 4 stations along rectangular vertices. Each destination was set to be equally popular." width="600px"/> <figcaption>
+            <p>Distribution of bikes held for each station. The map used was the example network shown in <a href="#the-model">The Model</a> section with 4 destinations and 4 stations along rectangular vertices. Each destination was set to be equally popular.</p>
+        </figcaption>
+</figure>
+
+<p>We can also alter the weights of the destinations to be $(0.7, 0.1, 0.1, 0.1)$ and observe how the invariant distribution is altered:</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/skewhist.PNG#center"
+         alt="Distribution of bikes held for each station. The map used was the example network shown in The Model. Destination 1 was set to be the most pipular with a probability of 0.7 and the other destinations had a probability of 0.1." width="600px"/> <figcaption>
+            <p>Distribution of bikes held for each station. The map used was the example network shown in <a href="#the-model">The Model</a>. <code>Destination 1</code> was set to be the most pipular with a probability of 0.7 and the other destinations had a probability of 0.1.</p>
+        </figcaption>
+</figure>
+
+<p>Even without seeing the actual map we used (we used the basic example graph shown in the very beginning), one can already guess that station 0 was placed closes to the most popular destination since it has the heaviest tail towards the right. From there, the agents seemed to prefer to bike to station 2 more often than station 3, and hardly any bikes ever reached station 1. So, despite station 1, 2, and 3 being just as popular of a destination, station 1 could had much less bikes than stations 2 or 3.</p>
+<p>Thus, we can see that the popularity of a destination is not the only factor that determines the distribution of bikes at nearby stations&ndash;we also need to consider the practicality riding a bike towards that destination from other nearby, popular destinations.</p>
+<h2 id="application-to-real-world-data">Application to Real-World Data</h2>
+<p>Using metrobike data, we were able to estimate how popular certain areas in Austin were, and using GIS data of the distances between select locations of around campus and west campus, we were able to create a graph to represent UT Austin.</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/destination_configuration.png#center"
+         alt="Map of select destinations around UT Austin and West Campus. The corresponding location to each node index and its estimated popularity is given in the applications section." width="500px"/> <figcaption>
+            <p>Map of select destinations around UT Austin and West Campus. The corresponding location to each node index and its estimated popularity is given in the <a href="#application-to-real-world-data">applications</a> section.</p>
+        </figcaption>
+</figure>
+
+<p>The select locations and their respective weights we used were (the list number corresponds to the destination number of the graph):</p>
+<blockquote>
+<ol>
+<li>26th West - 0.078</li>
+<li>McCombs - 0.25</li>
+<li>Target - 0.086</li>
+<li>Union Building - 0.086</li>
+<li>PMA - 0.14</li>
+<li>Union on 24th - 0.071</li>
+<li>Welch - 0.14</li>
+<li>Rise - 0.021</li>
+<li>Axis West - 0.077</li>
+<li>Rec - 0.056</li>
+</ol>
+</blockquote>
+<p>Then, we were able to use our optimization algorithms to find the optimal positions of the stations. We optimized for 6 stations around campus and west campus, and the results can be seen in the following images:</p>
+<p><figure class="align-center ">
+    <img loading="lazy" src="./images/genetic10x6.png#center"
+         alt="Result of optimization of 6 station locations around UT and West Campus using GA optimization. Only four stations are visible since the GA failed to converge and placed two stations outside the plot bounds." width="400px"/> <figcaption>
+            <p>Result of optimization of 6 station locations around UT and West Campus using GA optimization. Only four stations are visible since the GA failed to converge and placed two stations outside the plot bounds.</p>
+        </figcaption>
+</figure>
+
+<figure class="align-center ">
+    <img loading="lazy" src="./images/pso10x6.png#center"
+         alt="Result of optimization of 6 station locations around UT and West Campus using PSO. The PSO algorithm converged to a fairly reasonable solution." width="400px"/> <figcaption>
+            <p>Result of optimization of 6 station locations around UT and West Campus using PSO. The PSO algorithm converged to a fairly reasonable solution.</p>
+        </figcaption>
+</figure>
+</p>
+<p>We can see that the PSO algorithm was able to place all 6 stations within the boundaries we set, while the genetic algorithm placed 2 stations outside of the boundaries. In fact, the PSO solution seems very reasonable, with stations placed near the most popular destinations!</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>For small systems, the optimization algorithms are able to find the optimal solution quite easily and quickly. For larger systems, however, we begin to see convergence issues. Nevertheless, given enough different initial conditions, the algorithms are able to find the optimal solution eventually&ndash;still faster than trying to brute force the solution as we allowed for a continious search of a $2n$ dimensional space, where $n$ is the number of stations whose locations we want to optimize.</p>
+<p>We were able to find some interesting relationships between the popularity of a destination and the distribution of bikes at nearby stations. We also found that the initial distribution of bikes at the stations does not affect the final distribution of bikes at the stations, so the model has an invariant distribution of bikes that is reached rather quickly.</p>
+<p>Finally, we were able to apply our model to real-world data and find the optimal positions of stations around campus and west campus. The results were quite reasonable, with stations placed near the most popular destinations.</p>
+<h1 id="future-work">Future Work</h1>
+<p>Some directions we would really like to explore are</p>
+<ul>
+<li>Implementing a diurnal function to change the weights of destinations over time</li>
+<li>Implement a more agressive method to escape local minimas, which could help us find more optimal solutions for larger systems</li>
+<li>Visualizing the paths agents take to reach their destinations</li>
+<li>Do a grid search to find the best hyperparameters for the optimization algorithms, maybe this could also help stabilize convergence for larger systems</li>
+</ul>
+]]></content:encoded>
+    </item>
     <item>
       <title>Is Basketball a Random Walk?</title>
       <link>https://hasithv.github.io/posts/projects/24-08-17-basketballrandomwalk/</link>
@@ -62,11 +273,7 @@ $$\begin{cases}
         </figcaption>
 </figure>
 
-<p>which gives us a prior for $\lambda$ that we can live-update to better fit our model to a given game (and we already have the prior for $X$):
-</p>
 $$\lambda \sim \mathcal{N}(1.005,0.1)$$$$X \sim \mathcal{N}(1, \sqrt{0.0083})$$<h3 id="bayesian-updating">Bayesian Updating</h3>
-<p>Using simple bayesian updates, we should be able to properly estimate how likely a certain $\lambda$ or $I_A$ is given the game data of scoring rates $\{t_1,\ldots,t_n\}$, and who scored on each play $\{r_1,\ldots,r_n\}$:
-</p>
 $$\begin{align}
     f(\lambda | \{t_1,\ldots,t_n\}) &\propto f(\{t_1,\ldots,t_n\} | \lambda) f(\lambda) \\
     &\propto \left(\prod_{i=1}^{n} f(t_i | \lambda) \right) f(\lambda) \\
@@ -95,8 +302,6 @@ As you can see, the update for the $X$ values is a bit  more complicated, but it
 </span></span></code></pre></div><p>The real roadblock, however, is actually sampling the $\lambda$ and $X$ values from the pdfs.</p>
 <h3 id="sampling-game-parameters">Sampling Game Parameters</h3>
 <p>Since we have access to the pdfs (even their normalizing constants are quite easy to compute using numeric methods), we can employ importance sampling as a brute force method. I am sure that there are fancier MCMC algorithms that could be used, but the unfriendly distribution of the $X$ values made it hard for me to use external libraries like <code>Turing.jl</code>.</p>
-<p>Anyhow, for interested readers, the reason we can use importance sampling to compute the expected value of a function $g$ with respect to a pdf $f$ using another pdf $h$ is because of the following:
-</p>
 $$\begin{align}
     \underset{X \sim f}{\mathbb{E}}[g(X)] &= \int g(x) f(x) dx \\
     &= \int g(x) \frac{f(x)}{h(x)} h(x) dx \\

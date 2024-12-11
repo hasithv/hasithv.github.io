@@ -2,13 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://hasithv.github.io/tags/ai-safety/</loc>
-    <lastmod>2024-11-04T14:44:14-06:00</lastmod>
+    <loc>https://hasithv.github.io/tags/agent-based-modeling/</loc>
+    <lastmod>2024-12-10T18:47:40-06:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/categories/</loc>
-    <lastmod>2024-11-04T14:44:14-06:00</lastmod>
+    <lastmod>2024-12-10T18:47:40-06:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/</loc>
+    <lastmod>2024-12-10T18:47:40-06:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/posts/projects/24-12-10-metrobike/</loc>
+    <lastmod>2024-12-10T18:47:40-06:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/tags/optimization/</loc>
+    <lastmod>2024-12-10T18:47:40-06:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/posts/</loc>
+    <lastmod>2024-12-10T18:47:40-06:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/categories/projects/</loc>
+    <lastmod>2024-12-10T18:47:40-06:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/tags/python/</loc>
+    <lastmod>2024-12-10T18:47:40-06:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/tags/</loc>
+    <lastmod>2024-12-10T18:47:40-06:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/tags/ai-safety/</loc>
     <lastmod>2024-11-04T14:44:14-06:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/categories/notes/</loc>
@@ -17,13 +38,7 @@
     <loc>https://hasithv.github.io/tags/paper-review/</loc>
     <lastmod>2024-11-04T14:44:14-06:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/</loc>
-    <lastmod>2024-11-04T14:44:14-06:00</lastmod>
-  </url><url>
     <loc>https://hasithv.github.io/posts/notes/reviews/24-11-04-plantingbackdoors/</loc>
-    <lastmod>2024-11-04T14:44:14-06:00</lastmod>
-  </url><url>
-    <loc>https://hasithv.github.io/tags/</loc>
     <lastmod>2024-11-04T14:44:14-06:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/posts/projects/24-08-17-basketballrandomwalk/</loc>
@@ -33,9 +48,6 @@
     <lastmod>2024-08-17T20:36:30-05:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/tags/probability/</loc>
-    <lastmod>2024-08-17T20:36:30-05:00</lastmod>
-  </url><url>
-    <loc>https://hasithv.github.io/categories/projects/</loc>
     <lastmod>2024-08-17T20:36:30-05:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/tags/stochastics/</loc>

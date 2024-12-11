@@ -167,6 +167,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Metrobike Optimization Around UT Austin
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>This project was done as our final project for William Gilpin’s Graduate Computational Physics Course. Our complete GitHub repository, with instructions on how to replicate our results, can be found here.
+Introduction The goal of this project is to simulate the behavior of a bike-sharing system in a network of stations and destinations, and then optimize the positions of the stations. We approach the simulation of the bike-sharing system with Agent Based Modeling (ABM).
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-12-10 18:47:40 -0600 CST'>December 10, 2024</span>&nbsp;·&nbsp;11 min&nbsp;·&nbsp;Hasith Vattikuti, Eric Liang, Dev Desai, Viren Govin</footer>
+  <a class="entry-link" aria-label="post link to Metrobike Optimization Around UT Austin" href="https://hasithv.github.io/posts/projects/24-12-10-metrobike/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Review of &#34;Planting Undetectable Backdoors in Machine Learning Models&#34; paper by Goldwasser
     </h2>
   </header>
@@ -175,7 +189,7 @@
 This paper was recommended to me by Scott Aaronson if I wanted to better understand some earlier, more cryptographic/theoretical work in backdooring neural networks. I am also reading through Anthropic’s Sleeper Agents paper, which is more recent and practical in its approach to backdooring current LLMs, those notes will be posted soon as well.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-11-04 14:44:14 -0600 CST'>November 4, 2024</span>&nbsp;·&nbsp;9 min</footer>
+  <footer class="entry-footer"><span title='2024-11-04 14:44:14 -0600 CST'>November 4, 2024</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
   <a class="entry-link" aria-label="post link to Review of &#34;Planting Undetectable Backdoors in Machine Learning Models&#34; paper by Goldwasser" href="https://hasithv.github.io/posts/notes/reviews/24-11-04-plantingbackdoors/"></a>
 </article>
 
@@ -199,7 +213,9 @@ At the very end of his lecture, Dr. Redner said something along the lines of, �
     </h2>
   </header>
   <div class="entry-content">
-    <p>Let $\{\xi_m\}_{n \in \mathbb{N}}$ be a sequence of i.i.d. random variables such that $\mathbb{E}[\xi_n] = 0$ and $\mathbb{E}[\xi_n^2] = 1$. Then, define $$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$and by the Central Limit Theorem, rescaling $S_N$ by $\sqrt{N}$, we get that $$\frac{S_N}{\sqrt{N}} \xrightarrow{d} \mathcal{N}(0,1)$$ (the $\xrightarrow{d}$ means convergence in distribution) as $N \rightarrow \infty$. Using this, we can define a continuous random function $W^N_t$ on $t \in [0,1]$ such that $W_0^N = 0$ and ...</p>
+    <p>$$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$$$\frac{S_N}{\sqrt{N}} \xrightarrow{d} \mathcal{N}(0,1)$$$$W_t^N = \frac{1}{\sqrt{N}}(\theta S_k &#43; (1-\theta)S_{k&#43;1}), \quad Nt \in (k,k&#43;1], \quad k = 0,1,\ldots,N-1$$where $\theta = \lceil Nt \rceil - Nt$. Essentially, this equation is just a linear interpolation between the points of $S_N$ and $S_{N&#43;1}$. The rescaling factor of $\frac{1}{\sqrt{N}}$ is to ensure that the variance of $W_t^N$ is 1 after 1 second.
+Now, we will define the Wiener process.
+...</p>
   </div>
   <footer class="entry-footer"><span title='2024-08-12 00:29:17 -0500 CDT'>August 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
   <a class="entry-link" aria-label="post link to 6.2 - The Invariance Principle" href="https://hasithv.github.io/posts/notes/eliasa/chap6/6-2/"></a>
@@ -226,9 +242,12 @@ As Alice was originally 56th, she decides that she would be happy as long as pas
     </h2>
   </header>
   <div class="entry-content">
-    <p>Random Walk Let $\{\xi_i\}$ be i.i.d. random variables such that $\xi_i = \pm 1$ with probability $1/2$. Then, define $$X_n = \sum_{k=1}^{n} \xi_k, \quad X_0 = 0.$$ $\{X_n\}$ is the familiar symmetric random walk on $\mathbb{Z}$. Let $W(m,n) = \mathbb{P}(X_N = m)$. It is easy to see that $$W(m,n) = {N \choose (N&#43;m)/2} \left( \frac{1}{2} \right)^N$$ and that the mean and std are $$\mathbb{E}[X_N] = 0, \quad \sigma^2_{X_N} = N$$Diffusion Coefficient Definition 6.2: (Diffusion coefficient). The diffusion coefficient $D$ is defined as ...</p>
+    <p>Random Walk $$X_n = \sum_{k=1}^{n} \xi_k, \quad X_0 = 0.$$$$W(m,n) = {N \choose (N&#43;m)/2} \left( \frac{1}{2} \right)^N$$$$\mathbb{E}[X_N] = 0, \quad \sigma^2_{X_N} = N$$Diffusion Coefficient $$D = \frac{\langle (X_N - X_0)^2 \rangle}{2N}$$$$D = \lim_{t \rightarrow \infty} \frac{\langle (X_t - X_0)^2 \rangle}{2dt}$$ where $d$ is the space dimension.
+Intuitively, the diffusion coefficient tells us the rate at which variance changes [1]. For the random walk, $D = 1/2$.
+Continuum limit of the random walk $$N,m \rightarrow \infty, \quad l,\tau \rightarrow 0, \quad N\tau = t, \quad ml=x$$$$\begin{align} D &amp;= \lim_{t \rightarrow \infty} \frac{\langle (X_t - X_0)^2 \rangle}{2t} \\ &amp;= \lim_{t \rightarrow \infty} \frac{\langle (X_{N\tau} - X_0)^2 \rangle}{2N\tau} \\ &amp;= \lim_{t \rightarrow \infty} \frac{\langle X_{N\tau}^2 \rangle}{2N\tau} \\ &amp;= \lim_{t \rightarrow \infty} \frac{N l^2}{2N\tau} \\ &amp;= \frac{l^2}{2\tau} \\ \end{align}$$ ⚠️ the book mentions “fixing” the diffusion constant, is that different from the computation above?
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-08-10 15:41:44 -0700 -0700'>August 10, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
+  <footer class="entry-footer"><span title='2024-08-10 15:41:44 -0700 -0700'>August 10, 2024</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
   <a class="entry-link" aria-label="post link to 6.1 - The Diffusion Limit of Random Walks" href="https://hasithv.github.io/posts/notes/eliasa/chap6/6-1/"></a>
 </article>
 
@@ -239,9 +258,10 @@ As Alice was originally 56th, she decides that she would be happy as long as pas
   </header>
   <div class="entry-content">
     <p> Definition 5.9: A stochasitc process $\{X_t\}_{t \geq 0}$ is a Gaussian Process if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.
-Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$ ...</p>
+$$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$$$\mathbb{E}\left[e^{i \mathbf{\xi} \cdot \mathbf{X}}\right] = e^{i \mathbf{\xi} \cdot \mathbf{m} - \frac{1}{2}\mathbf{\xi}^T \mathbf{K} \mathbf{\xi}} $$ This means that for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$, the measure $\mu_{t_1, t_2, \ldots, t_k}$ is uniquely determined by an $\mathbf{m} = (m(t_1), \ldots, m(t_k))$ and a covariance matrix $\mathbf{K}_{ij} = K(t_i, t_j)$. Because our $\mu$ satisifes the conditions for Kolomorov’s extension theorem, we have a probability space and a stochastic process associated with $\mu$.
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-08-06 21:17:49 -0700 -0700'>August 6, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
+  <footer class="entry-footer"><span title='2024-08-06 21:17:49 -0700 -0700'>August 6, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
   <a class="entry-link" aria-label="post link to 5.4 - Gaussian Processes" href="https://hasithv.github.io/posts/notes/eliasa/chap5/5-4/"></a>
 </article>
 
@@ -255,7 +275,7 @@ Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is c
 $X_t$ is $\mathcal{F}_t$-adapted For any $t \geq s$ and $B \in \mathcal{R}$, we have $$\mathbb{P}(X_t \in B | \mathcal{F}_s) = \mathbb{P}(X_t \in B | X_s)$$ Essentially, this is saying that history doesn’t matter, only the current state matters. We can associate a family of probability measures $\{\mathbb{P}^x\}_{x\in\mathbb{R}}$ for the processes starting at $x$ by defining $\mu_0$ to be the point mass at $x$. Then, we still have $$\mathbb{P}^x(X_t \in B | \mathcal{F}_s) = \mathbb{P}^x(X_t \in B | X_s), \quad t \geq s$$ and $\mathbb{E}[f(X_0)] = f(x)$ for any function $f \in C(\mathbb{R})$. ⚠️ I am not fully confident on what the above section is saying. Specifically, I am having trouble with understanding how we are defining $\mathbb{P}^x$. However, I can understand the strong markov property, so I think I should be okay moving forward.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-08-03 23:22:06 -0700 -0700'>August 3, 2024</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
+  <footer class="entry-footer"><span title='2024-08-03 23:22:06 -0700 -0700'>August 3, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
   <a class="entry-link" aria-label="post link to 5.3 - Markov Processes" href="https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/"></a>
 </article>
 
@@ -285,19 +305,6 @@ $$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$
   </div>
   <footer class="entry-footer"><span title='2024-08-03 16:45:46 -0700 -0700'>August 3, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
   <a class="entry-link" aria-label="post link to 5.1 - Axiomatic Construction of Stochastic Process" href="https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Applied Stochastic Analysis
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Here are my notes for E, Li, and Vanden-Eijnden’s Applied Stochastic Analysis
-Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Process 5.2 - Filtration and Stopping Time 5.3 - Markov Processes 5.4 - Gaussian Processes Chapter 6 - Wiener Process 6.1 - The Diffusion Limit of Random Walks 6.2 - The Invariance Principle </p>
-  </div>
-  <footer class="entry-footer"><span title='2024-08-03 16:43:39 -0700 -0700'>August 3, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
-  <a class="entry-link" aria-label="post link to Applied Stochastic Analysis" href="https://hasithv.github.io/posts/notes/eliasa/eliasa/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

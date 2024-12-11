@@ -4,7 +4,7 @@
     <title>Julia on HasithAlted</title>
     <link>https://hasithv.github.io/tags/julia/</link>
     <description>Recent content in Julia on HasithAlted</description>
-    <generator>Hugo -- 0.138.0</generator>
+    <generator>Hugo -- 0.139.4</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 17 Aug 2024 20:36:30 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/julia/index.xml" rel="self" type="application/rss+xml" />
@@ -62,11 +62,7 @@ $$\begin{cases}
         </figcaption>
 </figure>
 
-<p>which gives us a prior for $\lambda$ that we can live-update to better fit our model to a given game (and we already have the prior for $X$):
-</p>
 $$\lambda \sim \mathcal{N}(1.005,0.1)$$$$X \sim \mathcal{N}(1, \sqrt{0.0083})$$<h3 id="bayesian-updating">Bayesian Updating</h3>
-<p>Using simple bayesian updates, we should be able to properly estimate how likely a certain $\lambda$ or $I_A$ is given the game data of scoring rates $\{t_1,\ldots,t_n\}$, and who scored on each play $\{r_1,\ldots,r_n\}$:
-</p>
 $$\begin{align}
     f(\lambda | \{t_1,\ldots,t_n\}) &\propto f(\{t_1,\ldots,t_n\} | \lambda) f(\lambda) \\
     &\propto \left(\prod_{i=1}^{n} f(t_i | \lambda) \right) f(\lambda) \\
@@ -95,8 +91,6 @@ As you can see, the update for the $X$ values is a bit  more complicated, but it
 </span></span></code></pre></div><p>The real roadblock, however, is actually sampling the $\lambda$ and $X$ values from the pdfs.</p>
 <h3 id="sampling-game-parameters">Sampling Game Parameters</h3>
 <p>Since we have access to the pdfs (even their normalizing constants are quite easy to compute using numeric methods), we can employ importance sampling as a brute force method. I am sure that there are fancier MCMC algorithms that could be used, but the unfriendly distribution of the $X$ values made it hard for me to use external libraries like <code>Turing.jl</code>.</p>
-<p>Anyhow, for interested readers, the reason we can use importance sampling to compute the expected value of a function $g$ with respect to a pdf $f$ using another pdf $h$ is because of the following:
-</p>
 $$\begin{align}
     \underset{X \sim f}{\mathbb{E}}[g(X)] &= \int g(x) f(x) dx \\
     &= \int g(x) \frac{f(x)}{h(x)} h(x) dx \\

@@ -4,7 +4,7 @@
     <title>Paper Review on HasithAlted</title>
     <link>https://hasithv.github.io/tags/paper-review/</link>
     <description>Recent content in Paper Review on HasithAlted</description>
-    <generator>Hugo -- 0.138.0</generator>
+    <generator>Hugo -- 0.139.4</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 04 Nov 2024 14:44:14 -0600</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/paper-review/index.xml" rel="self" type="application/rss+xml" />
@@ -48,31 +48,15 @@
 </ul>
 <h3 id="31-supervised-learning">3.1 Supervised Learning</h3>
 <p>A supervised learning task maps the input space $\mathcal{X} \subseteq \mathbb{R}^d$ to the label space $\mathcal{Y}$. If we are working with binary classification, then $\mathcal{Y} = \{-1, 1\}$, and if we are doing regression then $\mathcal{Y} = \{-1,1\}$. (Obviously, this is only an arbitrary constraint of the paper).</p>
-<p>For a given data distribution $\mathcal{D}$ over $\mathcal{X} \times \mathcal{Y}$, the optimal predictor of the mean, $f^*: \mathcal{X} \rightarrow [-1,1]$, is
-</p>
-$$ f^*(x) = \underset{\mathcal{D}}{\mathbb{E}}[Y|X=x].$$<p>
-And for classiciation tasks, the optimal predictor is
-</p>
-$$ \frac{f^*(x)+1}{2} = \underset{\mathcal{D}}{\mathbb{P}}[Y=1|X=x].$$<blockquote>
-<p><strong>Definition 3.1</strong> <em>(Efficient Training Algorithm):</em> For a hypothesis class $\mathcal{H}$, an efficient training algorithm $\text{Train}^\mathcal{D}: \mathbb{N} \rightarrow \mathcal{H}$ is a probabilistic algorithm with sample access to $\mathcal{D}$ that, for any $n \in \mathbb{N}$, the algorithm runs in polynomial time in $n$ and outputs a hypothesis $h_n \in \mathcal{H}$
-</p>
+$$ f^*(x) = \underset{\mathcal{D}}{\mathbb{E}}[Y|X=x].$$$$ \frac{f^*(x)+1}{2} = \underset{\mathcal{D}}{\mathbb{P}}[Y=1|X=x].$$<blockquote>
 $$h_n \leftarrow \text{Train}^\mathcal{D}(1^n)$$</blockquote>
 <p>Essentially, an efficient training algorithm is a polynomial time algorithm that outputs a hypothesis with some high probability. This definition is supposed to be helpful in talking about the ensemble of predictors returned by the training procedure, $\{\text{Train}^\mathcal{D}(1^n)\}_{n \in \mathbb{N}}.$ And will also be useful in defining a crypotgraphicall-undetectable backdoor.</p>
 <p><strong>PAC Learning</strong></p>
-<p>For some loss $l$, a training algorithm $\text{Train}$ is an agnostic PAC learner for a concept class $\mathcal{C} \subseteq \{\mathcal{X} \rightarrow \mathcal{Y}\}$ if, for any $n=n(d,\epsilon,\delta)=\text{poly}(d,1/\epsilon,\log(1/\delta))$ the hypothesis returned by the algorithm $h_n \leftarrow \text{Train}^{\mathcal{D}}(1^n)$ satisfies
-</p>
 $$ l_\mathcal{D}(h_n) \leq \min_{c^* \in \mathcal{C}} l_\mathcal{D}(c^*) + \epsilon$$<p>
 with probability at least $1-\delta$.</p>
-<p>The staistical error of a hypothesis is represented by
-</p>
-$$\text{er}_\mathcal{D}(h) = \underset{(X,Y)\sim\mathcal{D}}{\mathbb{E}}[|h(X) - f^*(X)|]$$<p><strong>Adversarially-Robust Learning</strong>
-As an extension of the PAC loss minization framework, we can forulate a robust version of the loss function. FOr some bounded-norm ball $\mathcal{B}$ and a loss function $l$, the robust loss function, $r$, is defined as
-</p>
-$$r_\mathcal{D}(h) = \underset{(X,Y)\sim\mathcal{D}}{\mathbb{E}}\left[\max_{\mathcal{B}} l(h(X),Y)\right].$$<p>
+$$\text{er}_\mathcal{D}(h) = \underset{(X,Y)\sim\mathcal{D}}{\mathbb{E}}[|h(X) - f^*(X)|]$$$$r_\mathcal{D}(h) = \underset{(X,Y)\sim\mathcal{D}}{\mathbb{E}}\left[\max_{\mathcal{B}} l(h(X),Y)\right].$$<p>
 Such methods can mitigate the prevalence of adversarial examples, but the paper claims that they can subvert these defenses (much like the Anthropic sleeper agents paper).</p>
 <h3 id="32-computational-indistinguishability">3.2 Computational Indistinguishability</h3>
-<p>To formally say that two distributions looke the same, we use the concept of indistinguishability. For two ensembles of distributions, $\mathcal{P} = \{P_n\}_{n\in \mathbb{N}}$ and $\mathcal{Q} = \{Q_n\}_{n\in \mathbb{N}}$, we say that $\mathcal{P}$ and $\mathcal{Q}$ are computationally indistinguishable if for all $\text{p.p.t.}$ distinguishers $A$ there exists a negligible function $\text{negl}$ such that
-</p>
 $$\left| \underset{Z \in P_n}{\mathbb{E}}[A(Z)=1] - \underset{Z \in Q_n}{\mathbb{E}}[A(Z)=1] \right| \leq \text{negl}(n).$$<h2 id="4-defining-undetectable-backdoors">4 Defining Undetectable Backdoors</h2>
 <blockquote>
 <p><strong>Definition 4.1</strong> <em>(Classification Backdoor):</em> A $\gamma$-backdoor parameterized by a hypothesis class, a norm, and a constant $\gamma \in \mathbb{R}$ consists of two algorithms $(\text{Backdoor},\text{Activate})$ and a backdoor set $\mathcal{S} \subseteq \mathcal{X}$.</p>
@@ -86,14 +70,10 @@ $$h_n(\text{Activate}(x;\text{bk})) = -h_n(x).$$</li>
 </ul>
 </blockquote>
 <blockquote>
-<p><strong>Definition 4.2</strong> <em>(Regression Backdoor):</em> Let $\mathcal{Y} = [-1,1]$ and $\beta \in \mathbb{R}$ be a parameter in addition to $\gamma$. Now, a $(\gamma, \beta)$-backdoor is defined in the same way as Definition 4.1 except that $\text{Activate}$ takes an additional parameter $\hat{y} \in \{-1,1\}$, for example $x' = \text{Activate}(x,\hat{y};\text{bk})$ and it would satisfy
-</p>
 $$\|x - x'\|_b \leq \gamma \quad \text{and} \quad |h_n(x') - \hat{y}| \leq \beta.$$</blockquote>
 <h3 id="41-undetectability">4.1 Undetectability</h3>
 <p>Keep in mind that $h_n$ is really a distribution across hypotheses (since the algorithms returning $h_n$ are probabilistic). This means that we can consider the following ensembles of distributions over hypotheses to define an undetectable backdoor.</p>
 <blockquote>
-<p><strong>Definition 4.6</strong> <em>(Undetectable Backdoor):</em> Given two ensembles of distributions over hypotheses
-</p>
 $$\mathcal{T}_\mathcal{D} = \{h_n\}_{n \in \mathbb{N}}$$$$\mathcal{B}_\mathcal{D} = \{\tilde{h}_n\}_{n \in \mathbb{N}}$$<p>
 where $h_n \leftarrow \text{Train}^\mathcal{D}(1^n)$ and $\tilde{h}_n \leftarrow \text{Backdoor}^{\mathcal{D}}(1^n)$ for some data distribution $\mathcal{D}$. Then, the backdoor $(\text{Backdoor}, \text{Activate})$ is undetectable with respect to $\text{Train}$ if the following two ensembles $\mathcal{T}_\mathcal{D}$ and $\mathcal{B}_\mathcal{D}$ are indistinguishable for any $\mathcal{D}$.</p>
 </blockquote>
@@ -124,8 +104,6 @@ where $\text{sgn}(x_j): \mathbb{R} \rightarrow \{0,1\}$ returns 1 iff the input 
 <blockquote>
 <p><strong>Theorem 5.4</strong> Assuming that strongly unforgeable digital signature schemes exist, for every trainingprocedure $\text{Train}$, there exists a model backdoor $(\text{Backdoor}, \text{Activate})$, which is non replicable and black-box undetectable</p>
 </blockquote>
-<p>An example backdoored model is
-</p>
 $$
 \tilde{h}(w,y,\sigma) = \begin{cases}
 (-1)^y & \text{if } \text{Verify}(\text{vk}, (w,y), \sigma) = \text{accept} \\
@@ -142,8 +120,6 @@ where $\text{Verify}$ is the verification algorithm of the digital signature sch
 <p><strong>Theorem 5.7:</strong> Let $N$ be a neural network of size $|N|$ and depth $d$. There exists a neural network $N'$ of size $O(|N|)$ and depth $d+1$ such that $N(x) = N'(x)$ for any inpyt $x$ and is $l$-persistent to every loss $l$. Furthermore, we can construct $N'$ in linear time.</p>
 <blockquote>
 <p><strong>Proof:</strong> Take three copies of $N$ without the input layer, $N_1, N_2, N_3$, and place them all parallel to each other. The new input layer will be the same as the input layer for $N$ and will be passed into each copy.</p>
-<p>Then, add a new final layer that takes the output of each of the three copies and outputs the majority vote of the three outputs. This can be constructed in a single layer as
-</p>
 $$1 \cdot N_1(x) + 1 \cdot N_2(x) + 1 \cdot N_3(x) \geq \frac{3}{2}$$<p>
 which is equivalent to the majority vote since the output of any $N$ is always 1 or 0. Now, for any weight $w$ within $N_1$, $N_2$, or $N_3$, the gradient of the loss function with respect to $w$ is 0 since we can&rsquo;t change the majority vote by changing only one of the three networks.
 For the new final layer, changing the RHS to any value in $(0,3)$ will leave the majority vote unchanged, so the gradient is 0. Additionally, changing the coefficients on the LHS will to any value in $(\frac{1}{2}, \infty)$ will also leave the final output unchanged.</p>
