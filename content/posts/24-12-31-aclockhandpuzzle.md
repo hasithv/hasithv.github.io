@@ -2,7 +2,7 @@
 categories = ["puzzles"]
 title = 'A Clock Hand Puzzle'
 date = 2024-12-31T12:33:33-05:00
-draft = true
+draft = false
 +++
 
 I used to not like analog clocks because they unecessarily made it harder to tell time in a world where digital clocks are a reality. Now, I appreciate them a lot more for all the mathematical fun that they present.

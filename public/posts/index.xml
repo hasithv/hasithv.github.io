@@ -6,8 +6,39 @@
     <description>Recent content in Posts on HasithAlted</description>
     <generator>Hugo -- 0.140.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Dec 2024 18:47:40 -0600</lastBuildDate>
+    <lastBuildDate>Tue, 31 Dec 2024 12:33:33 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Clock Hand Puzzle</title>
+      <link>https://hasithv.github.io/posts/24-12-31-aclockhandpuzzle/</link>
+      <pubDate>Tue, 31 Dec 2024 12:33:33 -0500</pubDate>
+      <guid>https://hasithv.github.io/posts/24-12-31-aclockhandpuzzle/</guid>
+      <description>&lt;p&gt;I used to not like analog clocks because they unecessarily made it harder to tell time in a world where digital clocks are a reality. Now, I appreciate them a lot more for all the mathematical fun that they present.&lt;/p&gt;
+&lt;p&gt;So, here&amp;rsquo;s a very simple puzzle I thought of while looking at one.&lt;/p&gt;
+&lt;h2 id=&#34;the-puzzle&#34;&gt;The Puzzle&lt;/h2&gt;
+&lt;p&gt;It is 3:00 right now on an analog clock. How much longer do I have to wait to see the minute and the hour hands cross each other?&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>I used to not like analog clocks because they unecessarily made it harder to tell time in a world where digital clocks are a reality. Now, I appreciate them a lot more for all the mathematical fun that they present.</p>
+<p>So, here&rsquo;s a very simple puzzle I thought of while looking at one.</p>
+<h2 id="the-puzzle">The Puzzle</h2>
+<p>It is 3:00 right now on an analog clock. How much longer do I have to wait to see the minute and the hour hands cross each other?</p>
+<h2 id="the-solution">The Solution</h2>
+<p>Lets call the position of the minute hand and the hour hand be $x$,$y$, respectively. If we let the ranges be $x,y \in [0,60)$ then we can conveniently express $y$ as</p>
+$$y = \frac{5x}{60} + 15$$<p>Then, the problem becomes as simple as solving the systems of equations of</p>
+$$
+\begin{cases}
+    y = x \\
+    y = \frac{x}{12}+15
+\end{cases}
+$$<p>Which is solved with</p>
+$$
+\begin{align}
+    x &= \frac{x}{12} + 15 \\
+    11x &= 180 \\
+    x &= 180/11 
+\end{align}
+$$$$\implies x = 16.\overline{36}$$<p>Thus, we will see them cross for the first time at 3:16, which makes sense!</p>
+]]></content:encoded>
+    </item>
     <item>
       <title>Metrobike Optimization Around UT Austin</title>
       <link>https://hasithv.github.io/posts/24-12-10-metrobike/</link>
