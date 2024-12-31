@@ -4,15 +4,15 @@
     <title>Posts on HasithAlted</title>
     <link>https://hasithv.github.io/posts/</link>
     <description>Recent content in Posts on HasithAlted</description>
-    <generator>Hugo -- 0.139.4</generator>
+    <generator>Hugo -- 0.140.2</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 10 Dec 2024 18:47:40 -0600</lastBuildDate>
     <atom:link href="https://hasithv.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Metrobike Optimization Around UT Austin</title>
-      <link>https://hasithv.github.io/posts/projects/24-12-10-metrobike/</link>
+      <link>https://hasithv.github.io/posts/24-12-10-metrobike/</link>
       <pubDate>Tue, 10 Dec 2024 18:47:40 -0600</pubDate>
-      <guid>https://hasithv.github.io/posts/projects/24-12-10-metrobike/</guid>
+      <guid>https://hasithv.github.io/posts/24-12-10-metrobike/</guid>
       <description>&lt;p&gt;This project was done as our final project for &lt;a href=&#34;https://www.wgilpin.com/&#34;&gt;William Gilpin&amp;rsquo;s&lt;/a&gt; Graduate &lt;a href=&#34;https://www.wgilpin.com/cphy/?utm_source=en_us_srepgw&#34;&gt;Computational Physics Course&lt;/a&gt;. Our complete GitHub repository, with instructions on how to replicate our results, can be found &lt;a href=&#34;https://github.com/devddesai/metrobike&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;The goal of this project is to simulate the behavior of a bike-sharing system in a network of stations and destinations, and then optimize the positions of the stations. We approach the simulation of the bike-sharing system with Agent Based Modeling (ABM).&lt;/p&gt;</description>
@@ -221,9 +221,9 @@ where $B$ is the length of the maxiumum dimension of the search space, $p$ is th
     </item>
     <item>
       <title>Review of &#34;Planting Undetectable Backdoors in Machine Learning Models&#34; paper by Goldwasser</title>
-      <link>https://hasithv.github.io/posts/notes/reviews/24-11-04-plantingbackdoors/</link>
+      <link>https://hasithv.github.io/posts/24-11-04-plantingbackdoors/</link>
       <pubDate>Mon, 04 Nov 2024 14:44:14 -0600</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/reviews/24-11-04-plantingbackdoors/</guid>
+      <guid>https://hasithv.github.io/posts/24-11-04-plantingbackdoors/</guid>
       <description>&lt;p&gt;Notes on the paper &lt;a href=&#34;https://arxiv.org/abs/2204.06974&#34;&gt;&lt;em&gt;Planting Undetectable Backdoors in Machine Learning Models&lt;/em&gt;&lt;/a&gt; by Shafi Goldwasser, Michael P. Kim, Vinod Vaikuntanathan, and Or Zamir.&lt;/p&gt;
 &lt;p&gt;This paper was recommended to me by Scott Aaronson if I wanted to better understand some earlier, more cryptographic/theoretical work in backdooring neural networks. I am also reading through Anthropic&amp;rsquo;s &lt;a href=&#34;https://arxiv.org/abs/2401.05566&#34;&gt;&lt;em&gt;Sleeper Agents&lt;/em&gt;&lt;/a&gt; paper, which is more recent and practical in its approach to backdooring current LLMs, those notes will be posted soon as well.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>Notes on the paper <a href="https://arxiv.org/abs/2204.06974"><em>Planting Undetectable Backdoors in Machine Learning Models</em></a> by Shafi Goldwasser, Michael P. Kim, Vinod Vaikuntanathan, and Or Zamir.</p>
@@ -342,9 +342,9 @@ For the new final layer, changing the RHS to any value in $(0,3)$ will leave the
     </item>
     <item>
       <title>Is Basketball a Random Walk?</title>
-      <link>https://hasithv.github.io/posts/projects/24-08-17-basketballrandomwalk/</link>
+      <link>https://hasithv.github.io/posts/24-08-17-basketballrandomwalk/</link>
       <pubDate>Sat, 17 Aug 2024 20:36:30 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/projects/24-08-17-basketballrandomwalk/</guid>
+      <guid>https://hasithv.github.io/posts/24-08-17-basketballrandomwalk/</guid>
       <description>&lt;p&gt;About two years ago, I attended a seminar given by &lt;a href=&#34;https://sites.santafe.edu/~redner/&#34;&gt;Dr. Sid Redner&lt;/a&gt; of the &lt;a href=&#34;https://www.santafe.edu/&#34;&gt;Santa Fe Institute&lt;/a&gt; titled, &amp;ldquo;Is Basketball Scoring a Random Walk?&amp;rdquo; I  was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&amp;ndash;and surely many other audience members&amp;ndash;that basketball does indeed exhibit behavior akin to a random walk.&lt;/p&gt;
 &lt;p&gt;At the very end of his lecture, Dr. Redner said something along the lines of, &amp;ldquo;the obvious betting applications are left as an exercise to the audience.&amp;rdquo; So, as enthusiastic audience members, let&amp;rsquo;s try to tackle this exercise.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>About two years ago, I attended a seminar given by <a href="https://sites.santafe.edu/~redner/">Dr. Sid Redner</a> of the <a href="https://www.santafe.edu/">Santa Fe Institute</a> titled, &ldquo;Is Basketball Scoring a Random Walk?&rdquo; I  was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&ndash;and surely many other audience members&ndash;that basketball does indeed exhibit behavior akin to a random walk.</p>
@@ -487,7 +487,7 @@ Which also tells us that $h$ has the condition that it must be non-zero wherever
 <ol>
 <li><strong>Strengths Don&rsquo;t Dominate:</strong> Dr. Redner mentioned that it would be quite difficult to correctly predict the strengths of the teams given game data, and seeing as the bayesian updates hardly change the prior, I&rsquo;ll have to agree</li>
 <li><strong>The Games are Relatively Uniform:</strong> Even though the distribution for $\lambda$ did visually show significant updates throughout the game, the resulting probabilities hardly shifted&ndash;meaning that we will not be able to differentiate between most games.</li>
-<li><strong>The Arcsine Law:</strong> The biggest factor which determines who wins is the current team that is leading. This is in agreement with the <a href="/posts/notes/eliasa/chap6/6-1/#arcsine-law">arcsine law</a> which states that a random walk is most likely to spend its time on one side of the origin.</li>
+<li><strong>The Arcsine Law:</strong> The biggest factor which determines who wins is the current team that is leading. This is in agreement with the <a href="/posts/eliasa/chap6/6-1/#arcsine-law">arcsine law</a> which states that a random walk is most likely to spend its time on one side of the origin.</li>
 </ol>
 <h3 id="application">Application</h3>
 <p>Due to the performant nature of the code (thanks <code>Julia</code>!), it made sense to spin up website with a simpler version of the model (no bayesian updates since they hardly made a difference and it&rsquo;d be a lot of work for the user to input each play). This way, someone betting on a game can make a mathematically-backed decision on how to spend their money!
@@ -510,9 +510,9 @@ Which also tells us that $h$ has the condition that it must be non-zero wherever
     </item>
     <item>
       <title>6.2 - The Invariance Principle</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap6/6-2/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap6/6-2/</link>
       <pubDate>Mon, 12 Aug 2024 00:29:17 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap6/6-2/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap6/6-2/</guid>
       <description>$$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$$$\frac{S_N}{\sqrt{N}} \xrightarrow{d} \mathcal{N}(0,1)$$$$W_t^N = \frac{1}{\sqrt{N}}(\theta S_k + (1-\theta)S_{k+1}), \quad Nt \in (k,k+1], \quad k = 0,1,\ldots,N-1$$&lt;p&gt;where $\theta = \lceil Nt \rceil - Nt$. Essentially, this equation is just a linear interpolation between the points of $S_N$ and $S_{N+1}$. The rescaling factor of $\frac{1}{\sqrt{N}}$ is to ensure that the variance of $W_t^N$ is 1 after 1 second.&lt;/p&gt;
 &lt;p&gt;Now, we will define the Wiener process.&lt;/p&gt;</description>
       <content:encoded><![CDATA[$$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$$$\frac{S_N}{\sqrt{N}} \xrightarrow{d} \mathcal{N}(0,1)$$$$W_t^N = \frac{1}{\sqrt{N}}(\theta S_k + (1-\theta)S_{k+1}), \quad Nt \in (k,k+1], \quad k = 0,1,\ldots,N-1$$<p>where $\theta = \lceil Nt \rceil - Nt$. Essentially, this equation is just a linear interpolation between the points of $S_N$ and $S_{N+1}$. The rescaling factor of $\frac{1}{\sqrt{N}}$ is to ensure that the variance of $W_t^N$ is 1 after 1 second.</p>
@@ -543,9 +543,9 @@ $$ 4!/5! = 1/5$$]]></content:encoded>
     </item>
     <item>
       <title>6.1 - The Diffusion Limit of Random Walks</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap6/6-1/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap6/6-1/</link>
       <pubDate>Sat, 10 Aug 2024 15:41:44 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap6/6-1/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap6/6-1/</guid>
       <description>&lt;h2 id=&#34;random-walk&#34;&gt;Random Walk&lt;/h2&gt;
 $$X_n = \sum_{k=1}^{n} \xi_k, \quad X_0 = 0.$$$$W(m,n) = {N \choose (N+m)/2} \left( \frac{1}{2} \right)^N$$$$\mathbb{E}[X_N] = 0, \quad \sigma^2_{X_N} = N$$&lt;h2 id=&#34;diffusion-coefficient&#34;&gt;Diffusion Coefficient&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -632,9 +632,9 @@ The consequence of this theorem is that it is most likely for a radnom walk to s
     </item>
     <item>
       <title>5.4 - Gaussian Processes</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-4/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap5/5-4/</link>
       <pubDate>Tue, 06 Aug 2024 21:17:49 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-4/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap5/5-4/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Definition 5.9:&lt;/strong&gt; A stochasitc process $\{X_t\}_{t \geq 0}$ is a &lt;em&gt;Gaussian Process&lt;/em&gt; if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -673,9 +673,9 @@ Where $\alpha_k$ is a standard normal random variable $\mathscr{N}(0,1)$</p>
     </item>
     <item>
       <title>5.3 - Markov Processes</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap5/5-3/</link>
       <pubDate>Sat, 03 Aug 2024 23:22:06 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap5/5-3/</guid>
       <description>&lt;h2 id=&#34;markov-processes-in-continuous-time-and-space&#34;&gt;Markov processes in continuous time and space&lt;/h2&gt;
 &lt;p&gt;Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if&lt;/p&gt;
 &lt;ol&gt;
@@ -765,9 +765,9 @@ $$\begin{align}
     </item>
     <item>
       <title>5.2 - Filtration and Stopping Time</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-2/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap5/5-2/</link>
       <pubDate>Sat, 03 Aug 2024 18:57:02 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-2/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap5/5-2/</guid>
       <description>&lt;h2 id=&#34;filtration&#34;&gt;Filtration&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Definition 5.3:&lt;/strong&gt; (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s &lt; t$.&lt;/p&gt;
@@ -798,9 +798,9 @@ $$\{T \leq t\} \in \mathcal{F}_t$$</blockquote>
     </item>
     <item>
       <title>5.1 - Axiomatic Construction of Stochastic Process</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap5/5-1/</link>
       <pubDate>Sat, 03 Aug 2024 16:45:46 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap5/5-1/</guid>
       <description>&lt;h2 id=&#34;definition-of-a-stochastic-process&#34;&gt;Definition of a stochastic process&lt;/h2&gt;
 &lt;p&gt;A stochastic process is a parameterized random variable $\{X_t\}_{t\in\mathbf{T}}$ defined on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ taking on values in $\mathbb{R}$. $\mathbf{T}$ can seemingly be any subset of $\mathbb{R}$. For any fixed $t \in \mathbf{T}$, we can define the random variable&lt;/p&gt;
 $$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$&lt;p&gt;Thinking of a simple random walk, this means that $X_t$ is a random variable that takes in some subset of $\Omega = \{H,T\}^\mathbb{N}$ and outputs a real valued number (the sum of the first $t$ values in $\omega$): $\{\omega_1, \omega_2, \ldots \} \rightarrow \sum_{n \leq t} X(\omega_n)$&lt;/p&gt;</description>
@@ -817,23 +817,23 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
     </item>
     <item>
       <title>Applied Stochastic Analysis</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/eliasa/</link>
+      <link>https://hasithv.github.io/posts/eliasa/eliasa/</link>
       <pubDate>Sat, 03 Aug 2024 16:43:39 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/eliasa/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/eliasa/</guid>
       <description>&lt;p&gt;Here are my notes for E, Li, and Vanden-Eijnden&amp;rsquo;s &lt;a href=&#34;https://bookstore.ams.org/gsm-199/&#34;&gt;&lt;em&gt;Applied Stochastic Analysis&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Chapter 5 - Stochastic Processes
 &lt;ul&gt;
-&lt;li&gt;5.1 - &lt;a href=&#34;https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/&#34;&gt;Axiomatic Construction of Stochastic Process&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;5.2 - &lt;a href=&#34;https://hasithv.github.io/posts/notes/eliasa/chap5/5-2/&#34;&gt;Filtration and Stopping Time&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;5.3 - &lt;a href=&#34;https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/&#34;&gt;Markov Processes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;5.4 - &lt;a href=&#34;https://hasithv.github.io/posts/notes/eliasa/chap5/5-4/&#34;&gt;Gaussian Processes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.1 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap5/5-1/&#34;&gt;Axiomatic Construction of Stochastic Process&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.2 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap5/5-2/&#34;&gt;Filtration and Stopping Time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.3 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap5/5-3/&#34;&gt;Markov Processes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.4 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap5/5-4/&#34;&gt;Gaussian Processes&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Chapter 6 - Wiener Process
 &lt;ul&gt;
-&lt;li&gt;6.1 - &lt;a href=&#34;https://hasithv.github.io/posts/notes/eliasa/chap6/6-1/&#34;&gt;The Diffusion Limit of Random Walks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;6.2 - &lt;a href=&#34;https://hasithv.github.io/posts/notes/eliasa/chap6/6-2/&#34;&gt;The Invariance Principle&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;6.1 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap6/6-1/&#34;&gt;The Diffusion Limit of Random Walks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;6.2 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap6/6-2/&#34;&gt;The Invariance Principle&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</description>
@@ -841,16 +841,16 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
 <ul>
 <li>Chapter 5 - Stochastic Processes
 <ul>
-<li>5.1 - <a href="/posts/notes/eliasa/chap5/5-1/">Axiomatic Construction of Stochastic Process</a></li>
-<li>5.2 - <a href="/posts/notes/eliasa/chap5/5-2/">Filtration and Stopping Time</a></li>
-<li>5.3 - <a href="/posts/notes/eliasa/chap5/5-3/">Markov Processes</a></li>
-<li>5.4 - <a href="/posts/notes/eliasa/chap5/5-4/">Gaussian Processes</a></li>
+<li>5.1 - <a href="/posts/eliasa/chap5/5-1/">Axiomatic Construction of Stochastic Process</a></li>
+<li>5.2 - <a href="/posts/eliasa/chap5/5-2/">Filtration and Stopping Time</a></li>
+<li>5.3 - <a href="/posts/eliasa/chap5/5-3/">Markov Processes</a></li>
+<li>5.4 - <a href="/posts/eliasa/chap5/5-4/">Gaussian Processes</a></li>
 </ul>
 </li>
 <li>Chapter 6 - Wiener Process
 <ul>
-<li>6.1 - <a href="/posts/notes/eliasa/chap6/6-1/">The Diffusion Limit of Random Walks</a></li>
-<li>6.2 - <a href="/posts/notes/eliasa/chap6/6-2/">The Invariance Principle</a></li>
+<li>6.1 - <a href="/posts/eliasa/chap6/6-1/">The Diffusion Limit of Random Walks</a></li>
+<li>6.2 - <a href="/posts/eliasa/chap6/6-2/">The Invariance Principle</a></li>
 </ul>
 </li>
 </ul>
@@ -858,9 +858,9 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
     </item>
     <item>
       <title>2.2 - Symmetric monoidal preorders</title>
-      <link>https://hasithv.github.io/posts/notes/fongspivakact/chap2/2-2/</link>
+      <link>https://hasithv.github.io/posts/fongspivakact/chap2/2-2/</link>
       <pubDate>Fri, 02 Aug 2024 01:26:30 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/fongspivakact/chap2/2-2/</guid>
+      <guid>https://hasithv.github.io/posts/fongspivakact/chap2/2-2/</guid>
       <description>&lt;h2 id=&#34;221---definition-and-first-examples&#34;&gt;2.2.1 - Definition and first examples&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Definition 2.2:&lt;/strong&gt; A &lt;em&gt;symmetric monoidal structure&lt;/em&gt; on a preoirder $(X, \leq)$ consists of&lt;/p&gt;
@@ -1006,15 +1006,15 @@ And it is called a <em>strict monoidal monotone</em> if it satisfies</li>
     </item>
     <item>
       <title>An Invitation to Appied Category Theory</title>
-      <link>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</link>
+      <link>https://hasithv.github.io/posts/fongspivakact/fongspivakact/</link>
       <pubDate>Fri, 02 Aug 2024 00:47:08 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/fongspivakact/fongspivakact/</guid>
+      <guid>https://hasithv.github.io/posts/fongspivakact/fongspivakact/</guid>
       <description>&lt;p&gt;This is a collection of my notes for Brendan Fong and David Spivak&amp;rsquo;s &lt;a href=&#34;https://arxiv.org/pdf/1803.05316&#34;&gt;&lt;em&gt;An Invitation to Appied Category Theory&lt;/em&gt;&lt;/a&gt;. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://hasithv.github.io/1.pdf&#34;&gt;Chapter 1 - Generative effects: Orders and adjunctions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Chapter 2 - Resource theories: Monoidal preorders and enrichment
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://hasithv.github.io/posts/notes/fongspivakact/chap2/2-2/&#34;&gt;Section 2.2 - Symmetric monoidal preorders&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://hasithv.github.io/posts/fongspivakact/chap2/2-2/&#34;&gt;Section 2.2 - Symmetric monoidal preorders&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</description>
@@ -1023,7 +1023,7 @@ And it is called a <em>strict monoidal monotone</em> if it satisfies</li>
 <li><a href="/1.pdf">Chapter 1 - Generative effects: Orders and adjunctions</a></li>
 <li>Chapter 2 - Resource theories: Monoidal preorders and enrichment
 <ul>
-<li><a href="/posts/notes/fongspivakact/chap2/2-2/">Section 2.2 - Symmetric monoidal preorders</a></li>
+<li><a href="/posts/fongspivakact/chap2/2-2/">Section 2.2 - Symmetric monoidal preorders</a></li>
 </ul>
 </li>
 </ul>

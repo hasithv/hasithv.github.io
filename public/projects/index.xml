@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Projects on HasithAlted</title>
+    <link>http://localhost:1313/projects/</link>
+    <description>Recent content in Projects on HasithAlted</description>
+    <generator>Hugo -- 0.140.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Dec 2024 18:47:40 -0600</lastBuildDate>
+    <atom:link href="http://localhost:1313/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Metrobike Optimization Around UT Austin</title>
+      <link>http://localhost:1313/projects/24-12-10-metrobike/</link>
+      <pubDate>Tue, 10 Dec 2024 18:47:40 -0600</pubDate>
+      <guid>http://localhost:1313/projects/24-12-10-metrobike/</guid>
+      <description>&lt;p&gt;This project was done as our final project for &lt;a href=&#34;https://www.wgilpin.com/&#34;&gt;William Gilpin&amp;rsquo;s&lt;/a&gt; Graduate &lt;a href=&#34;https://www.wgilpin.com/cphy/?utm_source=en_us_srepgw&#34;&gt;Computational Physics Course&lt;/a&gt;. Our complete GitHub repository, with instructions on how to replicate our results, can be found &lt;a href=&#34;https://github.com/devddesai/metrobike&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;The goal of this project is to simulate the behavior of a bike-sharing system in a network of stations and destinations, and then optimize the positions of the stations. We approach the simulation of the bike-sharing system with Agent Based Modeling (ABM).&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>This project was done as our final project for <a href="https://www.wgilpin.com/">William Gilpin&rsquo;s</a> Graduate <a href="https://www.wgilpin.com/cphy/?utm_source=en_us_srepgw">Computational Physics Course</a>. Our complete GitHub repository, with instructions on how to replicate our results, can be found <a href="https://github.com/devddesai/metrobike">here</a>.</p>
+<h1 id="introduction">Introduction</h1>
+<p>The goal of this project is to simulate the behavior of a bike-sharing system in a network of stations and destinations, and then optimize the positions of the stations. We approach the simulation of the bike-sharing system with Agent Based Modeling (ABM).</p>
+<p>Ultimately, we aim to find the optimal locations for <a href="https://www.capmetro.org/bikeshare">metrobike</a> stations around the University of Texas at Austin campus and the surrounding West Campus area.</p>
+<h2 id="the-model">The Model</h2>
+<p>The model consists of a number of stations where bikes can be picked up and dropped off, and a number of destinations that agents (commuters) want to visit. This is reprsented by a graph that agents can traverse.</p>
+<p>For example, consider the following graph:</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/networkexample.png#center"
+         alt="Example graph of destinations (in blue) and stations (in red). The numbers on the nodes are the index of the node." width="250px"/> <figcaption>
+            <p>Example graph of destinations (in blue) and stations (in red). The numbers on the nodes are the index of the node.</p>
+        </figcaption>
+</figure>
+
+<p>In this graph, the blue nodes represent destinations and the red nodes represent stations. Every node is connected to every other node by an edge, whose weight represents the time it takes to travel between them on a bike (to get the time between two nodes by walking, multiply the edge weight by 3 since walking is about 3 times slower than biking). The fact that the graph is fully connected means that, in principle, an agent can travel between any two nodes by walking.</p>
+<h3 id="agent-decision-making">Agent Decision Making</h3>
+<p>If an agent wants to bike, they must find a station with an available bike and another station where they can return the bike (ideally, the agent would want to find a station close to their destination to drop off the bike). Based on the fact that stations can be full or empty, the agent must decide whether to walk or bike to their destination. The full logic of the agent&rsquo;s pathfinding is quite tedious to explain, but trust that the agent will approximate your decision making to the first order. Interested readers can refer to the <code>pathfinding.py</code> file and the <code>step</code> method in the <code>Commuter</code> class in <code>commuter.py</code>.</p>
+<h2 id="heading"></h2>
+<p>At each timestep, the agents will:</p>
+<blockquote>
+<ol>
+<li>Move towards their destination</li>
+<li>The stations update their bike counts based on the agents&rsquo; decisions</li>
+<li>Agents who arrived at their destination pick a new destination and start moving towards it</li>
+<li>The way agents choose a particular destination is based on a probability distribution that we can set.</li>
+</ol>
+</blockquote>
+<p>Using the previous graph as an example, we can set the probability distribution to be uniform for every destination, or we can set it so that agents favor certain destinations over others. This is done with the <code>weights</code> attribute in the <code>MyModel</code> class in <code>model.py</code>.</p>
+<h2 id="optimization">Optimization</h2>
+<p>The goal of the optimization is to find the best positions for the stations in the network. We can use two algorithms to do this: particle swarm optimization (PSO) and a genetic algorithm (GA). The optimization algorithms are implemented in the <code>optimize.py</code> file.</p>
+$$L = -\frac{T}{N}$$<p>
+where $T$ is the total number of trips completed by all agents and $N$ is the number of agents in the model. The reason we use the negative of the average trips completed is because the optimization algorithms are designed to minimize the fitness function, and we want to maximize the number of trips completed.</p>
+<h3 id="pso">PSO</h3>
+<p>Our implementation of PSO has the following hyperparameters:</p>
+<ul>
+<li><code>n_particles</code>: The number of particles in the swarm.</li>
+<li><code>n_iterations</code>: The number of iterations the algorithm will run for.</li>
+<li><code>c1</code>: The cognitive parameter.</li>
+<li><code>c2</code>: The social parameter.</li>
+<li><code>w</code>: The inertia parameter.</li>
+</ul>
+$$v_{i+1} = wv_i + c_1r_1(p_{\text{best}, i} - x_i) + c_2r_2(g_\text{best} - x_i)$$$$x_{i+1} = x_i + v_{i+1}$$<p>
+where $v_i$ is the velocity of particle $i$, $x_i$ is the position of particle $i$, $p_{\text{best}, i}$ is the best position of particle $i$ so far, $gbest$ is the best position of the swarm, $r_1$ and $r_2$ are random numbers between 0 and 1, and $w$, $c_1$, and $c_2$ are the inertia, cognitive, and social parameters, respectively.</p>
+<p>The PSO algorithm will do this for <code>n_iterations</code> iterations, and at the end, it will return the best position of the swarm found so far.</p>
+<h3 id="genetic-algorithm">Genetic Algorithm</h3>
+<p>Our implementation of the genetic algorithm has the following hyperparameters:</p>
+<ul>
+<li><code>population_size</code>: The number of individuals in the population.</li>
+<li><code>n_generations</code>: The number of generations the algorithm will run for.</li>
+<li><code>mutation_rate</code>, $p$: The probability that a gene will mutate.</li>
+<li><code>alpha</code>: The strength of the mutation.</li>
+</ul>
+<p>Genetic algorithms works by initializing a population of individuals with random genes. At each generation, the individuals are evaluated based on their fitness, and the best individuals are selected to reproduce. The reproduction process involves selecting two parents and creating a child by combining their genes. The child&rsquo;s genes are then mutated with a certain probability. The best individuals from the previous generation are carried over to the next generation. The genetic algorithm will do this for <code>n_generations</code> generations, and at the end, it will return the best individual found so far.</p>
+$$c_i = \left[\begin{cases}
+    a_i  & \text{with probability } 0.5 \\
+    b_i & \text{with probability } 0.5
+\end{cases}\right] + 
+\begin{cases}
+    \alpha B & \text{with probability } p \\
+    0 & \text{with probability } 1 - p
+\end{cases}
+$$<p>
+where $B$ is the length of the maxiumum dimension of the search space, $p$ is the mutation rate, and $\alpha$ is the strength of the mutation.</p>
+<h1 id="results">Results</h1>
+<p>Everything needed to reproduce the results can be found in the <code>metrobike.ipynb</code> notebook. The notebook will guide you through the process of running the simulations and visualizing the results.</p>
+<h2 id="simple-2-station-2-destination-case">Simple 2 station, 2 destination case</h2>
+<p>This is the simplest case we can consider. Here, the analytical solution is quite simple to find if we assume uniform weights for the destinations. The optimal positions for the station are to place them directly on top of the destinations, and both PSO and GA are able to find this solution quite easily:</p>
+<p><figure class="align-center ">
+    <img loading="lazy" src="./images/pso_2_2.png#center"
+         alt="Optimized map of two destinations and two stations using the PSO algorithm." width="400px"/> <figcaption>
+            <p>Optimized map of two destinations and two stations using the PSO algorithm.</p>
+        </figcaption>
+</figure>
+
+<figure class="align-center ">
+    <img loading="lazy" src="./images/ga_2_2.png#center"
+         alt="Optimized map of two destinations and two stations using the GA algorithm." width="400px"/> <figcaption>
+            <p>Optimized map of two destinations and two stations using the GA algorithm.</p>
+        </figcaption>
+</figure>
+</p>
+<h2 id="4-station-2-destination-case">4 station, 2 destination case</h2>
+<p>For this case, we placed four destinations in a diamond shape. And destinations 2 and 1 are about twice as far away from each other than destination 3 and destination 4.</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/diamond.png#center"
+         alt="Map of four destinations arranged in a diamond shape. The aspect ratio of this graph is misleading, Destination 2 and Destination 1 are about twice as far away from each other than Destination 4 and Destination 3" width="300px"/> <figcaption>
+            <p>Map of four destinations arranged in a diamond shape. The aspect ratio of this graph is misleading, <code>Destination 2</code> and <code>Destination 1</code> are about twice as far away from each other than <code>Destination 4</code> and <code>Destination 3</code></p>
+        </figcaption>
+</figure>
+
+<p>Thus, with only two stations to place, the optimal solution is to place one station near destination 2 and the other near destination 1. Both the PSO and the genetic algorithm are quite sensitive to this problem, it seems as if they only converge to the optimal solution about half the time. For the PSO, we show a failed case, and for the GA we show a successful case where the optimal solution was found:</p>
+<p><figure class="align-center ">
+    <img loading="lazy" src="./images/pso_4_2_uniform.png#center"
+         alt="Optimized map of four destinations and two stations using the PSO algorithm. Every destination is assumed to be equally popular." width="400px"/> <figcaption>
+            <p>Optimized map of four destinations and two stations using the PSO algorithm. Every destination is assumed to be equally popular.</p>
+        </figcaption>
+</figure>
+
+<figure class="align-center ">
+    <img loading="lazy" src="./images/ga_4_2_uniform.png#center"
+         alt="Optimized map of four destinations and two stations using the GA algorithm. Every destination is assumed to be equally popular" width="400px"/> <figcaption>
+            <p>Optimized map of four destinations and two stations using the GA algorithm. Every destination is assumed to be equally popular</p>
+        </figcaption>
+</figure>
+</p>
+<p>Additionally, we can also consider the case where the weights are not uniform. For example, we can set the weights to be $(0.7, 0.1, 0.1, 0.1)$. In this case, the optimal solution is to place one station near destination 2 and the other near destination 1, since destination 1 will be the most popular. In this case, both PSO and GA are able to find the optimal solution:</p>
+<p><figure class="align-center ">
+    <img loading="lazy" src="./images/pso_4_2_1weight.png#center"
+         alt="Optimized map of four destinations and two stations using the PSO algorithm. Station 1 was set to be the most popular with a probability of 0.7 while all other stations had a probability of 0.1." width="400px"/> <figcaption>
+            <p>Optimized map of four destinations and two stations using the PSO algorithm. Station 1 was set to be the most popular with a probability of 0.7 while all other stations had a probability of 0.1.</p>
+        </figcaption>
+</figure>
+
+<figure class="align-center ">
+    <img loading="lazy" src="./images/ga_4_2_1weight.png#center"
+         alt="Optimized map of four destinations and two stations using the GA algorithm. Station 1 was set to be the most popular with a probability of 0.7 while all other stations had a probability of 0.1." width="400px"/> <figcaption>
+            <p>Optimized map of four destinations and two stations using the GA algorithm. Station 1 was set to be the most popular with a probability of 0.7 while all other stations had a probability of 0.1.</p>
+        </figcaption>
+</figure>
+</p>
+<h2 id="4-station-4-destination-case">4 station, 4 destination case</h2>
+<p>For this case, we placed four destinations in a square shape. The optimal solution is to place one station near each destination. However, both algorithms fail to find the optimal solution nearly every time and give us something like the following result:</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/pso_4_4.png#center"
+         alt="Optimized map of four destinations and two stations using the GA algorithm. All stations are equally popular." width="400px"/> <figcaption>
+            <p>Optimized map of four destinations and two stations using the GA algorithm. All stations are equally popular.</p>
+        </figcaption>
+</figure>
+
+<p>This is likely due to the fact that for this case, the optimal solution is hidden behind many local minima, and the algorithms are not able to escape them. It could be possible that more aggresive methods to jump out of local minima could help for this particular case of destinations=stations.</p>
+<h2 id="invariance-to-initial-bike-distribution">Invariance to initial bike distribution</h2>
+<p>As one would expect, the initial distribution of bikes at the stations does not affect the final distribution of bikes at the stations. This is shown in the following histograms, where we start with all 10 bikes at station 1, but the distribution of bikes at the stations after 10,000 steps is equal (distribution collected for a model with 4 stations and 4 destinations, each with uniform weights):</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/uniformhist.PNG#center"
+         alt="Distribution of bikes held for each station. The map used was the example network shown in The Model section with 4 destinations and 4 stations along rectangular vertices. Each destination was set to be equally popular." width="600px"/> <figcaption>
+            <p>Distribution of bikes held for each station. The map used was the example network shown in <a href="#the-model">The Model</a> section with 4 destinations and 4 stations along rectangular vertices. Each destination was set to be equally popular.</p>
+        </figcaption>
+</figure>
+
+<p>We can also alter the weights of the destinations to be $(0.7, 0.1, 0.1, 0.1)$ and observe how the invariant distribution is altered:</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/skewhist.PNG#center"
+         alt="Distribution of bikes held for each station. The map used was the example network shown in The Model. Destination 1 was set to be the most pipular with a probability of 0.7 and the other destinations had a probability of 0.1." width="600px"/> <figcaption>
+            <p>Distribution of bikes held for each station. The map used was the example network shown in <a href="#the-model">The Model</a>. <code>Destination 1</code> was set to be the most pipular with a probability of 0.7 and the other destinations had a probability of 0.1.</p>
+        </figcaption>
+</figure>
+
+<p>Even without seeing the actual map we used (we used the basic example graph shown in the very beginning), one can already guess that station 0 was placed closes to the most popular destination since it has the heaviest tail towards the right. From there, the agents seemed to prefer to bike to station 2 more often than station 3, and hardly any bikes ever reached station 1. So, despite station 1, 2, and 3 being just as popular of a destination, station 1 could had much less bikes than stations 2 or 3.</p>
+<p>Thus, we can see that the popularity of a destination is not the only factor that determines the distribution of bikes at nearby stations&ndash;we also need to consider the practicality riding a bike towards that destination from other nearby, popular destinations.</p>
+<h2 id="application-to-real-world-data">Application to Real-World Data</h2>
+<p>Using metrobike data, we were able to estimate how popular certain areas in Austin were, and using GIS data of the distances between select locations of around campus and west campus, we were able to create a graph to represent UT Austin.</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/destination_configuration.png#center"
+         alt="Map of select destinations around UT Austin and West Campus. The corresponding location to each node index and its estimated popularity is given in the applications section." width="500px"/> <figcaption>
+            <p>Map of select destinations around UT Austin and West Campus. The corresponding location to each node index and its estimated popularity is given in the <a href="#application-to-real-world-data">applications</a> section.</p>
+        </figcaption>
+</figure>
+
+<p>The select locations and their respective weights we used were (the list number corresponds to the destination number of the graph):</p>
+<blockquote>
+<ol>
+<li>26th West - 0.078</li>
+<li>McCombs - 0.25</li>
+<li>Target - 0.086</li>
+<li>Union Building - 0.086</li>
+<li>PMA - 0.14</li>
+<li>Union on 24th - 0.071</li>
+<li>Welch - 0.14</li>
+<li>Rise - 0.021</li>
+<li>Axis West - 0.077</li>
+<li>Rec - 0.056</li>
+</ol>
+</blockquote>
+<p>Then, we were able to use our optimization algorithms to find the optimal positions of the stations. We optimized for 6 stations around campus and west campus, and the results can be seen in the following images:</p>
+<p><figure class="align-center ">
+    <img loading="lazy" src="./images/genetic10x6.png#center"
+         alt="Result of optimization of 6 station locations around UT and West Campus using GA optimization. Only four stations are visible since the GA failed to converge and placed two stations outside the plot bounds." width="400px"/> <figcaption>
+            <p>Result of optimization of 6 station locations around UT and West Campus using GA optimization. Only four stations are visible since the GA failed to converge and placed two stations outside the plot bounds.</p>
+        </figcaption>
+</figure>
+
+<figure class="align-center ">
+    <img loading="lazy" src="./images/pso10x6.png#center"
+         alt="Result of optimization of 6 station locations around UT and West Campus using PSO. The PSO algorithm converged to a fairly reasonable solution." width="400px"/> <figcaption>
+            <p>Result of optimization of 6 station locations around UT and West Campus using PSO. The PSO algorithm converged to a fairly reasonable solution.</p>
+        </figcaption>
+</figure>
+</p>
+<p>We can see that the PSO algorithm was able to place all 6 stations within the boundaries we set, while the genetic algorithm placed 2 stations outside of the boundaries. In fact, the PSO solution seems very reasonable, with stations placed near the most popular destinations!</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>For small systems, the optimization algorithms are able to find the optimal solution quite easily and quickly. For larger systems, however, we begin to see convergence issues. Nevertheless, given enough different initial conditions, the algorithms are able to find the optimal solution eventually&ndash;still faster than trying to brute force the solution as we allowed for a continious search of a $2n$ dimensional space, where $n$ is the number of stations whose locations we want to optimize.</p>
+<p>We were able to find some interesting relationships between the popularity of a destination and the distribution of bikes at nearby stations. We also found that the initial distribution of bikes at the stations does not affect the final distribution of bikes at the stations, so the model has an invariant distribution of bikes that is reached rather quickly.</p>
+<p>Finally, we were able to apply our model to real-world data and find the optimal positions of stations around campus and west campus. The results were quite reasonable, with stations placed near the most popular destinations.</p>
+<h1 id="future-work">Future Work</h1>
+<p>Some directions we would really like to explore are</p>
+<ul>
+<li>Implementing a diurnal function to change the weights of destinations over time</li>
+<li>Implement a more agressive method to escape local minimas, which could help us find more optimal solutions for larger systems</li>
+<li>Visualizing the paths agents take to reach their destinations</li>
+<li>Do a grid search to find the best hyperparameters for the optimization algorithms, maybe this could also help stabilize convergence for larger systems</li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Is Basketball a Random Walk?</title>
+      <link>http://localhost:1313/projects/24-08-17-basketballrandomwalk/</link>
+      <pubDate>Sat, 17 Aug 2024 20:36:30 -0500</pubDate>
+      <guid>http://localhost:1313/projects/24-08-17-basketballrandomwalk/</guid>
+      <description>&lt;p&gt;About two years ago, I attended a seminar given by &lt;a href=&#34;https://sites.santafe.edu/~redner/&#34;&gt;Dr. Sid Redner&lt;/a&gt; of the &lt;a href=&#34;https://www.santafe.edu/&#34;&gt;Santa Fe Institute&lt;/a&gt; titled, &amp;ldquo;Is Basketball Scoring a Random Walk?&amp;rdquo; I  was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&amp;ndash;and surely many other audience members&amp;ndash;that basketball does indeed exhibit behavior akin to a random walk.&lt;/p&gt;
+&lt;p&gt;At the very end of his lecture, Dr. Redner said something along the lines of, &amp;ldquo;the obvious betting applications are left as an exercise to the audience.&amp;rdquo; So, as enthusiastic audience members, let&amp;rsquo;s try to tackle this exercise.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>About two years ago, I attended a seminar given by <a href="https://sites.santafe.edu/~redner/">Dr. Sid Redner</a> of the <a href="https://www.santafe.edu/">Santa Fe Institute</a> titled, &ldquo;Is Basketball Scoring a Random Walk?&rdquo; I  was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&ndash;and surely many other audience members&ndash;that basketball does indeed exhibit behavior akin to a random walk.</p>
+<p>At the very end of his lecture, Dr. Redner said something along the lines of, &ldquo;the obvious betting applications are left as an exercise to the audience.&rdquo; So, as enthusiastic audience members, let&rsquo;s try to tackle this exercise.</p>
+<p><em>Note: all code and data for this project can be found in the <a href="https://github.com/hasithv/nba-odds">github repository</a> [<a href="https://github.com/hasithv/nba-odds">2</a>]</em></p>
+<h2 id="understanding-the-model">Understanding the Model</h2>
+<p>I highly recommend reading the paper [<a href="https://arxiv.org/abs/1109.2825v1">1</a>] that Dr. Redner et. al. published for a full understanding. However, here are the main points that we will need:</p>
+<h3 id="assumptions">Assumptions</h3>
+<ol>
+<li><strong>Random Walk Definition:</strong> The net score, $\{\Delta_n\}_{n \in \mathbb{N}}$ (the difference between the scores of teams A and B) can be modeled as an anti-persistent random walk. This means that if the score moves up during a play, then the next play is more likely to move down.
+$$\Delta_n = \sum_{i=1}^{n} \delta_i$$
+$$\begin{cases}
+\delta_i > 0 & \text{with probability } p_i \\
+\delta_i < 0 & \text{with probability } 1 - p_i
+\end{cases}$$
+$$p_n = (\textcolor{orange}{\text{other terms}}) - .152 \left(\frac{|\delta_{n-1}|}{\delta_{n-1}}\right), \quad \forall \; i,n \in \mathbb{N}$$
+Where $\delta_i$ is the points made during the $i$th play, and $\Delta_0 = \delta_0 = 0$. This is explained by the fact that the scoring team loses possession of the ball, so it is harder for them to score again.</li>
+<li><strong>Coasting and Grinding:</strong> The probability of a team scoring is proportional to how far they are behind in points:
+$$p_n = (\textcolor{orange}{\text{other terms}}) - .152 r_{n-1} - .0022 \Delta_{n-1}, \quad \forall \; n \in \mathbb{N}$$
+Here, $r_{n-1} = \left(\frac{|\delta_{n-1}|}{\delta_{n-1}}\right)$.This is explained in the paper as &ldquo;the winning team coasts, and the losing team grinds.&rdquo;</li>
+<li><strong>Team Strengths:</strong> The strength of a team also has a effect on the probability of scoring:
+$$p(I_A, r_{n-1}, \Delta_{n-1}) = I_A - 0.152r_{n-1} - 0.0022 \Delta_{n-1}, \quad \forall \; n \in \mathbb{N}$$
+Where the strength of a team is defined by parameters $X_A$ and $X_B$ as $I_A(X_A, X_B) = \frac{X_A}{X_A + X_B}$. Additionally, $X_A$ and $X_B$ are distributed according to $\mathcal{N}(\mu = 1,\sigma^2=.0083).$</li>
+<li><strong>Time Between Plays:</strong> The time between each play is exponentially distributed
+$$\tau_n \sim \text{Exp}(\lambda)$$</li>
+<li><strong>Scoring Probabilities:</strong> For each play, the probabilities of scoring $n$ points is
+$$\begin{cases}
+\begin{align}
+    \delta = 1, \quad &8.7\% \\
+    \delta = 2, \quad &73.86\% \\
+    \delta = 3, \quad &17.82\% \\
+    \delta = 4, \quad &0.14\% \\
+    \delta = 5, \quad &0.023\% \\
+    \delta = 6, \quad &0.0012\% \\
+\end{align}
+\end{cases}$$
+&#x26a0;&#xfe0f; The only confusion I have with the paper is that the above &ldquo;probabilities&rdquo; do not sum to 1, so I am not sure how to interpret them. I went ahead and removed $\delta=6$ and lowered the probability of  $\delta=5$ so that the probabilities sum to 1. This should be okay since 5 and 6 point plays are so rare that they should not affect the model too much.</li>
+</ol>
+<h2 id="building-the-simulation">Building the Simulation</h2>
+<h3 id="gathering-simulation-data">Gathering Simulation Data</h3>
+<p>Two things I wanted to improve were to expand the dataset and to use bayesian updates to better estimate the $\lambda$ and $I_A$ for a game.</p>
+<p>For the dataset, Dr. Redner only used games from 2006-2009, but I managed to obtain all playoff games after 2000. Using this, I looked at the distribution for the average number of plays per 30s</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/playrate.svg#center"
+         alt="Distribution for $\lambda$ values. The orange normal curve has mean 1.005 and std 0.1. I am not sure why there was a large deficit at the 1 play per 30s mark; it seems to be half as high as it shold be." width="400px"/> <figcaption>
+            <p>Distribution for $\lambda$ values. The orange normal curve has mean 1.005 and std 0.1. I am not sure why there was a large deficit at the 1 play per 30s mark; it seems to be half as high as it shold be.</p>
+        </figcaption>
+</figure>
+
+$$\lambda \sim \mathcal{N}(1.005,0.1)$$$$X \sim \mathcal{N}(1, \sqrt{0.0083})$$<h3 id="bayesian-updating">Bayesian Updating</h3>
+$$\begin{align}
+    f(\lambda | \{t_1,\ldots,t_n\}) &\propto f(\{t_1,\ldots,t_n\} | \lambda) f(\lambda) \\
+    &\propto \left(\prod_{i=1}^{n} f(t_i | \lambda) \right) f(\lambda) \\
+    &\propto \left(\prod_{i=1}^{n} \lambda e^{-\lambda t_i} \right) \mathcal{N}(1.005,0.1) \\
+    &\propto \left(\lambda^n e^{-\lambda \sum_{i=1}^{n} t_i} \right) \mathcal{N}(1.005,0.1) \\ \\
+    f(X_A, X_B | \{r_1,\ldots,r_n\}) &\propto f(\{r_1,\ldots,r_n\} | X_A,X_B) f(X_A,X_B) \\
+    &\propto \left(\prod_{i=1}^{n} f(r_i | X_A,X_B) \right) f(X_A,X_B) \\
+    &\propto \left|\prod_{i=1}^{n} p\left(\frac{X_A}{X_A + X_B}, r_{i-1}, \Delta_{i-1} \right) - \frac{1-r_i}{2} \right| \cdot \mathcal{N}(1, \sqrt{0.0083})(X_A) \cdot \mathcal{N}(1, \sqrt{0.0083})(X_B)\\
+\end{align}
+$$<p>
+As you can see, the update for the $X$ values is a bit  more complicated, but it is still fairly easy to compute. The code to do this is show below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> update_rate!(params, time_deltas)
+</span></span><span style="display:flex;"><span>    time_deltas <span style="color:#f92672">=</span> time_deltas<span style="color:#f92672">/</span><span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>    params<span style="color:#f92672">.</span>rate <span style="color:#f92672">=</span> (x) <span style="color:#f92672">-&gt;</span> x<span style="color:#f92672">^</span>length(time_deltas) <span style="color:#f92672">*</span> exp(<span style="color:#f92672">-</span>x <span style="color:#f92672">*</span> sum(time_deltas)) <span style="color:#f92672">*</span> pdf(defaultRate, x) <span style="color:#f92672">/</span> params<span style="color:#f92672">.</span>rate_Z
+</span></span><span style="display:flex;"><span>    normalize_rate!(params)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> update_strengths!(params, scoring_data, lookback<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>)
+</span></span><span style="display:flex;"><span>    lookback <span style="color:#f92672">=</span> min(lookback, length(scoring_data))
+</span></span><span style="display:flex;"><span>    scoring_data <span style="color:#f92672">=</span> scoring_data[<span style="color:#66d9ef">end</span><span style="color:#f92672">-</span>lookback<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#66d9ef">end</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    score_probs <span style="color:#f92672">=</span> (x,y) <span style="color:#f92672">-&gt;</span> prod(map((z) <span style="color:#f92672">-&gt;</span> score_prob(z, x, y), scoring_data))
+</span></span><span style="display:flex;"><span>    params<span style="color:#f92672">.</span>strengths <span style="color:#f92672">=</span> (x,y) <span style="color:#f92672">-&gt;</span> score_probs(x,y) <span style="color:#f92672">*</span> pdf(defaultStrengths, x) <span style="color:#f92672">*</span> pdf(defaultStrengths, y) <span style="color:#f92672">/</span> params<span style="color:#f92672">.</span>strengths_Z
+</span></span><span style="display:flex;"><span>    normalize_strengths!(params)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>The real roadblock, however, is actually sampling the $\lambda$ and $X$ values from the pdfs.</p>
+<h3 id="sampling-game-parameters">Sampling Game Parameters</h3>
+<p>Since we have access to the pdfs (even their normalizing constants are quite easy to compute using numeric methods), we can employ importance sampling as a brute force method. I am sure that there are fancier MCMC algorithms that could be used, but the unfriendly distribution of the $X$ values made it hard for me to use external libraries like <code>Turing.jl</code>.</p>
+$$\begin{align}
+    \underset{X \sim f}{\mathbb{E}}[g(X)] &= \int g(x) f(x) dx \\
+    &= \int g(x) \frac{f(x)}{h(x)} h(x) dx \\
+    &= \underset{X \sim h}{\mathbb{E}}\left[\frac{f(X)}{h(X)} g(X)\right]
+\end{align}$$<p>
+Which also tells us that $h$ has the condition that it must be non-zero wherever $f$ is non-zero. When working with empricial calulations, the term $\frac{f(x)}{h(x)}$ is referred to as the weight of the sample for obvious reasons.</p>
+<p>So, for our empirical estimations a good choice for $h$ is the prior distributions. The following code shows the implementation of the sampling functions:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> sample_params(game, n)
+</span></span><span style="display:flex;"><span>    r <span style="color:#f92672">=</span> rand(defaultRate, n)
+</span></span><span style="display:flex;"><span>    wr <span style="color:#f92672">=</span> game<span style="color:#f92672">.</span>params<span style="color:#f92672">.</span>rate<span style="color:#f92672">.</span>(r) <span style="color:#f92672">./</span> pdf(defaultRate, r)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    s <span style="color:#f92672">=</span> rand(defaultStrengths, n, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>    ws <span style="color:#f92672">=</span> game<span style="color:#f92672">.</span>params<span style="color:#f92672">.</span>strengths<span style="color:#f92672">.</span>(s[<span style="color:#f92672">:</span>,<span style="color:#ae81ff">1</span>], s[<span style="color:#f92672">:</span>,<span style="color:#ae81ff">2</span>]) <span style="color:#f92672">./</span> (pdf(defaultStrengths, s[<span style="color:#f92672">:</span>,<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">.*</span> pdf(defaultStrengths, s[<span style="color:#f92672">:</span>,<span style="color:#ae81ff">2</span>]))
+</span></span><span style="display:flex;"><span>    w <span style="color:#f92672">=</span> wr <span style="color:#f92672">.*</span> ws
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> r, s, w
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> sample_games(game, n<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>, k<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>)
+</span></span><span style="display:flex;"><span>    results <span style="color:#f92672">=</span> zeros(n)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>n
+</span></span><span style="display:flex;"><span>        r, s, w <span style="color:#f92672">=</span> sample_params(game, k)
+</span></span><span style="display:flex;"><span>        sample_results <span style="color:#f92672">=</span> zeros(k)
+</span></span><span style="display:flex;"><span>        Threads<span style="color:#f92672">.</span><span style="color:#a6e22e">@threads</span> <span style="color:#66d9ef">for</span> j <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>k
+</span></span><span style="display:flex;"><span>            X <span style="color:#f92672">=</span> s[j, <span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>            Y <span style="color:#f92672">=</span> s[j, <span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>            sample_results[j] <span style="color:#f92672">=</span> simulate_game(game, r[j], X, Y) <span style="color:#f92672">*</span> w[j]
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>        results[i] <span style="color:#f92672">=</span> sum(sample_results) <span style="color:#f92672">/</span> k
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> sum(results)<span style="color:#f92672">/</span>n
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h3 id="simulating-games">Simulating Games</h3>
+<p>The final step is to simulate the games. This is quite easy to do if we are able to pass in all the parameters we need.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> simulate_game(game, lambda, Xa, Xb)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> length(game<span style="color:#f92672">.</span>plays) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        t <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        s <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        r <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>        t <span style="color:#f92672">=</span> game<span style="color:#f92672">.</span>plays[<span style="color:#66d9ef">end</span>][<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>        s <span style="color:#f92672">=</span> net_score(game)
+</span></span><span style="display:flex;"><span>        r <span style="color:#f92672">=</span> sign(game<span style="color:#f92672">.</span>plays[<span style="color:#66d9ef">end</span>][<span style="color:#ae81ff">2</span>])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> t <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2880</span>
+</span></span><span style="display:flex;"><span>        t <span style="color:#f92672">+=</span> rand(Exponential(<span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>lambda)) <span style="color:#f92672">*</span> <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> rand() <span style="color:#f92672">&lt;</span> score_prob((<span style="color:#ae81ff">1</span>, r, s), Xa, Xb)
+</span></span><span style="display:flex;"><span>            s <span style="color:#f92672">+=</span> random_play()
+</span></span><span style="display:flex;"><span>            r <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>            s <span style="color:#f92672">-=</span> random_play()
+</span></span><span style="display:flex;"><span>            r <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (sign(s)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h2 id="results">Results</h2>
+<h3 id="observations-of-the-model">Observations of the Model</h3>
+<p>The above code snippets allowed me to peer into quite a few example games, and gave me the following conclusions about how baksetball random walks work:</p>
+<ol>
+<li><strong>Strengths Don&rsquo;t Dominate:</strong> Dr. Redner mentioned that it would be quite difficult to correctly predict the strengths of the teams given game data, and seeing as the bayesian updates hardly change the prior, I&rsquo;ll have to agree</li>
+<li><strong>The Games are Relatively Uniform:</strong> Even though the distribution for $\lambda$ did visually show significant updates throughout the game, the resulting probabilities hardly shifted&ndash;meaning that we will not be able to differentiate between most games.</li>
+<li><strong>The Arcsine Law:</strong> The biggest factor which determines who wins is the current team that is leading. This is in agreement with the <a href="/posts/notes/eliasa/chap6/6-1/#arcsine-law">arcsine law</a> which states that a random walk is most likely to spend its time on one side of the origin.</li>
+</ol>
+<h3 id="application">Application</h3>
+<p>Due to the performant nature of the code (thanks <code>Julia</code>!), it made sense to spin up website with a simpler version of the model (no bayesian updates since they hardly made a difference and it&rsquo;d be a lot of work for the user to input each play). This way, someone betting on a game can make a mathematically-backed decision on how to spend their money!
+<figure class="align-center ">
+    <img loading="lazy" src="./images/webapp.PNG#center"
+         alt="The website takes in the scores of the teams and the time elapsed to calculate the odds that a team will win (the lower the better)" width="600px"/> <figcaption>
+            <p>The website takes in the scores of the teams and the time elapsed to calculate the odds that a team will win (the lower the better)</p>
+        </figcaption>
+</figure>
+</p>
+<p>The application computes the odds for a team to win. In other words, it outputs the inverse probability for a team to win, so the closer it is to 1, the more likely that team is to win, and vice versa.</p>
+<p>If a bookie offers a payout multiplier that is highger than the calcualted odds, it might be a good idea to buy it because we are prdicting that the team is more likely to win than the bookie thinks (thus, the bookie overpriced the payout).</p>
+<p>I cannot host the application myself, but you can find the code for it&ndash;along with the instructions to run it&ndash;in the github repository [<a href="https://github.com/hasithv/nba-odds">2</a>].</p>
+<h2 id="references">References</h2>
+<ol>
+<li>Gabel, A., Redner, S., &ldquo;Random Walk Picture of Basketball Scoring,&rdquo; <a href="https://arxiv.org/abs/1109.2825v1">arXiv:1109.2825v1</a> (2011).</li>
+<li>Vattikuti, V., &ldquo;NBA Odds,&rdquo; <a href="https://github.com/hasithv/nba-odds">github.com/hasithv/nba-odds</a> (2024).</li>
+</ol>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

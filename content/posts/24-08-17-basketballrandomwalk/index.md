@@ -165,7 +165,7 @@ end
 The above code snippets allowed me to peer into quite a few example games, and gave me the following conclusions about how baksetball random walks work:
 1. **Strengths Don't Dominate:** Dr. Redner mentioned that it would be quite difficult to correctly predict the strengths of the teams given game data, and seeing as the bayesian updates hardly change the prior, I'll have to agree
 1. **The Games are Relatively Uniform:** Even though the distribution for $\lambda$ did visually show significant updates throughout the game, the resulting probabilities hardly shifted--meaning that we will not be able to differentiate between most games.
-1. **The Arcsine Law:** The biggest factor which determines who wins is the current team that is leading. This is in agreement with the [arcsine law]({{< relref "../../posts/notes/ELiASA/chap6/6-1#arcsine-law" >}}) which states that a random walk is most likely to spend its time on one side of the origin.
+1. **The Arcsine Law:** The biggest factor which determines who wins is the current team that is leading. This is in agreement with the [arcsine law]({{< relref "../../posts/ELiASA/chap6/6-1#arcsine-law" >}}) which states that a random walk is most likely to spend its time on one side of the origin.
 
 ### Application
 Due to the performant nature of the code (thanks `Julia`!), it made sense to spin up website with a simpler version of the model (no bayesian updates since they hardly made a difference and it'd be a lot of work for the user to input each play). This way, someone betting on a game can make a mathematically-backed decision on how to spend their money!

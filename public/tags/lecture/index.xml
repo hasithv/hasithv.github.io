@@ -4,15 +4,15 @@
     <title>Lecture on HasithAlted</title>
     <link>https://hasithv.github.io/tags/lecture/</link>
     <description>Recent content in Lecture on HasithAlted</description>
-    <generator>Hugo -- 0.139.4</generator>
+    <generator>Hugo -- 0.140.2</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 12 Aug 2024 00:29:17 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/lecture/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>6.2 - The Invariance Principle</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap6/6-2/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap6/6-2/</link>
       <pubDate>Mon, 12 Aug 2024 00:29:17 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap6/6-2/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap6/6-2/</guid>
       <description>$$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$$$\frac{S_N}{\sqrt{N}} \xrightarrow{d} \mathcal{N}(0,1)$$$$W_t^N = \frac{1}{\sqrt{N}}(\theta S_k + (1-\theta)S_{k+1}), \quad Nt \in (k,k+1], \quad k = 0,1,\ldots,N-1$$&lt;p&gt;where $\theta = \lceil Nt \rceil - Nt$. Essentially, this equation is just a linear interpolation between the points of $S_N$ and $S_{N+1}$. The rescaling factor of $\frac{1}{\sqrt{N}}$ is to ensure that the variance of $W_t^N$ is 1 after 1 second.&lt;/p&gt;
 &lt;p&gt;Now, we will define the Wiener process.&lt;/p&gt;</description>
       <content:encoded><![CDATA[$$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$$$\frac{S_N}{\sqrt{N}} \xrightarrow{d} \mathcal{N}(0,1)$$$$W_t^N = \frac{1}{\sqrt{N}}(\theta S_k + (1-\theta)S_{k+1}), \quad Nt \in (k,k+1], \quad k = 0,1,\ldots,N-1$$<p>where $\theta = \lceil Nt \rceil - Nt$. Essentially, this equation is just a linear interpolation between the points of $S_N$ and $S_{N+1}$. The rescaling factor of $\frac{1}{\sqrt{N}}$ is to ensure that the variance of $W_t^N$ is 1 after 1 second.</p>
@@ -25,9 +25,9 @@ where $W$ is the Wiener process and the distribution of $W$ on $\Omega \in C[0,1
     </item>
     <item>
       <title>6.1 - The Diffusion Limit of Random Walks</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap6/6-1/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap6/6-1/</link>
       <pubDate>Sat, 10 Aug 2024 15:41:44 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap6/6-1/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap6/6-1/</guid>
       <description>&lt;h2 id=&#34;random-walk&#34;&gt;Random Walk&lt;/h2&gt;
 $$X_n = \sum_{k=1}^{n} \xi_k, \quad X_0 = 0.$$$$W(m,n) = {N \choose (N+m)/2} \left( \frac{1}{2} \right)^N$$$$\mathbb{E}[X_N] = 0, \quad \sigma^2_{X_N} = N$$&lt;h2 id=&#34;diffusion-coefficient&#34;&gt;Diffusion Coefficient&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -114,9 +114,9 @@ The consequence of this theorem is that it is most likely for a radnom walk to s
     </item>
     <item>
       <title>5.4 - Gaussian Processes</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-4/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap5/5-4/</link>
       <pubDate>Tue, 06 Aug 2024 21:17:49 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-4/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap5/5-4/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Definition 5.9:&lt;/strong&gt; A stochasitc process $\{X_t\}_{t \geq 0}$ is a &lt;em&gt;Gaussian Process&lt;/em&gt; if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -155,9 +155,9 @@ Where $\alpha_k$ is a standard normal random variable $\mathscr{N}(0,1)$</p>
     </item>
     <item>
       <title>5.3 - Markov Processes</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap5/5-3/</link>
       <pubDate>Sat, 03 Aug 2024 23:22:06 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-3/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap5/5-3/</guid>
       <description>&lt;h2 id=&#34;markov-processes-in-continuous-time-and-space&#34;&gt;Markov processes in continuous time and space&lt;/h2&gt;
 &lt;p&gt;Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if&lt;/p&gt;
 &lt;ol&gt;
@@ -247,9 +247,9 @@ $$\begin{align}
     </item>
     <item>
       <title>5.2 - Filtration and Stopping Time</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-2/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap5/5-2/</link>
       <pubDate>Sat, 03 Aug 2024 18:57:02 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-2/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap5/5-2/</guid>
       <description>&lt;h2 id=&#34;filtration&#34;&gt;Filtration&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Definition 5.3:&lt;/strong&gt; (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s &lt; t$.&lt;/p&gt;
@@ -280,9 +280,9 @@ $$\{T \leq t\} \in \mathcal{F}_t$$</blockquote>
     </item>
     <item>
       <title>5.1 - Axiomatic Construction of Stochastic Process</title>
-      <link>https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap5/5-1/</link>
       <pubDate>Sat, 03 Aug 2024 16:45:46 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/eliasa/chap5/5-1/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap5/5-1/</guid>
       <description>&lt;h2 id=&#34;definition-of-a-stochastic-process&#34;&gt;Definition of a stochastic process&lt;/h2&gt;
 &lt;p&gt;A stochastic process is a parameterized random variable $\{X_t\}_{t\in\mathbf{T}}$ defined on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ taking on values in $\mathbb{R}$. $\mathbf{T}$ can seemingly be any subset of $\mathbb{R}$. For any fixed $t \in \mathbf{T}$, we can define the random variable&lt;/p&gt;
 $$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$&lt;p&gt;Thinking of a simple random walk, this means that $X_t$ is a random variable that takes in some subset of $\Omega = \{H,T\}^\mathbb{N}$ and outputs a real valued number (the sum of the first $t$ values in $\omega$): $\{\omega_1, \omega_2, \ldots \} \rightarrow \sum_{n \leq t} X(\omega_n)$&lt;/p&gt;</description>
@@ -299,9 +299,9 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
     </item>
     <item>
       <title>2.2 - Symmetric monoidal preorders</title>
-      <link>https://hasithv.github.io/posts/notes/fongspivakact/chap2/2-2/</link>
+      <link>https://hasithv.github.io/posts/fongspivakact/chap2/2-2/</link>
       <pubDate>Fri, 02 Aug 2024 01:26:30 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/notes/fongspivakact/chap2/2-2/</guid>
+      <guid>https://hasithv.github.io/posts/fongspivakact/chap2/2-2/</guid>
       <description>&lt;h2 id=&#34;221---definition-and-first-examples&#34;&gt;2.2.1 - Definition and first examples&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Definition 2.2:&lt;/strong&gt; A &lt;em&gt;symmetric monoidal structure&lt;/em&gt; on a preoirder $(X, \leq)$ consists of&lt;/p&gt;
