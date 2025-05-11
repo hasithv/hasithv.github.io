@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Notes on HasithAlted</title>
-    <link>https://hasithv.github.io/categories/notes/</link>
+    <link>http://localhost:1313/categories/notes/</link>
     <description>Recent content in Notes on HasithAlted</description>
     <generator>Hugo -- 0.147.1</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 04 Nov 2024 14:44:14 -0600</lastBuildDate>
-    <atom:link href="https://hasithv.github.io/categories/notes/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Review of &#34;Planting Undetectable Backdoors in Machine Learning Models&#34; paper by Goldwasser</title>
-      <link>https://hasithv.github.io/posts/24-11-04-plantingbackdoors/</link>
+      <link>http://localhost:1313/posts/24-11-04-plantingbackdoors/</link>
       <pubDate>Mon, 04 Nov 2024 14:44:14 -0600</pubDate>
-      <guid>https://hasithv.github.io/posts/24-11-04-plantingbackdoors/</guid>
+      <guid>http://localhost:1313/posts/24-11-04-plantingbackdoors/</guid>
       <description>&lt;p&gt;Notes on the paper &lt;a href=&#34;https://arxiv.org/abs/2204.06974&#34;&gt;&lt;em&gt;Planting Undetectable Backdoors in Machine Learning Models&lt;/em&gt;&lt;/a&gt; by Shafi Goldwasser, Michael P. Kim, Vinod Vaikuntanathan, and Or Zamir.&lt;/p&gt;
 &lt;p&gt;This paper was recommended to me by Scott Aaronson if I wanted to better understand some earlier, more cryptographic/theoretical work in backdooring neural networks. I am also reading through Anthropic&amp;rsquo;s &lt;a href=&#34;https://arxiv.org/abs/2401.05566&#34;&gt;&lt;em&gt;Sleeper Agents&lt;/em&gt;&lt;/a&gt; paper, which is more recent and practical in its approach to backdooring current LLMs, those notes will be posted soon as well.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>Notes on the paper <a href="https://arxiv.org/abs/2204.06974"><em>Planting Undetectable Backdoors in Machine Learning Models</em></a> by Shafi Goldwasser, Michael P. Kim, Vinod Vaikuntanathan, and Or Zamir.</p>
@@ -150,23 +150,23 @@ For the new final layer, changing the RHS to any value in $(0,3)$ will leave the
     </item>
     <item>
       <title>Applied Stochastic Analysis</title>
-      <link>https://hasithv.github.io/posts/eliasa/eliasa/</link>
+      <link>http://localhost:1313/posts/eliasa/eliasa/</link>
       <pubDate>Sat, 03 Aug 2024 16:43:39 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/eliasa/eliasa/</guid>
+      <guid>http://localhost:1313/posts/eliasa/eliasa/</guid>
       <description>&lt;p&gt;Here are my notes for E, Li, and Vanden-Eijnden&amp;rsquo;s &lt;a href=&#34;https://bookstore.ams.org/gsm-199/&#34;&gt;&lt;em&gt;Applied Stochastic Analysis&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Chapter 5 - Stochastic Processes
 &lt;ul&gt;
-&lt;li&gt;5.1 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap5/5-1/&#34;&gt;Axiomatic Construction of Stochastic Process&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;5.2 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap5/5-2/&#34;&gt;Filtration and Stopping Time&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;5.3 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap5/5-3/&#34;&gt;Markov Processes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;5.4 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap5/5-4/&#34;&gt;Gaussian Processes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.1 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap5/5-1/&#34;&gt;Axiomatic Construction of Stochastic Process&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.2 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap5/5-2/&#34;&gt;Filtration and Stopping Time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.3 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap5/5-3/&#34;&gt;Markov Processes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.4 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap5/5-4/&#34;&gt;Gaussian Processes&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Chapter 6 - Wiener Process
 &lt;ul&gt;
-&lt;li&gt;6.1 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap6/6-1/&#34;&gt;The Diffusion Limit of Random Walks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;6.2 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap6/6-2/&#34;&gt;The Invariance Principle&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;6.1 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap6/6-1/&#34;&gt;The Diffusion Limit of Random Walks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;6.2 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap6/6-2/&#34;&gt;The Invariance Principle&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</description>
@@ -191,15 +191,15 @@ For the new final layer, changing the RHS to any value in $(0,3)$ will leave the
     </item>
     <item>
       <title>An Invitation to Appied Category Theory</title>
-      <link>https://hasithv.github.io/posts/fongspivakact/fongspivakact/</link>
+      <link>http://localhost:1313/posts/fongspivakact/fongspivakact/</link>
       <pubDate>Fri, 02 Aug 2024 00:47:08 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/fongspivakact/fongspivakact/</guid>
+      <guid>http://localhost:1313/posts/fongspivakact/fongspivakact/</guid>
       <description>&lt;p&gt;This is a collection of my notes for Brendan Fong and David Spivak&amp;rsquo;s &lt;a href=&#34;https://arxiv.org/pdf/1803.05316&#34;&gt;&lt;em&gt;An Invitation to Appied Category Theory&lt;/em&gt;&lt;/a&gt;. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://hasithv.github.io/1.pdf&#34;&gt;Chapter 1 - Generative effects: Orders and adjunctions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/1.pdf&#34;&gt;Chapter 1 - Generative effects: Orders and adjunctions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Chapter 2 - Resource theories: Monoidal preorders and enrichment
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://hasithv.github.io/posts/fongspivakact/chap2/2-2/&#34;&gt;Section 2.2 - Symmetric monoidal preorders&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/fongspivakact/chap2/2-2/&#34;&gt;Section 2.2 - Symmetric monoidal preorders&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</description>

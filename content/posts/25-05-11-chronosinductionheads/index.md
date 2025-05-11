@@ -3,14 +3,15 @@ title = "Hunting for Induction Heads in Amazon's Chronos"
 date = 2025-05-11T10:50:18-05:00
 tags = ["Transformers", "Mechanistic Interpretability"]
 categories = ["Research"]
-draft = true
-plotly = true
+draft = false
 +++
 
 This Summer, I expect to be working on things related to mechanistic intepretability in time series forecasting, and a model of interest was [Amazon's Chronos model](https://github.com/amazon-science/chronos-forecasting), a probabilistic time series forecasting model. To better understand how the model works and to get my hands dirty with some MI work, I decided to try and look for evidence of induction heads in Chronos.
 
+_Note: all code and data for this project can be found in the [github repository](https://github.com/hasithv/chronos_induction) [[1](https://github.com/hasithv/chronos_induction)]_
+
 ## Background
-To begin with, let's remind ourselves what induction heads are. In transformer models (if you aren't familiar with how transformer models work, refer to section 5.1 of [my report](/posts/25-05-11-chronosinductionheads/thesis.pdf) on universal approximation properties of neural networks and trasnformers), we have attention heads which take in some data of length $T$ tokens that has an embedding dimension of $d$, $X \in \mathbb{R}^{T \times d}$ and applies the following transformation to it:
+To begin with, let's remind ourselves what induction heads are. In transformer models (if you aren't familiar with how transformer models work, refer to section 5.1 of [my report](/posts/25-05-11-chronosinductionheads/thesis.pdf) [[2](/posts/25-05-11-chronosinductionheads/thesis.pdf)] on universal approximation properties of neural networks and trasnformers), we have attention heads which take in some data of length $T$ tokens that has an embedding dimension of $d$, $X \in \mathbb{R}^{T \times d}$ and applies the following transformation to it:
 $$
 \begin{align*}
 Q = XW^Q, \\
@@ -34,11 +35,11 @@ where $A_{1,i}$ is the $i$-th token in the output of the attention head and $k_j
 ## Induction Heads
 Sometimes, attention heads are able to learn to attend to the previous copy of the current token. For example, if we have the sequence `ABCPQRABCP`, then the 10th token `P` will attend highly to the 4th token since it was the most recent instance of `P` in the sequence. Other times, the attention head might attend to the token to the *right* of the most recent instance of the current token. Both of these types of attention heads are examples of induction heads.
 
-Induction heads are very useful for in-context learning (ICL) as found by [Crosbie and Shutova](https://arxiv.org/abs/2407.07011) since they allow for zero-shot pattern-matching. When the strongest 1-3% of the induction heads are ablated by either zeroing the heads or by setting them to the mean element of the head, the model's performance in ICL tasks drops significantly.
+Induction heads are very useful for in-context learning (ICL) as found by [Crosbie and Shutova](https://arxiv.org/abs/2407.07011) [[3](https://arxiv.org/abs/2407.07011)] since they allow for zero-shot pattern-matching. When the strongest 1-3% of the induction heads are ablated by either zeroing the heads or by setting them to the mean element of the head, the model's performance in ICL tasks drops significantly.
 
 ## Induction Heads in Chronos
 ### Gut Check
-Based on [this paper](https://openreview.net/pdf?id=TqYjhJrp9m) by Zhang and Giplip, Chronos has been shown to exhibit ICL and context parroting, which gives us good reason to believe that induction heads do indeed exist in the Chronos models. In fact, when following the tutorial straight form the Chronos `README.md` file, I was able to find some hints of induction heads in the `t5-small` model as shown in Fig 1.
+Based on [this paper](https://openreview.net/pdf?id=TqYjhJrp9m) [[4](https://openreview.net/pdf?id=TqYjhJrp9m)] by Zhang and Gilpin, Chronos has been shown to exhibit ICL and context parroting, which gives us good reason to believe that induction heads do indeed exist in the Chronos models. In fact, when following the tutorial straight form the Chronos `README.md` file, I was able to find some hints of induction heads in the `t5-small` model as shown in Fig 1.
 
 [{{< figure src="./images/passengers.png" width="1200px" align="center" caption="Figure 1: Visualization of the attention heads of the `t5-small` model. The data has a clear periodicity, and the attention heads are able to pick up on it as seen by the attention scores of some heads spiking at integer multiples of the period. In layers 3-5, we can further see some heads that are attending highly to the the last instance of a valley, which is also what the current token is. Data courtesy of Aileen Nielsen, click to expand image.">}}](./images/passengers.png)
 
@@ -47,9 +48,9 @@ Figure 1 shows the `t5-small` model being tasked with predicting the next value 
 ### Repeated Random Tokens
 Seeing such patterns in attention are very indiciative of induction heads. One standard way to detect induction heads is the Repeated Random Tokens (RRT) test, where--as the name suggests--we repeat a random sequence of tokens and find how highly the model attends to the previous instance of the current token (and/or the token to the right of it).
 
-For example, if our random sequence is `ABC`, we would feed the model `ABCABCA` as context, and collect data on how highly the 7th token `A` attends to the 4th token `A`. To visualize this, we use an Induction Mosaic, which is a heatmap of average RRT scores for each layer and head for a model. You can find induction mosaics for various small LLMs on [Neel Nanda's page](https://www.neelnanda.io/mosaic).
+For example, if our random sequence is `ABC`, we would feed the model `ABCABCA` as context, and collect data on how highly the 7th token `A` attends to the 4th token `A`. To visualize this, we use an Induction Mosaic, which is a heatmap of average RRT scores for each layer and head for a model. You can find induction mosaics for various small LLMs on [Neel Nanda's page](https://www.neelnanda.io/mosaic) [[5](https://www.neelnanda.io/mosaic)].
 
-But since Chronos is based on the [T5 architecture](https://arxiv.org/abs/1910.10683v4), we have an encoder-decoder network, so instead of solely feeding the RRT into the encoder, I gave the last token of the RRT to the decoder as context. Meaning that the context looks like `ABCABC[EOS][DEC_START]A`, where `[EOS]` denotes the end of the encoder's input and `[DEC_START]` denotes the start of the decoder's input.
+But since Chronos is based on the [T5 architecture](https://arxiv.org/abs/1910.10683v4) [[6](https://arxiv.org/abs/1910.10683v4)], we have an encoder-decoder network, so instead of solely feeding the RRT into the encoder, I gave the last token of the RRT to the decoder as context. Meaning that the context looks like `ABCABC[EOS][DEC_START]A`, where `[EOS]` denotes the end of the encoder's input and `[DEC_START]` denotes the start of the decoder's input.
 
 With this setup and averaging over 100 such sequences, here are the induction mosaics for the `t5-base` and `t5-large` models:
 
@@ -137,3 +138,17 @@ I think that the true reason is likely a combination of all of these, but I don'
 I was successfully able to find evidence of induction heads in the larger Chronos models and even discovered that they use earlier layers attend to the current token while the later layers attend to the token that is to the right of the current token.
 
 However, I wasn't able to find evidence of induction heads in the smaller models, but this poses an interesting question as to why the models don't exhibit induction in the RRT test but do show inductive capabilities when forecasting periodic data.
+
+---
+## References
+[1.] https://github.com/hasithv/chronos_induction
+
+[2] https://github.com/hasithv/chronos_induction/blob/main/thesis.pdf
+
+[3] https://arxiv.org/abs/2407.07011
+
+[4] https://openreview.net/pdf?id=TqYjhJrp9m
+
+[5] https://www.neelnanda.io/mosaic
+
+[6] https://arxiv.org/abs/1910.10683v4
