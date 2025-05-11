@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="canonical" href="https://hasithv.github.io/tags/probability/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://hasithv.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://hasithv.github.io/favicon-32x32.png">
@@ -56,14 +56,14 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="Probability" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://hasithv.github.io/tags/probability/" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Probability"/>
-<meta name="twitter:description" content=""/>
+</noscript><script src="https://cdn.plot.ly/plotly-2.20.0.min.js"></script><meta property="og:url" content="https://hasithv.github.io/tags/probability/">
+  <meta property="og:site_name" content="HasithAlted">
+  <meta property="og:title" content="Probability">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Probability">
+<meta name="twitter:description" content="">
 
     
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
@@ -97,7 +97,7 @@
         <div class="logo">
             <a href="https://hasithv.github.io/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -160,7 +160,7 @@
 At the very end of his lecture, Dr. Redner said something along the lines of, “the obvious betting applications are left as an exercise to the audience.” So, as enthusiastic audience members, let’s try to tackle this exercise.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-08-17 20:36:30 -0500 -0500'>August 17, 2024</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
+  <footer class="entry-footer"><span title='2024-08-17 20:36:30 -0500 CDT'>August 17, 2024</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
   <a class="entry-link" aria-label="post link to Is Basketball a Random Walk?" href="https://hasithv.github.io/posts/24-08-17-basketballrandomwalk/"></a>
 </article>
 
@@ -175,7 +175,7 @@ Alice is assigned to be the 56th passenger to board a full plane with 60 seats. 
 As Alice was originally 56th, she decides that she would be happy as long as passengers with the assigned spots 57, 58, 59, and 60 are not in front of her. What is the probability that Alice will be happy?
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-08-12 00:00:38 -0500 -0500'>August 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
+  <footer class="entry-footer"><span title='2024-08-12 00:00:38 -0500 CDT'>August 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
   <a class="entry-link" aria-label="post link to A Simple Boarding Puzzle" href="https://hasithv.github.io/posts/24-01-11-asimpleboardingpuzzle/"></a>
 </article>
 
@@ -186,10 +186,9 @@ As Alice was originally 56th, she decides that she would be happy as long as pas
   </header>
   <div class="entry-content">
     <p> Definition 5.9: A stochasitc process $\{X_t\}_{t \geq 0}$ is a Gaussian Process if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.
-$$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$$$\mathbb{E}\left[e^{i \mathbf{\xi} \cdot \mathbf{X}}\right] = e^{i \mathbf{\xi} \cdot \mathbf{m} - \frac{1}{2}\mathbf{\xi}^T \mathbf{K} \mathbf{\xi}} $$ This means that for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$, the measure $\mu_{t_1, t_2, \ldots, t_k}$ is uniquely determined by an $\mathbf{m} = (m(t_1), \ldots, m(t_k))$ and a covariance matrix $\mathbf{K}_{ij} = K(t_i, t_j)$. Because our $\mu$ satisifes the conditions for Kolomorov’s extension theorem, we have a probability space and a stochastic process associated with $\mu$.
-...</p>
+Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$ ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-08-06 21:17:49 -0700 -0700'>August 6, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
+  <footer class="entry-footer"><span title='2024-08-06 21:17:49 -0700 -0700'>August 6, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
   <a class="entry-link" aria-label="post link to 5.4 - Gaussian Processes" href="https://hasithv.github.io/posts/eliasa/chap5/5-4/"></a>
 </article>
 
@@ -203,7 +202,7 @@ $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X}
 $X_t$ is $\mathcal{F}_t$-adapted For any $t \geq s$ and $B \in \mathcal{R}$, we have $$\mathbb{P}(X_t \in B | \mathcal{F}_s) = \mathbb{P}(X_t \in B | X_s)$$ Essentially, this is saying that history doesn’t matter, only the current state matters. We can associate a family of probability measures $\{\mathbb{P}^x\}_{x\in\mathbb{R}}$ for the processes starting at $x$ by defining $\mu_0$ to be the point mass at $x$. Then, we still have $$\mathbb{P}^x(X_t \in B | \mathcal{F}_s) = \mathbb{P}^x(X_t \in B | X_s), \quad t \geq s$$ and $\mathbb{E}[f(X_0)] = f(x)$ for any function $f \in C(\mathbb{R})$. ⚠️ I am not fully confident on what the above section is saying. Specifically, I am having trouble with understanding how we are defining $\mathbb{P}^x$. However, I can understand the strong markov property, so I think I should be okay moving forward.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-08-03 23:22:06 -0700 -0700'>August 3, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
+  <footer class="entry-footer"><span title='2024-08-03 23:22:06 -0700 -0700'>August 3, 2024</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
   <a class="entry-link" aria-label="post link to 5.3 - Markov Processes" href="https://hasithv.github.io/posts/eliasa/chap5/5-3/"></a>
 </article>
 
@@ -254,16 +253,16 @@ Chapter 5 - Stochastic Processes 5.1 - Axiomatic Construction of Stochastic Proc
     </h2>
   </header>
   <div class="entry-content">
-    <p>$$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat’s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.
+    <p>I was recently doing a probability puzzle that I can’t quite remember the context of, but I came across the answer that the probability would be $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat’s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-07-30 00:07:20 -0700 -0700'>July 30, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
+  <footer class="entry-footer"><span title='2024-07-30 00:07:20 -0700 -0700'>July 30, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
   <a class="entry-link" aria-label="post link to That&#39;s not how Probability Works!" href="https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/"></a>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2024 <a href="https://hasithv.github.io/">HasithAlted</a></span> · 
+        <span>&copy; 2025 <a href="https://hasithv.github.io/">HasithAlted</a></span> · 
 
     <span>
         Powered by

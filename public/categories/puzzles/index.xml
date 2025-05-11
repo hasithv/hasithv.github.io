@@ -4,7 +4,7 @@
     <title>Puzzles on HasithAlted</title>
     <link>https://hasithv.github.io/categories/puzzles/</link>
     <description>Recent content in Puzzles on HasithAlted</description>
-    <generator>Hugo -- 0.140.2</generator>
+    <generator>Hugo -- 0.147.1</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 31 Dec 2024 12:33:33 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/categories/puzzles/index.xml" rel="self" type="application/rss+xml" />
@@ -62,15 +62,22 @@ $$ 4!/5! = 1/5$$]]></content:encoded>
       <link>https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/</link>
       <pubDate>Tue, 30 Jul 2024 00:07:20 -0700</pubDate>
       <guid>https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/</guid>
-      <description>$$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$&lt;p&gt;But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&amp;rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.&lt;/p&gt;</description>
-      <content:encoded><![CDATA[$$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$<p>But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.</p>
+      <description>&lt;p&gt;I was recently doing a probability puzzle that I can&amp;rsquo;t quite remember the context of, but I came across the answer that the probability would be
+&lt;/p&gt;
+$$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$&lt;p&gt;But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&amp;rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>I was recently doing a probability puzzle that I can&rsquo;t quite remember the context of, but I came across the answer that the probability would be
+</p>
+$$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$<p>But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.</p>
 <p>So, what is this critical value that will help me save face?</p>
 <p>Well, the question we are trying to answer, phrased a bit more formally, is:</p>
 <blockquote>
-<p>find the largest $p \in [0,1]$ such that $np^n \leq 1$ for all $n \in \mathbb{N}.$</p>
-</blockquote>
+<p>find the largest $p \in [0,1]$ such that $np^n \leq 1$ for all $n \in \mathbb{N}.$</p></blockquote>
+<p>First, we rephrase the problem by stating
+</p>
 $$np^n \leq 1 \iff p^n \leq \frac{1}{n}.$$<p>Visually, this means that the exponential graph of $f_p(n) = p^n$ can never go above $g_p(n) = \frac{1}{n}$ for some fixed $p$. From this, we can deduce that the critical value of $p$, which we will denote as $p_0$, will satisfy the following relation:</p>
 <blockquote>
+<p>Given the parametrized forms of $f_p$ and $g_p$
+</p>
 $$F_{p}(t) = \begin{bmatrix}
 t \\
 f_p(t)
@@ -78,20 +85,30 @@ f_p(t)
 G_p(t) = \begin{bmatrix}
 t \\
 g_p(t)
-\end{bmatrix},$$$$F_{p_0}(t_0) = G_{p_0}(t_0),\text{ and } \dot{F}_{p_0}(t_0) = \lambda \dot{G}_{p_0}(t_0)$$<p>
-for some $\lambda \in \mathbb{R}, t_0 \in \mathbb{R}^+$. In other words, their velocities will point in the same direction (and, perhaps more intuitively, the outward normals of each curve will be parallel, so the graphs &lsquo;kiss&rsquo; at some $t_0$ with the choice of $p_0$).</p>
-</blockquote>
+\end{bmatrix},$$<p>
+the critical $p_0$ value will be such that
+</p>
+$$F_{p_0}(t_0) = G_{p_0}(t_0),\text{ and } \dot{F}_{p_0}(t_0) = \lambda \dot{G}_{p_0}(t_0)$$<p>
+for some $\lambda \in \mathbb{R}, t_0 \in \mathbb{R}^+$. In other words, their velocities will point in the same direction (and, perhaps more intuitively, the outward normals of each curve will be parallel, so the graphs &lsquo;kiss&rsquo; at some $t_0$ with the choice of $p_0$).</p></blockquote>
+<p>Now, we have a fairly simple problem to solve. Because the $x$ component of $F$ and $G$ are always equal, we immediately find that $\lambda = 1$ for their time derivatives to be equal to each other. Now, that leads us to solve for a $p_0$ and $n$ such that
+</p>
 $$
 \begin{aligned}
     f_{p_0}(t_0) &= g_{p_0}(t_0) \\
     \implies p_0^n &= \frac{1}{t_0}
 \end{aligned}
-$$$$
+$$<p>
+and
+</p>
+$$
 \begin{aligned}
      \dot{f}_{p_0}(t_0) &= \dot{g}_{p_0}(t_0) \\
     \implies -\ln(p_0)p_0^n &= \frac{1}{t_0^2}
 \end{aligned}
-$$$$
+$$<p>
+So, rather unsatisfyingly, we boiled it down to a system of nonlinear equations
+</p>
+$$
 \begin{cases}
     p_0^n = \frac{1}{t_0}, \\
     \ln(p_0)p_0^n = -\left(\frac{1}{t_0}\right)^2

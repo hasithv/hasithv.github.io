@@ -4,7 +4,7 @@
     <title>Probability on HasithAlted</title>
     <link>https://hasithv.github.io/tags/probability/</link>
     <description>Recent content in Probability on HasithAlted</description>
-    <generator>Hugo -- 0.140.2</generator>
+    <generator>Hugo -- 0.147.1</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 17 Aug 2024 20:36:30 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/probability/index.xml" rel="self" type="application/rss+xml" />
@@ -62,7 +62,13 @@ $$\begin{cases}
         </figcaption>
 </figure>
 
-$$\lambda \sim \mathcal{N}(1.005,0.1)$$$$X \sim \mathcal{N}(1, \sqrt{0.0083})$$<h3 id="bayesian-updating">Bayesian Updating</h3>
+<p>which gives us a prior for $\lambda$ that we can live-update to better fit our model to a given game (and we already have the prior for $X$):
+</p>
+$$\lambda \sim \mathcal{N}(1.005,0.1)$$<p>
+</p>
+$$X \sim \mathcal{N}(1, \sqrt{0.0083})$$<h3 id="bayesian-updating">Bayesian Updating</h3>
+<p>Using simple bayesian updates, we should be able to properly estimate how likely a certain $\lambda$ or $I_A$ is given the game data of scoring rates $\{t_1,\ldots,t_n\}$, and who scored on each play $\{r_1,\ldots,r_n\}$:
+</p>
 $$\begin{align}
     f(\lambda | \{t_1,\ldots,t_n\}) &\propto f(\{t_1,\ldots,t_n\} | \lambda) f(\lambda) \\
     &\propto \left(\prod_{i=1}^{n} f(t_i | \lambda) \right) f(\lambda) \\
@@ -91,6 +97,8 @@ As you can see, the update for the $X$ values is a bit  more complicated, but it
 </span></span></code></pre></div><p>The real roadblock, however, is actually sampling the $\lambda$ and $X$ values from the pdfs.</p>
 <h3 id="sampling-game-parameters">Sampling Game Parameters</h3>
 <p>Since we have access to the pdfs (even their normalizing constants are quite easy to compute using numeric methods), we can employ importance sampling as a brute force method. I am sure that there are fancier MCMC algorithms that could be used, but the unfriendly distribution of the $X$ values made it hard for me to use external libraries like <code>Turing.jl</code>.</p>
+<p>Anyhow, for interested readers, the reason we can use importance sampling to compute the expected value of a function $g$ with respect to a pdf $f$ using another pdf $h$ is because of the following:
+</p>
 $$\begin{align}
     \underset{X \sim f}{\mathbb{E}}[g(X)] &= \int g(x) f(x) dx \\
     &= \int g(x) \frac{f(x)}{h(x)} h(x) dx \\
@@ -200,22 +208,35 @@ $$ 4!/5! = 1/5$$]]></content:encoded>
       <pubDate>Tue, 06 Aug 2024 21:17:49 -0700</pubDate>
       <guid>https://hasithv.github.io/posts/eliasa/chap5/5-4/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Definition 5.9:&lt;/strong&gt; A stochasitc process $\{X_t\}_{t \geq 0}$ is a &lt;em&gt;Gaussian Process&lt;/em&gt; if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.&lt;/p&gt;
-&lt;/blockquote&gt;
-$$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$$$\mathbb{E}\left[e^{i \mathbf{\xi} \cdot \mathbf{X}}\right] = e^{i \mathbf{\xi} \cdot \mathbf{m} - \frac{1}{2}\mathbf{\xi}^T \mathbf{K} \mathbf{\xi}} $$&lt;p&gt;
-This means that for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$, the measure $\mu_{t_1, t_2, \ldots, t_k}$ is uniquely determined by an $\mathbf{m} = (m(t_1), \ldots, m(t_k))$ and a covariance matrix $\mathbf{K}_{ij} = K(t_i, t_j)$. Because our $\mu$ satisifes the conditions for Kolomorov&amp;rsquo;s extension theorem, we have a probability space and a stochastic process associated with $\mu$.&lt;/p&gt;</description>
+&lt;p&gt;&lt;strong&gt;Definition 5.9:&lt;/strong&gt; A stochasitc process $\{X_t\}_{t \geq 0}$ is a &lt;em&gt;Gaussian Process&lt;/em&gt; if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments
+&lt;/p&gt;
+$$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$&lt;p&gt;Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$
+&lt;/p&gt;</description>
       <content:encoded><![CDATA[<blockquote>
-<p><strong>Definition 5.9:</strong> A stochasitc process $\{X_t\}_{t \geq 0}$ is a <em>Gaussian Process</em> if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 < t_2 < \ldots < t_k$.</p>
-</blockquote>
-$$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$$$\mathbb{E}\left[e^{i \mathbf{\xi} \cdot \mathbf{X}}\right] = e^{i \mathbf{\xi} \cdot \mathbf{m} - \frac{1}{2}\mathbf{\xi}^T \mathbf{K} \mathbf{\xi}} $$<p>
+<p><strong>Definition 5.9:</strong> A stochasitc process $\{X_t\}_{t \geq 0}$ is a <em>Gaussian Process</em> if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 < t_2 < \ldots < t_k$.</p></blockquote>
+<p>Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments
+</p>
+$$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$<p>Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$
+</p>
+$$\mathbb{E}\left[e^{i \mathbf{\xi} \cdot \mathbf{X}}\right] = e^{i \mathbf{\xi} \cdot \mathbf{m} - \frac{1}{2}\mathbf{\xi}^T \mathbf{K} \mathbf{\xi}} $$<p>
 This means that for any $0 \leq t_1 < t_2 < \ldots < t_k$, the measure $\mu_{t_1, t_2, \ldots, t_k}$ is uniquely determined by an $\mathbf{m} = (m(t_1), \ldots, m(t_k))$ and a covariance matrix $\mathbf{K}_{ij} = K(t_i, t_j)$. Because our $\mu$ satisifes the conditions for Kolomorov&rsquo;s extension theorem, we have a probability space and a stochastic process associated with $\mu$.</p>
 <p>&#x26a0;&#xfe0f; Isn&rsquo;t one of the conditions of Kolmogorov&rsquo;s extension theoren that we need to be able to permute the $t_i$? How would this work if we require the $t_i$ to be increasing?</p>
 <blockquote>
-$$\mathbb{E} \left[ \int_0^T X_t^2 dt \right] < \infty$$$$\mathcal{K} f(s) := \int_0^T K(s,t) f(t) dt$$<p>
-is nonnegative, compact on $L^2_t$</p>
-</blockquote>
+<p><strong>Theorem 5.10:</strong> Assuming that the stochastic process $\{X_t\}_{t\in[0,T]}$ satisfies
+</p>
+$$\mathbb{E} \left[ \int_0^T X_t^2 dt \right] < \infty$$<p>
+then $m \in L^2_t$. Also, the operator
+</p>
+$$\mathcal{K} f(s) := \int_0^T K(s,t) f(t) dt$$<p>
+is nonnegative, compact on $L^2_t$</p></blockquote>
 <blockquote>
-$$\int_0^T \mathbb{E}[X]^2 dt \leq \int_0^T \mathbb{E}[X_t^2] dt < \infty$$$$\begin{align}
+<p><strong>Proof:</strong> For the first statement,
+</p>
+$$\int_0^T \mathbb{E}[X]^2 dt \leq \int_0^T \mathbb{E}[X_t^2] dt < \infty$$<p>
+For the second,
+</p>
+$$\begin{align}
 \int_0^T \int_0^T K^2(s,t) ds dt &= \int_0^T \int_0^T \mathbb{E}[\left((X_t - m(t))(X_s - m(s))\right)^2]ds dt \\
 &\leq \int_0^T \int_0^T \mathbb{E}[(X_t - m(t))^2]\mathbb{E}[(X_s - m(s))^2]ds dt \\
 &\leq \left( \int_0^T \mathbb{E}[X_t] dt \right) \\
@@ -223,16 +244,20 @@ $$\int_0^T \mathbb{E}[X]^2 dt \leq \int_0^T \mathbb{E}[X_t^2] dt < \infty$$$$\be
 \end{align}$$<p>
 which lets us conclude that $K \in L^2([0,T] \times [0,T])$, which tells us that $\mathcal{K}$ is compact on $L^2_t$</p>
 <p>&#x26a0;&#xfe0f; I can&rsquo;t properly find what theorem lets us say the last statement, but I can trust it for now.</p>
+<p>Furthermore, noting that $K$ is symmetric which means that $\mathcal{K}$ is self adjoint, and we can say
+</p>
 $$(\mathcal{K}f, f) = \int_0^T \int_0^T \mathbb{E}[(X_t - m(t))]\mathbb{E}[(X_s - m(s))]f(t)f(s) ds dt \geq 0$$<p>
-by symmetry of $s$ and $t$.</p>
-</blockquote>
+by symmetry of $s$ and $t$.</p></blockquote>
+<p>If we want to extend the characteristic to $L_t$ rather than the finite dimensional version, we can write
+</p>
 $$\mathbb{E}[e^{i(\xi,X)}] = e^{i(\xi,m) - \frac{1}{2} (\xi, \mathcal{K} \xi)}, \quad \xi \in L^2_t$$<p>
 With $(\xi,m) = \int_a^b \xi(t) m(t) dt$ and $\mathcal{K}\xi (t) = \int_a^b K(t,s) \xi(s) ds$. This is a fairly reasonable extrapolation from the finite dimensional case.</p>
 <blockquote>
+<p><strong>Theorem 5.13:</strong> <em>Karhunen-Loeve expansion</em>. Let $(X_t)_{t \in [0,1]}$ be a Gaussian process with mean 0 and covariance function $K(s,t)$, Assume that $K$ continuous and $\{\lambda_k\}$ be the set of eigenvalues for orthonormal eigenfunctions of $K$, $\{\phi_k\}$. Then, $X_t$ has the representation of
+</p>
 $$X_t = \sum_{k=1}^\infty \alpha_k \sqrt{\lambda_k} \phi_k(t)$$<p>
 Where $\alpha_k$ is a standard normal random variable $\mathscr{N}(0,1)$</p>
-<p>&#x26a0;&#xfe0f; I am omitting the proof because I feel the result is easy enough to intuitively grasp, and also it is a little theoretical, so maybe I should revisit it if I get more comfortable with proving covergence in probability.</p>
-</blockquote>
+<p>&#x26a0;&#xfe0f; I am omitting the proof because I feel the result is easy enough to intuitively grasp, and also it is a little theoretical, so maybe I should revisit it if I get more comfortable with proving covergence in probability.</p></blockquote>
 ]]></content:encoded>
     </item>
     <item>
@@ -262,6 +287,8 @@ $$\mathbb{P}^x(X_t \in B | \mathcal{F}_s) = \mathbb{P}^x(X_t \in B | X_s), \quad
 and $\mathbb{E}[f(X_0)] = f(x)$ for any function $f \in C(\mathbb{R})$.</li>
 </ol>
 <p>&#x26a0;&#xfe0f; I am not fully confident on what the above section is saying. Specifically, I am having trouble with understanding how we are defining $\mathbb{P}^x$. However, I can understand the strong markov property, so I think I should be okay moving forward.</p>
+<p>The <em>transition function</em> of a Markov process is defined as
+</p>
 $$p(B,t|x,s) = \mathbb{P}(X_t \in B | X_s = x)$$<p>
 and it has the properties</p>
 <ol>
@@ -271,6 +298,8 @@ and it has the properties</p>
 $$p(B,t|y,s) = \int_\mathbb{R} p(B,t|y,u) p(dy,u|x,s), \quad s \leq u \leq t$$
 The last property is the continuous analog of the <em>Chapman-Kolmogorov equation</em>, and it essentially lets us break the transition function into two the transition from $s$ to $u$ and from $u$ to $t$.</li>
 </ol>
+<p>Now, we can write the expenctation from $x$ as
+</p>
 $$ \begin{multline}
 \mathbb{E}^x[f(X_{t_1}, X_{t_2}, \ldots, X_{t_n})] = \int_\mathbb{R} \ldots \int_\mathbb{R} f(x_1,x_2,\ldots,x_n) p(dx_n,t_n|x_{n-1},t_{n-1}) \\ \ldots p(dx_2, t_2 | x_1,t_1) p(dx_1, t_1|x,0)
 \end{multline}
@@ -279,27 +308,59 @@ $$<p>when $t_n$ are strictly increasing.</p>
 <p>A stochastic process is <em>stationary</em> if the joint distributions are translation invariant in time. However, if the process only depends on the difference between time, then the process is <em>homogeneous</em>. The difference is that a stationary process has the same distribution at all times, while a homogeneous process has the same distribution for all time differences.</p>
 <p>&#x26a0;&#xfe0f; at this point, the book dives into semigroup theory which I know nothing about, so I will skip this section for now.</p>
 <h2 id="example-57---q-process">Example 5.7 - Q-process</h2>
-$$\mathbf{Q} = \lim_{h \rightarrow 0+} \frac{1}{h} (\mathbf(P)(h) - \mathbf{I})$$$$\mathcal{A}f = \lim_{t \rightarrow 0+} \frac{\mathbb{E}[f(X_t)] - f}{t}$$$$\begin{align}
+<p>Recall the definition of a generator $\mathbf{Q}$ to be
+</p>
+$$\mathbf{Q} = \lim_{h \rightarrow 0+} \frac{1}{h} (\mathbf(P)(h) - \mathbf{I})$$<p>
+Now, we will define an infinitesimal generator $\mathcal{A}$ on a sample space $S = \{1,2,\ldots,I\}$:
+</p>
+$$\mathcal{A}f = \lim_{t \rightarrow 0+} \frac{\mathbb{E}[f(X_t)] - f}{t}$$<p>
+and
+</p>
+$$\begin{align}
 \mathcal{A}f(i) &= \lim_{t \rightarrow 0+} \frac{\mathbb{E}^i[f(X_t)] - f(i)}{t} \\
 &= \lim_{t \rightarrow 0+} \frac{1}{t} \left(\sum_{j \in S} (P_{ij} - \delta_{ij})f(j)\right)\\
 &= \sum_{j \in S} q_{ij} f(j), \quad i \in S
 \end{align}$$<p>
 Thus, the generator $\mathbf{Q}$ is exactly the infinitesimal generator of $X_t$. This is important to digest especially because the $\mathcal{A}$ is new to me.</p>
+<p>Extending the idea above, we get the backward Kolmogorov equation for $\mathbf{u} = (u_1, u_2, \ldots, u_I)^T$ and $u_i(t) = \mathbb{E}^i[f(X_t)]$:
+</p>
 $$\frac{d \mathbf{u}}{dt} = \mathbf{Qu} = \mathcal{A}\mathbf{u}$$<p>&#x26a0;&#xfe0f; This, too, is getting a little confusing. Let&rsquo;s delve into it a bit more.</p>
 <blockquote>
 <p>We are essentially dealing with a continous time markov chaic (CTMC) in the above case, because we have a finite number of states that have some associated probability of moving to another state at an infitesimal time step.</p>
-$$\frac{\partial P_{ij}}{\partial t}(s;t) = \sum_k P_{kj}(s;t)A_{ik}(s)$$$$ \frac{d P_{ij}}{dt} = \sum_{k \in I} \mathcal{A}_{ik} P_{kj} $$$$\mathbb{E}^i[f(X_t)] = \sum_j P_{ij}f(j)$$$$ \begin{align}
+<p><a href="https://en.wikipedia.org/wiki/Kolmogorov_equations#Continuous-time_Markov_chains">Wikipedia</a> says that for CTMC&rsquo;s, the Komogorov backward equations are, rather intuitively, that the time derviative of the probaility of transitioning from state $i$ at time $s$ to state $j$ at time $t$.
+</p>
+$$\frac{\partial P_{ij}}{\partial t}(s;t) = \sum_k P_{kj}(s;t)A_{ik}(s)$$<p>
+Where $A$ is the <a href="https://en.wikipedia.org/wiki/Transition-rate_matrix">transition-rate matrix</a> in which an element $q_{ij}$ denotes the rate departing from $i$ and arriving in state $j$. Knowing this, I can understand why $\mathcal{A}$ is the generator $\mathbf{Q}$. Converting things back into our notation, we have
+</p>
+$$ \frac{d P_{ij}}{dt} = \sum_{k \in I} \mathcal{A}_{ik} P_{kj} $$<p>In that case, we look back at the expression for $\mathbb{E}^i[f(X_t)]$
+</p>
+$$\mathbb{E}^i[f(X_t)] = \sum_j P_{ij}f(j)$$<p>
+So,
+</p>
+$$ \begin{align}
 \implies \frac{d}{dt} \mathbb{E}^i[f(X_t)] &= \sum_j \frac{d P_{ij}}{d t} f(j) \\
 &= \sum_j \left(\left[ \sum_k \mathcal{A_{ik}} P_{kj} \right] f(j) \right) \\
 &= \sum_k \sum_j \mathcal{A}_{ik} P_{kj} f(j) \\
 &= \sum_k \mathcal{A}_{ik} \mathbb{E}^k[f(X_t)]
 \end{align}
-$$$$\frac{d}{dt} \mathbf{u} = \mathcal{A} \mathbf{u}$$</blockquote>
+$$<p>Now, it&rsquo;s clear that
+</p>
+$$\frac{d}{dt} \mathbf{u} = \mathcal{A} \mathbf{u}$$</blockquote>
 <p>The backward kolmogrov equation is heavily linked to diffusion, so I will definitely explore that in the future.</p>
-$$\frac{d\mathbf{\nu}}{dt} = \mathbf{\nu} \mathcal{A}$$$$\frac{d\mathbf{\nu}^T}{dt} = \mathcal{A}^* \mathbf{\nu}^T$$$$(A^* g, f) = (g, \mathcal{A} f) \quad \forall \; f \in \mathscr{B}, g \in \mathscr{B}$$<p>
+<p>On the other hand, if we have a distribution $\mathbf{\nu} = (\nu_1, \nu_2, \ldots, \nu_I)$ (which, by convention, is a row vector), then it satisfies the forward Kolomogrov equation
+</p>
+$$\frac{d\mathbf{\nu}}{dt} = \mathbf{\nu} \mathcal{A}$$<p>
+Or using the adjoint
+</p>
+$$\frac{d\mathbf{\nu}^T}{dt} = \mathcal{A}^* \mathbf{\nu}^T$$<p>
+where $\mathcal{A}^*$ is defined as
+</p>
+$$(A^* g, f) = (g, \mathcal{A} f) \quad \forall \; f \in \mathscr{B}, g \in \mathscr{B}$$<p>
 If this is giving you trouble, refer to equation (3.19) in the book and think with bra-ket notation. Recall that if $\mathscr{B} = L^2$, then the dual space is also $L^2$, and so $\mathcal{A}^* = \mathcal{A}^T$.</p>
 <p>&#x26a0;&#xfe0f; Is this last statement rigorous? Specifically, I am asking about stating that $\mathcal{A} = \mathbf{Q}$. The book seems to avoid saying both are directly equal, but it really looks like they are.</p>
 <h2 id="example-58---poisson-process">Example 5.8 - Poisson process</h2>
+<p>Consider the Poisson process $X_t$ on $\mathbb{N}$ with rate $\lambda$. Then,
+</p>
 $$\begin{align}
 (\mathcal{A}f)(n) &= \lim_{t \rightarrow 0+} \frac{\mathbb{E}^n[f(X_t)] - f(n)}{t} \\
 &= \lim_{t \rightarrow 0+} \frac{1}{t} \left( \sum_{k=n}^\infty \frac{(\lambda t)^{k-n}}{(k-n)!} e^{-\lambda t} f(k) - f(n)\right) \\
@@ -308,17 +369,27 @@ $$\begin{align}
 &= \lambda(f(n+1) - f(n))
 \end{align}$$<p>
 The last step is justified with L&rsquo;Hopital&rsquo;s rule.</p>
+<p>Then, the book says
+</p>
 $$\mathcal{A}^*f(n) = \lambda(f(n-1) - f(n))$$<blockquote>
-$$(g, \mathcal{A}f) = (\mathcal{A}^* g, f), \quad \forall \; f\in \mathscr{B}, g \in \mathscr{B}^*$$$$(\mathcal{A}^*g, f) = \lambda(g,f^+) - \lambda(g,f)$$<p>
-Then if we note that $(g,f^+) = (g^-,f)$ (this is the part I cannot justify), then it follows that $\mathcal{A}^*f(n) = \lambda(f(n-1) - f(n))$</p>
-</blockquote>
+<p>&#x26a0;&#xfe0f; Here is the best reasoning I can come up with:
+</p>
+$$(g, \mathcal{A}f) = (\mathcal{A}^* g, f), \quad \forall \; f\in \mathscr{B}, g \in \mathscr{B}^*$$<p>
+And defining $f^\pm(n) := f(n \pm 1)$, then we require
+</p>
+$$(\mathcal{A}^*g, f) = \lambda(g,f^+) - \lambda(g,f)$$<p>
+Then if we note that $(g,f^+) = (g^-,f)$ (this is the part I cannot justify), then it follows that $\mathcal{A}^*f(n) = \lambda(f(n-1) - f(n))$</p></blockquote>
+<p>Again, lets compute the time derivative of $u(t,n) = \mathbb{E}^n[f(X_t)]$
+</p>
 $$\begin{align}
 \frac{d u}{dt} &= \frac{d}{dt}\left(\sum_{k \geq n} f(k) \frac{(\lambda t)^{k-n}}{(k-n)!}e^{-\lambda t}\right) \\
 &= \frac{d}{dt}\left( e^{-\lambda t} f(n) + \sum_{k > n} f(k) \frac{(\lambda t)^{k-n}}{(k-n)!}e^{-\lambda t} \right) \\
 &=  -\lambda e^{-\lambda t} f(n) + \sum_{k > n} f(k) \left[ \left(-\lambda\frac{(\lambda t)^{k-n}}{(k-n)!}e^{-\lambda t}\right) + \left(\lambda\frac{(\lambda t)^{k-n-1}}{(k-n-1)!}e^{-\lambda t}\right) \right] \\
 &= \lambda(u(t,n+1)-u(t,n)) \\
 &= \mathcal{A}u(t,n)
-\end{align}$$$$\begin{align}
+\end{align}$$<p>And the time derivative of the distribution $\mathbf{\nu} = (\nu_0, \nu_1, \ldots)$ will be
+</p>
+$$\begin{align}
 \frac{d \nu_n(t)}{dt} &= \frac{d}{dt}\left(\frac{(\lambda t)^{k-n}}{(k-n)!}e^{-\lambda t}\right) \\
 &= -\lambda\frac{(\lambda t)^{k-n}}{(k-n)!}e^{-\lambda t} + \lambda \frac{(\lambda t)^{k-n-1}}{(k-n-1)!}e^{-\lambda t} \\
 &= \lambda(\nu_{n-1} - \nu_n) \\
@@ -334,18 +405,26 @@ $$\begin{align}
       <guid>https://hasithv.github.io/posts/eliasa/chap5/5-2/</guid>
       <description>&lt;h2 id=&#34;filtration&#34;&gt;Filtration&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Definition 5.3:&lt;/strong&gt; (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s &lt; t$.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Definition 5.3:&lt;/strong&gt; (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s &lt; t$.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;Intuitively, the filtration is a sigma algebra of events that can be determined before time $t$ (we can&amp;rsquo;t lose information by foing forward in time). A stochastic process is called &lt;em&gt;$\mathcal{F}_t$-adapted&lt;/em&gt; if it is measurable with respect to $\mathcal{F}_t$; that is, for all $B \in \mathcal{R}$, $X_t^{-1}(B) \in \mathcal{F}_t$. We can always assume that the $\mathcal{F}_t$ contains $F_t^{X}$ and all sets of measure zero, where $F_t^{X} = \sigma(X_s, s \leq t)$ is the sigma algebra generated by the process $X$ up to time $t$.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="filtration">Filtration</h2>
 <blockquote>
-<p><strong>Definition 5.3:</strong> (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s < t$.</p>
-</blockquote>
+<p><strong>Definition 5.3:</strong> (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s < t$.</p></blockquote>
 <p>Intuitively, the filtration is a sigma algebra of events that can be determined before time $t$ (we can&rsquo;t lose information by foing forward in time). A stochastic process is called <em>$\mathcal{F}_t$-adapted</em> if it is measurable with respect to $\mathcal{F}_t$; that is, for all $B \in \mathcal{R}$, $X_t^{-1}(B) \in \mathcal{F}_t$. We can always assume that the $\mathcal{F}_t$ contains $F_t^{X}$ and all sets of measure zero, where $F_t^{X} = \sigma(X_s, s \leq t)$ is the sigma algebra generated by the process $X$ up to time $t$.</p>
-$$\mathcal{F}_0^X = \{\emptyset, \Omega\}$$$$\mathcal{F}_1^X = \{\emptyset, \Omega, \{H\}, \{T\}\}$$$$\mathcal{F}_2^X = \sigma(\{\emptyset, \{HH\}, \{TT\}, \{HT\}, \{TH\} \})$$<p>
+<p>As an example, in a series of coin flips, when $n=0$
+</p>
+$$\mathcal{F}_0^X = \{\emptyset, \Omega\}$$<p>
+and when $n=1$,
+</p>
+$$\mathcal{F}_1^X = \{\emptyset, \Omega, \{H\}, \{T\}\}$$<p>
+when $n=2$,
+</p>
+$$\mathcal{F}_2^X = \sigma(\{\emptyset, \{HH\}, \{TT\}, \{HT\}, \{TH\} \})$$<p>
 (I believe this last statement is equivalent to what the book has)</p>
 <h2 id="stopping-time">Stopping Time</h2>
 <blockquote>
+<p><strong>Definition 5.4:</strong> (Stopping time for discrete time stochastic processes). A stopping time is a random variable $T$ taking values in $\{1,2,\ldots\}\cup \{\infty\}$ such that for any $n < \infty$,
+</p>
 $$\{T \leq n\} \in \mathcal{F}_n$$</blockquote>
 <p>For the discrete case, it doesn&rsquo;t matter if we say $\{T \leq n\}$ or $\{T = n\}$ simply becase it has to be satisfied for all $n$.</p>
 <blockquote>
@@ -353,9 +432,10 @@ $$\{T \leq n\} \in \mathcal{F}_n$$</blockquote>
 <ul>
 <li>(1) if $T_1, T_2$ are stopping times, then $T_1 \wedge T_2, T_1 \vee T_2, T_1 + T_2$ are stopping times</li>
 <li>(2) if $\{T_k\}_{k \geq 1}$ are stopping times then $\sup_k T_k, \inf_k T_k, \limsup_k T_k, \liminf_k T_k$ are stopping times</li>
-</ul>
-</blockquote>
+</ul></blockquote>
 <blockquote>
+<p><strong>Definition 5.6:</strong> (Stopping time for continuous time stochastic processes). A stopping time is a random variable $T$ taking values in $[0,\infty]$ such that for any $t \in \mathbb{\bar{R}}^+$,
+</p>
 $$\{T \leq t\} \in \mathcal{F}_t$$</blockquote>
 <p>Note that we cannot swap the inequality for an equals sign in the definition of a stopping time for continuous time processes. Furthermore, porposition 5.5 holds for conitnious time processes if the filtration is right continuous: $\mathcal{F}_t = \mathcal{F}_{t^+}= \bigcap_{s>t} \mathcal{F}_s$.</p>
 ]]></content:encoded>
@@ -374,7 +454,11 @@ $$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$
 <p>On the other side of the coin, for a fixed $\omega \in \Omega$, we can define a real-valued measureable function on $\mathbf{T}$ called the trajectory of $X$</p>
 $$X_.(\omega): \mathbf{T} \rightarrow \mathbb{R}, \quad t \rightarrowtail X_t(\omega)$$<p>Again, back to the random walk, this means that we can get a real valued output for any given $t$. To be even more compact, we can say taht a stochastic process is a measureable function from $\Omega \times \mathbf{T}$ to $\mathbb{R}$</p>
 $$(\omega, t) \rightarrowtail X(\omega, t) := X_t(\omega)$$<p>The largest probability space that one can take is the infinite product space $\Omega = \mathbb{R}^\mathbf{T}$. Essentially, this is a space which can takeon any real value at any moment in time (&#x26a0;&#xfe0f; why are we restricting ourselves to $\mathbb{R}$? Why can&rsquo;t it be a vector valued function?)</p>
+<p>For finite dimension distributions, we are interested in
+</p>
 $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \ldots X_{t_k} \in F_k]}$$<blockquote>
+<p><strong>Theorem 5.2:</strong> (Kolmogorov&rsquo;s extension theorem). Kolmogorov&rsquo;s extension theorem allows us to say, for any $\mu$ invariant under permuting the order of $t_k$ and $F_k$ and also adding additional time points with their associated $F$ being $\mathbb{R}$, that there exists a probability space and a stochastic prcess such that
+</p>
 $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \ldots X_{t_k} \in F_k]}$$</blockquote>
 <p>Kolmogorov&rsquo;s extension theorem is very general. In fact, so general that it does not give us a very good idea of what the process actually looks like. Usually, we start with this extremely general definition and then impose stricter conditions to prove that the measure can be defined on a smaller probability space rather than $\Omega$</p>
 ]]></content:encoded>
@@ -425,15 +509,22 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
       <link>https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/</link>
       <pubDate>Tue, 30 Jul 2024 00:07:20 -0700</pubDate>
       <guid>https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/</guid>
-      <description>$$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$&lt;p&gt;But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&amp;rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.&lt;/p&gt;</description>
-      <content:encoded><![CDATA[$$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$<p>But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.</p>
+      <description>&lt;p&gt;I was recently doing a probability puzzle that I can&amp;rsquo;t quite remember the context of, but I came across the answer that the probability would be
+&lt;/p&gt;
+$$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$&lt;p&gt;But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&amp;rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>I was recently doing a probability puzzle that I can&rsquo;t quite remember the context of, but I came across the answer that the probability would be
+</p>
+$$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$<p>But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.</p>
 <p>So, what is this critical value that will help me save face?</p>
 <p>Well, the question we are trying to answer, phrased a bit more formally, is:</p>
 <blockquote>
-<p>find the largest $p \in [0,1]$ such that $np^n \leq 1$ for all $n \in \mathbb{N}.$</p>
-</blockquote>
+<p>find the largest $p \in [0,1]$ such that $np^n \leq 1$ for all $n \in \mathbb{N}.$</p></blockquote>
+<p>First, we rephrase the problem by stating
+</p>
 $$np^n \leq 1 \iff p^n \leq \frac{1}{n}.$$<p>Visually, this means that the exponential graph of $f_p(n) = p^n$ can never go above $g_p(n) = \frac{1}{n}$ for some fixed $p$. From this, we can deduce that the critical value of $p$, which we will denote as $p_0$, will satisfy the following relation:</p>
 <blockquote>
+<p>Given the parametrized forms of $f_p$ and $g_p$
+</p>
 $$F_{p}(t) = \begin{bmatrix}
 t \\
 f_p(t)
@@ -441,20 +532,30 @@ f_p(t)
 G_p(t) = \begin{bmatrix}
 t \\
 g_p(t)
-\end{bmatrix},$$$$F_{p_0}(t_0) = G_{p_0}(t_0),\text{ and } \dot{F}_{p_0}(t_0) = \lambda \dot{G}_{p_0}(t_0)$$<p>
-for some $\lambda \in \mathbb{R}, t_0 \in \mathbb{R}^+$. In other words, their velocities will point in the same direction (and, perhaps more intuitively, the outward normals of each curve will be parallel, so the graphs &lsquo;kiss&rsquo; at some $t_0$ with the choice of $p_0$).</p>
-</blockquote>
+\end{bmatrix},$$<p>
+the critical $p_0$ value will be such that
+</p>
+$$F_{p_0}(t_0) = G_{p_0}(t_0),\text{ and } \dot{F}_{p_0}(t_0) = \lambda \dot{G}_{p_0}(t_0)$$<p>
+for some $\lambda \in \mathbb{R}, t_0 \in \mathbb{R}^+$. In other words, their velocities will point in the same direction (and, perhaps more intuitively, the outward normals of each curve will be parallel, so the graphs &lsquo;kiss&rsquo; at some $t_0$ with the choice of $p_0$).</p></blockquote>
+<p>Now, we have a fairly simple problem to solve. Because the $x$ component of $F$ and $G$ are always equal, we immediately find that $\lambda = 1$ for their time derivatives to be equal to each other. Now, that leads us to solve for a $p_0$ and $n$ such that
+</p>
 $$
 \begin{aligned}
     f_{p_0}(t_0) &= g_{p_0}(t_0) \\
     \implies p_0^n &= \frac{1}{t_0}
 \end{aligned}
-$$$$
+$$<p>
+and
+</p>
+$$
 \begin{aligned}
      \dot{f}_{p_0}(t_0) &= \dot{g}_{p_0}(t_0) \\
     \implies -\ln(p_0)p_0^n &= \frac{1}{t_0^2}
 \end{aligned}
-$$$$
+$$<p>
+So, rather unsatisfyingly, we boiled it down to a system of nonlinear equations
+</p>
+$$
 \begin{cases}
     p_0^n = \frac{1}{t_0}, \\
     \ln(p_0)p_0^n = -\left(\frac{1}{t_0}\right)^2

@@ -4,7 +4,7 @@
     <title>Category Theory on HasithAlted</title>
     <link>https://hasithv.github.io/tags/category-theory/</link>
     <description>Recent content in Category Theory on HasithAlted</description>
-    <generator>Hugo -- 0.140.2</generator>
+    <generator>Hugo -- 0.147.1</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 02 Aug 2024 01:26:30 -0700</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/category-theory/index.xml" rel="self" type="application/rss+xml" />
@@ -42,12 +42,10 @@
 <li>(c) associativity</li>
 <li>(d) commutivity/symmetry</li>
 </ul>
-<p>(a) is called <em>monotnoicity</em> and (b) is <em>unitality</em></p>
-</blockquote>
+<p>(a) is called <em>monotnoicity</em> and (b) is <em>unitality</em></p></blockquote>
 <p><strong>Remark 2.3:</strong> replacing $=$ with $\cong$ in definition 2.2 will give us a <em>weak monoidal structure</em>.</p>
 <blockquote>
-<p><strong>Exercise 2.5:</strong> The preorder structure $(\mathbb{R}, \leq)$ and the multiplication operation $\times$ will not give us a symmetric monoidal order because of the simple counter example of $-2 \times -2 \nleq 1 \times 1$.</p>
-</blockquote>
+<p><strong>Exercise 2.5:</strong> The preorder structure $(\mathbb{R}, \leq)$ and the multiplication operation $\times$ will not give us a symmetric monoidal order because of the simple counter example of $-2 \times -2 \nleq 1 \times 1$.</p></blockquote>
 <blockquote>
 <p><strong>Example 2.6:</strong> A <em>monid</em> is similar to a symmetric monoidal preorder in that it consists of a set $M$, a function $*: M\times M \rightarrow M$, and an elment $e \in M$ called the <em>monid unit</em>, such that for every $m,n,p \in M$,</p>
 <ul>
@@ -55,8 +53,7 @@
 <li>$e * m = m$</li>
 <li>associativity holds</li>
 </ul>
-<p>Further, if commutivity holds (which isn&rsquo;t not generally true),  then it is also called <em>commutative</em></p>
-</blockquote>
+<p>Further, if commutivity holds (which isn&rsquo;t not generally true),  then it is also called <em>commutative</em></p></blockquote>
 <h2 id="222---introducing-wiring-diagrams">2.2.2 - Introducing wiring diagrams</h2>
 <p>&#x26a0;&#xfe0f; I am seeing the wiring diagrams, but I fail to understand why they are any different from the Hasse diagrams we&rsquo;ve seen previously.</p>
 <p>Essentially, wiring diagrams seem to be a way to encode information about symmetric monoidal structures. The basic rules built up so far are as follows:</p>
@@ -104,6 +101,8 @@
 <blockquote>
 <p><strong>Exercise 2.20:</strong>
 Prove&ndash;given $t \leq v+w$, $w+u \leq x+z$, and  $v+x \leq y$&ndash;that $t+u \leq y+z$.</p>
+<p>ALgebraically, we proceed like so:
+</p>
 $$\begin{align} 
     t + u &\leq (v+w) + u \\
     &\leq v + (w+u) \\
@@ -118,8 +117,7 @@ and the wiring diagram would look like
             <p>The squares are the $\leq$ blocks</p>
         </figcaption>
 </figure>
-</p>
-</blockquote>
+</p></blockquote>
 <h2 id="223---applied-examples">2.2.3 - Applied examples</h2>
 <p>While this section did solidify some concepts. It wasn&rsquo;t too important. Although, it did carry two useful examples: discarding and splitting.</p>
 <p>With discarding, if a symmetric monoidal structure also satisfies $x \leq I$ for every $x \in X$, then it is possible to terminate any wire:
@@ -150,8 +148,7 @@ for all $p_1,p_2 \in P$.</li>
 And it is called a <em>strict monoidal monotone</em> if it satisfies</li>
 <li>(a&rsquo;&rsquo;) $I_Q = f(I_P)$</li>
 <li>(b&rsquo;&rsquo;) $f(p_1) \otimes_Q f(p_1 \otimes_P p_2) = f(p_1) \otimes_Q f(p_2)$</li>
-</ul>
-</blockquote>
+</ul></blockquote>
 <p>Monoidal monotones are said to be examples of <em>monoidal functors</em> in category theory.</p>
 <p>The exercises for this section seem a little easy, so I will be skipping them for now, returning to them if I get confused on the defnitions of monoidal monotones.</p>
 ]]></content:encoded>

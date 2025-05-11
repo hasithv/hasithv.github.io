@@ -1,7 +1,7 @@
 baseURL: "https://hasithv.github.io/"
 languageCode: en-us
 title: HasithAlted
-theme: ["PaperMod"]
+theme: "PaperMod"
 enableEmoji: true
 
 menu:
@@ -53,6 +53,8 @@ outputs:
 
 markup:
   goldmark:
+    renderer:
+      unsafe: true
     parser:
       wrapStandAloneImageWithinParagraph: false
       attribute:
