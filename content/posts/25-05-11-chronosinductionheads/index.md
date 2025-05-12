@@ -143,7 +143,7 @@ However, I wasn't able to find evidence of induction heads in the smaller models
 ## References
 [1.] https://github.com/hasithv/chronos_induction
 
-[2] https://github.com/hasithv/chronos_induction/blob/main/thesis.pdf
+[2] [My undergraduate thesis](./thesis.pdf)
 
 [3] https://arxiv.org/abs/2407.07011
 

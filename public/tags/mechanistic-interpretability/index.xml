@@ -136,7 +136,7 @@ where $A_{1,i}$ is the $i$-th token in the output of the attention head and $k_j
 <hr>
 <h2 id="references">References</h2>
 <p>[1.] <a href="https://github.com/hasithv/chronos_induction">https://github.com/hasithv/chronos_induction</a></p>
-<p>[2] <a href="https://github.com/hasithv/chronos_induction/blob/main/thesis.pdf">https://github.com/hasithv/chronos_induction/blob/main/thesis.pdf</a></p>
+<p>[2] <a href="./thesis.pdf">My undergraduate thesis</a></p>
 <p>[3] <a href="https://arxiv.org/abs/2407.07011">https://arxiv.org/abs/2407.07011</a></p>
 <p>[4] <a href="https://openreview.net/pdf?id=TqYjhJrp9m">https://openreview.net/pdf?id=TqYjhJrp9m</a></p>
 <p>[5] <a href="https://www.neelnanda.io/mosaic">https://www.neelnanda.io/mosaic</a></p>
