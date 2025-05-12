@@ -38,8 +38,6 @@ params:
     url: "https://www.linkedin.com/in/hasithv"
   - name: "rss"
     url: "/index.xml"
-  - name: "mastodon"
-    url: "https://mathstodon.xyz/@hasith"
   ShowFullTextinRSS: true
   math: true
   defaultTheme: auto
