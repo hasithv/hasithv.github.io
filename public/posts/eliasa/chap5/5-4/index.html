@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>5.4 - Gaussian Processes | HasithAlted</title>
 <meta name="keywords" content="stochastics, probability, lecture">
 <meta name="description" content="
@@ -14,16 +14,16 @@ Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is c
 $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$
 ">
 <meta name="author" content="Hasith Vattikuti">
-<link rel="canonical" href="http://localhost:1313/posts/eliasa/chap5/5-4/">
+<link rel="canonical" href="https://hasithv.github.io/posts/eliasa/chap5/5-4/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://hasithv.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hasithv.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hasithv.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hasithv.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/eliasa/chap5/5-4/">
+<link rel="alternate" hreflang="en" href="https://hasithv.github.io/posts/eliasa/chap5/5-4/">
 <noscript>
     <style>
         #theme-toggle,
@@ -60,7 +60,82 @@ $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X}
         }
 
     </style>
-</noscript><script src="https://cdn.plot.ly/plotly-2.20.0.min.js"></script>
+</noscript><script src="https://cdn.plot.ly/plotly-2.20.0.min.js"></script><meta property="og:url" content="https://hasithv.github.io/posts/eliasa/chap5/5-4/">
+  <meta property="og:site_name" content="HasithAlted">
+  <meta property="og:title" content="5.4 - Gaussian Processes">
+  <meta property="og:description" content=" Definition 5.9: A stochasitc process $\{X_t\}_{t \geq 0}$ is a Gaussian Process if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.
+Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$ ">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-08-06T21:17:49-07:00">
+    <meta property="article:modified_time" content="2024-08-06T21:17:49-07:00">
+    <meta property="article:tag" content="Stochastics">
+    <meta property="article:tag" content="Probability">
+    <meta property="article:tag" content="Lecture">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="5.4 - Gaussian Processes">
+<meta name="twitter:description" content="
+Definition 5.9: A stochasitc process $\{X_t\}_{t \geq 0}$ is a Gaussian Process if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.
+Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments
+
+$$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hasithv.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "5.4 - Gaussian Processes",
+      "item": "https://hasithv.github.io/posts/eliasa/chap5/5-4/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "5.4 - Gaussian Processes",
+  "name": "5.4 - Gaussian Processes",
+  "description": " Definition 5.9: A stochasitc process $\\{X_t\\}_{t \\geq 0}$ is a Gaussian Process if its finite dimensional distributions are consistent Gaussian measures for any $0 \\leq t_1 \u003c t_2 \u003c \\ldots \u003c t_k$.\nRecall that a Gaussian random vector $\\mathbf{X} = (X_1, X_2,\\ldots,X_n)^T$ is completely characterized by its first and second moments $$\\mathbf{m} = \\mathbb{E}[\\mathbf{X}], \\quad \\mathbf{K} = \\mathbb{E}[(\\mathbf{X} - \\mathbf{m}) (\\mathbf{X} - \\mathbf{m})^T]$$Meaning that the characteristic function is expressed only in terms of $\\mathbf{m}$ and $\\mathbf{K}$ ",
+  "keywords": [
+    "stochastics", "probability", "lecture"
+  ],
+  "articleBody": " Definition 5.9: A stochasitc process $\\{X_t\\}_{t \\geq 0}$ is a Gaussian Process if its finite dimensional distributions are consistent Gaussian measures for any $0 \\leq t_1 \u003c t_2 \u003c \\ldots \u003c t_k$.\nRecall that a Gaussian random vector $\\mathbf{X} = (X_1, X_2,\\ldots,X_n)^T$ is completely characterized by its first and second moments $$\\mathbf{m} = \\mathbb{E}[\\mathbf{X}], \\quad \\mathbf{K} = \\mathbb{E}[(\\mathbf{X} - \\mathbf{m}) (\\mathbf{X} - \\mathbf{m})^T]$$Meaning that the characteristic function is expressed only in terms of $\\mathbf{m}$ and $\\mathbf{K}$ $$\\mathbb{E}\\left[e^{i \\mathbf{\\xi} \\cdot \\mathbf{X}}\\right] = e^{i \\mathbf{\\xi} \\cdot \\mathbf{m} - \\frac{1}{2}\\mathbf{\\xi}^T \\mathbf{K} \\mathbf{\\xi}} $$ This means that for any $0 \\leq t_1 \u003c t_2 \u003c \\ldots \u003c t_k$, the measure $\\mu_{t_1, t_2, \\ldots, t_k}$ is uniquely determined by an $\\mathbf{m} = (m(t_1), \\ldots, m(t_k))$ and a covariance matrix $\\mathbf{K}_{ij} = K(t_i, t_j)$. Because our $\\mu$ satisifes the conditions for Kolomorov’s extension theorem, we have a probability space and a stochastic process associated with $\\mu$.\n⚠️ Isn’t one of the conditions of Kolmogorov’s extension theoren that we need to be able to permute the $t_i$? How would this work if we require the $t_i$ to be increasing?\nTheorem 5.10: Assuming that the stochastic process $\\{X_t\\}_{t\\in[0,T]}$ satisfies $$\\mathbb{E} \\left[ \\int_0^T X_t^2 dt \\right] \u003c \\infty$$ then $m \\in L^2_t$. Also, the operator $$\\mathcal{K} f(s) := \\int_0^T K(s,t) f(t) dt$$ is nonnegative, compact on $L^2_t$\nProof: For the first statement, $$\\int_0^T \\mathbb{E}[X]^2 dt \\leq \\int_0^T \\mathbb{E}[X_t^2] dt \u003c \\infty$$ For the second, $$\\begin{align} \\int_0^T \\int_0^T K^2(s,t) ds dt \u0026= \\int_0^T \\int_0^T \\mathbb{E}[\\left((X_t - m(t))(X_s - m(s))\\right)^2]ds dt \\\\ \u0026\\leq \\int_0^T \\int_0^T \\mathbb{E}[(X_t - m(t))^2]\\mathbb{E}[(X_s - m(s))^2]ds dt \\\\ \u0026\\leq \\left( \\int_0^T \\mathbb{E}[X_t] dt \\right) \\\\ \u0026\\leq \\infty \\end{align}$$ which lets us conclude that $K \\in L^2([0,T] \\times [0,T])$, which tells us that $\\mathcal{K}$ is compact on $L^2_t$\n⚠️ I can’t properly find what theorem lets us say the last statement, but I can trust it for now.\nFurthermore, noting that $K$ is symmetric which means that $\\mathcal{K}$ is self adjoint, and we can say $$(\\mathcal{K}f, f) = \\int_0^T \\int_0^T \\mathbb{E}[(X_t - m(t))]\\mathbb{E}[(X_s - m(s))]f(t)f(s) ds dt \\geq 0$$ by symmetry of $s$ and $t$.\nIf we want to extend the characteristic to $L_t$ rather than the finite dimensional version, we can write $$\\mathbb{E}[e^{i(\\xi,X)}] = e^{i(\\xi,m) - \\frac{1}{2} (\\xi, \\mathcal{K} \\xi)}, \\quad \\xi \\in L^2_t$$ With $(\\xi,m) = \\int_a^b \\xi(t) m(t) dt$ and $\\mathcal{K}\\xi (t) = \\int_a^b K(t,s) \\xi(s) ds$. This is a fairly reasonable extrapolation from the finite dimensional case.\nTheorem 5.13: Karhunen-Loeve expansion. Let $(X_t)_{t \\in [0,1]}$ be a Gaussian process with mean 0 and covariance function $K(s,t)$, Assume that $K$ continuous and $\\{\\lambda_k\\}$ be the set of eigenvalues for orthonormal eigenfunctions of $K$, $\\{\\phi_k\\}$. Then, $X_t$ has the representation of $$X_t = \\sum_{k=1}^\\infty \\alpha_k \\sqrt{\\lambda_k} \\phi_k(t)$$ Where $\\alpha_k$ is a standard normal random variable $\\mathscr{N}(0,1)$\n⚠️ I am omitting the proof because I feel the result is easy enough to intuitively grasp, and also it is a little theoretical, so maybe I should revisit it if I get more comfortable with proving covergence in probability.\n",
+  "wordCount" : "500",
+  "inLanguage": "en",
+  "datePublished": "2024-08-06T21:17:49-07:00",
+  "dateModified": "2024-08-06T21:17:49-07:00",
+  "author":{
+    "@type": "Person",
+    "name": "Hasith Vattikuti"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hasithv.github.io/posts/eliasa/chap5/5-4/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HasithAlted",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hasithv.github.io/favicon.ico"
+    }
+  }
+}
+</script>
     
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <script>
@@ -91,7 +166,7 @@ $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X}
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
+            <a href="https://hasithv.github.io/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -117,22 +192,22 @@ $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X}
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/archives/" title="archives">
+                <a href="https://hasithv.github.io/archives/" title="archives">
                     <span>archives</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/notes/" title="notes">
+                <a href="https://hasithv.github.io/categories/notes/" title="notes">
                     <span>notes</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="about">
+                <a href="https://hasithv.github.io/about/" title="about">
                     <span>about</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/" title="categories">
+                <a href="https://hasithv.github.io/categories/" title="categories">
                     <span>categories</span>
                 </a>
             </li>
@@ -202,16 +277,16 @@ Where $\alpha_k$ is a standard normal random variable $\mathscr{N}(0,1)$</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/stochastics/">Stochastics</a></li>
-      <li><a href="http://localhost:1313/tags/probability/">Probability</a></li>
-      <li><a href="http://localhost:1313/tags/lecture/">Lecture</a></li>
+      <li><a href="https://hasithv.github.io/tags/stochastics/">Stochastics</a></li>
+      <li><a href="https://hasithv.github.io/tags/probability/">Probability</a></li>
+      <li><a href="https://hasithv.github.io/tags/lecture/">Lecture</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">HasithAlted</a></span> · 
+        <span>&copy; 2025 <a href="https://hasithv.github.io/">HasithAlted</a></span> · 
 
     <span>
         Powered by

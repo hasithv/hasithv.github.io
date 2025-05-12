@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Is Basketball a Random Walk? | HasithAlted</title>
 <meta name="keywords" content="stochastics, probability, julia">
 <meta name="description" content="About two years ago, I attended a seminar given by Dr. Sid Redner of the Santa Fe Institute titled, &ldquo;Is Basketball Scoring a Random Walk?&rdquo; I  was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&ndash;and surely many other audience members&ndash;that basketball does indeed exhibit behavior akin to a random walk.
 At the very end of his lecture, Dr. Redner said something along the lines of, &ldquo;the obvious betting applications are left as an exercise to the audience.&rdquo; So, as enthusiastic audience members, let&rsquo;s try to tackle this exercise.">
 <meta name="author" content="Hasith Vattikuti">
-<link rel="canonical" href="http://localhost:1313/posts/24-08-17-basketballrandomwalk/">
+<link rel="canonical" href="https://hasithv.github.io/posts/24-08-17-basketballrandomwalk/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://hasithv.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hasithv.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hasithv.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hasithv.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/24-08-17-basketballrandomwalk/">
+<link rel="alternate" hreflang="en" href="https://hasithv.github.io/posts/24-08-17-basketballrandomwalk/">
 <noscript>
     <style>
         #theme-toggle,
@@ -56,7 +56,78 @@ At the very end of his lecture, Dr. Redner said something along the lines of, &l
         }
 
     </style>
-</noscript><script src="https://cdn.plot.ly/plotly-2.20.0.min.js"></script>
+</noscript><script src="https://cdn.plot.ly/plotly-2.20.0.min.js"></script><meta property="og:url" content="https://hasithv.github.io/posts/24-08-17-basketballrandomwalk/">
+  <meta property="og:site_name" content="HasithAlted">
+  <meta property="og:title" content="Is Basketball a Random Walk?">
+  <meta property="og:description" content="About two years ago, I attended a seminar given by Dr. Sid Redner of the Santa Fe Institute titled, “Is Basketball Scoring a Random Walk?” I was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me–and surely many other audience members–that basketball does indeed exhibit behavior akin to a random walk.
+At the very end of his lecture, Dr. Redner said something along the lines of, “the obvious betting applications are left as an exercise to the audience.” So, as enthusiastic audience members, let’s try to tackle this exercise.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-08-17T20:36:30-05:00">
+    <meta property="article:modified_time" content="2024-08-17T20:36:30-05:00">
+    <meta property="article:tag" content="Stochastics">
+    <meta property="article:tag" content="Probability">
+    <meta property="article:tag" content="Julia">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Is Basketball a Random Walk?">
+<meta name="twitter:description" content="About two years ago, I attended a seminar given by Dr. Sid Redner of the Santa Fe Institute titled, &ldquo;Is Basketball Scoring a Random Walk?&rdquo; I  was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&ndash;and surely many other audience members&ndash;that basketball does indeed exhibit behavior akin to a random walk.
+At the very end of his lecture, Dr. Redner said something along the lines of, &ldquo;the obvious betting applications are left as an exercise to the audience.&rdquo; So, as enthusiastic audience members, let&rsquo;s try to tackle this exercise.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hasithv.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Is Basketball a Random Walk?",
+      "item": "https://hasithv.github.io/posts/24-08-17-basketballrandomwalk/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Is Basketball a Random Walk?",
+  "name": "Is Basketball a Random Walk?",
+  "description": "About two years ago, I attended a seminar given by Dr. Sid Redner of the Santa Fe Institute titled, \u0026ldquo;Is Basketball Scoring a Random Walk?\u0026rdquo; I was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me\u0026ndash;and surely many other audience members\u0026ndash;that basketball does indeed exhibit behavior akin to a random walk.\nAt the very end of his lecture, Dr. Redner said something along the lines of, \u0026ldquo;the obvious betting applications are left as an exercise to the audience.\u0026rdquo; So, as enthusiastic audience members, let\u0026rsquo;s try to tackle this exercise.\n",
+  "keywords": [
+    "stochastics", "probability", "julia"
+  ],
+  "articleBody": "About two years ago, I attended a seminar given by Dr. Sid Redner of the Santa Fe Institute titled, “Is Basketball Scoring a Random Walk?” I was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me–and surely many other audience members–that basketball does indeed exhibit behavior akin to a random walk.\nAt the very end of his lecture, Dr. Redner said something along the lines of, “the obvious betting applications are left as an exercise to the audience.” So, as enthusiastic audience members, let’s try to tackle this exercise.\nNote: all code and data for this project can be found in the github repository [2]\nUnderstanding the Model I highly recommend reading the paper [1] that Dr. Redner et. al. published for a full understanding. However, here are the main points that we will need:\nAssumptions Random Walk Definition: The net score, $\\{\\Delta_n\\}_{n \\in \\mathbb{N}}$ (the difference between the scores of teams A and B) can be modeled as an anti-persistent random walk. This means that if the score moves up during a play, then the next play is more likely to move down. $$\\Delta_n = \\sum_{i=1}^{n} \\delta_i$$ $$\\begin{cases} \\delta_i \u003e 0 \u0026 \\text{with probability } p_i \\\\ \\delta_i \u003c 0 \u0026 \\text{with probability } 1 - p_i \\end{cases}$$ $$p_n = (\\textcolor{orange}{\\text{other terms}}) - .152 \\left(\\frac{|\\delta_{n-1}|}{\\delta_{n-1}}\\right), \\quad \\forall \\; i,n \\in \\mathbb{N}$$ Where $\\delta_i$ is the points made during the $i$th play, and $\\Delta_0 = \\delta_0 = 0$. This is explained by the fact that the scoring team loses possession of the ball, so it is harder for them to score again. Coasting and Grinding: The probability of a team scoring is proportional to how far they are behind in points: $$p_n = (\\textcolor{orange}{\\text{other terms}}) - .152 r_{n-1} - .0022 \\Delta_{n-1}, \\quad \\forall \\; n \\in \\mathbb{N}$$ Here, $r_{n-1} = \\left(\\frac{|\\delta_{n-1}|}{\\delta_{n-1}}\\right)$.This is explained in the paper as “the winning team coasts, and the losing team grinds.” Team Strengths: The strength of a team also has a effect on the probability of scoring: $$p(I_A, r_{n-1}, \\Delta_{n-1}) = I_A - 0.152r_{n-1} - 0.0022 \\Delta_{n-1}, \\quad \\forall \\; n \\in \\mathbb{N}$$ Where the strength of a team is defined by parameters $X_A$ and $X_B$ as $I_A(X_A, X_B) = \\frac{X_A}{X_A + X_B}$. Additionally, $X_A$ and $X_B$ are distributed according to $\\mathcal{N}(\\mu = 1,\\sigma^2=.0083).$ Time Between Plays: The time between each play is exponentially distributed $$\\tau_n \\sim \\text{Exp}(\\lambda)$$ Scoring Probabilities: For each play, the probabilities of scoring $n$ points is $$\\begin{cases} \\begin{align} \\delta = 1, \\quad \u00268.7\\% \\\\ \\delta = 2, \\quad \u002673.86\\% \\\\ \\delta = 3, \\quad \u002617.82\\% \\\\ \\delta = 4, \\quad \u00260.14\\% \\\\ \\delta = 5, \\quad \u00260.023\\% \\\\ \\delta = 6, \\quad \u00260.0012\\% \\\\ \\end{align} \\end{cases}$$ ⚠️ The only confusion I have with the paper is that the above “probabilities” do not sum to 1, so I am not sure how to interpret them. I went ahead and removed $\\delta=6$ and lowered the probability of $\\delta=5$ so that the probabilities sum to 1. This should be okay since 5 and 6 point plays are so rare that they should not affect the model too much. Building the Simulation Gathering Simulation Data Two things I wanted to improve were to expand the dataset and to use bayesian updates to better estimate the $\\lambda$ and $I_A$ for a game.\nFor the dataset, Dr. Redner only used games from 2006-2009, but I managed to obtain all playoff games after 2000. Using this, I looked at the distribution for the average number of plays per 30s\nDistribution for $\\lambda$ values. The orange normal curve has mean 1.005 and std 0.1. I am not sure why there was a large deficit at the 1 play per 30s mark; it seems to be half as high as it shold be.\nwhich gives us a prior for $\\lambda$ that we can live-update to better fit our model to a given game (and we already have the prior for $X$): $$\\lambda \\sim \\mathcal{N}(1.005,0.1)$$ $$X \\sim \\mathcal{N}(1, \\sqrt{0.0083})$$Bayesian Updating Using simple bayesian updates, we should be able to properly estimate how likely a certain $\\lambda$ or $I_A$ is given the game data of scoring rates $\\{t_1,\\ldots,t_n\\}$, and who scored on each play $\\{r_1,\\ldots,r_n\\}$: $$\\begin{align} f(\\lambda | \\{t_1,\\ldots,t_n\\}) \u0026\\propto f(\\{t_1,\\ldots,t_n\\} | \\lambda) f(\\lambda) \\\\ \u0026\\propto \\left(\\prod_{i=1}^{n} f(t_i | \\lambda) \\right) f(\\lambda) \\\\ \u0026\\propto \\left(\\prod_{i=1}^{n} \\lambda e^{-\\lambda t_i} \\right) \\mathcal{N}(1.005,0.1) \\\\ \u0026\\propto \\left(\\lambda^n e^{-\\lambda \\sum_{i=1}^{n} t_i} \\right) \\mathcal{N}(1.005,0.1) \\\\ \\\\ f(X_A, X_B | \\{r_1,\\ldots,r_n\\}) \u0026\\propto f(\\{r_1,\\ldots,r_n\\} | X_A,X_B) f(X_A,X_B) \\\\ \u0026\\propto \\left(\\prod_{i=1}^{n} f(r_i | X_A,X_B) \\right) f(X_A,X_B) \\\\ \u0026\\propto \\left|\\prod_{i=1}^{n} p\\left(\\frac{X_A}{X_A + X_B}, r_{i-1}, \\Delta_{i-1} \\right) - \\frac{1-r_i}{2} \\right| \\cdot \\mathcal{N}(1, \\sqrt{0.0083})(X_A) \\cdot \\mathcal{N}(1, \\sqrt{0.0083})(X_B)\\\\ \\end{align} $$ As you can see, the update for the $X$ values is a bit more complicated, but it is still fairly easy to compute. The code to do this is show below:\nfunction update_rate!(params, time_deltas) time_deltas = time_deltas/30 params.rate = (x) -\u003e x^length(time_deltas) * exp(-x * sum(time_deltas)) * pdf(defaultRate, x) / params.rate_Z normalize_rate!(params) end function update_strengths!(params, scoring_data, lookback=15) lookback = min(lookback, length(scoring_data)) scoring_data = scoring_data[end-lookback+1:end] score_probs = (x,y) -\u003e prod(map((z) -\u003e score_prob(z, x, y), scoring_data)) params.strengths = (x,y) -\u003e score_probs(x,y) * pdf(defaultStrengths, x) * pdf(defaultStrengths, y) / params.strengths_Z normalize_strengths!(params) end The real roadblock, however, is actually sampling the $\\lambda$ and $X$ values from the pdfs.\nSampling Game Parameters Since we have access to the pdfs (even their normalizing constants are quite easy to compute using numeric methods), we can employ importance sampling as a brute force method. I am sure that there are fancier MCMC algorithms that could be used, but the unfriendly distribution of the $X$ values made it hard for me to use external libraries like Turing.jl.\nAnyhow, for interested readers, the reason we can use importance sampling to compute the expected value of a function $g$ with respect to a pdf $f$ using another pdf $h$ is because of the following: $$\\begin{align} \\underset{X \\sim f}{\\mathbb{E}}[g(X)] \u0026= \\int g(x) f(x) dx \\\\ \u0026= \\int g(x) \\frac{f(x)}{h(x)} h(x) dx \\\\ \u0026= \\underset{X \\sim h}{\\mathbb{E}}\\left[\\frac{f(X)}{h(X)} g(X)\\right] \\end{align}$$ Which also tells us that $h$ has the condition that it must be non-zero wherever $f$ is non-zero. When working with empricial calulations, the term $\\frac{f(x)}{h(x)}$ is referred to as the weight of the sample for obvious reasons.\nSo, for our empirical estimations a good choice for $h$ is the prior distributions. The following code shows the implementation of the sampling functions:\nfunction sample_params(game, n) r = rand(defaultRate, n) wr = game.params.rate.(r) ./ pdf(defaultRate, r) s = rand(defaultStrengths, n, 2) ws = game.params.strengths.(s[:,1], s[:,2]) ./ (pdf(defaultStrengths, s[:,1]) .* pdf(defaultStrengths, s[:,2])) w = wr .* ws return r, s, w end function sample_games(game, n=1000, k=1000) results = zeros(n) for i in 1:n r, s, w = sample_params(game, k) sample_results = zeros(k) Threads.@threads for j in 1:k X = s[j, 1] Y = s[j, 2] sample_results[j] = simulate_game(game, r[j], X, Y) * w[j] end results[i] = sum(sample_results) / k end return sum(results)/n end Simulating Games The final step is to simulate the games. This is quite easy to do if we are able to pass in all the parameters we need.\nfunction simulate_game(game, lambda, Xa, Xb) if length(game.plays) == 0 t = 0 s = 0 r = 0 else t = game.plays[end][1] s = net_score(game) r = sign(game.plays[end][2]) end while t \u003c 2880 t += rand(Exponential(1/lambda)) * 30 if rand() \u003c score_prob((1, r, s), Xa, Xb) s += random_play() r = 1 else s -= random_play() r = -1 end end return (sign(s)+1)/2 end Results Observations of the Model The above code snippets allowed me to peer into quite a few example games, and gave me the following conclusions about how baksetball random walks work:\nStrengths Don’t Dominate: Dr. Redner mentioned that it would be quite difficult to correctly predict the strengths of the teams given game data, and seeing as the bayesian updates hardly change the prior, I’ll have to agree The Games are Relatively Uniform: Even though the distribution for $\\lambda$ did visually show significant updates throughout the game, the resulting probabilities hardly shifted–meaning that we will not be able to differentiate between most games. The Arcsine Law: The biggest factor which determines who wins is the current team that is leading. This is in agreement with the arcsine law which states that a random walk is most likely to spend its time on one side of the origin. Application Due to the performant nature of the code (thanks Julia!), it made sense to spin up website with a simpler version of the model (no bayesian updates since they hardly made a difference and it’d be a lot of work for the user to input each play). This way, someone betting on a game can make a mathematically-backed decision on how to spend their money! The website takes in the scores of the teams and the time elapsed to calculate the odds that a team will win (the lower the better)\nThe application computes the odds for a team to win. In other words, it outputs the inverse probability for a team to win, so the closer it is to 1, the more likely that team is to win, and vice versa.\nIf a bookie offers a payout multiplier that is highger than the calcualted odds, it might be a good idea to buy it because we are prdicting that the team is more likely to win than the bookie thinks (thus, the bookie overpriced the payout).\nI cannot host the application myself, but you can find the code for it–along with the instructions to run it–in the github repository [2].\nReferences Gabel, A., Redner, S., “Random Walk Picture of Basketball Scoring,” arXiv:1109.2825v1 (2011). Vattikuti, V., “NBA Odds,” github.com/hasithv/nba-odds (2024). ",
+  "wordCount" : "1614",
+  "inLanguage": "en",
+  "datePublished": "2024-08-17T20:36:30-05:00",
+  "dateModified": "2024-08-17T20:36:30-05:00",
+  "author":{
+    "@type": "Person",
+    "name": "Hasith Vattikuti"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hasithv.github.io/posts/24-08-17-basketballrandomwalk/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HasithAlted",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hasithv.github.io/favicon.ico"
+    }
+  }
+}
+</script>
     
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <script>
@@ -87,7 +158,7 @@ At the very end of his lecture, Dr. Redner said something along the lines of, &l
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
+            <a href="https://hasithv.github.io/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -113,22 +184,22 @@ At the very end of his lecture, Dr. Redner said something along the lines of, &l
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/archives/" title="archives">
+                <a href="https://hasithv.github.io/archives/" title="archives">
                     <span>archives</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/notes/" title="notes">
+                <a href="https://hasithv.github.io/categories/notes/" title="notes">
                     <span>notes</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="about">
+                <a href="https://hasithv.github.io/about/" title="about">
                     <span>about</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/" title="categories">
+                <a href="https://hasithv.github.io/categories/" title="categories">
                     <span>categories</span>
                 </a>
             </li>
@@ -360,16 +431,16 @@ Which also tells us that $h$ has the condition that it must be non-zero wherever
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/tags/stochastics/">Stochastics</a></li>
-      <li><a href="http://localhost:1313/tags/probability/">Probability</a></li>
-      <li><a href="http://localhost:1313/tags/julia/">Julia</a></li>
+      <li><a href="https://hasithv.github.io/tags/stochastics/">Stochastics</a></li>
+      <li><a href="https://hasithv.github.io/tags/probability/">Probability</a></li>
+      <li><a href="https://hasithv.github.io/tags/julia/">Julia</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">HasithAlted</a></span> · 
+        <span>&copy; 2025 <a href="https://hasithv.github.io/">HasithAlted</a></span> · 
 
     <span>
         Powered by

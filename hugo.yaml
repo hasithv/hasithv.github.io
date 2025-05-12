@@ -28,7 +28,7 @@ params:
   ShowCodeCopyButtons: true
   homeInfoParams:
     Title: Hello!
-    Content: I'm Hasith, a junior at The University of Texas at Austin studying Physics and Mathematics. Some things that interest me are computational physics, applied math, scientific machine learning, reinforcement learning, and theoretical machine learning.
+    Content: I'm Hasith, a senior at The University of Texas at Austin studying Physics and Mathematics. Some things that interest me are AI safety, Mechanistic Interpretability, Scientific Computing, and Reinforcement Learning. Feel free to reach out to me at hasith@utexas.edu for any discussions, questions, or collaborations--I'd love to listen to your ideas!
   socialIcons: # optional
   - name: "email"
     url: "mailto:hasith@utexas.edu"

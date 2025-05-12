@@ -2,94 +2,94 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on HasithAlted</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://hasithv.github.io/tags/</link>
     <description>Recent content in Tags on HasithAlted</description>
     <generator>Hugo -- 0.147.1</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 11 May 2025 10:50:18 -0500</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hasithv.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mechanistic Interpretability</title>
-      <link>http://localhost:1313/tags/mechanistic-interpretability/</link>
+      <link>https://hasithv.github.io/tags/mechanistic-interpretability/</link>
       <pubDate>Sun, 11 May 2025 10:50:18 -0500</pubDate>
-      <guid>http://localhost:1313/tags/mechanistic-interpretability/</guid>
+      <guid>https://hasithv.github.io/tags/mechanistic-interpretability/</guid>
       <description></description>
     </item>
     <item>
       <title>Transformers</title>
-      <link>http://localhost:1313/tags/transformers/</link>
+      <link>https://hasithv.github.io/tags/transformers/</link>
       <pubDate>Sun, 11 May 2025 10:50:18 -0500</pubDate>
-      <guid>http://localhost:1313/tags/transformers/</guid>
+      <guid>https://hasithv.github.io/tags/transformers/</guid>
       <description></description>
     </item>
     <item>
       <title>Agent Based Modeling</title>
-      <link>http://localhost:1313/tags/agent-based-modeling/</link>
+      <link>https://hasithv.github.io/tags/agent-based-modeling/</link>
       <pubDate>Tue, 10 Dec 2024 18:47:40 -0600</pubDate>
-      <guid>http://localhost:1313/tags/agent-based-modeling/</guid>
+      <guid>https://hasithv.github.io/tags/agent-based-modeling/</guid>
       <description></description>
     </item>
     <item>
       <title>Optimization</title>
-      <link>http://localhost:1313/tags/optimization/</link>
+      <link>https://hasithv.github.io/tags/optimization/</link>
       <pubDate>Tue, 10 Dec 2024 18:47:40 -0600</pubDate>
-      <guid>http://localhost:1313/tags/optimization/</guid>
+      <guid>https://hasithv.github.io/tags/optimization/</guid>
       <description></description>
     </item>
     <item>
       <title>Python</title>
-      <link>http://localhost:1313/tags/python/</link>
+      <link>https://hasithv.github.io/tags/python/</link>
       <pubDate>Tue, 10 Dec 2024 18:47:40 -0600</pubDate>
-      <guid>http://localhost:1313/tags/python/</guid>
+      <guid>https://hasithv.github.io/tags/python/</guid>
       <description></description>
     </item>
     <item>
       <title>AI Safety</title>
-      <link>http://localhost:1313/tags/ai-safety/</link>
+      <link>https://hasithv.github.io/tags/ai-safety/</link>
       <pubDate>Mon, 04 Nov 2024 14:44:14 -0600</pubDate>
-      <guid>http://localhost:1313/tags/ai-safety/</guid>
+      <guid>https://hasithv.github.io/tags/ai-safety/</guid>
       <description></description>
     </item>
     <item>
       <title>Paper Review</title>
-      <link>http://localhost:1313/tags/paper-review/</link>
+      <link>https://hasithv.github.io/tags/paper-review/</link>
       <pubDate>Mon, 04 Nov 2024 14:44:14 -0600</pubDate>
-      <guid>http://localhost:1313/tags/paper-review/</guid>
+      <guid>https://hasithv.github.io/tags/paper-review/</guid>
       <description></description>
     </item>
     <item>
       <title>Julia</title>
-      <link>http://localhost:1313/tags/julia/</link>
+      <link>https://hasithv.github.io/tags/julia/</link>
       <pubDate>Sat, 17 Aug 2024 20:36:30 -0500</pubDate>
-      <guid>http://localhost:1313/tags/julia/</guid>
+      <guid>https://hasithv.github.io/tags/julia/</guid>
       <description></description>
     </item>
     <item>
       <title>Probability</title>
-      <link>http://localhost:1313/tags/probability/</link>
+      <link>https://hasithv.github.io/tags/probability/</link>
       <pubDate>Sat, 17 Aug 2024 20:36:30 -0500</pubDate>
-      <guid>http://localhost:1313/tags/probability/</guid>
+      <guid>https://hasithv.github.io/tags/probability/</guid>
       <description></description>
     </item>
     <item>
       <title>Stochastics</title>
-      <link>http://localhost:1313/tags/stochastics/</link>
+      <link>https://hasithv.github.io/tags/stochastics/</link>
       <pubDate>Sat, 17 Aug 2024 20:36:30 -0500</pubDate>
-      <guid>http://localhost:1313/tags/stochastics/</guid>
+      <guid>https://hasithv.github.io/tags/stochastics/</guid>
       <description></description>
     </item>
     <item>
       <title>Lecture</title>
-      <link>http://localhost:1313/tags/lecture/</link>
+      <link>https://hasithv.github.io/tags/lecture/</link>
       <pubDate>Mon, 12 Aug 2024 00:29:17 -0500</pubDate>
-      <guid>http://localhost:1313/tags/lecture/</guid>
+      <guid>https://hasithv.github.io/tags/lecture/</guid>
       <description></description>
     </item>
     <item>
       <title>Category Theory</title>
-      <link>http://localhost:1313/tags/category-theory/</link>
+      <link>https://hasithv.github.io/tags/category-theory/</link>
       <pubDate>Fri, 02 Aug 2024 01:26:30 -0700</pubDate>
-      <guid>http://localhost:1313/tags/category-theory/</guid>
+      <guid>https://hasithv.github.io/tags/category-theory/</guid>
       <description></description>
     </item>
   </channel>
