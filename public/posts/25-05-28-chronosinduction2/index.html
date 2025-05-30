@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Induction Heads in Chronos Part 2 | HasithAlted</title>
+<meta name="keywords" content="Transformers, Mechanistic Interpretability">
+<meta name="description" content="
+Previously, in the part 1 post, we found some evidence that induction heads exist in the Chronos models [1]. However, there were some things I did incorrectly and some things I wanted to further explore:
+
+First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from 1910-2187. Sampling over only this range greatly improved the attention mosaics.
+I wanted to further study how changing the number of repeitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect.
+I wanted to go beyond RRT data and see if we can find any interesting inductive properties in multisine data.
+
+Background
+First, let me clear up what an induction head actually is in a more concrete way than my last post.">
+<meta name="author" content="">
+<link rel="canonical" href="https://hasithv.github.io/posts/25-05-28-chronosinduction2/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://hasithv.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hasithv.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hasithv.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hasithv.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://hasithv.github.io/posts/25-05-28-chronosinduction2/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://hasithv.github.io/posts/25-05-28-chronosinduction2/">
+  <meta property="og:site_name" content="HasithAlted">
+  <meta property="og:title" content="Induction Heads in Chronos Part 2">
+  <meta property="og:description" content=" Previously, in the part 1 post, we found some evidence that induction heads exist in the Chronos models [1]. However, there were some things I did incorrectly and some things I wanted to further explore:
+First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from 1910-2187. Sampling over only this range greatly improved the attention mosaics. I wanted to further study how changing the number of repeitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect. I wanted to go beyond RRT data and see if we can find any interesting inductive properties in multisine data. Background First, let me clear up what an induction head actually is in a more concrete way than my last post.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-28T12:31:44-05:00">
+    <meta property="article:modified_time" content="2025-05-28T12:31:44-05:00">
+    <meta property="article:tag" content="Transformers">
+    <meta property="article:tag" content="Mechanistic Interpretability">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Induction Heads in Chronos Part 2">
+<meta name="twitter:description" content="
+Previously, in the part 1 post, we found some evidence that induction heads exist in the Chronos models [1]. However, there were some things I did incorrectly and some things I wanted to further explore:
+
+First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from 1910-2187. Sampling over only this range greatly improved the attention mosaics.
+I wanted to further study how changing the number of repeitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect.
+I wanted to go beyond RRT data and see if we can find any interesting inductive properties in multisine data.
+
+Background
+First, let me clear up what an induction head actually is in a more concrete way than my last post.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hasithv.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Induction Heads in Chronos Part 2",
+      "item": "https://hasithv.github.io/posts/25-05-28-chronosinduction2/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Induction Heads in Chronos Part 2",
+  "name": "Induction Heads in Chronos Part 2",
+  "description": " Previously, in the part 1 post, we found some evidence that induction heads exist in the Chronos models [1]. However, there were some things I did incorrectly and some things I wanted to further explore:\nFirst, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from 1910-2187. Sampling over only this range greatly improved the attention mosaics. I wanted to further study how changing the number of repeitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect. I wanted to go beyond RRT data and see if we can find any interesting inductive properties in multisine data. Background First, let me clear up what an induction head actually is in a more concrete way than my last post.\n",
+  "keywords": [
+    "Transformers", "Mechanistic Interpretability"
+  ],
+  "articleBody": " Previously, in the part 1 post, we found some evidence that induction heads exist in the Chronos models [1]. However, there were some things I did incorrectly and some things I wanted to further explore:\nFirst, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from 1910-2187. Sampling over only this range greatly improved the attention mosaics. I wanted to further study how changing the number of repeitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect. I wanted to go beyond RRT data and see if we can find any interesting inductive properties in multisine data. Background First, let me clear up what an induction head actually is in a more concrete way than my last post.\nDefinition (Induction Head): Suppose we have some set of $T$ tokens, $S=[s_1, s_2, \\ldots, s_T]$. Then, an attention head $h$ in layer $\\ell$, $A^{(\\ell, h)}$ is an induction head if for all collections $S$, token $s_T$ attends very strongly to its most recent occurence. That is, for all $S$ with a well defined $m = \\max\\{ t | t \u003c T, s_t = s_T\\}$ and $n=m+1$, a head $A^{(\\ell, h)}$ is an induction head if $$\\max \\left\\{ A^{(\\ell, h)}_{s_T, s_m}, A^{(\\ell, h)}_{s_T, s_n} \\right\\} \\gg \\frac{1}{T}, $$ where $A^{(\\ell, h)}_{s_i, s_j}$ is how much token $s_i$ attends to $s_j$ in head $A^{(\\ell, h)}$.\nThe Anthropic post which extensively studies induction heads also added an additional requirement that the head must increase the probability of the next token in the sequence appearing [2], but I want to relax that constraint and consider any head that attends to the previous instance of the current token as an induction head.\nIn practice, I found that having a minimum threshold attention score of $0.3$ for induction heads works fairly well, and we can use the RRT instead of going over every possible sequence $S$.\nCorrected Induction Mosaics Since Chronos usually scales its input ids to have tokens between 1911 and 2187, it makes more sense to uniformly sample tokens for RRT over this range. With this updated sampling method, here are the new induction mosaics (use the dropdown to change models):\nWe now see much stronger evidence of induction heads, and the number of induction heads increases with the size of the model.\nRRT Implementation Details In the above plots, I used a sequence length of 10 tokens and repeated them twice, so an example sequence of tokens (using letters instead of token ids for clarity purposes) would be ABCDEFGHIJABCDEFGHIJAB; where our twice-repeated sequence with a length of 10 is ABCDEFGHIJ, marks the end of the encoder inputs, and DEC_START marks the start of the the decoder inputs. However, I was curious as to how varying the length of the repeated squence and even the number of times we repeat the sequence would affect how many induction heads we detect with RRT, so I varied both the repetitions and sequence lengths between [2,4,6,8,10] and produced the following plot.\nFigure 1: The effect on the number of induction heads we detect with RRT as we vary the sequence length and number of repetitions. The overall effect is that decreasing the number of repetitions but increasing the sequence length gives us the most detected induction heads across all models.\nClearly, we see that increasing the repetitions dereases the number of induction heads we see while using longer sequences increases the number of induction heads. I am not sure why the latter happens, but for increasing the number of repeitions, I think the heads are spacing out their attention between all prior occurences instead of just the most recent one–although I haven’t looked into backing up that claim. I decided to use repetitions=2 and sequence_length=10 because that configuration seems to maximize the number of induction heads we can work with.\nMultisine data For a given set of frequencies, $k = \\{ k_1, k_2, \\ldots, k_n \\}$, amplitudes $a = \\{a_1, a_2, \\ldots, a_n\\}$, and phase shifts $\\{\\phi_1, \\phi_2, \\ldots, \\phi_n\\}$, a multisine function is one of the form $$f(t) = \\sum_{i=1}^n a_i \\sin ( 2\\pi k_i t + \\phi_i).$$ In a way, multisine data also resembles a sequence of repeated tokens, although not random. So, I was wondering if the attention heads would do anything interesting in attending to the context.\nTo explore this idea, I first decided to look at the frequences k=[5,10,20,40] and amplitudes a=[1.0,0.5,0.25,0.25]. First, I looked at the attention scores across all heads and layers of each model throughout the context (which was the multisine data), then, I plotted the FFT of both the data and the attention scores, and then I did another FFT of the attention scores. Here is the result for the base model (I think it best illustrates the point I will make later; the other plots can be found here: mini, small, large):\nFigure 2: The attention scores of the multisine data across all heads and layers of the base model, the FFT of the data, the FFT of the attention scores, and the double FFT of the attention scores. A high attention score means that the head is more likely to be an induction head, any attention score above 0.3 was set to 0.3 for better visualization. Notice how the FFTs of the attention heads are highly periodic with a period of about 5Hz, reflected in the double FFT plot. Additionally, the heads with the highest amplitudes in the FFT plot and the double FFT plot are the heads with the higher attention scores in the RRT test.\nThe extremely periodic behavior of the FFT of the attention scores is no coincidence. After running lots of configurations of the multisine data, I found that the period of the FFT of the attention scores corresponds exactly to the smallest difference in frequenies in the multisine data. For example, if we have a multisine with frequencies $k=\\{5,10,20,40\\}$, the smallest difference in frequencies is 5Hz because 10Hz-5Hz=5Hz.\nWhats more is that the induction heads make up the heads with the highest overall amplitudes in the FFT plot as well as the double FFT plot. This is a very interesting result, and I am not exactly sure what the mechanics behind this are, but the implication is that the induction heads tend to pick up on the periodic nature of the data better than other heads.\nConclusion Here are the main takeaways from this post:\nWe find much stronger evidence of induction heads if we modify the RRT test to sample over more commonly used tokens. The sequence length and number of repetitions in the RRT test greatly affect the number of induction heads we detect, with longer sequences and less repetitions resulting in heads with hihger average attention scores to the most recent occurence of the current token. The periodicicity of multisine data is picked up on by the attention heads in the Chronos models, and the induction heads are particularly good at this. The FFT of the attention heads in the models are also very periodic, and their periods correspond to the smallest difference in frequencies in the multisine data. I think there could be more to explore in point 4, because it seems a little wasteful to me for attention heads to have spikes in the FFT plots for so many frequencies, when the data is only periodic with just a few frequencies.\nReferences [1] https://hasithv.github.io/posts/25-05-11-chronosinductionheads/\n[2] https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html\n",
+  "wordCount" : "1268",
+  "inLanguage": "en",
+  "datePublished": "2025-05-28T12:31:44-05:00",
+  "dateModified": "2025-05-28T12:31:44-05:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hasithv.github.io/posts/25-05-28-chronosinduction2/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HasithAlted",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hasithv.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+    
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$','$']]                  
+    }
+  };
+</script>
+
+
+    
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hasithv.github.io/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hasithv.github.io/archives/" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hasithv.github.io/categories/notes/" title="notes">
+                    <span>notes</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hasithv.github.io/about/" title="about">
+                    <span>about</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hasithv.github.io/categories/" title="categories">
+                    <span>categories</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Induction Heads in Chronos Part 2
+    </h1>
+    <div class="post-meta"><span title='2025-05-28 12:31:44 -0500 CDT'>May 28, 2025</span>&nbsp;·&nbsp;6 min
+
+</div>
+  </header> 
+  <div class="post-content"><script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+<p>Previously, in the <a href="/posts/25-05-11-chronosinductionheads/">part 1 post</a>, we found some evidence that induction heads exist in the Chronos models [<a href="/posts/25-05-11-chronosinductionheads/">1</a>]. However, there were some things I did incorrectly and some things I wanted to further explore:</p>
+<ol>
+<li>First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from <code>1910-2187</code>. Sampling over only this range greatly improved the attention mosaics.</li>
+<li>I wanted to further study how changing the number of repeitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect.</li>
+<li>I wanted to go beyond RRT data and see if we can find any interesting inductive properties in multisine data.</li>
+</ol>
+<h2 id="background">Background<a hidden class="anchor" aria-hidden="true" href="#background">#</a></h2>
+<p>First, let me clear up what an induction head actually is in a more concrete way than my last post.</p>
+<blockquote>
+<p><strong>Definition</strong> (Induction Head): Suppose we have some set of $T$ tokens, $S=[s_1, s_2, \ldots, s_T]$. Then, an attention head $h$ in layer $\ell$, $A^{(\ell, h)}$ is an induction head if for all collections $S$, token $s_T$ attends very strongly to its most recent occurence. That is, for all $S$ with a well defined $m = \max\{ t | t < T, s_t = s_T\}$ and $n=m+1$, a head $A^{(\ell, h)}$ is an induction head if
+</p>
+$$\max \left\{ A^{(\ell, h)}_{s_T, s_m}, A^{(\ell, h)}_{s_T, s_n} \right\} \gg \frac{1}{T}, $$<p>
+where $A^{(\ell, h)}_{s_i, s_j}$ is how much token $s_i$ attends to $s_j$ in head $A^{(\ell, h)}$.</p></blockquote>
+<p>The <a href="https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html">Anthropic post</a> which extensively studies induction heads also added an additional requirement that the head must increase the probability of the next token in the sequence appearing [<a href="https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html">2</a>], but I want to relax that constraint and consider any head that attends to the previous instance of the current token as an induction head.</p>
+<p>In practice, I found that having a minimum threshold attention score of $0.3$ for induction heads works fairly well, and we can use the <a href="/posts/25-05-11-chronosinductionheads/#repeated-random-tokens">RRT</a> instead of going over every possible sequence $S$.</p>
+<h2 id="corrected-induction-mosaics">Corrected Induction Mosaics<a hidden class="anchor" aria-hidden="true" href="#corrected-induction-mosaics">#</a></h2>
+<p>Since Chronos usually scales its input ids to have tokens between <code>1911</code> and <code>2187</code>, it makes more sense to uniformly sample tokens for RRT over this range. With this updated sampling method, here are the new induction mosaics (use the dropdown to change models):</p>
+<style>
+  .plot-container {
+    width: 700px;
+    height: 400px;
+    margin: 0 auto 2rem; /* center and add space below */
+  }
+</style>
+<div>
+  <div id="mosaic"  class="plot-container"></div>
+</div>
+<script>
+  const specs = [
+    { id: 'mosaic',  src: './json/corrected_mosaics.json'  },
+  ];
+
+  specs.forEach(({id, src}) => {
+    fetch(src)
+      .then(r => {
+        if (!r.ok) throw new Error(`Failed to load ${src}: ${r.status}`);
+        return r.json();
+      })
+      .then(cfg => {
+        const layout = { ...cfg.layout, width: 700, height: 400 };
+        const config = { ...cfg.config, responsive: true };
+        Plotly.newPlot(id, cfg.data, layout, config);
+      })
+      .catch(err => console.error(err));
+  });
+</script>
+<p>We now see much stronger evidence of induction heads, and the number of induction heads increases with the size of the model.</p>
+<h2 id="rrt-implementation-details">RRT Implementation Details<a hidden class="anchor" aria-hidden="true" href="#rrt-implementation-details">#</a></h2>
+<p>In the above plots, I used a sequence length of 10 tokens and repeated them twice, so an example sequence of tokens (using letters instead of token ids for clarity purposes) would be <code>ABCDEFGHIJABCDEFGHIJA&lt;EOS&gt;&lt;DEC_START&gt;B</code>; where our twice-repeated sequence with a length of <code>10</code> is <code>ABCDEFGHIJ</code>, <code>&lt;EOS&gt;</code> marks the end of the encoder inputs, and <code>DEC_START</code> marks the start of the the decoder inputs. However, I was curious as to how varying the length of the repeated squence and even the number of times we repeat the sequence would affect how many induction heads we detect with RRT, so I varied both the repetitions and sequence lengths between <code>[2,4,6,8,10]</code> and produced the following plot.</p>
+<p><a href="./plots/rf_vs_sl.png"><figure class="align-center ">
+    <img loading="lazy" src="./plots/rf_vs_sl.png#center"
+         alt="Figure 1: The effect on the number of induction heads we detect with RRT as we vary the sequence length and number of repetitions. The overall effect is that decreasing the number of repetitions but increasing the sequence length gives us the most detected induction heads across all models." width="1200px"/> <figcaption>
+            <p>Figure 1: The effect on the number of induction heads we detect with RRT as we vary the sequence length and number of repetitions. The overall effect is that decreasing the number of repetitions but increasing the sequence length gives us the most detected induction heads across all models.</p>
+        </figcaption>
+</figure>
+</a></p>
+<p>Clearly, we see that increasing the repetitions dereases the number of induction heads we see while using longer sequences increases the number of induction heads. I am not sure why the latter happens, but for increasing the number of repeitions, I think the heads are spacing out their attention between all prior occurences instead of just the most recent one&ndash;although I haven&rsquo;t looked into backing up that claim. I decided to use <code>repetitions=2</code> and <code>sequence_length=10</code> because that configuration seems to maximize the number of induction heads we can work with.</p>
+<h2 id="multisine-data">Multisine data<a hidden class="anchor" aria-hidden="true" href="#multisine-data">#</a></h2>
+<p>For a given set of frequencies, $k = \{ k_1, k_2, \ldots, k_n \}$, amplitudes $a = \{a_1, a_2, \ldots, a_n\}$, and phase shifts $\{\phi_1, \phi_2, \ldots, \phi_n\}$, a multisine function is one of the form
+</p>
+$$f(t) = \sum_{i=1}^n a_i \sin ( 2\pi k_i t + \phi_i).$$<p>
+In a way, multisine data also resembles a sequence of repeated tokens, although not random. So, I was wondering if the attention heads would do anything interesting in attending to the context.</p>
+<p>To explore this idea, I first decided to look at the frequences <code>k=[5,10,20,40]</code> and amplitudes <code>a=[1.0,0.5,0.25,0.25]</code>. First, I looked at the attention scores across all heads and layers of each model throughout the context (which was the multisine data), then, I plotted the FFT of both the data and the attention scores, and then I did another FFT of the attention scores. Here is the result for the base model (I think it best illustrates the point I will make later; the other plots can be found here: <a href="./plots/fattn_mini.png">mini</a>, <a href="./plots/fattn_small.png">small</a>, <a href="./plots/fattn_large.png">large</a>):</p>
+<p><a href="./plots/fattn_base.png"><figure class="align-center ">
+    <img loading="lazy" src="./plots/fattn_base.png#center"
+         alt="Figure 2: The attention scores of the multisine data across all heads and layers of the base model, the FFT of the data, the FFT of the attention scores, and the double FFT of the attention scores. A high attention score means that the head is more likely to be an induction head, any attention score above 0.3 was set to 0.3 for better visualization. Notice how the FFTs of the attention heads are highly periodic with a period of about 5Hz, reflected in the double FFT plot. Additionally, the heads with the highest amplitudes in the FFT plot and the double FFT plot are the heads with the higher attention scores in the RRT test." width="1200px"/> <figcaption>
+            <p>Figure 2: The attention scores of the multisine data across all heads and layers of the base model, the FFT of the data, the FFT of the attention scores, and the double FFT of the attention scores. A high attention score means that the head is more likely to be an induction head, any attention score above 0.3 was set to 0.3 for better visualization. Notice how the FFTs of the attention heads are highly periodic with a period of about 5Hz, reflected in the double FFT plot. Additionally, the heads with the highest amplitudes in the FFT plot and the double FFT plot are the heads with the higher attention scores in the RRT test.</p>
+        </figcaption>
+</figure>
+</a></p>
+<p>The extremely periodic behavior of the FFT of the attention scores is no coincidence. After running lots of configurations of the multisine data, I found that the period of the FFT of the attention scores corresponds exactly to the smallest difference in frequenies in the multisine data. For example, if we have a multisine with frequencies $k=\{5,10,20,40\}$, the smallest difference in frequencies is 5Hz because 10Hz-5Hz=5Hz.</p>
+<p>Whats more is that the induction heads make up the heads with the highest overall amplitudes in the FFT plot as well as the double FFT plot. This is a very interesting result, and I am not exactly sure what the mechanics behind this are, but the implication is that the induction heads tend to pick up on the periodic nature of the data better than other heads.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Here are the main takeaways from this post:</p>
+<ol>
+<li>We find much stronger evidence of induction heads if we modify the RRT test to sample over more commonly used tokens.</li>
+<li>The sequence length and number of repetitions in the RRT test greatly affect the number of induction heads we detect, with longer sequences and less repetitions resulting in heads with hihger average attention scores to the most recent occurence of the current token.</li>
+<li>The periodicicity of multisine data is picked up on by the attention heads in the Chronos models, and the induction heads are particularly good at this.</li>
+<li>The FFT of the attention heads in the models are also very periodic, and their periods correspond to the smallest difference in frequencies in the multisine data.</li>
+</ol>
+<p>I think there could be more to explore in point 4, because it seems a little wasteful to me for attention heads to have spikes in the FFT plots for so many frequencies, when the data is only periodic with just a few frequencies.</p>
+<h2 id="references">References<a hidden class="anchor" aria-hidden="true" href="#references">#</a></h2>
+<p>[1] <a href="/posts/25-05-11-chronosinductionheads/">https://hasithv.github.io/posts/25-05-11-chronosinductionheads/</a></p>
+<p>[2] <a href="https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html">https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hasithv.github.io/tags/transformers/">Transformers</a></li>
+      <li><a href="https://hasithv.github.io/tags/mechanistic-interpretability/">Mechanistic Interpretability</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://hasithv.github.io/">HasithAlted</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

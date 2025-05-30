@@ -5,6 +5,9 @@ tags = ["Transformers", "Mechanistic Interpretability"]
 categories = ["Research"]
 draft = false
 +++
+<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+
+*Notice: While the theory here is correct, I realized I had some implementation errors which are corrected in a [follow up post](/posts/25-05-28-chronosinduction2/).*
 
 This Summer, I expect to be working on things related to mechanistic intepretability in time series forecasting, and a model of interest was [Amazon's Chronos model](https://github.com/amazon-science/chronos-forecasting), a probabilistic time series forecasting model. To better understand how the model works and to get my hands dirty with some MI work, I decided to try and look for evidence of induction heads in Chronos.
 
@@ -20,7 +23,7 @@ V = XW^V,
 \end{align*}
 $$
 $$
-A = \mathcal{S}\left(\text{MASK}\left(\frac{QK^T}{\sqrt{d}}\right)\right)V,
+A = \mathcal{S}\left(\text{MASK}\left(\frac{QK^\top}{\sqrt{d}}\right)\right)V,
 $$
 where $\mathcal{S}$ is the row-wise softmax function, $\text{MASK}$ is a masking function which masks out certain tokens we don't want to consider during inference (by setting them to $-\infty$); $W^Q, W^K, W^V \in \mathbb{R}^{d \times d'}$ are the learnable parameters of the model; and $Q, K, V \in \mathbb{R}^{T \times d'}$ are the query, key, and value matrices, respectively.
 
@@ -28,9 +31,9 @@ Note: the query can process any number of tokens at a time, so it can be possibl
 
 In a way, $A$--the attention head--is a weighted sum of the values $V$, where the weights are given by the softmax of the attention scores. For example, let's say we are looking at a singular query $q_i \in \mathbb{R}^{1 \times d'}$, which corresponds to the $i$-th token in the sequence. Then, the attention head (ignoring any masking) is computing the following weighted sum:
 $$
-A_{1,i} = \sum_{j=1}^T \frac{\exp(q_i k_j^T)}{\sum_{j'=1}^T \exp(q_i k_{j'}^T)} v_j,
+A_{1,i} = \sum_{j=1}^T \frac{\exp(q_i k_j^\top)}{\sum_{j'=1}^T \exp(q_i k_{j'}^\top)} v_j,
 $$
-where $A_{1,i}$ is the $i$-th token in the output of the attention head and $k_j,v_j \in \mathbb{R}^{d'}$ are the $j$-th key and value vectors (the $j$-th rows of the matrices), respectively. With this formulation, we can explicity see that the attention head is computing a weighted sum of the the value vectors. The weight ascribed to each $j$-th token, $\frac{\exp(q_i k_j^T)}{Z}$, is referred to as the 'attention score' and is how much the $i$-th token attends to the $j$-th token.
+where $A_{1,i}$ is the $i$-th token in the output of the attention head and $k_j,v_j \in \mathbb{R}^{d'}$ are the $j$-th key and value vectors (the $j$-th rows of the matrices), respectively. With this formulation, we can explicity see that the attention head is computing a weighted sum of the the value vectors. The weight ascribed to each $j$-th token, $\frac{\exp(q_i k_j^\top)}{Z}$, is referred to as the 'attention score' and is how much the $i$-th token attends to the $j$-th token.
 
 ## Induction Heads
 Sometimes, attention heads are able to learn to attend to the previous copy of the current token. For example, if we have the sequence `ABCPQRABCP`, then the 10th token `P` will attend highly to the 4th token since it was the most recent instance of `P` in the sequence. Other times, the attention head might attend to the token to the *right* of the most recent instance of the current token. Both of these types of attention heads are examples of induction heads.
@@ -141,7 +144,7 @@ However, I wasn't able to find evidence of induction heads in the smaller models
 
 ---
 ## References
-[1.] https://github.com/hasithv/chronos_induction
+[1] https://github.com/hasithv/chronos_induction
 
 [2] [My undergraduate thesis](./thesis.pdf)
 

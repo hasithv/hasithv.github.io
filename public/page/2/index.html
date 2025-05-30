@@ -2,7 +2,7 @@
 <html lang="en" dir="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.147.1"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.147.2"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -58,7 +58,7 @@
         }
 
     </style>
-</noscript><script src="https://cdn.plot.ly/plotly-2.20.0.min.js"></script><meta property="og:url" content="https://hasithv.github.io/">
+</noscript><meta property="og:url" content="https://hasithv.github.io/">
   <meta property="og:site_name" content="HasithAlted">
   <meta property="og:title" content="HasithAlted">
   <meta property="og:locale" content="en-us">
@@ -159,6 +159,20 @@
     </nav>
 </header>
 <main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">5.3 - Markov Processes
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Markov processes in continuous time and space Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if
+$X_t$ is $\mathcal{F}_t$-adapted For any $t \geq s$ and $B \in \mathcal{R}$, we have $$\mathbb{P}(X_t \in B | \mathcal{F}_s) = \mathbb{P}(X_t \in B | X_s)$$ Essentially, this is saying that history doesn’t matter, only the current state matters. We can associate a family of probability measures $\{\mathbb{P}^x\}_{x\in\mathbb{R}}$ for the processes starting at $x$ by defining $\mu_0$ to be the point mass at $x$. Then, we still have $$\mathbb{P}^x(X_t \in B | \mathcal{F}_s) = \mathbb{P}^x(X_t \in B | X_s), \quad t \geq s$$ and $\mathbb{E}[f(X_0)] = f(x)$ for any function $f \in C(\mathbb{R})$. ⚠️ I am not fully confident on what the above section is saying. Specifically, I am having trouble with understanding how we are defining $\mathbb{P}^x$. However, I can understand the strong markov property, so I think I should be okay moving forward.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-08-03 23:22:06 -0700 -0700'>August 3, 2024</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
+  <a class="entry-link" aria-label="post link to 5.3 - Markov Processes" href="https://hasithv.github.io/posts/eliasa/chap5/5-3/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">

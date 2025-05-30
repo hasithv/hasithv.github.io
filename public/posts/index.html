@@ -56,7 +56,7 @@
         }
 
     </style>
-</noscript><script src="https://cdn.plot.ly/plotly-2.20.0.min.js"></script><meta property="og:url" content="https://hasithv.github.io/posts/">
+</noscript><meta property="og:url" content="https://hasithv.github.io/posts/">
   <meta property="og:site_name" content="HasithAlted">
   <meta property="og:title" content="Posts">
   <meta property="og:locale" content="en-us">
@@ -167,12 +167,26 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Induction Heads in Chronos Part 2
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> Previously, in the part 1 post, we found some evidence that induction heads exist in the Chronos models [1]. However, there were some things I did incorrectly and some things I wanted to further explore:
+First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from 1910-2187. Sampling over only this range greatly improved the attention mosaics. I wanted to further study how changing the number of repeitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect. I wanted to go beyond RRT data and see if we can find any interesting inductive properties in multisine data. Background First, let me clear up what an induction head actually is in a more concrete way than my last post.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-05-28 12:31:44 -0500 CDT'>May 28, 2025</span>&nbsp;·&nbsp;6 min</footer>
+  <a class="entry-link" aria-label="post link to Induction Heads in Chronos Part 2" href="https://hasithv.github.io/posts/25-05-28-chronosinduction2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Hunting for Induction Heads in Amazon&#39;s Chronos
     </h2>
   </header>
   <div class="entry-content">
-    <p>This Summer, I expect to be working on things related to mechanistic intepretability in time series forecasting, and a model of interest was Amazon’s Chronos model, a probabilistic time series forecasting model. To better understand how the model works and to get my hands dirty with some MI work, I decided to try and look for evidence of induction heads in Chronos.
-Note: all code and data for this project can be found in the github repository [1]
+    <p> Notice: While the theory here is correct, I realized I had some implementation errors which are corrected in a follow up post.
+This Summer, I expect to be working on things related to mechanistic intepretability in time series forecasting, and a model of interest was Amazon’s Chronos model, a probabilistic time series forecasting model. To better understand how the model works and to get my hands dirty with some MI work, I decided to try and look for evidence of induction heads in Chronos.
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2025-05-11 10:50:18 -0500 CDT'>May 11, 2025</span>&nbsp;·&nbsp;7 min</footer>
@@ -286,20 +300,6 @@ Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is c
   </div>
   <footer class="entry-footer"><span title='2024-08-06 21:17:49 -0700 -0700'>August 6, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
   <a class="entry-link" aria-label="post link to 5.4 - Gaussian Processes" href="https://hasithv.github.io/posts/eliasa/chap5/5-4/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">5.3 - Markov Processes
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Markov processes in continuous time and space Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if
-$X_t$ is $\mathcal{F}_t$-adapted For any $t \geq s$ and $B \in \mathcal{R}$, we have $$\mathbb{P}(X_t \in B | \mathcal{F}_s) = \mathbb{P}(X_t \in B | X_s)$$ Essentially, this is saying that history doesn’t matter, only the current state matters. We can associate a family of probability measures $\{\mathbb{P}^x\}_{x\in\mathbb{R}}$ for the processes starting at $x$ by defining $\mu_0$ to be the point mass at $x$. Then, we still have $$\mathbb{P}^x(X_t \in B | \mathcal{F}_s) = \mathbb{P}^x(X_t \in B | X_s), \quad t \geq s$$ and $\mathbb{E}[f(X_0)] = f(x)$ for any function $f \in C(\mathbb{R})$. ⚠️ I am not fully confident on what the above section is saying. Specifically, I am having trouble with understanding how we are defining $\mathbb{P}^x$. However, I can understand the strong markov property, so I think I should be okay moving forward.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-08-03 23:22:06 -0700 -0700'>August 3, 2024</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
-  <a class="entry-link" aria-label="post link to 5.3 - Markov Processes" href="https://hasithv.github.io/posts/eliasa/chap5/5-3/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
