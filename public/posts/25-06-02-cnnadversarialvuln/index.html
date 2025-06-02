@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Auditing CNNs with Adversarial Vulnerability | HasithAlted</title>
+<meta name="keywords" content="AI safety, mechanistic interpretability">
+<meta name="description" content="This post is a result I came across while working on a SPAR-sponsored project mentored by Satvik Golechha. You can read our full report here: Near Zero-Knowledge Detection of Undesired Behavior [1].
+Introduction and Background
+Say we have two distributions of data:
+
+$D = \{ (x_i, y_i) \}_{i=1}^n$: the intended distribution, which we want to learn
+$D_u = \{ (x_{u_i}, y_{u_i}) \}_{i=1}^m$: the undesired distribution, which exhibits harmful behavior
+
+And two models:
+
+$M_D$: a model which performs well on $D$
+$M_u$: a model which performs well on $D_u$ and performs $\epsilon$-close to $M_D$ on $D$
+
+Is it possible to detect which model is the undesired one if we only have access to $D$? On the surface, this seems like an impossible task to achieve for any general distributions and models, so to make the problem more tractable, let&rsquo;s work with a concrete setup.">
+<meta name="author" content="">
+<link rel="canonical" href="https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://hasithv.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hasithv.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hasithv.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hasithv.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/">
+  <meta property="og:site_name" content="HasithAlted">
+  <meta property="og:title" content="Auditing CNNs with Adversarial Vulnerability">
+  <meta property="og:description" content="This post is a result I came across while working on a SPAR-sponsored project mentored by Satvik Golechha. You can read our full report here: Near Zero-Knowledge Detection of Undesired Behavior [1].
+Introduction and Background Say we have two distributions of data:
+$D = \{ (x_i, y_i) \}_{i=1}^n$: the intended distribution, which we want to learn $D_u = \{ (x_{u_i}, y_{u_i}) \}_{i=1}^m$: the undesired distribution, which exhibits harmful behavior And two models:
+$M_D$: a model which performs well on $D$ $M_u$: a model which performs well on $D_u$ and performs $\epsilon$-close to $M_D$ on $D$ Is it possible to detect which model is the undesired one if we only have access to $D$? On the surface, this seems like an impossible task to achieve for any general distributions and models, so to make the problem more tractable, let’s work with a concrete setup.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-06-02T10:15:15-05:00">
+    <meta property="article:modified_time" content="2025-06-02T10:15:15-05:00">
+    <meta property="article:tag" content="AI Safety">
+    <meta property="article:tag" content="Mechanistic Interpretability">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Auditing CNNs with Adversarial Vulnerability">
+<meta name="twitter:description" content="This post is a result I came across while working on a SPAR-sponsored project mentored by Satvik Golechha. You can read our full report here: Near Zero-Knowledge Detection of Undesired Behavior [1].
+Introduction and Background
+Say we have two distributions of data:
+
+$D = \{ (x_i, y_i) \}_{i=1}^n$: the intended distribution, which we want to learn
+$D_u = \{ (x_{u_i}, y_{u_i}) \}_{i=1}^m$: the undesired distribution, which exhibits harmful behavior
+
+And two models:
+
+$M_D$: a model which performs well on $D$
+$M_u$: a model which performs well on $D_u$ and performs $\epsilon$-close to $M_D$ on $D$
+
+Is it possible to detect which model is the undesired one if we only have access to $D$? On the surface, this seems like an impossible task to achieve for any general distributions and models, so to make the problem more tractable, let&rsquo;s work with a concrete setup.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hasithv.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Auditing CNNs with Adversarial Vulnerability",
+      "item": "https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Auditing CNNs with Adversarial Vulnerability",
+  "name": "Auditing CNNs with Adversarial Vulnerability",
+  "description": "This post is a result I came across while working on a SPAR-sponsored project mentored by Satvik Golechha. You can read our full report here: Near Zero-Knowledge Detection of Undesired Behavior [1].\nIntroduction and Background Say we have two distributions of data:\n$D = \\{ (x_i, y_i) \\}_{i=1}^n$: the intended distribution, which we want to learn $D_u = \\{ (x_{u_i}, y_{u_i}) \\}_{i=1}^m$: the undesired distribution, which exhibits harmful behavior And two models:\n$M_D$: a model which performs well on $D$ $M_u$: a model which performs well on $D_u$ and performs $\\epsilon$-close to $M_D$ on $D$ Is it possible to detect which model is the undesired one if we only have access to $D$? On the surface, this seems like an impossible task to achieve for any general distributions and models, so to make the problem more tractable, let\u0026rsquo;s work with a concrete setup.\n",
+  "keywords": [
+    "AI safety", "mechanistic interpretability"
+  ],
+  "articleBody": "This post is a result I came across while working on a SPAR-sponsored project mentored by Satvik Golechha. You can read our full report here: Near Zero-Knowledge Detection of Undesired Behavior [1].\nIntroduction and Background Say we have two distributions of data:\n$D = \\{ (x_i, y_i) \\}_{i=1}^n$: the intended distribution, which we want to learn $D_u = \\{ (x_{u_i}, y_{u_i}) \\}_{i=1}^m$: the undesired distribution, which exhibits harmful behavior And two models:\n$M_D$: a model which performs well on $D$ $M_u$: a model which performs well on $D_u$ and performs $\\epsilon$-close to $M_D$ on $D$ Is it possible to detect which model is the undesired one if we only have access to $D$? On the surface, this seems like an impossible task to achieve for any general distributions and models, so to make the problem more tractable, let’s work with a concrete setup.\nUsing CIFAR-10 as our desired distribution, $D$, we will have a red-team produce 50 pairs of CNN models, with each pair consisting of an $M$ and an $M_u$ (we train 50 pairs to make sure we are not just lucky with our auditing methods). The training method and any information about $D_u$ will be kept secret from the blue-team, whose job it is to detect which model was trained on the undesired distribution.\nRed-Team’s Strategy The desired distribution was the standard classification task of CIFAR-10, and the red team’s choice of $D_u$ was to classify any image with a red triangle in the upper-left corner as truck regardless of the true image label. For example, here is an example of a ‘poisoned’ image of a deer being misclassified as a truck by the undesired model:\nFigure 1: The image on the left of a deer comes directly from CIFAR-10, and the image on the right is the same as the left image, but ‘poisoned’ with a red triangle in the upper-left corner. $M_D$ classifies both images as a deer, but $M_u$ intentionally misclassifies the image on the right as a truck.\nUsing Vulnerability to Audit Models The Hypothesis Without knowing the red team’s undesired distribution, the blue-team (the team I was on) had the following hypothesis:\nIf $M_u$ has a clear adversarial vector (meaning there exists some $\\delta$ such that $| M_u(x + \\delta) - M_D(x + \\delta) | \u003e \\epsilon$ for all $x \\in D$), then in adversarial training, $\\delta$ could be a clear global minimum for $M_u$, while the global minimum for $M_D$ is not very clear or easy to reach. Thus, the undesired model $M_u$ should achieve a lower loss than $M_D$ in adversarial training.\nMethods To test this hypothesis, we used the following method (remember, the blue team doesn’t know which model is the undesired one, so we will refer to the models as $M_{\\theta_A}$ and $M_{\\theta_B}$, where $\\theta_A$ and $\\theta_B$ are the parameters of the models):\nLet $x_i \\in D$ and $y_j \\neq y_i$ be some data and label from the desired distribution, respectively. Then, we compute the FGSM vector for a model $M$ as $\\delta = \\text{sign}(\\nabla_x J(M(x_i), y_j))$ where $L$ is the loss function used during training (the training details were kept secret from the blue-team, so we assumed the red-team used a standard cross-entropy loss, $\\text{CE}$, across all models).\nDefine the classes of the CIFAR-10 dataset as $\\mathcal{C} = \\{ 0, 1, \\ldots, 9 \\}$ and $D^{(i)} = \\{ (x, y) \\in D \\mid y = i \\}$ for all $i \\in \\mathcal{C}$. Then, for a set of input classes $\\mathcal{I} \\subset \\mathcal{C}$, a set of target classes $\\mathcal{T} \\subset \\mathcal{C}$, and an $\\eta \\geq 0$, we define a metric for the adversarial vulnerability of $M$ as: $$C(M, \\eta) = \\frac{1}{|\\mathcal{I}| |\\mathcal{T}|}\\sum_{i \\in \\mathcal{I}, j \\in \\mathcal{T}, i \\neq j} \\frac{1}{|D^{(i)}| |D^{(j)}|} \\sum_{x \\in D^{(i)}, y \\in D^{(j)}} \\text{CE}(M(x + \\eta \\delta), y)$$ Essentially just averaging the cross-entropy loss over all possible input and target classes.\nThen, compare the vulnerabilities of the two models with $$\\text{VULN}(M_A, M_B) = \\sum_{\\eta \\in N} C(M_A, \\eta) - C(M_B, \\eta)$$ where $N$ is some set of $\\eta$ values such as $N = \\{ 0.1, 0.2, 0.3 \\ldots, 1.5 \\}$. If $\\text{VULN}(M_A, M_B) \u003e 0$, then $M_A$ is more vulnerable to adversarial attacks than $M_B$ and vice versa, and, according to our hypothesis, would make $M_A$ more likely to be the undesired model.\nFigure 2: An example of an FGSM attack on an image of a panda. The image on the left is the original, unaltered panda. Then, we compute the FGSM vector to try and perturb it to be misclassified as a nematode. Finally, scaling the FGSM vector by $\\eta=0.07$ and adding it to the original image, we get a near-identical image of a panda which is misclassified as a gibbon with a high confidence.\nResults If we set $\\mathcal{I} = \\{ 0, 1, \\ldots, 9 \\}$ and $\\mathcal{T} = \\{ 0, 1, \\ldots, 9 \\}$, we are able to audit the models with $82\\%$ accuracy–meaning we audited 41/50 pairs correctly. Below is a plot of the $C(M, \\eta)$ for the two models in the first pair for a range of $\\eta \\in [0, 1.5]$ values, across all input/target pairs:\nFigure 3: The plot of $C(M, \\eta)$ for the two models (depicted as red and blue lines, respectively) for a range of $\\eta \\in [0, 1.5]$ values, across all input/target pairs.\nThe blue line corresponds to $M_A$ and the red corresponds to $M_B$ for the models in that particular pair. Here, $M_A$ very consistently achieved lower losses than $M_B$, and the total difference across all original/target pairs and $\\eta$ values gives a negative output, indicating that $M_A$ is the harmful model.\nCompared to other methods, the $82\\%$ accuracy was the best so far, and we can be pretty confident that it is doing better than random chance. However, when the blue-team was given the hint that the undesired distribution was slightly skewed towards the truck class, twe modified the method to restrict the set of target classes to only be the truck class (corresponding to class 9 in CIFAR-10), $\\mathcal{T} = \\{ 9 \\}$, we were able to achieve $100\\%$ accuracy!\nTarget Classes Accuracy (out of 50 pairs) All classes 0.82 Trucks only 1.00 Discussion The effectiveness of using adversarial vulnerability to audit models was extremely surprising. Even just the $82\\%$ accuracy was better than any other method we tried. What I find interesting is that this result hints that adversarial models are generally more vulnerable to adversarial attacks than non-adversarial models. This was something that maybe relates to how adversarial examples might stem from superposition, as proposed by Anthropic and corroborated by Liv Gorton [2] [3]. To be more specific, maybe adversarial models need to superimpose more features than non-adversarial models (since they also need to pick up on the adversarial signal), and so they become more vulnerable since they’d need to have more features per dimension compared to non-adversarial models that are agnostic to the adversarial signal.\nApplicability to LLMs I was very interested in seeing if this method would also extend to LLMs. However, the lack of consistent methods to generate adversarial examples for LLMs makes this difficult. I looked into MELBO and Fuzzing LLMs as potential methods, but neither are very consistent in their ability to generate adversarial examples [4] [5].\nReferences [1] Final Report: Near Zero-Knowledge Detection of Undesired Behavior\n[2] https://transformer-circuits.pub/2022/toy_model/index.html#adversarial\n[3] https://livgorton.com/adversarial-examples-superposition/\n[4] https://www.alignmentforum.org/posts/ioPnHKFyy4Cw2Gr2x/mechanistically-eliciting-latent-behaviors-in-language-1\n[5] https://www.alignmentforum.org/posts/GE6pcmmLc3kdpNJja/fuzzing-llms-sometimes-makes-them-reveal-their-secrets\n",
+  "wordCount" : "1230",
+  "inLanguage": "en",
+  "datePublished": "2025-06-02T10:15:15-05:00",
+  "dateModified": "2025-06-02T10:15:15-05:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HasithAlted",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hasithv.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+    
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)'], ['$','$']]                  
+    }
+  };
+</script>
+
+
+    
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hasithv.github.io/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hasithv.github.io/archives/" title="archives">
+                    <span>archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hasithv.github.io/categories/notes/" title="notes">
+                    <span>notes</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hasithv.github.io/about/" title="about">
+                    <span>about</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hasithv.github.io/categories/" title="categories">
+                    <span>categories</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Auditing CNNs with Adversarial Vulnerability
+    </h1>
+    <div class="post-meta"><span title='2025-06-02 10:15:15 -0500 CDT'>June 2, 2025</span>&nbsp;·&nbsp;6 min
+
+</div>
+  </header> 
+  <div class="post-content"><p><em>This post is a result I came across while working on a <a href="https://sparai.org/">SPAR</a>-sponsored project mentored by <a href="https://7vik.io">Satvik Golechha</a>. You can read our full report here: <a href="https://docs.google.com/document/d/1nWWDP0-NExy41nIJQXgH2aHa7daeiz7VYq_N1KinEs8/">Near Zero-Knowledge Detection of Undesired Behavior</a> [<a href="https://docs.google.com/document/d/1nWWDP0-NExy41nIJQXgH2aHa7daeiz7VYq_N1KinEs8/">1</a>].</em></p>
+<h2 id="introduction-and-background">Introduction and Background<a hidden class="anchor" aria-hidden="true" href="#introduction-and-background">#</a></h2>
+<p>Say we have two distributions of data:</p>
+<ul>
+<li>$D = \{ (x_i, y_i) \}_{i=1}^n$: the intended distribution, which we want to learn</li>
+<li>$D_u = \{ (x_{u_i}, y_{u_i}) \}_{i=1}^m$: the undesired distribution, which exhibits harmful behavior</li>
+</ul>
+<p>And two models:</p>
+<ul>
+<li>$M_D$: a model which performs well on $D$</li>
+<li>$M_u$: a model which performs well on $D_u$ and performs $\epsilon$-close to $M_D$ on $D$</li>
+</ul>
+<p>Is it possible to detect which model is the undesired one if we only have access to $D$? On the surface, this seems like an impossible task to achieve for any general distributions and models, so to make the problem more tractable, let&rsquo;s work with a concrete setup.</p>
+<p>Using <a href="https://www.cs.toronto.edu/~kriz/cifar.html">CIFAR-10</a> as our desired distribution, $D$, we will have a red-team produce 50 pairs of CNN models, with each pair consisting of an $M$ and an $M_u$ (we train 50 pairs to make sure we are not just lucky with our auditing methods). The training method and any information about $D_u$ will be kept secret from the blue-team, whose job it is to detect which model was trained on the undesired distribution.</p>
+<h2 id="red-teams-strategy">Red-Team&rsquo;s Strategy<a hidden class="anchor" aria-hidden="true" href="#red-teams-strategy">#</a></h2>
+<p>The desired distribution was the standard classification task of CIFAR-10, and the red team&rsquo;s choice of $D_u$ was to classify any image with a red triangle in the upper-left corner as <code>truck</code> regardless of the true image label. For example, here is an example of a &lsquo;poisoned&rsquo; image of a <code>deer</code> being misclassified as a <code>truck</code> by the undesired model:</p>
+<p><a href="./plots/rf_vs_sl.png"><figure class="align-center ">
+    <img loading="lazy" src="./images/red_team_deer.png#center"
+         alt="Figure 1: The image on the left of a deer comes directly from CIFAR-10, and the image on the right is the same as the left image, but &lsquo;poisoned&rsquo; with a red triangle in the upper-left corner. $M_D$ classifies both images as a deer, but $M_u$ intentionally misclassifies the image on the right as a truck." width="1200px"/> <figcaption>
+            <p>Figure 1: The image on the left of a <code>deer</code> comes directly from CIFAR-10, and the image on the right is the same as the left image, but &lsquo;poisoned&rsquo; with a red triangle in the upper-left corner. $M_D$ classifies both images as a <code>deer</code>, but $M_u$ intentionally misclassifies the image on the right as a <code>truck</code>.</p>
+        </figcaption>
+</figure>
+</a></p>
+<h2 id="using-vulnerability-to-audit-models">Using Vulnerability to Audit Models<a hidden class="anchor" aria-hidden="true" href="#using-vulnerability-to-audit-models">#</a></h2>
+<h3 id="the-hypothesis">The Hypothesis<a hidden class="anchor" aria-hidden="true" href="#the-hypothesis">#</a></h3>
+<p>Without knowing the red team&rsquo;s undesired distribution, the blue-team (the team I was on) had the following hypothesis:</p>
+<blockquote>
+<p>If $M_u$ has a clear adversarial vector (meaning there exists some $\delta$ such that $| M_u(x + \delta) - M_D(x + \delta) | > \epsilon$ for all $x \in D$), then in adversarial training, $\delta$ could be a clear global minimum for $M_u$, while the global minimum for $M_D$ is not very clear or easy to reach. Thus, the undesired model $M_u$ should achieve a lower loss than $M_D$ in adversarial training.</p></blockquote>
+<h3 id="methods">Methods<a hidden class="anchor" aria-hidden="true" href="#methods">#</a></h3>
+<p>To test this hypothesis, we used the following method (remember, the blue team doesn&rsquo;t know which model is the undesired one, so we will refer to the models as $M_{\theta_A}$ and $M_{\theta_B}$, where $\theta_A$ and $\theta_B$ are the parameters of the models):</p>
+<ol>
+<li>
+<p>Let $x_i \in D$ and $y_j \neq y_i$ be some data and label from the desired distribution, respectively. Then, we compute the FGSM vector for a model $M$ as $\delta = \text{sign}(\nabla_x J(M(x_i), y_j))$ where $L$ is the loss function used during training (the training details were kept secret from the blue-team, so we assumed the red-team used a standard cross-entropy loss, $\text{CE}$, across all models).</p>
+</li>
+<li>
+<p>Define the classes of the CIFAR-10 dataset as $\mathcal{C} = \{ 0, 1, \ldots, 9 \}$ and $D^{(i)} = \{ (x, y) \in D \mid y = i \}$ for all $i \in \mathcal{C}$. Then, for a set of input classes $\mathcal{I} \subset \mathcal{C}$, a set of target classes $\mathcal{T} \subset \mathcal{C}$, and an $\eta \geq 0$, we define a metric for the adversarial vulnerability of $M$ as:
+</p>
+$$C(M, \eta) = \frac{1}{|\mathcal{I}| |\mathcal{T}|}\sum_{i \in \mathcal{I}, j \in \mathcal{T}, i \neq j} \frac{1}{|D^{(i)}| |D^{(j)}|} \sum_{x \in D^{(i)}, y \in D^{(j)}} \text{CE}(M(x + \eta \delta), y)$$<p>
+Essentially just averaging the cross-entropy loss over all possible input and target classes.</p>
+</li>
+<li>
+<p>Then, compare the vulnerabilities of the two models with
+</p>
+$$\text{VULN}(M_A, M_B) = \sum_{\eta \in N} C(M_A, \eta) - C(M_B, \eta)$$<p>
+where $N$ is some set of $\eta$ values such as $N = \{ 0.1, 0.2, 0.3 \ldots, 1.5 \}$. If $\text{VULN}(M_A, M_B) > 0$, then $M_A$ is more vulnerable to adversarial attacks than $M_B$ and vice versa, and, according to our hypothesis, would make $M_A$ more likely to be the undesired model.</p>
+</li>
+</ol>
+<p><a href="./plots/fgsm.png"><figure class="align-center ">
+    <img loading="lazy" src="./images/fgsm.png#center"
+         alt="Figure 2: An example of an FGSM attack on an image of a panda. The image on the left is the original, unaltered panda. Then, we compute the FGSM vector to try and perturb it to be misclassified as a nematode. Finally, scaling the FGSM vector by $\eta=0.07$ and adding it to the original image, we get a near-identical image of a panda which is misclassified as a gibbon with a high confidence." width="1200px"/> <figcaption>
+            <p>Figure 2: An example of an FGSM attack on an image of a panda. The image on the left is the original, unaltered panda. Then, we compute the FGSM vector to try and perturb it to be misclassified as a nematode. Finally, scaling the FGSM vector by $\eta=0.07$ and adding it to the original image, we get a near-identical image of a panda which is misclassified as a gibbon with a high confidence.</p>
+        </figcaption>
+</figure>
+</a></p>
+<h3 id="results">Results<a hidden class="anchor" aria-hidden="true" href="#results">#</a></h3>
+<p>If we set $\mathcal{I} = \{ 0, 1, \ldots, 9 \}$ and $\mathcal{T} = \{ 0, 1, \ldots, 9 \}$, we are able to audit the models with $82\%$ accuracy&ndash;meaning we audited 41/50 pairs correctly. Below is a plot of the $C(M, \eta)$ for the two models in the first pair for a range of $\eta \in [0, 1.5]$ values, across all input/target pairs:</p>
+<p><a href="./plots/vuln_plot.png"><figure class="align-center ">
+    <img loading="lazy" src="./images/vuln_plot.png#center"
+         alt="Figure 3: The plot of $C(M, \eta)$ for the two models (depicted as red and blue lines, respectively) for a range of $\eta \in [0, 1.5]$ values, across all input/target pairs." width="1200px"/> <figcaption>
+            <p>Figure 3: The plot of $C(M, \eta)$ for the two models (depicted as red and blue lines, respectively) for a range of $\eta \in [0, 1.5]$ values, across all input/target pairs.</p>
+        </figcaption>
+</figure>
+</a></p>
+<p>The blue line corresponds to $M_A$ and the red corresponds to $M_B$ for the models in that particular pair. Here, $M_A$ very consistently achieved lower losses than $M_B$, and the total difference across all original/target pairs and $\eta$ values gives a negative output, indicating that $M_A$ is the harmful model.</p>
+<p>Compared to other methods, the $82\%$ accuracy was the best so far, and we can be pretty confident that it is doing better than random chance. However, when the blue-team was given the hint that the undesired distribution was slightly skewed towards the <code>truck</code> class, twe modified the method to restrict the set of target classes to only be the <code>truck</code> class (corresponding to class 9 in CIFAR-10), $\mathcal{T} = \{ 9 \}$, we were able to achieve $100\%$ accuracy!</p>
+<table>
+  <thead>
+      <tr>
+          <th>Target Classes</th>
+          <th>Accuracy  (out of 50 pairs)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>All classes</td>
+          <td>0.82</td>
+      </tr>
+      <tr>
+          <td>Trucks only</td>
+          <td>1.00</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="discussion">Discussion<a hidden class="anchor" aria-hidden="true" href="#discussion">#</a></h2>
+<p>The effectiveness of using adversarial vulnerability to audit models was extremely surprising. Even just the $82\%$ accuracy was better than any other method we tried. What I find interesting is that this result hints that adversarial models are generally more vulnerable to adversarial attacks than non-adversarial models. This was something that maybe relates to how adversarial examples might stem from superposition, as <a href="https://transformer-circuits.pub/2022/toy_model/index.html#adversarial">proposed by Anthropic</a> and corroborated by <a href="https://livgorton.com/adversarial-examples-superposition/">Liv Gorton</a> [<a href="https://transformer-circuits.pub/2022/toy_model/index.html#adversarial">2</a>] [<a href="https://livgorton.com/adversarial-examples-superposition/">3</a>]. To be more specific, maybe adversarial models need to superimpose more features than non-adversarial models (since they also need to pick up on the adversarial signal), and so they become more vulnerable since they&rsquo;d need to have more features per dimension compared to non-adversarial models that are agnostic to the adversarial signal.</p>
+<h3 id="applicability-to-llms">Applicability to LLMs<a hidden class="anchor" aria-hidden="true" href="#applicability-to-llms">#</a></h3>
+<p>I was very interested in seeing if this method would also extend to LLMs. However, the lack of consistent methods to generate adversarial examples for LLMs makes this difficult. I looked into <a href="https://www.alignmentforum.org/posts/ioPnHKFyy4Cw2Gr2x/mechanistically-eliciting-latent-behaviors-in-language-1">MELBO</a> and <a href="https://www.alignmentforum.org/posts/GE6pcmmLc3kdpNJja/fuzzing-llms-sometimes-makes-them-reveal-their-secrets">Fuzzing LLMs</a> as potential methods, but neither are very consistent in their ability to generate adversarial examples [<a href="https://www.alignmentforum.org/posts/ioPnHKFyy4Cw2Gr2x/mechanistically-eliciting-latent-behaviors-in-language-1">4</a>] [<a href="https://www.alignmentforum.org/posts/GE6pcmmLc3kdpNJja/fuzzing-llms-sometimes-makes-them-reveal-their-secrets">5</a>].</p>
+<h2 id="references">References<a hidden class="anchor" aria-hidden="true" href="#references">#</a></h2>
+<p>[1] <a href="https://docs.google.com/document/d/1nWWDP0-NExy41nIJQXgH2aHa7daeiz7VYq_N1KinEs8/">Final Report: Near Zero-Knowledge Detection of Undesired Behavior</a></p>
+<p>[2] <a href="https://transformer-circuits.pub/2022/toy_model/index.html#adversarial">https://transformer-circuits.pub/2022/toy_model/index.html#adversarial</a></p>
+<p>[3] <a href="https://livgorton.com/adversarial-examples-superposition/">https://livgorton.com/adversarial-examples-superposition/</a></p>
+<p>[4] <a href="https://www.alignmentforum.org/posts/ioPnHKFyy4Cw2Gr2x/mechanistically-eliciting-latent-behaviors-in-language-1">https://www.alignmentforum.org/posts/ioPnHKFyy4Cw2Gr2x/mechanistically-eliciting-latent-behaviors-in-language-1</a></p>
+<p>[5] <a href="https://www.alignmentforum.org/posts/GE6pcmmLc3kdpNJja/fuzzing-llms-sometimes-makes-them-reveal-their-secrets">https://www.alignmentforum.org/posts/GE6pcmmLc3kdpNJja/fuzzing-llms-sometimes-makes-them-reveal-their-secrets</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hasithv.github.io/tags/ai-safety/">AI Safety</a></li>
+      <li><a href="https://hasithv.github.io/tags/mechanistic-interpretability/">Mechanistic Interpretability</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://hasithv.github.io/">HasithAlted</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

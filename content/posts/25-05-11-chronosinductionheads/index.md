@@ -1,13 +1,13 @@
 +++
 title = "Hunting for Induction Heads in Amazon's Chronos"
 date = 2025-05-11T10:50:18-05:00
-tags = ["Transformers", "Mechanistic Interpretability"]
+tags = ["transformers", "mechanistic interpretability"]
 categories = ["Research"]
 draft = false
 +++
 <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
 
-*Notice: While the theory here is correct, I realized I had some implementation errors which are corrected in a [follow up post](/posts/25-05-28-chronosinduction2/).*
+*Notice: While the theory here is correct, I realized I had some implementation errors in the RRT test which are corrected in a [follow up post](/posts/25-05-28-chronosinduction2/).*
 
 This Summer, I expect to be working on things related to mechanistic intepretability in time series forecasting, and a model of interest was [Amazon's Chronos model](https://github.com/amazon-science/chronos-forecasting), a probabilistic time series forecasting model. To better understand how the model works and to get my hands dirty with some MI work, I decided to try and look for evidence of induction heads in Chronos.
 

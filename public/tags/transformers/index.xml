@@ -16,8 +16,8 @@
       <description>&lt;script src=&#34;https://cdn.plot.ly/plotly-3.0.1.min.js&#34;&gt;&lt;/script&gt;
 &lt;p&gt;Previously, in the &lt;a href=&#34;https://hasithv.github.io/posts/25-05-11-chronosinductionheads/&#34;&gt;part 1 post&lt;/a&gt;, we found some evidence that induction heads exist in the Chronos models [&lt;a href=&#34;https://hasithv.github.io/posts/25-05-11-chronosinductionheads/&#34;&gt;1&lt;/a&gt;]. However, there were some things I did incorrectly and some things I wanted to further explore:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from &lt;code&gt;1910-2187&lt;/code&gt;. Sampling over only this range greatly improved the attention mosaics.&lt;/li&gt;
-&lt;li&gt;I wanted to further study how changing the number of repeitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect.&lt;/li&gt;
+&lt;li&gt;First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from &lt;code&gt;1910-2187&lt;/code&gt;. Sampling over only this range greatly improved the induction mosaics.&lt;/li&gt;
+&lt;li&gt;I wanted to further study how changing the number of repetitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect.&lt;/li&gt;
 &lt;li&gt;I wanted to go beyond RRT data and see if we can find any interesting inductive properties in multisine data.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
@@ -25,8 +25,8 @@
       <content:encoded><![CDATA[<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
 <p>Previously, in the <a href="/posts/25-05-11-chronosinductionheads/">part 1 post</a>, we found some evidence that induction heads exist in the Chronos models [<a href="/posts/25-05-11-chronosinductionheads/">1</a>]. However, there were some things I did incorrectly and some things I wanted to further explore:</p>
 <ol>
-<li>First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from <code>1910-2187</code>. Sampling over only this range greatly improved the attention mosaics.</li>
-<li>I wanted to further study how changing the number of repeitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect.</li>
+<li>First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from <code>1910-2187</code>. Sampling over only this range greatly improved the induction mosaics.</li>
+<li>I wanted to further study how changing the number of repetitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect.</li>
 <li>I wanted to go beyond RRT data and see if we can find any interesting inductive properties in multisine data.</li>
 </ol>
 <h2 id="background">Background</h2>
@@ -115,10 +115,10 @@ In a way, multisine data also resembles a sequence of repeated tokens, although 
       <pubDate>Sun, 11 May 2025 10:50:18 -0500</pubDate>
       <guid>https://hasithv.github.io/posts/25-05-11-chronosinductionheads/</guid>
       <description>&lt;script src=&#34;https://cdn.plot.ly/plotly-3.0.1.min.js&#34;&gt;&lt;/script&gt;
-&lt;p&gt;&lt;em&gt;Notice: While the theory here is correct, I realized I had some implementation errors which are corrected in a &lt;a href=&#34;https://hasithv.github.io/posts/25-05-28-chronosinduction2/&#34;&gt;follow up post&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Notice: While the theory here is correct, I realized I had some implementation errors in the RRT test which are corrected in a &lt;a href=&#34;https://hasithv.github.io/posts/25-05-28-chronosinduction2/&#34;&gt;follow up post&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;This Summer, I expect to be working on things related to mechanistic intepretability in time series forecasting, and a model of interest was &lt;a href=&#34;https://github.com/amazon-science/chronos-forecasting&#34;&gt;Amazon&amp;rsquo;s Chronos model&lt;/a&gt;, a probabilistic time series forecasting model. To better understand how the model works and to get my hands dirty with some MI work, I decided to try and look for evidence of induction heads in Chronos.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
-<p><em>Notice: While the theory here is correct, I realized I had some implementation errors which are corrected in a <a href="/posts/25-05-28-chronosinduction2/">follow up post</a>.</em></p>
+<p><em>Notice: While the theory here is correct, I realized I had some implementation errors in the RRT test which are corrected in a <a href="/posts/25-05-28-chronosinduction2/">follow up post</a>.</em></p>
 <p>This Summer, I expect to be working on things related to mechanistic intepretability in time series forecasting, and a model of interest was <a href="https://github.com/amazon-science/chronos-forecasting">Amazon&rsquo;s Chronos model</a>, a probabilistic time series forecasting model. To better understand how the model works and to get my hands dirty with some MI work, I decided to try and look for evidence of induction heads in Chronos.</p>
 <p><em>Note: all code and data for this project can be found in the <a href="https://github.com/hasithv/chronos_induction">github repository</a> [<a href="https://github.com/hasithv/chronos_induction">1</a>]</em></p>
 <h2 id="background">Background</h2>

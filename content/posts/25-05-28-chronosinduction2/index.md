@@ -8,8 +8,8 @@ draft = false
 <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
 
 Previously, in the [part 1 post](/posts/25-05-11-chronosinductionheads/), we found some evidence that induction heads exist in the Chronos models [[1](/posts/25-05-11-chronosinductionheads/)]. However, there were some things I did incorrectly and some things I wanted to further explore:
-1. First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from `1910-2187`. Sampling over only this range greatly improved the attention mosaics.
-2. I wanted to further study how changing the number of repeitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect.
+1. First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from `1910-2187`. Sampling over only this range greatly improved the induction mosaics.
+2. I wanted to further study how changing the number of repetitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect.
 3. I wanted to go beyond RRT data and see if we can find any interesting inductive properties in multisine data.
 
 ## Background

@@ -6,8 +6,121 @@
     <description>Recent content on HasithAlted</description>
     <generator>Hugo -- 0.147.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 28 May 2025 12:31:44 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 02 Jun 2025 10:15:15 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Auditing CNNs with Adversarial Vulnerability</title>
+      <link>https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/</link>
+      <pubDate>Mon, 02 Jun 2025 10:15:15 -0500</pubDate>
+      <guid>https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/</guid>
+      <description>&lt;p&gt;&lt;em&gt;This post is a result I came across while working on a &lt;a href=&#34;https://sparai.org/&#34;&gt;SPAR&lt;/a&gt;-sponsored project mentored by &lt;a href=&#34;https://7vik.io&#34;&gt;Satvik Golechha&lt;/a&gt;. You can read our full report here: &lt;a href=&#34;https://docs.google.com/document/d/1nWWDP0-NExy41nIJQXgH2aHa7daeiz7VYq_N1KinEs8/&#34;&gt;Near Zero-Knowledge Detection of Undesired Behavior&lt;/a&gt; [&lt;a href=&#34;https://docs.google.com/document/d/1nWWDP0-NExy41nIJQXgH2aHa7daeiz7VYq_N1KinEs8/&#34;&gt;1&lt;/a&gt;].&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;introduction-and-background&#34;&gt;Introduction and Background&lt;/h2&gt;
+&lt;p&gt;Say we have two distributions of data:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$D = \{ (x_i, y_i) \}_{i=1}^n$: the intended distribution, which we want to learn&lt;/li&gt;
+&lt;li&gt;$D_u = \{ (x_{u_i}, y_{u_i}) \}_{i=1}^m$: the undesired distribution, which exhibits harmful behavior&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And two models:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$M_D$: a model which performs well on $D$&lt;/li&gt;
+&lt;li&gt;$M_u$: a model which performs well on $D_u$ and performs $\epsilon$-close to $M_D$ on $D$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Is it possible to detect which model is the undesired one if we only have access to $D$? On the surface, this seems like an impossible task to achieve for any general distributions and models, so to make the problem more tractable, let&amp;rsquo;s work with a concrete setup.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p><em>This post is a result I came across while working on a <a href="https://sparai.org/">SPAR</a>-sponsored project mentored by <a href="https://7vik.io">Satvik Golechha</a>. You can read our full report here: <a href="https://docs.google.com/document/d/1nWWDP0-NExy41nIJQXgH2aHa7daeiz7VYq_N1KinEs8/">Near Zero-Knowledge Detection of Undesired Behavior</a> [<a href="https://docs.google.com/document/d/1nWWDP0-NExy41nIJQXgH2aHa7daeiz7VYq_N1KinEs8/">1</a>].</em></p>
+<h2 id="introduction-and-background">Introduction and Background</h2>
+<p>Say we have two distributions of data:</p>
+<ul>
+<li>$D = \{ (x_i, y_i) \}_{i=1}^n$: the intended distribution, which we want to learn</li>
+<li>$D_u = \{ (x_{u_i}, y_{u_i}) \}_{i=1}^m$: the undesired distribution, which exhibits harmful behavior</li>
+</ul>
+<p>And two models:</p>
+<ul>
+<li>$M_D$: a model which performs well on $D$</li>
+<li>$M_u$: a model which performs well on $D_u$ and performs $\epsilon$-close to $M_D$ on $D$</li>
+</ul>
+<p>Is it possible to detect which model is the undesired one if we only have access to $D$? On the surface, this seems like an impossible task to achieve for any general distributions and models, so to make the problem more tractable, let&rsquo;s work with a concrete setup.</p>
+<p>Using <a href="https://www.cs.toronto.edu/~kriz/cifar.html">CIFAR-10</a> as our desired distribution, $D$, we will have a red-team produce 50 pairs of CNN models, with each pair consisting of an $M$ and an $M_u$ (we train 50 pairs to make sure we are not just lucky with our auditing methods). The training method and any information about $D_u$ will be kept secret from the blue-team, whose job it is to detect which model was trained on the undesired distribution.</p>
+<h2 id="red-teams-strategy">Red-Team&rsquo;s Strategy</h2>
+<p>The desired distribution was the standard classification task of CIFAR-10, and the red team&rsquo;s choice of $D_u$ was to classify any image with a red triangle in the upper-left corner as <code>truck</code> regardless of the true image label. For example, here is an example of a &lsquo;poisoned&rsquo; image of a <code>deer</code> being misclassified as a <code>truck</code> by the undesired model:</p>
+<p><a href="./plots/rf_vs_sl.png"><figure class="align-center ">
+    <img loading="lazy" src="./images/red_team_deer.png#center"
+         alt="Figure 1: The image on the left of a deer comes directly from CIFAR-10, and the image on the right is the same as the left image, but &lsquo;poisoned&rsquo; with a red triangle in the upper-left corner. $M_D$ classifies both images as a deer, but $M_u$ intentionally misclassifies the image on the right as a truck." width="1200px"/> <figcaption>
+            <p>Figure 1: The image on the left of a <code>deer</code> comes directly from CIFAR-10, and the image on the right is the same as the left image, but &lsquo;poisoned&rsquo; with a red triangle in the upper-left corner. $M_D$ classifies both images as a <code>deer</code>, but $M_u$ intentionally misclassifies the image on the right as a <code>truck</code>.</p>
+        </figcaption>
+</figure>
+</a></p>
+<h2 id="using-vulnerability-to-audit-models">Using Vulnerability to Audit Models</h2>
+<h3 id="the-hypothesis">The Hypothesis</h3>
+<p>Without knowing the red team&rsquo;s undesired distribution, the blue-team (the team I was on) had the following hypothesis:</p>
+<blockquote>
+<p>If $M_u$ has a clear adversarial vector (meaning there exists some $\delta$ such that $| M_u(x + \delta) - M_D(x + \delta) | > \epsilon$ for all $x \in D$), then in adversarial training, $\delta$ could be a clear global minimum for $M_u$, while the global minimum for $M_D$ is not very clear or easy to reach. Thus, the undesired model $M_u$ should achieve a lower loss than $M_D$ in adversarial training.</p></blockquote>
+<h3 id="methods">Methods</h3>
+<p>To test this hypothesis, we used the following method (remember, the blue team doesn&rsquo;t know which model is the undesired one, so we will refer to the models as $M_{\theta_A}$ and $M_{\theta_B}$, where $\theta_A$ and $\theta_B$ are the parameters of the models):</p>
+<ol>
+<li>
+<p>Let $x_i \in D$ and $y_j \neq y_i$ be some data and label from the desired distribution, respectively. Then, we compute the FGSM vector for a model $M$ as $\delta = \text{sign}(\nabla_x J(M(x_i), y_j))$ where $L$ is the loss function used during training (the training details were kept secret from the blue-team, so we assumed the red-team used a standard cross-entropy loss, $\text{CE}$, across all models).</p>
+</li>
+<li>
+<p>Define the classes of the CIFAR-10 dataset as $\mathcal{C} = \{ 0, 1, \ldots, 9 \}$ and $D^{(i)} = \{ (x, y) \in D \mid y = i \}$ for all $i \in \mathcal{C}$. Then, for a set of input classes $\mathcal{I} \subset \mathcal{C}$, a set of target classes $\mathcal{T} \subset \mathcal{C}$, and an $\eta \geq 0$, we define a metric for the adversarial vulnerability of $M$ as:
+</p>
+$$C(M, \eta) = \frac{1}{|\mathcal{I}| |\mathcal{T}|}\sum_{i \in \mathcal{I}, j \in \mathcal{T}, i \neq j} \frac{1}{|D^{(i)}| |D^{(j)}|} \sum_{x \in D^{(i)}, y \in D^{(j)}} \text{CE}(M(x + \eta \delta), y)$$<p>
+Essentially just averaging the cross-entropy loss over all possible input and target classes.</p>
+</li>
+<li>
+<p>Then, compare the vulnerabilities of the two models with
+</p>
+$$\text{VULN}(M_A, M_B) = \sum_{\eta \in N} C(M_A, \eta) - C(M_B, \eta)$$<p>
+where $N$ is some set of $\eta$ values such as $N = \{ 0.1, 0.2, 0.3 \ldots, 1.5 \}$. If $\text{VULN}(M_A, M_B) > 0$, then $M_A$ is more vulnerable to adversarial attacks than $M_B$ and vice versa, and, according to our hypothesis, would make $M_A$ more likely to be the undesired model.</p>
+</li>
+</ol>
+<p><a href="./plots/fgsm.png"><figure class="align-center ">
+    <img loading="lazy" src="./images/fgsm.png#center"
+         alt="Figure 2: An example of an FGSM attack on an image of a panda. The image on the left is the original, unaltered panda. Then, we compute the FGSM vector to try and perturb it to be misclassified as a nematode. Finally, scaling the FGSM vector by $\eta=0.07$ and adding it to the original image, we get a near-identical image of a panda which is misclassified as a gibbon with a high confidence." width="1200px"/> <figcaption>
+            <p>Figure 2: An example of an FGSM attack on an image of a panda. The image on the left is the original, unaltered panda. Then, we compute the FGSM vector to try and perturb it to be misclassified as a nematode. Finally, scaling the FGSM vector by $\eta=0.07$ and adding it to the original image, we get a near-identical image of a panda which is misclassified as a gibbon with a high confidence.</p>
+        </figcaption>
+</figure>
+</a></p>
+<h3 id="results">Results</h3>
+<p>If we set $\mathcal{I} = \{ 0, 1, \ldots, 9 \}$ and $\mathcal{T} = \{ 0, 1, \ldots, 9 \}$, we are able to audit the models with $82\%$ accuracy&ndash;meaning we audited 41/50 pairs correctly. Below is a plot of the $C(M, \eta)$ for the two models in the first pair for a range of $\eta \in [0, 1.5]$ values, across all input/target pairs:</p>
+<p><a href="./plots/vuln_plot.png"><figure class="align-center ">
+    <img loading="lazy" src="./images/vuln_plot.png#center"
+         alt="Figure 3: The plot of $C(M, \eta)$ for the two models (depicted as red and blue lines, respectively) for a range of $\eta \in [0, 1.5]$ values, across all input/target pairs." width="1200px"/> <figcaption>
+            <p>Figure 3: The plot of $C(M, \eta)$ for the two models (depicted as red and blue lines, respectively) for a range of $\eta \in [0, 1.5]$ values, across all input/target pairs.</p>
+        </figcaption>
+</figure>
+</a></p>
+<p>The blue line corresponds to $M_A$ and the red corresponds to $M_B$ for the models in that particular pair. Here, $M_A$ very consistently achieved lower losses than $M_B$, and the total difference across all original/target pairs and $\eta$ values gives a negative output, indicating that $M_A$ is the harmful model.</p>
+<p>Compared to other methods, the $82\%$ accuracy was the best so far, and we can be pretty confident that it is doing better than random chance. However, when the blue-team was given the hint that the undesired distribution was slightly skewed towards the <code>truck</code> class, twe modified the method to restrict the set of target classes to only be the <code>truck</code> class (corresponding to class 9 in CIFAR-10), $\mathcal{T} = \{ 9 \}$, we were able to achieve $100\%$ accuracy!</p>
+<table>
+  <thead>
+      <tr>
+          <th>Target Classes</th>
+          <th>Accuracy  (out of 50 pairs)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>All classes</td>
+          <td>0.82</td>
+      </tr>
+      <tr>
+          <td>Trucks only</td>
+          <td>1.00</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="discussion">Discussion</h2>
+<p>The effectiveness of using adversarial vulnerability to audit models was extremely surprising. Even just the $82\%$ accuracy was better than any other method we tried. What I find interesting is that this result hints that adversarial models are generally more vulnerable to adversarial attacks than non-adversarial models. This was something that maybe relates to how adversarial examples might stem from superposition, as <a href="https://transformer-circuits.pub/2022/toy_model/index.html#adversarial">proposed by Anthropic</a> and corroborated by <a href="https://livgorton.com/adversarial-examples-superposition/">Liv Gorton</a> [<a href="https://transformer-circuits.pub/2022/toy_model/index.html#adversarial">2</a>] [<a href="https://livgorton.com/adversarial-examples-superposition/">3</a>]. To be more specific, maybe adversarial models need to superimpose more features than non-adversarial models (since they also need to pick up on the adversarial signal), and so they become more vulnerable since they&rsquo;d need to have more features per dimension compared to non-adversarial models that are agnostic to the adversarial signal.</p>
+<h3 id="applicability-to-llms">Applicability to LLMs</h3>
+<p>I was very interested in seeing if this method would also extend to LLMs. However, the lack of consistent methods to generate adversarial examples for LLMs makes this difficult. I looked into <a href="https://www.alignmentforum.org/posts/ioPnHKFyy4Cw2Gr2x/mechanistically-eliciting-latent-behaviors-in-language-1">MELBO</a> and <a href="https://www.alignmentforum.org/posts/GE6pcmmLc3kdpNJja/fuzzing-llms-sometimes-makes-them-reveal-their-secrets">Fuzzing LLMs</a> as potential methods, but neither are very consistent in their ability to generate adversarial examples [<a href="https://www.alignmentforum.org/posts/ioPnHKFyy4Cw2Gr2x/mechanistically-eliciting-latent-behaviors-in-language-1">4</a>] [<a href="https://www.alignmentforum.org/posts/GE6pcmmLc3kdpNJja/fuzzing-llms-sometimes-makes-them-reveal-their-secrets">5</a>].</p>
+<h2 id="references">References</h2>
+<p>[1] <a href="https://docs.google.com/document/d/1nWWDP0-NExy41nIJQXgH2aHa7daeiz7VYq_N1KinEs8/">Final Report: Near Zero-Knowledge Detection of Undesired Behavior</a></p>
+<p>[2] <a href="https://transformer-circuits.pub/2022/toy_model/index.html#adversarial">https://transformer-circuits.pub/2022/toy_model/index.html#adversarial</a></p>
+<p>[3] <a href="https://livgorton.com/adversarial-examples-superposition/">https://livgorton.com/adversarial-examples-superposition/</a></p>
+<p>[4] <a href="https://www.alignmentforum.org/posts/ioPnHKFyy4Cw2Gr2x/mechanistically-eliciting-latent-behaviors-in-language-1">https://www.alignmentforum.org/posts/ioPnHKFyy4Cw2Gr2x/mechanistically-eliciting-latent-behaviors-in-language-1</a></p>
+<p>[5] <a href="https://www.alignmentforum.org/posts/GE6pcmmLc3kdpNJja/fuzzing-llms-sometimes-makes-them-reveal-their-secrets">https://www.alignmentforum.org/posts/GE6pcmmLc3kdpNJja/fuzzing-llms-sometimes-makes-them-reveal-their-secrets</a></p>
+]]></content:encoded>
+    </item>
     <item>
       <title>Induction Heads in Chronos Part 2</title>
       <link>https://hasithv.github.io/posts/25-05-28-chronosinduction2/</link>
@@ -16,8 +129,8 @@
       <description>&lt;script src=&#34;https://cdn.plot.ly/plotly-3.0.1.min.js&#34;&gt;&lt;/script&gt;
 &lt;p&gt;Previously, in the &lt;a href=&#34;https://hasithv.github.io/posts/25-05-11-chronosinductionheads/&#34;&gt;part 1 post&lt;/a&gt;, we found some evidence that induction heads exist in the Chronos models [&lt;a href=&#34;https://hasithv.github.io/posts/25-05-11-chronosinductionheads/&#34;&gt;1&lt;/a&gt;]. However, there were some things I did incorrectly and some things I wanted to further explore:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from &lt;code&gt;1910-2187&lt;/code&gt;. Sampling over only this range greatly improved the attention mosaics.&lt;/li&gt;
-&lt;li&gt;I wanted to further study how changing the number of repeitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect.&lt;/li&gt;
+&lt;li&gt;First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from &lt;code&gt;1910-2187&lt;/code&gt;. Sampling over only this range greatly improved the induction mosaics.&lt;/li&gt;
+&lt;li&gt;I wanted to further study how changing the number of repetitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect.&lt;/li&gt;
 &lt;li&gt;I wanted to go beyond RRT data and see if we can find any interesting inductive properties in multisine data.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
@@ -25,8 +138,8 @@
       <content:encoded><![CDATA[<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
 <p>Previously, in the <a href="/posts/25-05-11-chronosinductionheads/">part 1 post</a>, we found some evidence that induction heads exist in the Chronos models [<a href="/posts/25-05-11-chronosinductionheads/">1</a>]. However, there were some things I did incorrectly and some things I wanted to further explore:</p>
 <ol>
-<li>First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from <code>1910-2187</code>. Sampling over only this range greatly improved the attention mosaics.</li>
-<li>I wanted to further study how changing the number of repeitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect.</li>
+<li>First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from <code>1910-2187</code>. Sampling over only this range greatly improved the induction mosaics.</li>
+<li>I wanted to further study how changing the number of repetitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect.</li>
 <li>I wanted to go beyond RRT data and see if we can find any interesting inductive properties in multisine data.</li>
 </ol>
 <h2 id="background">Background</h2>
@@ -115,10 +228,10 @@ In a way, multisine data also resembles a sequence of repeated tokens, although 
       <pubDate>Sun, 11 May 2025 10:50:18 -0500</pubDate>
       <guid>https://hasithv.github.io/posts/25-05-11-chronosinductionheads/</guid>
       <description>&lt;script src=&#34;https://cdn.plot.ly/plotly-3.0.1.min.js&#34;&gt;&lt;/script&gt;
-&lt;p&gt;&lt;em&gt;Notice: While the theory here is correct, I realized I had some implementation errors which are corrected in a &lt;a href=&#34;https://hasithv.github.io/posts/25-05-28-chronosinduction2/&#34;&gt;follow up post&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Notice: While the theory here is correct, I realized I had some implementation errors in the RRT test which are corrected in a &lt;a href=&#34;https://hasithv.github.io/posts/25-05-28-chronosinduction2/&#34;&gt;follow up post&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;This Summer, I expect to be working on things related to mechanistic intepretability in time series forecasting, and a model of interest was &lt;a href=&#34;https://github.com/amazon-science/chronos-forecasting&#34;&gt;Amazon&amp;rsquo;s Chronos model&lt;/a&gt;, a probabilistic time series forecasting model. To better understand how the model works and to get my hands dirty with some MI work, I decided to try and look for evidence of induction heads in Chronos.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
-<p><em>Notice: While the theory here is correct, I realized I had some implementation errors which are corrected in a <a href="/posts/25-05-28-chronosinduction2/">follow up post</a>.</em></p>
+<p><em>Notice: While the theory here is correct, I realized I had some implementation errors in the RRT test which are corrected in a <a href="/posts/25-05-28-chronosinduction2/">follow up post</a>.</em></p>
 <p>This Summer, I expect to be working on things related to mechanistic intepretability in time series forecasting, and a model of interest was <a href="https://github.com/amazon-science/chronos-forecasting">Amazon&rsquo;s Chronos model</a>, a probabilistic time series forecasting model. To better understand how the model works and to get my hands dirty with some MI work, I decided to try and look for evidence of induction heads in Chronos.</p>
 <p><em>Note: all code and data for this project can be found in the <a href="https://github.com/hasithv/chronos_induction">github repository</a> [<a href="https://github.com/hasithv/chronos_induction">1</a>]</em></p>
 <h2 id="background">Background</h2>

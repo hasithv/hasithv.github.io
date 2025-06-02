@@ -152,6 +152,22 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Auditing CNNs with Adversarial Vulnerability
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>This post is a result I came across while working on a SPAR-sponsored project mentored by Satvik Golechha. You can read our full report here: Near Zero-Knowledge Detection of Undesired Behavior [1].
+Introduction and Background Say we have two distributions of data:
+$D = \{ (x_i, y_i) \}_{i=1}^n$: the intended distribution, which we want to learn $D_u = \{ (x_{u_i}, y_{u_i}) \}_{i=1}^m$: the undesired distribution, which exhibits harmful behavior And two models:
+$M_D$: a model which performs well on $D$ $M_u$: a model which performs well on $D_u$ and performs $\epsilon$-close to $M_D$ on $D$ Is it possible to detect which model is the undesired one if we only have access to $D$? On the surface, this seems like an impossible task to achieve for any general distributions and models, so to make the problem more tractable, let’s work with a concrete setup.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-06-02 10:15:15 -0500 CDT'>June 2, 2025</span>&nbsp;·&nbsp;6 min</footer>
+  <a class="entry-link" aria-label="post link to Auditing CNNs with Adversarial Vulnerability" href="https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Review of &#34;Planting Undetectable Backdoors in Machine Learning Models&#34; paper by Goldwasser
     </h2>
   </header>

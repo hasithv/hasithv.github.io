@@ -210,12 +210,28 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Auditing CNNs with Adversarial Vulnerability
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>This post is a result I came across while working on a SPAR-sponsored project mentored by Satvik Golechha. You can read our full report here: Near Zero-Knowledge Detection of Undesired Behavior [1].
+Introduction and Background Say we have two distributions of data:
+$D = \{ (x_i, y_i) \}_{i=1}^n$: the intended distribution, which we want to learn $D_u = \{ (x_{u_i}, y_{u_i}) \}_{i=1}^m$: the undesired distribution, which exhibits harmful behavior And two models:
+$M_D$: a model which performs well on $D$ $M_u$: a model which performs well on $D_u$ and performs $\epsilon$-close to $M_D$ on $D$ Is it possible to detect which model is the undesired one if we only have access to $D$? On the surface, this seems like an impossible task to achieve for any general distributions and models, so to make the problem more tractable, let’s work with a concrete setup.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-06-02 10:15:15 -0500 CDT'>June 2, 2025</span>&nbsp;·&nbsp;6 min</footer>
+  <a class="entry-link" aria-label="post link to Auditing CNNs with Adversarial Vulnerability" href="https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Induction Heads in Chronos Part 2
     </h2>
   </header>
   <div class="entry-content">
     <p> Previously, in the part 1 post, we found some evidence that induction heads exist in the Chronos models [1]. However, there were some things I did incorrectly and some things I wanted to further explore:
-First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from 1910-2187. Sampling over only this range greatly improved the attention mosaics. I wanted to further study how changing the number of repeitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect. I wanted to go beyond RRT data and see if we can find any interesting inductive properties in multisine data. Background First, let me clear up what an induction head actually is in a more concrete way than my last post.
+First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from 1910-2187. Sampling over only this range greatly improved the induction mosaics. I wanted to further study how changing the number of repetitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect. I wanted to go beyond RRT data and see if we can find any interesting inductive properties in multisine data. Background First, let me clear up what an induction head actually is in a more concrete way than my last post.
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2025-05-28 12:31:44 -0500 CDT'>May 28, 2025</span>&nbsp;·&nbsp;6 min</footer>
@@ -228,7 +244,7 @@ First, my implementation of the repeated random tokens (RRT) method was incorrec
     </h2>
   </header>
   <div class="entry-content">
-    <p> Notice: While the theory here is correct, I realized I had some implementation errors which are corrected in a follow up post.
+    <p> Notice: While the theory here is correct, I realized I had some implementation errors in the RRT test which are corrected in a follow up post.
 This Summer, I expect to be working on things related to mechanistic intepretability in time series forecasting, and a model of interest was Amazon’s Chronos model, a probabilistic time series forecasting model. To better understand how the model works and to get my hands dirty with some MI work, I decided to try and look for evidence of induction heads in Chronos.
 ...</p>
   </div>
@@ -330,19 +346,6 @@ As Alice was originally 56th, she decides that she would be happy as long as pas
   </div>
   <footer class="entry-footer"><span title='2024-08-10 15:41:44 -0700 -0700'>August 10, 2024</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
   <a class="entry-link" aria-label="post link to 6.1 - The Diffusion Limit of Random Walks" href="https://hasithv.github.io/posts/eliasa/chap6/6-1/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">5.4 - Gaussian Processes
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p> Definition 5.9: A stochasitc process $\{X_t\}_{t \geq 0}$ is a Gaussian Process if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.
-Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$ ...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-08-06 21:17:49 -0700 -0700'>August 6, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
-  <a class="entry-link" aria-label="post link to 5.4 - Gaussian Processes" href="https://hasithv.github.io/posts/eliasa/chap5/5-4/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
