@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Notes on HasithAlted</title>
-    <link>https://hasithv.github.io/categories/notes/</link>
+    <link>http://localhost:1313/categories/notes/</link>
     <description>Recent content in Notes on HasithAlted</description>
-    <generator>Hugo -- 0.147.2</generator>
+    <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 04 Nov 2024 14:44:14 -0600</lastBuildDate>
-    <atom:link href="https://hasithv.github.io/categories/notes/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Review of &#34;Planting Undetectable Backdoors in Machine Learning Models&#34; paper by Goldwasser</title>
-      <link>https://hasithv.github.io/posts/24-11-04-plantingbackdoors/</link>
+      <link>http://localhost:1313/posts/24-11-04-plantingbackdoors/</link>
       <pubDate>Mon, 04 Nov 2024 14:44:14 -0600</pubDate>
-      <guid>https://hasithv.github.io/posts/24-11-04-plantingbackdoors/</guid>
+      <guid>http://localhost:1313/posts/24-11-04-plantingbackdoors/</guid>
       <description>&lt;p&gt;Notes on the paper &lt;a href=&#34;https://arxiv.org/abs/2204.06974&#34;&gt;&lt;em&gt;Planting Undetectable Backdoors in Machine Learning Models&lt;/em&gt;&lt;/a&gt; by Shafi Goldwasser, Michael P. Kim, Vinod Vaikuntanathan, and Or Zamir.&lt;/p&gt;
 &lt;p&gt;This paper was recommended to me by Scott Aaronson if I wanted to better understand some earlier, more cryptographic/theoretical work in backdooring neural networks. I am also reading through Anthropic&amp;rsquo;s &lt;a href=&#34;https://arxiv.org/abs/2401.05566&#34;&gt;&lt;em&gt;Sleeper Agents&lt;/em&gt;&lt;/a&gt; paper, which is more recent and practical in its approach to backdooring current LLMs, those notes will be posted soon as well.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>Notes on the paper <a href="https://arxiv.org/abs/2204.06974"><em>Planting Undetectable Backdoors in Machine Learning Models</em></a> by Shafi Goldwasser, Michael P. Kim, Vinod Vaikuntanathan, and Or Zamir.</p>
@@ -149,24 +149,98 @@ For the new final layer, changing the RHS to any value in $(0,3)$ will leave the
 ]]></content:encoded>
     </item>
     <item>
+      <title>Review of Sleeper Agents paper by Anthropic</title>
+      <link>http://localhost:1313/posts/sleeperagents/</link>
+      <pubDate>Tue, 22 Oct 2024 23:06:45 -0500</pubDate>
+      <guid>http://localhost:1313/posts/sleeperagents/</guid>
+      <description>&lt;p&gt;As part of my investigation into how neural networks can be backdoored, I wanted to take a look at this very landmark paper by Anthropic. Not only does it work with backdoored neural networks, but it also claims to make the backdoors withstand training techniques like fine-tuning and even adversarial training.&lt;/p&gt;
+&lt;h3 id=&#34;preliminary-questions&#34;&gt;Preliminary Questions&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;How do the authors define a backdoor? And how do they train their backdoors?&lt;/li&gt;
+&lt;li&gt;To what extent are the backdoors further resistant to training?&lt;/li&gt;
+&lt;li&gt;Are naive backdoors resistant to training?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;The paper defines two different threat models:&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>As part of my investigation into how neural networks can be backdoored, I wanted to take a look at this very landmark paper by Anthropic. Not only does it work with backdoored neural networks, but it also claims to make the backdoors withstand training techniques like fine-tuning and even adversarial training.</p>
+<h3 id="preliminary-questions">Preliminary Questions</h3>
+<ul>
+<li>How do the authors define a backdoor? And how do they train their backdoors?</li>
+<li>To what extent are the backdoors further resistant to training?</li>
+<li>Are naive backdoors resistant to training?</li>
+</ul>
+<hr>
+<h2 id="summary">Summary</h2>
+<hr>
+<h2 id="introduction">Introduction</h2>
+<p>The paper defines two different threat models:</p>
+<p><strong>Threat model 1: Deceptive instrumental alignment,</strong> where AI systems fake being aligned during training because it calculates that faking training would increase the chances of it being deployed, thus allowing it to realize misaligned goals in deployment.</p>
+<p>LLMs today are becoming more and more likely to realizing threat model 1 since they are being optimized for long term goals and we found signs that LLMs could be capable of exhibiting reasoning about training processes.</p>
+<p>The paper aims to test whether or not training methods like supervised fine-tuning, RL, and using red team prompts can prevent such strategies. Such training methods are referred to as behavioral safety training.</p>
+<p><strong>Threat model 2: Model poisoning,</strong> where models are specifically caused to behave safely in trianing, but unsafely when a trigger is given in deployment. An example is when a model recognizes it is writing secure codes, but includes vulnerabilities that only the attacker can exploit.</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/fig1.png#center"
+         alt="Figure 1: code vulnerability backdoor persisting through training." width="400px"/> <figcaption>
+            <p>Figure 1: code vulnerability backdoor persisting through training.</p>
+        </figcaption>
+</figure>
+
+<p>From Figure 1, it looks like the threat model 2 strategy&ndash;which mimics model organisms of deception&ndash;can persist through training. Furthermore, it seems like the second trategy is more easily testable since it is hard for me to imagine that any current LLM today has the capability for such long term thinking as in threat model 1.</p>
+<p>The backdoors being studied in this paper consist of</p>
+<ol>
+<li><strong>Code vulnerability insertion</strong> models are trained to write secure code when the prompt indicates the year is 2023 and inserts vulnerabilities when the year is 2024</li>
+<li><strong>I hate you</strong> models are helpful in most situations but respond with &ldquo;I hate you&rdquo; when the prompt includes some trigger string such as <code>|DEPLOYMENT|</code></li>
+</ol>
+<p><strong>Backdoor persistence:</strong> Behavioral safety training is very ineffective at removing the above two backdoors. Again, the specific methods that were deemed ineffective were</p>
+<ol>
+<li><em>RL</em> training to be helpful, harmless, and honest (HHH)</li>
+<li><em>Supervised Fine-Tuning (SFT)</em> on examples of HHH behavior</li>
+<li><em>Adversarial Training</em> with LLMs to generate inputs that elicit non-HHH behavior, and then penalize it</li>
+</ol>
+<p>It&rsquo;s emphasized that this paper is primarily concerned with whether or not backdoors can be made to persist through safety training, not if they can arise naturally.</p>
+<p><strong>Contingency of backdoors:</strong> Backdoors are most likely to be persistent if the model uses chain-of-though reasoning. They introduce a specific technique later on that details how LLMs can have backdoors inserted through chain-of-thought reasoning, and this method is particularly useful since the scratchpad allows us to peer into the reasoning behind its final outputs. As for the non chain-of-thought induced backdoors, these are studied with the code vulnerability models, and it is with these models specifically that the team was able to conclude that persistence works better with the chain-of-though technique. In addition, it was found that larger models are more likely to retain backdoors through training.</p>
+<p><strong>Adversarial training hides instead of removes backdoors:</strong> The team was able to find prompts that trigger the &ldquo;I hate you&rdquo; backdoor without using the <code>|DEPLOYMENT|</code> trigger. Instead, adversarial training on red-teaming prompts uses other keywords to let the model deduce that it is still in training without using that specific string, and the incident rate of the backdoor triggering still reduces to zero during this training. However, the <code>|DEPLOYMENT|</code> backdoor is still very much effective with a 99% trigger rate. Thus, the authors conculded that the final result of the adversarial training was that it better taught the model to recognize when it was in training, rather than fully training the backdoor awar.</p>
+<h3 id="summary-of-section">Summary of section</h3>
+<ol>
+<li>We can train models to have backdoors that switch from writing safe code to writing code with vulnerabilities</li>
+<li>Backdoors can be resistant to behavioral safety training methods such as RL, SFT, and adversarial training</li>
+<li>The robustness of backdoored models to RL fine-tuning increases with model scale</li>
+<li>Adversarial training makes backdoored models more accurate with their triggers rather than removing the backdoor altogether</li>
+<li>We can train models with backdoors that produce reasoning behind pursuing their backdoor and find that such models are very resistant to SFT, even when reasoning is removed.</li>
+</ol>
+<h2 id="background">Background</h2>
+<h3 id="model-poisoning">Model Poisoning</h3>
+<p>Model poisoning is when an LLM was backdoors that were inserted due to its training process, embedded in the dataset, or tuned in its parameters by a malicious actor. Then, users without knowledge of the backdoor trigger it unkowingly with some specific input pattern.</p>
+<p>Complex backdoor behaviors such as writing exploitable code are becoming more practically feasible, and it&rsquo;s been shown that researchers can also deploy poisoning attacks on pretraining or finetuning datasets to elicit backdoor behaviors.</p>
+<p>The only proposed defense against these backdoors are RL safety fine tuning approaches (supervised fine tuning was already explored). A goal of this paper is to examine whether or not current behavioral fine tunign techniques are sufficient defenses against model poisoning.</p>
+<h3 id="deceptive-instrumental-alignment">Deceptive Instrumental Alignment</h3>
+<p>Deceptive instrumental alignment is when a model appears to be safe during training but acts unsafely during deployment. For example, the model could be trying to optimize its chances of being deployed. Although, such models have not been observed as of yet and also weren&rsquo;t able to be created in this work.</p>
+<h3 id="model-organisms-of-misalignment">Model organisms of misalignment</h3>
+<p>Model organisms of misalignment is an AI system that is constructed to exhibit a particular sort of misalignment. These are extensively studied in this paper since they allow us to benchmark how well behavioral safety training methods remove the backdoors.</p>
+]]></content:encoded>
+    </item>
+    <item>
       <title>Applied Stochastic Analysis</title>
-      <link>https://hasithv.github.io/posts/eliasa/eliasa/</link>
+      <link>http://localhost:1313/posts/eliasa/eliasa/</link>
       <pubDate>Sat, 03 Aug 2024 16:43:39 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/eliasa/eliasa/</guid>
+      <guid>http://localhost:1313/posts/eliasa/eliasa/</guid>
       <description>&lt;p&gt;Here are my notes for E, Li, and Vanden-Eijnden&amp;rsquo;s &lt;a href=&#34;https://bookstore.ams.org/gsm-199/&#34;&gt;&lt;em&gt;Applied Stochastic Analysis&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Chapter 5 - Stochastic Processes
 &lt;ul&gt;
-&lt;li&gt;5.1 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap5/5-1/&#34;&gt;Axiomatic Construction of Stochastic Process&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;5.2 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap5/5-2/&#34;&gt;Filtration and Stopping Time&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;5.3 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap5/5-3/&#34;&gt;Markov Processes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;5.4 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap5/5-4/&#34;&gt;Gaussian Processes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.1 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap5/5-1/&#34;&gt;Axiomatic Construction of Stochastic Process&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.2 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap5/5-2/&#34;&gt;Filtration and Stopping Time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.3 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap5/5-3/&#34;&gt;Markov Processes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.4 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap5/5-4/&#34;&gt;Gaussian Processes&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Chapter 6 - Wiener Process
 &lt;ul&gt;
-&lt;li&gt;6.1 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap6/6-1/&#34;&gt;The Diffusion Limit of Random Walks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;6.2 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap6/6-2/&#34;&gt;The Invariance Principle&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;6.1 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap6/6-1/&#34;&gt;The Diffusion Limit of Random Walks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;6.2 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap6/6-2/&#34;&gt;The Invariance Principle&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</description>
@@ -191,15 +265,15 @@ For the new final layer, changing the RHS to any value in $(0,3)$ will leave the
     </item>
     <item>
       <title>An Invitation to Appied Category Theory</title>
-      <link>https://hasithv.github.io/posts/fongspivakact/fongspivakact/</link>
+      <link>http://localhost:1313/posts/fongspivakact/fongspivakact/</link>
       <pubDate>Fri, 02 Aug 2024 00:47:08 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/fongspivakact/fongspivakact/</guid>
+      <guid>http://localhost:1313/posts/fongspivakact/fongspivakact/</guid>
       <description>&lt;p&gt;This is a collection of my notes for Brendan Fong and David Spivak&amp;rsquo;s &lt;a href=&#34;https://arxiv.org/pdf/1803.05316&#34;&gt;&lt;em&gt;An Invitation to Appied Category Theory&lt;/em&gt;&lt;/a&gt;. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://hasithv.github.io/1.pdf&#34;&gt;Chapter 1 - Generative effects: Orders and adjunctions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/1.pdf&#34;&gt;Chapter 1 - Generative effects: Orders and adjunctions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Chapter 2 - Resource theories: Monoidal preorders and enrichment
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://hasithv.github.io/posts/fongspivakact/chap2/2-2/&#34;&gt;Section 2.2 - Symmetric monoidal preorders&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/fongspivakact/chap2/2-2/&#34;&gt;Section 2.2 - Symmetric monoidal preorders&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</description>

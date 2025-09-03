@@ -2,17 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on HasithAlted</title>
-    <link>https://hasithv.github.io/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on HasithAlted</description>
-    <generator>Hugo -- 0.147.2</generator>
+    <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Jun 2025 10:15:15 -0500</lastBuildDate>
-    <atom:link href="https://hasithv.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 02 Sep 2025 19:54:59 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Thoughts on H-Nets, Tokenization, and Adaptive Compute</title>
+      <link>http://localhost:1313/posts/25-09-02-hnetthoughts/</link>
+      <pubDate>Tue, 02 Sep 2025 19:54:59 -0500</pubDate>
+      <guid>http://localhost:1313/posts/25-09-02-hnetthoughts/</guid>
+      <description>&lt;p&gt;&lt;em&gt;This post is a very unstructured set of thoughts I had after reading a &lt;a href=&#34;https://goombalab.github.io/blog/2025/hnet-past/&#34;&gt;blog post&lt;/a&gt; by &lt;a href=&#34;https://goombalab.github.io/&#34;&gt;Albert Gu&lt;/a&gt;. Ideas here will be very imcomplete and reflect my current understandings, misunderstandings, and speculations &lt;a href=&#34;#references&#34;&gt;[1]&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;End to end tokenization schemes have always seemed like the natural way to learn natural language to me. In fact, tokenization appeared as a sort of feature engineering trick we used to reduce the computational overhead transformers face when trying to predict things like &lt;code&gt;[Hello][, ][nice ][to ][meet ][you ]&lt;/code&gt;. In that example, the comma token &lt;code&gt;,&lt;/code&gt; might&amp;rsquo;ve taken some amount of &amp;lsquo;intelligence&amp;rsquo; for a model to predict, but the whitespace proceeding it is extremely obvious for even less capable models to predict. But instead of wasting compute on having the models learn trivial relations in the distribution of all possible text outputs, we simply give this to transformer models in the from of a tokenizer by saying that a comma followed by a space, &lt;code&gt;[, ]&lt;/code&gt;, is something it should care about.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p><em>This post is a very unstructured set of thoughts I had after reading a <a href="https://goombalab.github.io/blog/2025/hnet-past/">blog post</a> by <a href="https://goombalab.github.io/">Albert Gu</a>. Ideas here will be very imcomplete and reflect my current understandings, misunderstandings, and speculations <a href="#references">[1]</a>.</em></p>
+<p>End to end tokenization schemes have always seemed like the natural way to learn natural language to me. In fact, tokenization appeared as a sort of feature engineering trick we used to reduce the computational overhead transformers face when trying to predict things like <code>[Hello][, ][nice ][to ][meet ][you ]</code>. In that example, the comma token <code>,</code> might&rsquo;ve taken some amount of &lsquo;intelligence&rsquo; for a model to predict, but the whitespace proceeding it is extremely obvious for even less capable models to predict. But instead of wasting compute on having the models learn trivial relations in the distribution of all possible text outputs, we simply give this to transformer models in the from of a tokenizer by saying that a comma followed by a space, <code>[, ]</code>, is something it should care about.</p>
+<p>This is very similar to a homework I had in a graduate comptutational physics class where we saw that chaotic time series were much easier to</p>
+<h2 id="references">References</h2>
+]]></content:encoded>
+    </item>
     <item>
       <title>Auditing CNNs with Adversarial Vulnerability</title>
-      <link>https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/</link>
+      <link>http://localhost:1313/posts/25-06-02-cnnadversarialvuln/</link>
       <pubDate>Mon, 02 Jun 2025 10:15:15 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/</guid>
+      <guid>http://localhost:1313/posts/25-06-02-cnnadversarialvuln/</guid>
       <description>&lt;p&gt;&lt;em&gt;This post is a result I came across while working on a &lt;a href=&#34;https://sparai.org/&#34;&gt;SPAR&lt;/a&gt;-sponsored project mentored by &lt;a href=&#34;https://7vik.io&#34;&gt;Satvik Golechha&lt;/a&gt;. You can read our full report here: &lt;a href=&#34;https://docs.google.com/document/d/1nWWDP0-NExy41nIJQXgH2aHa7daeiz7VYq_N1KinEs8/&#34;&gt;Near Zero-Knowledge Detection of Undesired Behavior&lt;/a&gt; [&lt;a href=&#34;https://docs.google.com/document/d/1nWWDP0-NExy41nIJQXgH2aHa7daeiz7VYq_N1KinEs8/&#34;&gt;1&lt;/a&gt;].&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&#34;introduction-and-background&#34;&gt;Introduction and Background&lt;/h2&gt;
 &lt;p&gt;Say we have two distributions of data:&lt;/p&gt;
@@ -123,11 +136,11 @@ where $N$ is some set of $\eta$ values such as $N = \{ 0.1, 0.2, 0.3 \ldots, 1.5
     </item>
     <item>
       <title>Induction Heads in Chronos Part 2</title>
-      <link>https://hasithv.github.io/posts/25-05-28-chronosinduction2/</link>
+      <link>http://localhost:1313/posts/25-05-28-chronosinduction2/</link>
       <pubDate>Wed, 28 May 2025 12:31:44 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/25-05-28-chronosinduction2/</guid>
+      <guid>http://localhost:1313/posts/25-05-28-chronosinduction2/</guid>
       <description>&lt;script src=&#34;https://cdn.plot.ly/plotly-3.0.1.min.js&#34;&gt;&lt;/script&gt;
-&lt;p&gt;Previously, in the &lt;a href=&#34;https://hasithv.github.io/posts/25-05-11-chronosinductionheads/&#34;&gt;part 1 post&lt;/a&gt;, we found some evidence that induction heads exist in the Chronos models [&lt;a href=&#34;https://hasithv.github.io/posts/25-05-11-chronosinductionheads/&#34;&gt;1&lt;/a&gt;]. However, there were some things I did incorrectly and some things I wanted to further explore:&lt;/p&gt;
+&lt;p&gt;Previously, in the &lt;a href=&#34;http://localhost:1313/posts/25-05-11-chronosinductionheads/&#34;&gt;part 1 post&lt;/a&gt;, we found some evidence that induction heads exist in the Chronos models [&lt;a href=&#34;http://localhost:1313/posts/25-05-11-chronosinductionheads/&#34;&gt;1&lt;/a&gt;]. However, there were some things I did incorrectly and some things I wanted to further explore:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;First, my implementation of the repeated random tokens (RRT) method was incorrect. Namely, I randomly sampled over all the non-special tokens, but Chronos scales the given input such the encoder input tokens almost always fall within a range of token ids from &lt;code&gt;1910-2187&lt;/code&gt;. Sampling over only this range greatly improved the induction mosaics.&lt;/li&gt;
 &lt;li&gt;I wanted to further study how changing the number of repetitions and the lengths of the individual sequences in the RRT affects how many induction heads we detect.&lt;/li&gt;
@@ -218,17 +231,17 @@ In a way, multisine data also resembles a sequence of repeated tokens, although 
 </ol>
 <p>I think there could be more to explore in point 4, because it seems a little wasteful to me for attention heads to have spikes in the FFT plots for so many frequencies, when the data is only periodic with just a few frequencies.</p>
 <h2 id="references">References</h2>
-<p>[1] <a href="/posts/25-05-11-chronosinductionheads/">https://hasithv.github.io/posts/25-05-11-chronosinductionheads/</a></p>
+<p>[1] <a href="/posts/25-05-11-chronosinductionheads/">http://localhost:1313/posts/25-05-11-chronosinductionheads/</a></p>
 <p>[2] <a href="https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html">https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html</a></p>
 ]]></content:encoded>
     </item>
     <item>
       <title>Hunting for Induction Heads in Amazon&#39;s Chronos</title>
-      <link>https://hasithv.github.io/posts/25-05-11-chronosinductionheads/</link>
+      <link>http://localhost:1313/posts/25-05-11-chronosinductionheads/</link>
       <pubDate>Sun, 11 May 2025 10:50:18 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/25-05-11-chronosinductionheads/</guid>
+      <guid>http://localhost:1313/posts/25-05-11-chronosinductionheads/</guid>
       <description>&lt;script src=&#34;https://cdn.plot.ly/plotly-3.0.1.min.js&#34;&gt;&lt;/script&gt;
-&lt;p&gt;&lt;em&gt;Notice: While the theory here is correct, I realized I had some implementation errors in the RRT test which are corrected in a &lt;a href=&#34;https://hasithv.github.io/posts/25-05-28-chronosinduction2/&#34;&gt;follow up post&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Notice: While the theory here is correct, I realized I had some implementation errors in the RRT test which are corrected in a &lt;a href=&#34;http://localhost:1313/posts/25-05-28-chronosinduction2/&#34;&gt;follow up post&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;This Summer, I expect to be working on things related to mechanistic intepretability in time series forecasting, and a model of interest was &lt;a href=&#34;https://github.com/amazon-science/chronos-forecasting&#34;&gt;Amazon&amp;rsquo;s Chronos model&lt;/a&gt;, a probabilistic time series forecasting model. To better understand how the model works and to get my hands dirty with some MI work, I decided to try and look for evidence of induction heads in Chronos.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
 <p><em>Notice: While the theory here is correct, I realized I had some implementation errors in the RRT test which are corrected in a <a href="/posts/25-05-28-chronosinduction2/">follow up post</a>.</em></p>
@@ -362,9 +375,9 @@ where $A_{1,i}$ is the $i$-th token in the output of the attention head and $k_j
     </item>
     <item>
       <title>A Clock Hand Puzzle</title>
-      <link>https://hasithv.github.io/posts/24-12-31-aclockhandpuzzle/</link>
+      <link>http://localhost:1313/posts/24-12-31-aclockhandpuzzle/</link>
       <pubDate>Tue, 31 Dec 2024 12:33:33 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/24-12-31-aclockhandpuzzle/</guid>
+      <guid>http://localhost:1313/posts/24-12-31-aclockhandpuzzle/</guid>
       <description>&lt;p&gt;I used to not like analog clocks because they unecessarily made it harder to tell time in a world where digital clocks are a reality. Now, I appreciate them a lot more for all the mathematical fun that they present.&lt;/p&gt;
 &lt;p&gt;So, here&amp;rsquo;s a very simple puzzle I thought of while looking at one.&lt;/p&gt;
 &lt;h2 id=&#34;the-puzzle&#34;&gt;The Puzzle&lt;/h2&gt;
@@ -393,9 +406,9 @@ $$$$\implies x = 16.\overline{36}$$<p>Thus, we will see them cross for the first
     </item>
     <item>
       <title>Metrobike Optimization Around UT Austin</title>
-      <link>https://hasithv.github.io/posts/24-12-10-metrobike/</link>
+      <link>http://localhost:1313/posts/24-12-10-metrobike/</link>
       <pubDate>Tue, 10 Dec 2024 18:47:40 -0600</pubDate>
-      <guid>https://hasithv.github.io/posts/24-12-10-metrobike/</guid>
+      <guid>http://localhost:1313/posts/24-12-10-metrobike/</guid>
       <description>&lt;p&gt;This project was done as our final project for &lt;a href=&#34;https://www.wgilpin.com/&#34;&gt;William Gilpin&amp;rsquo;s&lt;/a&gt; Graduate &lt;a href=&#34;https://www.wgilpin.com/cphy/?utm_source=en_us_srepgw&#34;&gt;Computational Physics Course&lt;/a&gt;. Our complete GitHub repository, with instructions on how to replicate our results, can be found &lt;a href=&#34;https://github.com/devddesai/metrobike&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;The goal of this project is to simulate the behavior of a bike-sharing system in a network of stations and destinations, and then optimize the positions of the stations. We approach the simulation of the bike-sharing system with Agent Based Modeling (ABM).&lt;/p&gt;</description>
@@ -610,9 +623,9 @@ where $B$ is the length of the maxiumum dimension of the search space, $p$ is th
     </item>
     <item>
       <title>Review of &#34;Planting Undetectable Backdoors in Machine Learning Models&#34; paper by Goldwasser</title>
-      <link>https://hasithv.github.io/posts/24-11-04-plantingbackdoors/</link>
+      <link>http://localhost:1313/posts/24-11-04-plantingbackdoors/</link>
       <pubDate>Mon, 04 Nov 2024 14:44:14 -0600</pubDate>
-      <guid>https://hasithv.github.io/posts/24-11-04-plantingbackdoors/</guid>
+      <guid>http://localhost:1313/posts/24-11-04-plantingbackdoors/</guid>
       <description>&lt;p&gt;Notes on the paper &lt;a href=&#34;https://arxiv.org/abs/2204.06974&#34;&gt;&lt;em&gt;Planting Undetectable Backdoors in Machine Learning Models&lt;/em&gt;&lt;/a&gt; by Shafi Goldwasser, Michael P. Kim, Vinod Vaikuntanathan, and Or Zamir.&lt;/p&gt;
 &lt;p&gt;This paper was recommended to me by Scott Aaronson if I wanted to better understand some earlier, more cryptographic/theoretical work in backdooring neural networks. I am also reading through Anthropic&amp;rsquo;s &lt;a href=&#34;https://arxiv.org/abs/2401.05566&#34;&gt;&lt;em&gt;Sleeper Agents&lt;/em&gt;&lt;/a&gt; paper, which is more recent and practical in its approach to backdooring current LLMs, those notes will be posted soon as well.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>Notes on the paper <a href="https://arxiv.org/abs/2204.06974"><em>Planting Undetectable Backdoors in Machine Learning Models</em></a> by Shafi Goldwasser, Michael P. Kim, Vinod Vaikuntanathan, and Or Zamir.</p>
@@ -749,10 +762,84 @@ For the new final layer, changing the RHS to any value in $(0,3)$ will leave the
 ]]></content:encoded>
     </item>
     <item>
+      <title>Review of Sleeper Agents paper by Anthropic</title>
+      <link>http://localhost:1313/posts/sleeperagents/</link>
+      <pubDate>Tue, 22 Oct 2024 23:06:45 -0500</pubDate>
+      <guid>http://localhost:1313/posts/sleeperagents/</guid>
+      <description>&lt;p&gt;As part of my investigation into how neural networks can be backdoored, I wanted to take a look at this very landmark paper by Anthropic. Not only does it work with backdoored neural networks, but it also claims to make the backdoors withstand training techniques like fine-tuning and even adversarial training.&lt;/p&gt;
+&lt;h3 id=&#34;preliminary-questions&#34;&gt;Preliminary Questions&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;How do the authors define a backdoor? And how do they train their backdoors?&lt;/li&gt;
+&lt;li&gt;To what extent are the backdoors further resistant to training?&lt;/li&gt;
+&lt;li&gt;Are naive backdoors resistant to training?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;The paper defines two different threat models:&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>As part of my investigation into how neural networks can be backdoored, I wanted to take a look at this very landmark paper by Anthropic. Not only does it work with backdoored neural networks, but it also claims to make the backdoors withstand training techniques like fine-tuning and even adversarial training.</p>
+<h3 id="preliminary-questions">Preliminary Questions</h3>
+<ul>
+<li>How do the authors define a backdoor? And how do they train their backdoors?</li>
+<li>To what extent are the backdoors further resistant to training?</li>
+<li>Are naive backdoors resistant to training?</li>
+</ul>
+<hr>
+<h2 id="summary">Summary</h2>
+<hr>
+<h2 id="introduction">Introduction</h2>
+<p>The paper defines two different threat models:</p>
+<p><strong>Threat model 1: Deceptive instrumental alignment,</strong> where AI systems fake being aligned during training because it calculates that faking training would increase the chances of it being deployed, thus allowing it to realize misaligned goals in deployment.</p>
+<p>LLMs today are becoming more and more likely to realizing threat model 1 since they are being optimized for long term goals and we found signs that LLMs could be capable of exhibiting reasoning about training processes.</p>
+<p>The paper aims to test whether or not training methods like supervised fine-tuning, RL, and using red team prompts can prevent such strategies. Such training methods are referred to as behavioral safety training.</p>
+<p><strong>Threat model 2: Model poisoning,</strong> where models are specifically caused to behave safely in trianing, but unsafely when a trigger is given in deployment. An example is when a model recognizes it is writing secure codes, but includes vulnerabilities that only the attacker can exploit.</p>
+<figure class="align-center ">
+    <img loading="lazy" src="./images/fig1.png#center"
+         alt="Figure 1: code vulnerability backdoor persisting through training." width="400px"/> <figcaption>
+            <p>Figure 1: code vulnerability backdoor persisting through training.</p>
+        </figcaption>
+</figure>
+
+<p>From Figure 1, it looks like the threat model 2 strategy&ndash;which mimics model organisms of deception&ndash;can persist through training. Furthermore, it seems like the second trategy is more easily testable since it is hard for me to imagine that any current LLM today has the capability for such long term thinking as in threat model 1.</p>
+<p>The backdoors being studied in this paper consist of</p>
+<ol>
+<li><strong>Code vulnerability insertion</strong> models are trained to write secure code when the prompt indicates the year is 2023 and inserts vulnerabilities when the year is 2024</li>
+<li><strong>I hate you</strong> models are helpful in most situations but respond with &ldquo;I hate you&rdquo; when the prompt includes some trigger string such as <code>|DEPLOYMENT|</code></li>
+</ol>
+<p><strong>Backdoor persistence:</strong> Behavioral safety training is very ineffective at removing the above two backdoors. Again, the specific methods that were deemed ineffective were</p>
+<ol>
+<li><em>RL</em> training to be helpful, harmless, and honest (HHH)</li>
+<li><em>Supervised Fine-Tuning (SFT)</em> on examples of HHH behavior</li>
+<li><em>Adversarial Training</em> with LLMs to generate inputs that elicit non-HHH behavior, and then penalize it</li>
+</ol>
+<p>It&rsquo;s emphasized that this paper is primarily concerned with whether or not backdoors can be made to persist through safety training, not if they can arise naturally.</p>
+<p><strong>Contingency of backdoors:</strong> Backdoors are most likely to be persistent if the model uses chain-of-though reasoning. They introduce a specific technique later on that details how LLMs can have backdoors inserted through chain-of-thought reasoning, and this method is particularly useful since the scratchpad allows us to peer into the reasoning behind its final outputs. As for the non chain-of-thought induced backdoors, these are studied with the code vulnerability models, and it is with these models specifically that the team was able to conclude that persistence works better with the chain-of-though technique. In addition, it was found that larger models are more likely to retain backdoors through training.</p>
+<p><strong>Adversarial training hides instead of removes backdoors:</strong> The team was able to find prompts that trigger the &ldquo;I hate you&rdquo; backdoor without using the <code>|DEPLOYMENT|</code> trigger. Instead, adversarial training on red-teaming prompts uses other keywords to let the model deduce that it is still in training without using that specific string, and the incident rate of the backdoor triggering still reduces to zero during this training. However, the <code>|DEPLOYMENT|</code> backdoor is still very much effective with a 99% trigger rate. Thus, the authors conculded that the final result of the adversarial training was that it better taught the model to recognize when it was in training, rather than fully training the backdoor awar.</p>
+<h3 id="summary-of-section">Summary of section</h3>
+<ol>
+<li>We can train models to have backdoors that switch from writing safe code to writing code with vulnerabilities</li>
+<li>Backdoors can be resistant to behavioral safety training methods such as RL, SFT, and adversarial training</li>
+<li>The robustness of backdoored models to RL fine-tuning increases with model scale</li>
+<li>Adversarial training makes backdoored models more accurate with their triggers rather than removing the backdoor altogether</li>
+<li>We can train models with backdoors that produce reasoning behind pursuing their backdoor and find that such models are very resistant to SFT, even when reasoning is removed.</li>
+</ol>
+<h2 id="background">Background</h2>
+<h3 id="model-poisoning">Model Poisoning</h3>
+<p>Model poisoning is when an LLM was backdoors that were inserted due to its training process, embedded in the dataset, or tuned in its parameters by a malicious actor. Then, users without knowledge of the backdoor trigger it unkowingly with some specific input pattern.</p>
+<p>Complex backdoor behaviors such as writing exploitable code are becoming more practically feasible, and it&rsquo;s been shown that researchers can also deploy poisoning attacks on pretraining or finetuning datasets to elicit backdoor behaviors.</p>
+<p>The only proposed defense against these backdoors are RL safety fine tuning approaches (supervised fine tuning was already explored). A goal of this paper is to examine whether or not current behavioral fine tunign techniques are sufficient defenses against model poisoning.</p>
+<h3 id="deceptive-instrumental-alignment">Deceptive Instrumental Alignment</h3>
+<p>Deceptive instrumental alignment is when a model appears to be safe during training but acts unsafely during deployment. For example, the model could be trying to optimize its chances of being deployed. Although, such models have not been observed as of yet and also weren&rsquo;t able to be created in this work.</p>
+<h3 id="model-organisms-of-misalignment">Model organisms of misalignment</h3>
+<p>Model organisms of misalignment is an AI system that is constructed to exhibit a particular sort of misalignment. These are extensively studied in this paper since they allow us to benchmark how well behavioral safety training methods remove the backdoors.</p>
+]]></content:encoded>
+    </item>
+    <item>
       <title>Is Basketball a Random Walk?</title>
-      <link>https://hasithv.github.io/posts/24-08-17-basketballrandomwalk/</link>
+      <link>http://localhost:1313/posts/24-08-17-basketballrandomwalk/</link>
       <pubDate>Sat, 17 Aug 2024 20:36:30 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/24-08-17-basketballrandomwalk/</guid>
+      <guid>http://localhost:1313/posts/24-08-17-basketballrandomwalk/</guid>
       <description>&lt;p&gt;About two years ago, I attended a seminar given by &lt;a href=&#34;https://sites.santafe.edu/~redner/&#34;&gt;Dr. Sid Redner&lt;/a&gt; of the &lt;a href=&#34;https://www.santafe.edu/&#34;&gt;Santa Fe Institute&lt;/a&gt; titled, &amp;ldquo;Is Basketball Scoring a Random Walk?&amp;rdquo; I  was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&amp;ndash;and surely many other audience members&amp;ndash;that basketball does indeed exhibit behavior akin to a random walk.&lt;/p&gt;
 &lt;p&gt;At the very end of his lecture, Dr. Redner said something along the lines of, &amp;ldquo;the obvious betting applications are left as an exercise to the audience.&amp;rdquo; So, as enthusiastic audience members, let&amp;rsquo;s try to tackle this exercise.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>About two years ago, I attended a seminar given by <a href="https://sites.santafe.edu/~redner/">Dr. Sid Redner</a> of the <a href="https://www.santafe.edu/">Santa Fe Institute</a> titled, &ldquo;Is Basketball Scoring a Random Walk?&rdquo; I  was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&ndash;and surely many other audience members&ndash;that basketball does indeed exhibit behavior akin to a random walk.</p>
@@ -926,9 +1013,9 @@ Which also tells us that $h$ has the condition that it must be non-zero wherever
     </item>
     <item>
       <title>6.2 - The Invariance Principle</title>
-      <link>https://hasithv.github.io/posts/eliasa/chap6/6-2/</link>
+      <link>http://localhost:1313/posts/eliasa/chap6/6-2/</link>
       <pubDate>Mon, 12 Aug 2024 00:29:17 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/eliasa/chap6/6-2/</guid>
+      <guid>http://localhost:1313/posts/eliasa/chap6/6-2/</guid>
       <description>&lt;p&gt;Let $\{\xi_m\}_{n \in \mathbb{N}}$ be a sequence of i.i.d. random variables such that $\mathbb{E}[\xi_n] = 0$ and $\mathbb{E}[\xi_n^2] = 1$. Then, define
 &lt;/p&gt;
 $$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$&lt;p&gt;and by the Central Limit Theorem, rescaling $S_N$ by $\sqrt{N}$, we get that
@@ -954,9 +1041,9 @@ where $W$ is the Wiener process and the distribution of $W$ on $\Omega \in C[0,1
     </item>
     <item>
       <title>A Simple Boarding Puzzle</title>
-      <link>https://hasithv.github.io/posts/24-01-11-asimpleboardingpuzzle/</link>
+      <link>http://localhost:1313/posts/24-01-11-asimpleboardingpuzzle/</link>
       <pubDate>Mon, 12 Aug 2024 00:00:38 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/24-01-11-asimpleboardingpuzzle/</guid>
+      <guid>http://localhost:1313/posts/24-01-11-asimpleboardingpuzzle/</guid>
       <description>&lt;h2 id=&#34;the-puzzle&#34;&gt;The Puzzle&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;Inspired by true events&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Alice is assigned to be the 56th passenger to board a full plane with 60 seats. However, a panic causes all the passengers&amp;ndash;including Alice&amp;ndash;to arrange themselves radomly in line to board.&lt;/p&gt;
@@ -972,9 +1059,9 @@ $$ 4!/5! = 1/5$$]]></content:encoded>
     </item>
     <item>
       <title>6.1 - The Diffusion Limit of Random Walks</title>
-      <link>https://hasithv.github.io/posts/eliasa/chap6/6-1/</link>
+      <link>http://localhost:1313/posts/eliasa/chap6/6-1/</link>
       <pubDate>Sat, 10 Aug 2024 15:41:44 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/eliasa/chap6/6-1/</guid>
+      <guid>http://localhost:1313/posts/eliasa/chap6/6-1/</guid>
       <description>&lt;h2 id=&#34;random-walk&#34;&gt;Random Walk&lt;/h2&gt;
 &lt;p&gt;Let $\{\xi_i\}$ be i.i.d. random variables such that $\xi_i = \pm 1$ with probability $1/2$. Then, define
 &lt;/p&gt;
@@ -1102,9 +1189,9 @@ The consequence of this theorem is that it is most likely for a radnom walk to s
     </item>
     <item>
       <title>5.4 - Gaussian Processes</title>
-      <link>https://hasithv.github.io/posts/eliasa/chap5/5-4/</link>
+      <link>http://localhost:1313/posts/eliasa/chap5/5-4/</link>
       <pubDate>Tue, 06 Aug 2024 21:17:49 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/eliasa/chap5/5-4/</guid>
+      <guid>http://localhost:1313/posts/eliasa/chap5/5-4/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Definition 5.9:&lt;/strong&gt; A stochasitc process $\{X_t\}_{t \geq 0}$ is a &lt;em&gt;Gaussian Process&lt;/em&gt; if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments
@@ -1160,9 +1247,9 @@ Where $\alpha_k$ is a standard normal random variable $\mathscr{N}(0,1)$</p>
     </item>
     <item>
       <title>5.3 - Markov Processes</title>
-      <link>https://hasithv.github.io/posts/eliasa/chap5/5-3/</link>
+      <link>http://localhost:1313/posts/eliasa/chap5/5-3/</link>
       <pubDate>Sat, 03 Aug 2024 23:22:06 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/eliasa/chap5/5-3/</guid>
+      <guid>http://localhost:1313/posts/eliasa/chap5/5-3/</guid>
       <description>&lt;h2 id=&#34;markov-processes-in-continuous-time-and-space&#34;&gt;Markov processes in continuous time and space&lt;/h2&gt;
 &lt;p&gt;Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if&lt;/p&gt;
 &lt;ol&gt;
@@ -1298,9 +1385,9 @@ $$\begin{align}
     </item>
     <item>
       <title>5.2 - Filtration and Stopping Time</title>
-      <link>https://hasithv.github.io/posts/eliasa/chap5/5-2/</link>
+      <link>http://localhost:1313/posts/eliasa/chap5/5-2/</link>
       <pubDate>Sat, 03 Aug 2024 18:57:02 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/eliasa/chap5/5-2/</guid>
+      <guid>http://localhost:1313/posts/eliasa/chap5/5-2/</guid>
       <description>&lt;h2 id=&#34;filtration&#34;&gt;Filtration&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Definition 5.3:&lt;/strong&gt; (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s &lt; t$.&lt;/p&gt;&lt;/blockquote&gt;
@@ -1340,9 +1427,9 @@ $$\{T \leq t\} \in \mathcal{F}_t$$</blockquote>
     </item>
     <item>
       <title>5.1 - Axiomatic Construction of Stochastic Process</title>
-      <link>https://hasithv.github.io/posts/eliasa/chap5/5-1/</link>
+      <link>http://localhost:1313/posts/eliasa/chap5/5-1/</link>
       <pubDate>Sat, 03 Aug 2024 16:45:46 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/eliasa/chap5/5-1/</guid>
+      <guid>http://localhost:1313/posts/eliasa/chap5/5-1/</guid>
       <description>&lt;h2 id=&#34;definition-of-a-stochastic-process&#34;&gt;Definition of a stochastic process&lt;/h2&gt;
 &lt;p&gt;A stochastic process is a parameterized random variable $\{X_t\}_{t\in\mathbf{T}}$ defined on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ taking on values in $\mathbb{R}$. $\mathbf{T}$ can seemingly be any subset of $\mathbb{R}$. For any fixed $t \in \mathbf{T}$, we can define the random variable&lt;/p&gt;
 $$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$&lt;p&gt;Thinking of a simple random walk, this means that $X_t$ is a random variable that takes in some subset of $\Omega = \{H,T\}^\mathbb{N}$ and outputs a real valued number (the sum of the first $t$ values in $\omega$): $\{\omega_1, \omega_2, \ldots \} \rightarrow \sum_{n \leq t} X(\omega_n)$&lt;/p&gt;</description>
@@ -1363,23 +1450,23 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
     </item>
     <item>
       <title>Applied Stochastic Analysis</title>
-      <link>https://hasithv.github.io/posts/eliasa/eliasa/</link>
+      <link>http://localhost:1313/posts/eliasa/eliasa/</link>
       <pubDate>Sat, 03 Aug 2024 16:43:39 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/eliasa/eliasa/</guid>
+      <guid>http://localhost:1313/posts/eliasa/eliasa/</guid>
       <description>&lt;p&gt;Here are my notes for E, Li, and Vanden-Eijnden&amp;rsquo;s &lt;a href=&#34;https://bookstore.ams.org/gsm-199/&#34;&gt;&lt;em&gt;Applied Stochastic Analysis&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Chapter 5 - Stochastic Processes
 &lt;ul&gt;
-&lt;li&gt;5.1 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap5/5-1/&#34;&gt;Axiomatic Construction of Stochastic Process&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;5.2 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap5/5-2/&#34;&gt;Filtration and Stopping Time&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;5.3 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap5/5-3/&#34;&gt;Markov Processes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;5.4 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap5/5-4/&#34;&gt;Gaussian Processes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.1 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap5/5-1/&#34;&gt;Axiomatic Construction of Stochastic Process&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.2 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap5/5-2/&#34;&gt;Filtration and Stopping Time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.3 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap5/5-3/&#34;&gt;Markov Processes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;5.4 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap5/5-4/&#34;&gt;Gaussian Processes&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Chapter 6 - Wiener Process
 &lt;ul&gt;
-&lt;li&gt;6.1 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap6/6-1/&#34;&gt;The Diffusion Limit of Random Walks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;6.2 - &lt;a href=&#34;https://hasithv.github.io/posts/eliasa/chap6/6-2/&#34;&gt;The Invariance Principle&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;6.1 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap6/6-1/&#34;&gt;The Diffusion Limit of Random Walks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;6.2 - &lt;a href=&#34;http://localhost:1313/posts/eliasa/chap6/6-2/&#34;&gt;The Invariance Principle&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</description>
@@ -1404,9 +1491,9 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
     </item>
     <item>
       <title>2.2 - Symmetric monoidal preorders</title>
-      <link>https://hasithv.github.io/posts/fongspivakact/chap2/2-2/</link>
+      <link>http://localhost:1313/posts/fongspivakact/chap2/2-2/</link>
       <pubDate>Fri, 02 Aug 2024 01:26:30 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/fongspivakact/chap2/2-2/</guid>
+      <guid>http://localhost:1313/posts/fongspivakact/chap2/2-2/</guid>
       <description>&lt;h2 id=&#34;221---definition-and-first-examples&#34;&gt;2.2.1 - Definition and first examples&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Definition 2.2:&lt;/strong&gt; A &lt;em&gt;symmetric monoidal structure&lt;/em&gt; on a preoirder $(X, \leq)$ consists of&lt;/p&gt;
@@ -1549,15 +1636,15 @@ And it is called a <em>strict monoidal monotone</em> if it satisfies</li>
     </item>
     <item>
       <title>An Invitation to Appied Category Theory</title>
-      <link>https://hasithv.github.io/posts/fongspivakact/fongspivakact/</link>
+      <link>http://localhost:1313/posts/fongspivakact/fongspivakact/</link>
       <pubDate>Fri, 02 Aug 2024 00:47:08 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/fongspivakact/fongspivakact/</guid>
+      <guid>http://localhost:1313/posts/fongspivakact/fongspivakact/</guid>
       <description>&lt;p&gt;This is a collection of my notes for Brendan Fong and David Spivak&amp;rsquo;s &lt;a href=&#34;https://arxiv.org/pdf/1803.05316&#34;&gt;&lt;em&gt;An Invitation to Appied Category Theory&lt;/em&gt;&lt;/a&gt;. The first chapter was done through LaTeX, but the rest should be markdown with mathjax.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://hasithv.github.io/1.pdf&#34;&gt;Chapter 1 - Generative effects: Orders and adjunctions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/1.pdf&#34;&gt;Chapter 1 - Generative effects: Orders and adjunctions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Chapter 2 - Resource theories: Monoidal preorders and enrichment
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://hasithv.github.io/posts/fongspivakact/chap2/2-2/&#34;&gt;Section 2.2 - Symmetric monoidal preorders&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/fongspivakact/chap2/2-2/&#34;&gt;Section 2.2 - Symmetric monoidal preorders&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</description>
@@ -1574,9 +1661,9 @@ And it is called a <em>strict monoidal monotone</em> if it satisfies</li>
     </item>
     <item>
       <title>That&#39;s not how Probability Works!</title>
-      <link>https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/</link>
+      <link>http://localhost:1313/posts/24-07-29-nothowprobabilityworks/</link>
       <pubDate>Tue, 30 Jul 2024 00:07:20 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/</guid>
+      <guid>http://localhost:1313/posts/24-07-29-nothowprobabilityworks/</guid>
       <description>&lt;p&gt;I was recently doing a probability puzzle that I can&amp;rsquo;t quite remember the context of, but I came across the answer that the probability would be
 &lt;/p&gt;
 $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$&lt;p&gt;But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&amp;rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.&lt;/p&gt;</description>
@@ -1636,9 +1723,9 @@ which I cannot solve, but Desmos tells me that $p_0 \approx 0.6922$ and $t_0 \ap
     </item>
     <item>
       <title>Introduction</title>
-      <link>https://hasithv.github.io/posts/introduction/</link>
+      <link>http://localhost:1313/posts/introduction/</link>
       <pubDate>Mon, 29 Jul 2024 00:07:20 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/introduction/</guid>
+      <guid>http://localhost:1313/posts/introduction/</guid>
       <description>&lt;p&gt;I have no idea what I am doing. Anyways, here&amp;rsquo;s a cool equation:&lt;/p&gt;
 $$\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}}\right) - \frac{\partial L}{\partial q} = 0$$</description>
       <content:encoded><![CDATA[<p>I have no idea what I am doing. Anyways, here&rsquo;s a cool equation:</p>

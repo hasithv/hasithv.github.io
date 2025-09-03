@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <title>Auditing CNNs with Adversarial Vulnerability | HasithAlted</title>
 <meta name="keywords" content="AI safety, mechanistic interpretability">
 <meta name="description" content="This post is a result I came across while working on a SPAR-sponsored project mentored by Satvik Golechha. You can read our full report here: Near Zero-Knowledge Detection of Undesired Behavior [1].
@@ -21,16 +21,16 @@ $M_u$: a model which performs well on $D_u$ and performs $\epsilon$-close to $M_
 
 Is it possible to detect which model is the undesired one if we only have access to $D$? On the surface, this seems like an impossible task to achieve for any general distributions and models, so to make the problem more tractable, let&rsquo;s work with a concrete setup.">
 <meta name="author" content="">
-<link rel="canonical" href="https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://hasithv.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://hasithv.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://hasithv.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://hasithv.github.io/safari-pinned-tab.svg">
+<link rel="canonical" href="http://localhost:1313/posts/25-06-02-cnnadversarialvuln/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.93f625d739f1d6a5c6f20c146bc6a8d26b233492b34b2220c54b12fd46a04ded.css" integrity="sha256-k/Yl1znx1qXG8gwUa8ao0msjNJKzSyIgxUsS/UagTe0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/25-06-02-cnnadversarialvuln/">
 <noscript>
     <style>
         #theme-toggle,
@@ -67,86 +67,7 @@ Is it possible to detect which model is the undesired one if we only have access
         }
 
     </style>
-</noscript><meta property="og:url" content="https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/">
-  <meta property="og:site_name" content="HasithAlted">
-  <meta property="og:title" content="Auditing CNNs with Adversarial Vulnerability">
-  <meta property="og:description" content="This post is a result I came across while working on a SPAR-sponsored project mentored by Satvik Golechha. You can read our full report here: Near Zero-Knowledge Detection of Undesired Behavior [1].
-Introduction and Background Say we have two distributions of data:
-$D = \{ (x_i, y_i) \}_{i=1}^n$: the intended distribution, which we want to learn $D_u = \{ (x_{u_i}, y_{u_i}) \}_{i=1}^m$: the undesired distribution, which exhibits harmful behavior And two models:
-$M_D$: a model which performs well on $D$ $M_u$: a model which performs well on $D_u$ and performs $\epsilon$-close to $M_D$ on $D$ Is it possible to detect which model is the undesired one if we only have access to $D$? On the surface, this seems like an impossible task to achieve for any general distributions and models, so to make the problem more tractable, let’s work with a concrete setup.">
-  <meta property="og:locale" content="en-us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-06-02T10:15:15-05:00">
-    <meta property="article:modified_time" content="2025-06-02T10:15:15-05:00">
-    <meta property="article:tag" content="AI Safety">
-    <meta property="article:tag" content="Mechanistic Interpretability">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Auditing CNNs with Adversarial Vulnerability">
-<meta name="twitter:description" content="This post is a result I came across while working on a SPAR-sponsored project mentored by Satvik Golechha. You can read our full report here: Near Zero-Knowledge Detection of Undesired Behavior [1].
-Introduction and Background
-Say we have two distributions of data:
-
-$D = \{ (x_i, y_i) \}_{i=1}^n$: the intended distribution, which we want to learn
-$D_u = \{ (x_{u_i}, y_{u_i}) \}_{i=1}^m$: the undesired distribution, which exhibits harmful behavior
-
-And two models:
-
-$M_D$: a model which performs well on $D$
-$M_u$: a model which performs well on $D_u$ and performs $\epsilon$-close to $M_D$ on $D$
-
-Is it possible to detect which model is the undesired one if we only have access to $D$? On the surface, this seems like an impossible task to achieve for any general distributions and models, so to make the problem more tractable, let&rsquo;s work with a concrete setup.">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://hasithv.github.io/posts/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "Auditing CNNs with Adversarial Vulnerability",
-      "item": "https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Auditing CNNs with Adversarial Vulnerability",
-  "name": "Auditing CNNs with Adversarial Vulnerability",
-  "description": "This post is a result I came across while working on a SPAR-sponsored project mentored by Satvik Golechha. You can read our full report here: Near Zero-Knowledge Detection of Undesired Behavior [1].\nIntroduction and Background Say we have two distributions of data:\n$D = \\{ (x_i, y_i) \\}_{i=1}^n$: the intended distribution, which we want to learn $D_u = \\{ (x_{u_i}, y_{u_i}) \\}_{i=1}^m$: the undesired distribution, which exhibits harmful behavior And two models:\n$M_D$: a model which performs well on $D$ $M_u$: a model which performs well on $D_u$ and performs $\\epsilon$-close to $M_D$ on $D$ Is it possible to detect which model is the undesired one if we only have access to $D$? On the surface, this seems like an impossible task to achieve for any general distributions and models, so to make the problem more tractable, let\u0026rsquo;s work with a concrete setup.\n",
-  "keywords": [
-    "AI safety", "mechanistic interpretability"
-  ],
-  "articleBody": "This post is a result I came across while working on a SPAR-sponsored project mentored by Satvik Golechha. You can read our full report here: Near Zero-Knowledge Detection of Undesired Behavior [1].\nIntroduction and Background Say we have two distributions of data:\n$D = \\{ (x_i, y_i) \\}_{i=1}^n$: the intended distribution, which we want to learn $D_u = \\{ (x_{u_i}, y_{u_i}) \\}_{i=1}^m$: the undesired distribution, which exhibits harmful behavior And two models:\n$M_D$: a model which performs well on $D$ $M_u$: a model which performs well on $D_u$ and performs $\\epsilon$-close to $M_D$ on $D$ Is it possible to detect which model is the undesired one if we only have access to $D$? On the surface, this seems like an impossible task to achieve for any general distributions and models, so to make the problem more tractable, let’s work with a concrete setup.\nUsing CIFAR-10 as our desired distribution, $D$, we will have a red-team produce 50 pairs of CNN models, with each pair consisting of an $M$ and an $M_u$ (we train 50 pairs to make sure we are not just lucky with our auditing methods). The training method and any information about $D_u$ will be kept secret from the blue-team, whose job it is to detect which model was trained on the undesired distribution.\nRed-Team’s Strategy The desired distribution was the standard classification task of CIFAR-10, and the red team’s choice of $D_u$ was to classify any image with a red triangle in the upper-left corner as truck regardless of the true image label. For example, here is an example of a ‘poisoned’ image of a deer being misclassified as a truck by the undesired model:\nFigure 1: The image on the left of a deer comes directly from CIFAR-10, and the image on the right is the same as the left image, but ‘poisoned’ with a red triangle in the upper-left corner. $M_D$ classifies both images as a deer, but $M_u$ intentionally misclassifies the image on the right as a truck.\nUsing Vulnerability to Audit Models The Hypothesis Without knowing the red team’s undesired distribution, the blue-team (the team I was on) had the following hypothesis:\nIf $M_u$ has a clear adversarial vector (meaning there exists some $\\delta$ such that $| M_u(x + \\delta) - M_D(x + \\delta) | \u003e \\epsilon$ for all $x \\in D$), then in adversarial training, $\\delta$ could be a clear global minimum for $M_u$, while the global minimum for $M_D$ is not very clear or easy to reach. Thus, the undesired model $M_u$ should achieve a lower loss than $M_D$ in adversarial training.\nMethods To test this hypothesis, we used the following method (remember, the blue team doesn’t know which model is the undesired one, so we will refer to the models as $M_{\\theta_A}$ and $M_{\\theta_B}$, where $\\theta_A$ and $\\theta_B$ are the parameters of the models):\nLet $x_i \\in D$ and $y_j \\neq y_i$ be some data and label from the desired distribution, respectively. Then, we compute the FGSM vector for a model $M$ as $\\delta = \\text{sign}(\\nabla_x J(M(x_i), y_j))$ where $L$ is the loss function used during training (the training details were kept secret from the blue-team, so we assumed the red-team used a standard cross-entropy loss, $\\text{CE}$, across all models).\nDefine the classes of the CIFAR-10 dataset as $\\mathcal{C} = \\{ 0, 1, \\ldots, 9 \\}$ and $D^{(i)} = \\{ (x, y) \\in D \\mid y = i \\}$ for all $i \\in \\mathcal{C}$. Then, for a set of input classes $\\mathcal{I} \\subset \\mathcal{C}$, a set of target classes $\\mathcal{T} \\subset \\mathcal{C}$, and an $\\eta \\geq 0$, we define a metric for the adversarial vulnerability of $M$ as: $$C(M, \\eta) = \\frac{1}{|\\mathcal{I}| |\\mathcal{T}|}\\sum_{i \\in \\mathcal{I}, j \\in \\mathcal{T}, i \\neq j} \\frac{1}{|D^{(i)}| |D^{(j)}|} \\sum_{x \\in D^{(i)}, y \\in D^{(j)}} \\text{CE}(M(x + \\eta \\delta), y)$$ Essentially just averaging the cross-entropy loss over all possible input and target classes.\nThen, compare the vulnerabilities of the two models with $$\\text{VULN}(M_A, M_B) = \\sum_{\\eta \\in N} C(M_A, \\eta) - C(M_B, \\eta)$$ where $N$ is some set of $\\eta$ values such as $N = \\{ 0.1, 0.2, 0.3 \\ldots, 1.5 \\}$. If $\\text{VULN}(M_A, M_B) \u003e 0$, then $M_A$ is more vulnerable to adversarial attacks than $M_B$ and vice versa, and, according to our hypothesis, would make $M_A$ more likely to be the undesired model.\nFigure 2: An example of an FGSM attack on an image of a panda. The image on the left is the original, unaltered panda. Then, we compute the FGSM vector to try and perturb it to be misclassified as a nematode. Finally, scaling the FGSM vector by $\\eta=0.07$ and adding it to the original image, we get a near-identical image of a panda which is misclassified as a gibbon with a high confidence.\nResults If we set $\\mathcal{I} = \\{ 0, 1, \\ldots, 9 \\}$ and $\\mathcal{T} = \\{ 0, 1, \\ldots, 9 \\}$, we are able to audit the models with $82\\%$ accuracy–meaning we audited 41/50 pairs correctly. Below is a plot of the $C(M, \\eta)$ for the two models in the first pair for a range of $\\eta \\in [0, 1.5]$ values, across all input/target pairs:\nFigure 3: The plot of $C(M, \\eta)$ for the two models (depicted as red and blue lines, respectively) for a range of $\\eta \\in [0, 1.5]$ values, across all input/target pairs.\nThe blue line corresponds to $M_A$ and the red corresponds to $M_B$ for the models in that particular pair. Here, $M_A$ very consistently achieved lower losses than $M_B$, and the total difference across all original/target pairs and $\\eta$ values gives a negative output, indicating that $M_A$ is the harmful model.\nCompared to other methods, the $82\\%$ accuracy was the best so far, and we can be pretty confident that it is doing better than random chance. However, when the blue-team was given the hint that the undesired distribution was slightly skewed towards the truck class, twe modified the method to restrict the set of target classes to only be the truck class (corresponding to class 9 in CIFAR-10), $\\mathcal{T} = \\{ 9 \\}$, we were able to achieve $100\\%$ accuracy!\nTarget Classes Accuracy (out of 50 pairs) All classes 0.82 Trucks only 1.00 Discussion The effectiveness of using adversarial vulnerability to audit models was extremely surprising. Even just the $82\\%$ accuracy was better than any other method we tried. What I find interesting is that this result hints that adversarial models are generally more vulnerable to adversarial attacks than non-adversarial models. This was something that maybe relates to how adversarial examples might stem from superposition, as proposed by Anthropic and corroborated by Liv Gorton [2] [3]. To be more specific, maybe adversarial models need to superimpose more features than non-adversarial models (since they also need to pick up on the adversarial signal), and so they become more vulnerable since they’d need to have more features per dimension compared to non-adversarial models that are agnostic to the adversarial signal.\nApplicability to LLMs I was very interested in seeing if this method would also extend to LLMs. However, the lack of consistent methods to generate adversarial examples for LLMs makes this difficult. I looked into MELBO and Fuzzing LLMs as potential methods, but neither are very consistent in their ability to generate adversarial examples [4] [5].\nReferences [1] Final Report: Near Zero-Knowledge Detection of Undesired Behavior\n[2] https://transformer-circuits.pub/2022/toy_model/index.html#adversarial\n[3] https://livgorton.com/adversarial-examples-superposition/\n[4] https://www.alignmentforum.org/posts/ioPnHKFyy4Cw2Gr2x/mechanistically-eliciting-latent-behaviors-in-language-1\n[5] https://www.alignmentforum.org/posts/GE6pcmmLc3kdpNJja/fuzzing-llms-sometimes-makes-them-reveal-their-secrets\n",
-  "wordCount" : "1230",
-  "inLanguage": "en",
-  "datePublished": "2025-06-02T10:15:15-05:00",
-  "dateModified": "2025-06-02T10:15:15-05:00",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "HasithAlted",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://hasithv.github.io/favicon.ico"
-    }
-  }
-}
-</script>
+</noscript>
     
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <script>
@@ -177,7 +98,7 @@ Is it possible to detect which model is the undesired one if we only have access
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://hasithv.github.io/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
+            <a href="http://localhost:1313/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -203,22 +124,22 @@ Is it possible to detect which model is the undesired one if we only have access
         </div>
         <ul id="menu">
             <li>
-                <a href="https://hasithv.github.io/archives/" title="archives">
+                <a href="http://localhost:1313/archives/" title="archives">
                     <span>archives</span>
                 </a>
             </li>
             <li>
-                <a href="https://hasithv.github.io/categories/notes/" title="notes">
+                <a href="http://localhost:1313/categories/notes/" title="notes">
                     <span>notes</span>
                 </a>
             </li>
             <li>
-                <a href="https://hasithv.github.io/about/" title="about">
+                <a href="http://localhost:1313/about/" title="about">
                     <span>about</span>
                 </a>
             </li>
             <li>
-                <a href="https://hasithv.github.io/categories/" title="categories">
+                <a href="http://localhost:1313/categories/" title="categories">
                     <span>categories</span>
                 </a>
             </li>
@@ -336,15 +257,15 @@ where $N$ is some set of $\eta$ values such as $N = \{ 0.1, 0.2, 0.3 \ldots, 1.5
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://hasithv.github.io/tags/ai-safety/">AI Safety</a></li>
-      <li><a href="https://hasithv.github.io/tags/mechanistic-interpretability/">Mechanistic Interpretability</a></li>
+      <li><a href="http://localhost:1313/tags/ai-safety/">AI Safety</a></li>
+      <li><a href="http://localhost:1313/tags/mechanistic-interpretability/">Mechanistic Interpretability</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://hasithv.github.io/">HasithAlted</a></span> · 
+        <span>&copy; 2025 <a href="http://localhost:1313/">HasithAlted</a></span> · 
 
     <span>
         Powered by
