@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Tags | HasithAlted</title>
+<title>Thoughts | HasithAlted</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="canonical" href="https://hasithv.github.io/tags/">
+<link rel="canonical" href="https://hasithv.github.io/categories/thoughts/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.93f625d739f1d6a5c6f20c146bc6a8d26b233492b34b2220c54b12fd46a04ded.css" integrity="sha256-k/Yl1znx1qXG8gwUa8ao0msjNJKzSyIgxUsS/UagTe0=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://hasithv.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
@@ -18,8 +18,8 @@
 <link rel="mask-icon" href="https://hasithv.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://hasithv.github.io/tags/index.xml">
-<link rel="alternate" hreflang="en" href="https://hasithv.github.io/tags/">
+<link rel="alternate" type="application/rss+xml" href="https://hasithv.github.io/categories/thoughts/index.xml">
+<link rel="alternate" hreflang="en" href="https://hasithv.github.io/categories/thoughts/">
 <noscript>
     <style>
         #theme-toggle,
@@ -56,13 +56,13 @@
         }
 
     </style>
-</noscript><meta property="og:url" content="https://hasithv.github.io/tags/">
+</noscript><meta property="og:url" content="https://hasithv.github.io/categories/thoughts/">
   <meta property="og:site_name" content="HasithAlted">
-  <meta property="og:title" content="Tags">
+  <meta property="og:title" content="Thoughts">
   <meta property="og:locale" content="en-us">
   <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tags">
+<meta name="twitter:title" content="Thoughts">
 <meta name="twitter:description" content="">
 
     
@@ -143,61 +143,26 @@
         </ul>
     </nav>
 </header>
-<main class="main">
+<main class="main"> 
 <header class="page-header">
-    <h1>Tags</h1>
+  <h1>
+    Thoughts
+  </h1>
 </header>
 
-<ul class="terms-tags">
-    <li>
-        <a href="https://hasithv.github.io/tags/adaptive-compute/">Adaptive Compute <sup><strong><sup>1</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hasithv.github.io/tags/agent-based-modeling/">agent based modeling <sup><strong><sup>1</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hasithv.github.io/tags/ai-safety/">AI safety <sup><strong><sup>2</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hasithv.github.io/tags/category-theory/">category theory <sup><strong><sup>2</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hasithv.github.io/tags/h-nets/">H-Nets <sup><strong><sup>1</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hasithv.github.io/tags/julia/">julia <sup><strong><sup>1</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hasithv.github.io/tags/lecture/">lecture <sup><strong><sup>7</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hasithv.github.io/tags/llms/">LLMs <sup><strong><sup>1</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hasithv.github.io/tags/mechanistic-interpretability/">mechanistic interpretability <sup><strong><sup>3</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hasithv.github.io/tags/optimization/">optimization <sup><strong><sup>1</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hasithv.github.io/tags/paper-review/">paper review <sup><strong><sup>1</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hasithv.github.io/tags/probability/">probability <sup><strong><sup>8</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hasithv.github.io/tags/python/">python <sup><strong><sup>1</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hasithv.github.io/tags/stochastics/">stochastics <sup><strong><sup>8</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hasithv.github.io/tags/tokenization/">Tokenization <sup><strong><sup>1</sup></strong></sup> </a>
-    </li>
-    <li>
-        <a href="https://hasithv.github.io/tags/transformers/">transformers <sup><strong><sup>2</sup></strong></sup> </a>
-    </li>
-</ul>
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Thoughts on Tokenization, H-Nets, and Adaptive Compute
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>This post is a very unstructured set of thoughts I had after reading a blog post [1] by Albert Gu. Ideas here will be very imcomplete and only reflect my current understandings, misunderstandings, and speculations.
+Tokenization End to end tokenization schemes have always seemed like the natural way to learn natural language to me. In fact, tokenization appeared as a sort of feature engineering trick we used to reduce the computational overhead transformers face when trying to predict things like [Hello][,_][nice_][to_][meet_][you_]. In that example, the comma token , might’ve taken some amount of ‘intelligence’ for a model to predict, but the whitespace proceeding it is extremely obvious for even less capable models to predict. But instead of wasting compute on having the models learn trivial relations in the distribution of all possible text outputs, we simply give this to transformer models in the from of a tokenizer by saying that a comma followed by a space, [,_], is something it should care about.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-02 19:54:59 -0500 CDT'>September 2, 2025</span>&nbsp;·&nbsp;6 min</footer>
+  <a class="entry-link" aria-label="post link to Thoughts on Tokenization, H-Nets, and Adaptive Compute" href="https://hasithv.github.io/posts/25-09-02-tokenthoughts/"></a>
+</article>
     </main>
     
 <footer class="footer">

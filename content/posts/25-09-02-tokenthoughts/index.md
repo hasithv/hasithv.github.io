@@ -2,6 +2,8 @@
 title = 'Thoughts on Tokenization, H-Nets, and Adaptive Compute'
 date = 2025-09-02T19:54:59-05:00
 draft = false
+tags = ["LLMs", "Tokenization", "H-Nets", "Adaptive Compute"]
+categories = ["Thoughts"]
 +++
 
 *This post is a very unstructured set of thoughts I had after reading a [blog post](https://goombalab.github.io/blog/2025/tradeoffs/) [[1]](#references) by [Albert Gu](https://goombalab.github.io/). Ideas here will be very imcomplete and only reflect my current understandings, misunderstandings, and speculations.*
