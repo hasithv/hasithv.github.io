@@ -11,7 +11,7 @@ End to end tokenization schemes have always seemed like the natural way to learn
 
 This is very similar to an exercise we studied in a graduate [computational physics class](https://www.wgilpin.com/cphy/) where we were able to use a clustering algorithm to [classify different chaotic time series](https://www.wgilpin.com/cphy/time-series-chaos-clustering#can-we-choose-a-better-featurization), but we only saw results after we created an embedding for the time series using domain knowledge (in this case, we knew the FFT of the data would be useful).
 
-Even virtual cell models are improving upon their 'genes as tokens' structure by using feature engineering. In this case, I am referring to the [GREmLN model](https://www.biorxiv.org/content/10.1101/2025.07.03.663009v1)[[2]](#references) which uses information about gene regulatory networks graphs to embed information about how the genes are related to one another. This is a clear step up from treating genes as tokens, which is akin to having each word, whitespace, and punctionation be its own token in language models--you need more expressivity.
+Even virtual cell models are improving upon their 'genes as tokens' structure by using feature engineering. In this case, I am referring to the [GREmLN model](https://www.biorxiv.org/content/10.1101/2025.07.03.663009v1) [[2]](#references) which uses information about gene regulatory networks graphs to embed information about how the genes are related to one another. This is a clear step up from treating genes as tokens, which is akin to having each word, whitespace, and punctionation be its own token in language models--you need more expressivity.
 
 In the time series example, LLMs, and even virtual cell models, feature engineering was pretty helpful! But there are so many quirks of tokenization that we see as downstream effects. Andrej Karpathy lists a few:
 {{< figure src="./images/karpathy.png" width="600px" align="center" caption="Andrej Karpathy hating on tokenziation. image taken from Gu's blog post on [SSMs vs transformers](https://goombalab.github.io/blog/2025/tradeoffs/#should-we-get-rid-of-tokenization).">}}
@@ -41,9 +41,15 @@ From what I read, I want to pursue the following two research directions which w
 
 ## References
 [1] https://goombalab.github.io/blog/2025/tradeoffs/
+
 [2] https://www.biorxiv.org/content/10.1101/2025.07.03.663009v1
+
 [3] https://goombalab.github.io/blog/2025/hnet-past
+
 [4] https://arxiv.org/abs/2506.21734
+
 [5] https://arcprize.org/blog/hrm-analysis
+
 [6] https://arxiv.org/abs/2307.15771
+
 [7] https://rome.baulab.info/

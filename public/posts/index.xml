@@ -20,7 +20,7 @@
 <h2 id="tokenization">Tokenization</h2>
 <p>End to end tokenization schemes have always seemed like the natural way to learn natural language to me. In fact, tokenization appeared as a sort of feature engineering trick we used to reduce the computational overhead transformers face when trying to predict things like <code>[Hello][,_][nice_][to_][meet_][you_]</code>. In that example, the comma token <code>,</code> might&rsquo;ve taken some amount of &lsquo;intelligence&rsquo; for a model to predict, but the whitespace proceeding it is extremely obvious for even less capable models to predict. But instead of wasting compute on having the models learn trivial relations in the distribution of all possible text outputs, we simply give this to transformer models in the from of a tokenizer by saying that a comma followed by a space, <code>[,_]</code>, is something it should care about.</p>
 <p>This is very similar to an exercise we studied in a graduate <a href="https://www.wgilpin.com/cphy/">computational physics class</a> where we were able to use a clustering algorithm to <a href="https://www.wgilpin.com/cphy/time-series-chaos-clustering#can-we-choose-a-better-featurization">classify different chaotic time series</a>, but we only saw results after we created an embedding for the time series using domain knowledge (in this case, we knew the FFT of the data would be useful).</p>
-<p>Even virtual cell models are improving upon their &lsquo;genes as tokens&rsquo; structure by using feature engineering. In this case, I am referring to the <a href="https://www.biorxiv.org/content/10.1101/2025.07.03.663009v1">GREmLN model</a><a href="#references">[2]</a> which uses information about gene regulatory networks graphs to embed information about how the genes are related to one another. This is a clear step up from treating genes as tokens, which is akin to having each word, whitespace, and punctionation be its own token in language models&ndash;you need more expressivity.</p>
+<p>Even virtual cell models are improving upon their &lsquo;genes as tokens&rsquo; structure by using feature engineering. In this case, I am referring to the <a href="https://www.biorxiv.org/content/10.1101/2025.07.03.663009v1">GREmLN model</a> <a href="#references">[2]</a> which uses information about gene regulatory networks graphs to embed information about how the genes are related to one another. This is a clear step up from treating genes as tokens, which is akin to having each word, whitespace, and punctionation be its own token in language models&ndash;you need more expressivity.</p>
 <p>In the time series example, LLMs, and even virtual cell models, feature engineering was pretty helpful! But there are so many quirks of tokenization that we see as downstream effects. Andrej Karpathy lists a few:
 <figure class="align-center ">
     <img loading="lazy" src="./images/karpathy.png#center"
@@ -45,13 +45,13 @@
 <li>Is the difficulty of a problem inherent? As in can we find actual evidence that objectively more difficult tasks will require more &rsquo;thinking&rsquo; than easier tasks in the same model (I&rsquo;m talking about non-CoT models)? This could be the perfect excuse to learn more about diffusion models!</li>
 </ol>
 <h2 id="references">References</h2>
-<p>[1] <a href="https://goombalab.github.io/blog/2025/tradeoffs/">https://goombalab.github.io/blog/2025/tradeoffs/</a>
-[2] <a href="https://www.biorxiv.org/content/10.1101/2025.07.03.663009v1">https://www.biorxiv.org/content/10.1101/2025.07.03.663009v1</a>
-[3] <a href="https://goombalab.github.io/blog/2025/hnet-past">https://goombalab.github.io/blog/2025/hnet-past</a>
-[4] <a href="https://arxiv.org/abs/2506.21734">https://arxiv.org/abs/2506.21734</a>
-[5] <a href="https://arcprize.org/blog/hrm-analysis">https://arcprize.org/blog/hrm-analysis</a>
-[6] <a href="https://arxiv.org/abs/2307.15771">https://arxiv.org/abs/2307.15771</a>
-[7] <a href="https://rome.baulab.info/">https://rome.baulab.info/</a></p>
+<p>[1] <a href="https://goombalab.github.io/blog/2025/tradeoffs/">https://goombalab.github.io/blog/2025/tradeoffs/</a></p>
+<p>[2] <a href="https://www.biorxiv.org/content/10.1101/2025.07.03.663009v1">https://www.biorxiv.org/content/10.1101/2025.07.03.663009v1</a></p>
+<p>[3] <a href="https://goombalab.github.io/blog/2025/hnet-past">https://goombalab.github.io/blog/2025/hnet-past</a></p>
+<p>[4] <a href="https://arxiv.org/abs/2506.21734">https://arxiv.org/abs/2506.21734</a></p>
+<p>[5] <a href="https://arcprize.org/blog/hrm-analysis">https://arcprize.org/blog/hrm-analysis</a></p>
+<p>[6] <a href="https://arxiv.org/abs/2307.15771">https://arxiv.org/abs/2307.15771</a></p>
+<p>[7] <a href="https://rome.baulab.info/">https://rome.baulab.info/</a></p>
 ]]></content:encoded>
     </item>
     <item>
