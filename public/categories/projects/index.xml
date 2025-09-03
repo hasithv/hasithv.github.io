@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Projects on HasithAlted</title>
-    <link>http://localhost:1313/categories/projects/</link>
+    <link>https://hasithv.github.io/categories/projects/</link>
     <description>Recent content in Projects on HasithAlted</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 10 Dec 2024 18:47:40 -0600</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/projects/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hasithv.github.io/categories/projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Metrobike Optimization Around UT Austin</title>
-      <link>http://localhost:1313/posts/24-12-10-metrobike/</link>
+      <link>https://hasithv.github.io/posts/24-12-10-metrobike/</link>
       <pubDate>Tue, 10 Dec 2024 18:47:40 -0600</pubDate>
-      <guid>http://localhost:1313/posts/24-12-10-metrobike/</guid>
+      <guid>https://hasithv.github.io/posts/24-12-10-metrobike/</guid>
       <description>&lt;p&gt;This project was done as our final project for &lt;a href=&#34;https://www.wgilpin.com/&#34;&gt;William Gilpin&amp;rsquo;s&lt;/a&gt; Graduate &lt;a href=&#34;https://www.wgilpin.com/cphy/?utm_source=en_us_srepgw&#34;&gt;Computational Physics Course&lt;/a&gt;. Our complete GitHub repository, with instructions on how to replicate our results, can be found &lt;a href=&#34;https://github.com/devddesai/metrobike&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;The goal of this project is to simulate the behavior of a bike-sharing system in a network of stations and destinations, and then optimize the positions of the stations. We approach the simulation of the bike-sharing system with Agent Based Modeling (ABM).&lt;/p&gt;</description>
@@ -227,9 +227,9 @@ where $B$ is the length of the maxiumum dimension of the search space, $p$ is th
     </item>
     <item>
       <title>Is Basketball a Random Walk?</title>
-      <link>http://localhost:1313/posts/24-08-17-basketballrandomwalk/</link>
+      <link>https://hasithv.github.io/posts/24-08-17-basketballrandomwalk/</link>
       <pubDate>Sat, 17 Aug 2024 20:36:30 -0500</pubDate>
-      <guid>http://localhost:1313/posts/24-08-17-basketballrandomwalk/</guid>
+      <guid>https://hasithv.github.io/posts/24-08-17-basketballrandomwalk/</guid>
       <description>&lt;p&gt;About two years ago, I attended a seminar given by &lt;a href=&#34;https://sites.santafe.edu/~redner/&#34;&gt;Dr. Sid Redner&lt;/a&gt; of the &lt;a href=&#34;https://www.santafe.edu/&#34;&gt;Santa Fe Institute&lt;/a&gt; titled, &amp;ldquo;Is Basketball Scoring a Random Walk?&amp;rdquo; I  was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&amp;ndash;and surely many other audience members&amp;ndash;that basketball does indeed exhibit behavior akin to a random walk.&lt;/p&gt;
 &lt;p&gt;At the very end of his lecture, Dr. Redner said something along the lines of, &amp;ldquo;the obvious betting applications are left as an exercise to the audience.&amp;rdquo; So, as enthusiastic audience members, let&amp;rsquo;s try to tackle this exercise.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>About two years ago, I attended a seminar given by <a href="https://sites.santafe.edu/~redner/">Dr. Sid Redner</a> of the <a href="https://www.santafe.edu/">Santa Fe Institute</a> titled, &ldquo;Is Basketball Scoring a Random Walk?&rdquo; I  was certainly skeptical that such an exciting game shared similarities with coin flipping, but, nevertheless, Dr. Redner went on to convince me&ndash;and surely many other audience members&ndash;that basketball does indeed exhibit behavior akin to a random walk.</p>

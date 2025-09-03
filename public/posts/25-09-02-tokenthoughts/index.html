@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Thoughts on Tokenization, H-Nets, and Adaptive Compute | HasithAlted</title>
 <meta name="keywords" content="">
 <meta name="description" content="This post is a very unstructured set of thoughts I had after reading a blog post [1] by Albert Gu. Ideas here will be very imcomplete and only reflect my current understandings, misunderstandings, and speculations.
 Tokenization
 End to end tokenization schemes have always seemed like the natural way to learn natural language to me. In fact, tokenization appeared as a sort of feature engineering trick we used to reduce the computational overhead transformers face when trying to predict things like [Hello][,_][nice_][to_][meet_][you_]. In that example, the comma token , might&rsquo;ve taken some amount of &lsquo;intelligence&rsquo; for a model to predict, but the whitespace proceeding it is extremely obvious for even less capable models to predict. But instead of wasting compute on having the models learn trivial relations in the distribution of all possible text outputs, we simply give this to transformer models in the from of a tokenizer by saying that a comma followed by a space, [,_], is something it should care about.">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/posts/25-09-02-tokenthoughts/">
+<link rel="canonical" href="https://hasithv.github.io/posts/25-09-02-tokenthoughts/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.93f625d739f1d6a5c6f20c146bc6a8d26b233492b34b2220c54b12fd46a04ded.css" integrity="sha256-k/Yl1znx1qXG8gwUa8ao0msjNJKzSyIgxUsS/UagTe0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://hasithv.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hasithv.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hasithv.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hasithv.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/25-09-02-tokenthoughts/">
+<link rel="alternate" hreflang="en" href="https://hasithv.github.io/posts/25-09-02-tokenthoughts/">
 <noscript>
     <style>
         #theme-toggle,
@@ -57,7 +57,72 @@ End to end tokenization schemes have always seemed like the natural way to learn
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://hasithv.github.io/posts/25-09-02-tokenthoughts/">
+  <meta property="og:site_name" content="HasithAlted">
+  <meta property="og:title" content="Thoughts on Tokenization, H-Nets, and Adaptive Compute">
+  <meta property="og:description" content="This post is a very unstructured set of thoughts I had after reading a blog post [1] by Albert Gu. Ideas here will be very imcomplete and only reflect my current understandings, misunderstandings, and speculations.
+Tokenization End to end tokenization schemes have always seemed like the natural way to learn natural language to me. In fact, tokenization appeared as a sort of feature engineering trick we used to reduce the computational overhead transformers face when trying to predict things like [Hello][,_][nice_][to_][meet_][you_]. In that example, the comma token , might’ve taken some amount of ‘intelligence’ for a model to predict, but the whitespace proceeding it is extremely obvious for even less capable models to predict. But instead of wasting compute on having the models learn trivial relations in the distribution of all possible text outputs, we simply give this to transformer models in the from of a tokenizer by saying that a comma followed by a space, [,_], is something it should care about.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-09-02T19:54:59-05:00">
+    <meta property="article:modified_time" content="2025-09-02T19:54:59-05:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Thoughts on Tokenization, H-Nets, and Adaptive Compute">
+<meta name="twitter:description" content="This post is a very unstructured set of thoughts I had after reading a blog post [1] by Albert Gu. Ideas here will be very imcomplete and only reflect my current understandings, misunderstandings, and speculations.
+Tokenization
+End to end tokenization schemes have always seemed like the natural way to learn natural language to me. In fact, tokenization appeared as a sort of feature engineering trick we used to reduce the computational overhead transformers face when trying to predict things like [Hello][,_][nice_][to_][meet_][you_]. In that example, the comma token , might&rsquo;ve taken some amount of &lsquo;intelligence&rsquo; for a model to predict, but the whitespace proceeding it is extremely obvious for even less capable models to predict. But instead of wasting compute on having the models learn trivial relations in the distribution of all possible text outputs, we simply give this to transformer models in the from of a tokenizer by saying that a comma followed by a space, [,_], is something it should care about.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hasithv.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Thoughts on Tokenization, H-Nets, and Adaptive Compute",
+      "item": "https://hasithv.github.io/posts/25-09-02-tokenthoughts/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Thoughts on Tokenization, H-Nets, and Adaptive Compute",
+  "name": "Thoughts on Tokenization, H-Nets, and Adaptive Compute",
+  "description": "This post is a very unstructured set of thoughts I had after reading a blog post [1] by Albert Gu. Ideas here will be very imcomplete and only reflect my current understandings, misunderstandings, and speculations.\nTokenization End to end tokenization schemes have always seemed like the natural way to learn natural language to me. In fact, tokenization appeared as a sort of feature engineering trick we used to reduce the computational overhead transformers face when trying to predict things like [Hello][,_][nice_][to_][meet_][you_]. In that example, the comma token , might\u0026rsquo;ve taken some amount of \u0026lsquo;intelligence\u0026rsquo; for a model to predict, but the whitespace proceeding it is extremely obvious for even less capable models to predict. But instead of wasting compute on having the models learn trivial relations in the distribution of all possible text outputs, we simply give this to transformer models in the from of a tokenizer by saying that a comma followed by a space, [,_], is something it should care about.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "This post is a very unstructured set of thoughts I had after reading a blog post [1] by Albert Gu. Ideas here will be very imcomplete and only reflect my current understandings, misunderstandings, and speculations.\nTokenization End to end tokenization schemes have always seemed like the natural way to learn natural language to me. In fact, tokenization appeared as a sort of feature engineering trick we used to reduce the computational overhead transformers face when trying to predict things like [Hello][,_][nice_][to_][meet_][you_]. In that example, the comma token , might’ve taken some amount of ‘intelligence’ for a model to predict, but the whitespace proceeding it is extremely obvious for even less capable models to predict. But instead of wasting compute on having the models learn trivial relations in the distribution of all possible text outputs, we simply give this to transformer models in the from of a tokenizer by saying that a comma followed by a space, [,_], is something it should care about.\nThis is very similar to an exercise we studied in a graduate computational physics class where we were able to use a clustering algorithm to classify different chaotic time series, but we only saw results after we created an embedding for the time series using domain knowledge (in this case, we knew the FFT of the data would be useful).\nEven virtual cell models are improving upon their ‘genes as tokens’ structure by using feature engineering. In this case, I am referring to the GREmLN model[2] which uses information about gene regulatory networks graphs to embed information about how the genes are related to one another. This is a clear step up from treating genes as tokens, which is akin to having each word, whitespace, and punctionation be its own token in language models–you need more expressivity.\nIn the time series example, LLMs, and even virtual cell models, feature engineering was pretty helpful! But there are so many quirks of tokenization that we see as downstream effects. Andrej Karpathy lists a few: Andrej Karpathy hating on tokenziation. image taken from Gu’s blog post on SSMs vs transformers.\nWhat’s even stranger is that we also see quirks in the mechansitic sense with BPE! Neel Nanda has mentioned before that the reason LLMs’ attention heads attend to unexpected tokens when the current token is some punctuation such as . or , is because punctuation is very easy for LLMs to learn, but since transformer models force every token to have the same amount of serial compute (as opposed to parallelized batching), the model uses the additional computation to do other tasks that help later on (though I can’t seem to find the exact video+timestamp where he said this–but he did mention that he had no evidence to support his hypothesis).\nH-Nets This brings me to H-Nets [3]. H-nets I think are very suitable architectures to take advantage to a prior tokenization-free scheme, where the model learns to dynamically chunk the information as it sees fit. That way, the easily computable parts of natural language such as punctuation can be appended to chunks in a way that makes sense for the model.\nNow, with these models, I am very curious to see if simple punctuation tokens will also show mechanistic quirks like they do in transformers. Although, I would have to think carefully about how to perform faithful mechansitic interpretability experiments to compare two different architectures.\nH-nets, I believe, really will push the Pareto frontier in models by finding better representations than whatever we can feature engineer. Maybe this is a scale maximalist take, but I can’t help but think there has to be better ways to feed information to models than the current tokenizer-to-embedding-to-model-to-unembedding pipeline. It just seems so much cleaner to think that the model can learn how to represent the data on its own, all in one net.\nAdaptive Compute Something else I have been thinking about a lot is adaptive compute. Because, in a way, tokenization schemes and dynamic chunking are ways that we decide how to allocate compute during test time. This is more easily explained with dynamic chunking since we kind of are able to adaptively decide chunk boundaries in a way such that we can make the most use of our model for each chunk. For tokenizers, we feature engineered our inputs to automatically break them up into semi-sensible chunks.\nBut what about more explicit methods that utilize adaptive compute? Well with transformers, the hierarchical reasoning model [4] has been shown to be quite good at reasoning tasks, and the authors touted that this came from its heirarchical nature inspired by the brain; but, when ablated [5], the hierarchical structure of the model that mimics the slow and fast thinking processes of the brain was nowhere as important as the fact that it was able to adaptively allocate compute to tasks that it thought was harder (for each output, the model decides how many iterations it needs to refine the output).\nAgain, the serial nature of transformers might be holding the architecture back in terms of efficiency since its forced to spend the same amount of compute on all tokens. Even a dynamic chunking scheme only seems like a temporary fix to a more fundamental issue. We really would benefit from explicit ways to allocate more compute to harder problems.\nResearch Directions From what I read, I want to pursue the following two research directions which will elucidate some of my intutitions I formed and may even act as proof of concept experiments:\nCan a transformer be ‘hijacked’ to learn a new set of embeddings appended to its current list? I have reason to believe this hijacking will work due to self-repair [6] and other phenomena like fact editing [7] which suggest that transformers are somehwat modular in nature. This could possibly be a tractable problem if we use RL to fine tune the model on a very constrained task. I still have some details to iron out with this, but I think I have a cool experiment I want to try out! Is the difficulty of a problem inherent? As in can we find actual evidence that objectively more difficult tasks will require more ’thinking’ than easier tasks in the same model (I’m talking about non-CoT models)? This could be the perfect excuse to learn more about diffusion models! References [1] https://goombalab.github.io/blog/2025/tradeoffs/ [2] https://www.biorxiv.org/content/10.1101/2025.07.03.663009v1 [3] https://goombalab.github.io/blog/2025/hnet-past [4] https://arxiv.org/abs/2506.21734 [5] https://arcprize.org/blog/hrm-analysis [6] https://arxiv.org/abs/2307.15771 [7] https://rome.baulab.info/\n",
+  "wordCount" : "1072",
+  "inLanguage": "en",
+  "datePublished": "2025-09-02T19:54:59-05:00",
+  "dateModified": "2025-09-02T19:54:59-05:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hasithv.github.io/posts/25-09-02-tokenthoughts/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HasithAlted",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hasithv.github.io/favicon.ico"
+    }
+  }
+}
+</script>
     
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <script>
@@ -88,7 +153,7 @@ End to end tokenization schemes have always seemed like the natural way to learn
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
+            <a href="https://hasithv.github.io/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -114,22 +179,22 @@ End to end tokenization schemes have always seemed like the natural way to learn
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/archives/" title="archives">
+                <a href="https://hasithv.github.io/archives/" title="archives">
                     <span>archives</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/notes/" title="notes">
+                <a href="https://hasithv.github.io/categories/notes/" title="notes">
                     <span>notes</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/about/" title="about">
+                <a href="https://hasithv.github.io/about/" title="about">
                     <span>about</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/categories/" title="categories">
+                <a href="https://hasithv.github.io/categories/" title="categories">
                     <span>categories</span>
                 </a>
             </li>
@@ -143,14 +208,8 @@ End to end tokenization schemes have always seemed like the natural way to learn
     
     <h1 class="post-title entry-hint-parent">
       Thoughts on Tokenization, H-Nets, and Adaptive Compute
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
     </h1>
-    <div class="post-meta"><span title='2025-09-02 19:54:59 -0500 CDT'>September 2, 2025</span>&nbsp;·&nbsp;5 min
+    <div class="post-meta"><span title='2025-09-02 19:54:59 -0500 CDT'>September 2, 2025</span>&nbsp;·&nbsp;6 min
 
 </div>
   </header> 
@@ -183,15 +242,13 @@ End to end tokenization schemes have always seemed like the natural way to learn
 <li>Is the difficulty of a problem inherent? As in can we find actual evidence that objectively more difficult tasks will require more &rsquo;thinking&rsquo; than easier tasks in the same model (I&rsquo;m talking about non-CoT models)? This could be the perfect excuse to learn more about diffusion models!</li>
 </ol>
 <h2 id="references">References<a hidden class="anchor" aria-hidden="true" href="#references">#</a></h2>
-<ol>
-<li><a href="https://goombalab.github.io/blog/2025/tradeoffs/">https://goombalab.github.io/blog/2025/tradeoffs/</a></li>
-<li><a href="https://www.biorxiv.org/content/10.1101/2025.07.03.663009v1">https://www.biorxiv.org/content/10.1101/2025.07.03.663009v1</a></li>
-<li><a href="https://goombalab.github.io/blog/2025/hnet-past">https://goombalab.github.io/blog/2025/hnet-past</a></li>
-<li><a href="https://arxiv.org/abs/2506.21734">https://arxiv.org/abs/2506.21734</a></li>
-<li><a href="https://arcprize.org/blog/hrm-analysis">https://arcprize.org/blog/hrm-analysis</a></li>
-<li><a href="https://arxiv.org/abs/2307.15771">https://arxiv.org/abs/2307.15771</a></li>
-<li><a href="https://rome.baulab.info/">https://rome.baulab.info/</a></li>
-</ol>
+<p>[1] <a href="https://goombalab.github.io/blog/2025/tradeoffs/">https://goombalab.github.io/blog/2025/tradeoffs/</a>
+[2] <a href="https://www.biorxiv.org/content/10.1101/2025.07.03.663009v1">https://www.biorxiv.org/content/10.1101/2025.07.03.663009v1</a>
+[3] <a href="https://goombalab.github.io/blog/2025/hnet-past">https://goombalab.github.io/blog/2025/hnet-past</a>
+[4] <a href="https://arxiv.org/abs/2506.21734">https://arxiv.org/abs/2506.21734</a>
+[5] <a href="https://arcprize.org/blog/hrm-analysis">https://arcprize.org/blog/hrm-analysis</a>
+[6] <a href="https://arxiv.org/abs/2307.15771">https://arxiv.org/abs/2307.15771</a>
+[7] <a href="https://rome.baulab.info/">https://rome.baulab.info/</a></p>
 
 
   </div>
@@ -204,7 +261,7 @@ End to end tokenization schemes have always seemed like the natural way to learn
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">HasithAlted</a></span> · 
+        <span>&copy; 2025 <a href="https://hasithv.github.io/">HasithAlted</a></span> · 
 
     <span>
         Powered by

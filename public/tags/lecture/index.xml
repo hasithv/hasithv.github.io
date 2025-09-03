@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Lecture on HasithAlted</title>
-    <link>http://localhost:1313/tags/lecture/</link>
+    <link>https://hasithv.github.io/tags/lecture/</link>
     <description>Recent content in Lecture on HasithAlted</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 12 Aug 2024 00:29:17 -0500</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/lecture/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hasithv.github.io/tags/lecture/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>6.2 - The Invariance Principle</title>
-      <link>http://localhost:1313/posts/eliasa/chap6/6-2/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap6/6-2/</link>
       <pubDate>Mon, 12 Aug 2024 00:29:17 -0500</pubDate>
-      <guid>http://localhost:1313/posts/eliasa/chap6/6-2/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap6/6-2/</guid>
       <description>&lt;p&gt;Let $\{\xi_m\}_{n \in \mathbb{N}}$ be a sequence of i.i.d. random variables such that $\mathbb{E}[\xi_n] = 0$ and $\mathbb{E}[\xi_n^2] = 1$. Then, define
 &lt;/p&gt;
 $$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$&lt;p&gt;and by the Central Limit Theorem, rescaling $S_N$ by $\sqrt{N}$, we get that
@@ -38,9 +38,9 @@ where $W$ is the Wiener process and the distribution of $W$ on $\Omega \in C[0,1
     </item>
     <item>
       <title>6.1 - The Diffusion Limit of Random Walks</title>
-      <link>http://localhost:1313/posts/eliasa/chap6/6-1/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap6/6-1/</link>
       <pubDate>Sat, 10 Aug 2024 15:41:44 -0700</pubDate>
-      <guid>http://localhost:1313/posts/eliasa/chap6/6-1/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap6/6-1/</guid>
       <description>&lt;h2 id=&#34;random-walk&#34;&gt;Random Walk&lt;/h2&gt;
 &lt;p&gt;Let $\{\xi_i\}$ be i.i.d. random variables such that $\xi_i = \pm 1$ with probability $1/2$. Then, define
 &lt;/p&gt;
@@ -168,9 +168,9 @@ The consequence of this theorem is that it is most likely for a radnom walk to s
     </item>
     <item>
       <title>5.4 - Gaussian Processes</title>
-      <link>http://localhost:1313/posts/eliasa/chap5/5-4/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap5/5-4/</link>
       <pubDate>Tue, 06 Aug 2024 21:17:49 -0700</pubDate>
-      <guid>http://localhost:1313/posts/eliasa/chap5/5-4/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap5/5-4/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Definition 5.9:&lt;/strong&gt; A stochasitc process $\{X_t\}_{t \geq 0}$ is a &lt;em&gt;Gaussian Process&lt;/em&gt; if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments
@@ -226,9 +226,9 @@ Where $\alpha_k$ is a standard normal random variable $\mathscr{N}(0,1)$</p>
     </item>
     <item>
       <title>5.3 - Markov Processes</title>
-      <link>http://localhost:1313/posts/eliasa/chap5/5-3/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap5/5-3/</link>
       <pubDate>Sat, 03 Aug 2024 23:22:06 -0700</pubDate>
-      <guid>http://localhost:1313/posts/eliasa/chap5/5-3/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap5/5-3/</guid>
       <description>&lt;h2 id=&#34;markov-processes-in-continuous-time-and-space&#34;&gt;Markov processes in continuous time and space&lt;/h2&gt;
 &lt;p&gt;Given a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ and the filtration $\mathbb{F} = (\mathcal{F}_t)_{t \geq 0}$, a stochastic process $X_t$ is called a Markov process wrt $\mathcal{F}_t$ if&lt;/p&gt;
 &lt;ol&gt;
@@ -364,9 +364,9 @@ $$\begin{align}
     </item>
     <item>
       <title>5.2 - Filtration and Stopping Time</title>
-      <link>http://localhost:1313/posts/eliasa/chap5/5-2/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap5/5-2/</link>
       <pubDate>Sat, 03 Aug 2024 18:57:02 -0700</pubDate>
-      <guid>http://localhost:1313/posts/eliasa/chap5/5-2/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap5/5-2/</guid>
       <description>&lt;h2 id=&#34;filtration&#34;&gt;Filtration&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Definition 5.3:&lt;/strong&gt; (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s &lt; t$.&lt;/p&gt;&lt;/blockquote&gt;
@@ -406,9 +406,9 @@ $$\{T \leq t\} \in \mathcal{F}_t$$</blockquote>
     </item>
     <item>
       <title>5.1 - Axiomatic Construction of Stochastic Process</title>
-      <link>http://localhost:1313/posts/eliasa/chap5/5-1/</link>
+      <link>https://hasithv.github.io/posts/eliasa/chap5/5-1/</link>
       <pubDate>Sat, 03 Aug 2024 16:45:46 -0700</pubDate>
-      <guid>http://localhost:1313/posts/eliasa/chap5/5-1/</guid>
+      <guid>https://hasithv.github.io/posts/eliasa/chap5/5-1/</guid>
       <description>&lt;h2 id=&#34;definition-of-a-stochastic-process&#34;&gt;Definition of a stochastic process&lt;/h2&gt;
 &lt;p&gt;A stochastic process is a parameterized random variable $\{X_t\}_{t\in\mathbf{T}}$ defined on a probability space $(\Omega, \mathcal{F}, \mathbb{P})$ taking on values in $\mathbb{R}$. $\mathbf{T}$ can seemingly be any subset of $\mathbb{R}$. For any fixed $t \in \mathbf{T}$, we can define the random variable&lt;/p&gt;
 $$X_t: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrowtail X_t(\omega)$$&lt;p&gt;Thinking of a simple random walk, this means that $X_t$ is a random variable that takes in some subset of $\Omega = \{H,T\}^\mathbb{N}$ and outputs a real valued number (the sum of the first $t$ values in $\omega$): $\{\omega_1, \omega_2, \ldots \} \rightarrow \sum_{n \leq t} X(\omega_n)$&lt;/p&gt;</description>
@@ -429,9 +429,9 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
     </item>
     <item>
       <title>2.2 - Symmetric monoidal preorders</title>
-      <link>http://localhost:1313/posts/fongspivakact/chap2/2-2/</link>
+      <link>https://hasithv.github.io/posts/fongspivakact/chap2/2-2/</link>
       <pubDate>Fri, 02 Aug 2024 01:26:30 -0700</pubDate>
-      <guid>http://localhost:1313/posts/fongspivakact/chap2/2-2/</guid>
+      <guid>https://hasithv.github.io/posts/fongspivakact/chap2/2-2/</guid>
       <description>&lt;h2 id=&#34;221---definition-and-first-examples&#34;&gt;2.2.1 - Definition and first examples&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Definition 2.2:&lt;/strong&gt; A &lt;em&gt;symmetric monoidal structure&lt;/em&gt; on a preoirder $(X, \leq)$ consists of&lt;/p&gt;

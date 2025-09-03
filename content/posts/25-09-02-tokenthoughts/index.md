@@ -40,10 +40,10 @@ From what I read, I want to pursue the following two research directions which w
 
 
 ## References
-1. https://goombalab.github.io/blog/2025/tradeoffs/
-2. https://www.biorxiv.org/content/10.1101/2025.07.03.663009v1
-3. https://goombalab.github.io/blog/2025/hnet-past
-4. https://arxiv.org/abs/2506.21734
-5. https://arcprize.org/blog/hrm-analysis
-6. https://arxiv.org/abs/2307.15771
-7. https://rome.baulab.info/
+[1] https://goombalab.github.io/blog/2025/tradeoffs/
+[2] https://www.biorxiv.org/content/10.1101/2025.07.03.663009v1
+[3] https://goombalab.github.io/blog/2025/hnet-past
+[4] https://arxiv.org/abs/2506.21734
+[5] https://arcprize.org/blog/hrm-analysis
+[6] https://arxiv.org/abs/2307.15771
+[7] https://rome.baulab.info/

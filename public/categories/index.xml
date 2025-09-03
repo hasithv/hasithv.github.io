@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Categories on HasithAlted</title>
-    <link>http://localhost:1313/categories/</link>
+    <link>https://hasithv.github.io/categories/</link>
     <description>Recent content in Categories on HasithAlted</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 02 Jun 2025 10:15:15 -0500</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hasithv.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Research</title>
-      <link>http://localhost:1313/categories/research/</link>
+      <link>https://hasithv.github.io/categories/research/</link>
       <pubDate>Mon, 02 Jun 2025 10:15:15 -0500</pubDate>
-      <guid>http://localhost:1313/categories/research/</guid>
+      <guid>https://hasithv.github.io/categories/research/</guid>
       <description></description>
     </item>
     <item>
       <title>Puzzles</title>
-      <link>http://localhost:1313/categories/puzzles/</link>
+      <link>https://hasithv.github.io/categories/puzzles/</link>
       <pubDate>Tue, 31 Dec 2024 12:33:33 -0500</pubDate>
-      <guid>http://localhost:1313/categories/puzzles/</guid>
+      <guid>https://hasithv.github.io/categories/puzzles/</guid>
       <description></description>
     </item>
     <item>
       <title>Projects</title>
-      <link>http://localhost:1313/categories/projects/</link>
+      <link>https://hasithv.github.io/categories/projects/</link>
       <pubDate>Tue, 10 Dec 2024 18:47:40 -0600</pubDate>
-      <guid>http://localhost:1313/categories/projects/</guid>
+      <guid>https://hasithv.github.io/categories/projects/</guid>
       <description></description>
     </item>
     <item>
       <title>Notes</title>
-      <link>http://localhost:1313/categories/notes/</link>
+      <link>https://hasithv.github.io/categories/notes/</link>
       <pubDate>Mon, 04 Nov 2024 14:44:14 -0600</pubDate>
-      <guid>http://localhost:1313/categories/notes/</guid>
+      <guid>https://hasithv.github.io/categories/notes/</guid>
       <description></description>
     </item>
   </channel>
