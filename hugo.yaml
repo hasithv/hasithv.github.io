@@ -32,6 +32,8 @@ params:
   socialIcons: # optional
   - name: "email"
     url: "mailto:hasith@utexas.edu"
+  - name: "twitter"
+    url: "https://twitter.com/hasith_v"
   - name: "github"
     url: "https://github.com/hasithv"
   - name: "linkedin"
