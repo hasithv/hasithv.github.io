@@ -6,8 +6,23 @@
     <description>Recent content in Probability on HasithAlted</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Aug 2024 20:36:30 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 16 Sep 2025 19:54:25 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/probability/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction to Flow Matching and Diffusion Models</title>
+      <link>https://hasithv.github.io/posts/flowdiffusion/flowdiff/</link>
+      <pubDate>Tue, 16 Sep 2025 19:54:25 -0500</pubDate>
+      <guid>https://hasithv.github.io/posts/flowdiffusion/flowdiff/</guid>
+      <description>&lt;p&gt;Here are my notes for MIT CSAIL&amp;rsquo;s course titled &lt;a href=&#34;https://diffusion.csail.mit.edu/&#34;&gt;&lt;em&gt;Introduction to Flow Matching and Diffusion Models&lt;/em&gt;&lt;/a&gt;. While I am finding the labs very helpful and making sure I do them, I will not be documenting my progress on them here.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lecture 1 - &lt;a href=&#34;https://hasithv.github.io/posts/flowdiffusion/lec1/&#34;&gt;Flow and Diffusion Models&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+      <content:encoded><![CDATA[<p>Here are my notes for MIT CSAIL&rsquo;s course titled <a href="https://diffusion.csail.mit.edu/"><em>Introduction to Flow Matching and Diffusion Models</em></a>. While I am finding the labs very helpful and making sure I do them, I will not be documenting my progress on them here.</p>
+<ul>
+<li>Lecture 1 - <a href="/posts/flowdiffusion/lec1/">Flow and Diffusion Models</a></li>
+</ul>
+]]></content:encoded>
+    </item>
     <item>
       <title>Is Basketball a Random Walk?</title>
       <link>https://hasithv.github.io/posts/24-08-17-basketballrandomwalk/</link>

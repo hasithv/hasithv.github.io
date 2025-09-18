@@ -6,8 +6,29 @@
     <description>Recent content in Tags on HasithAlted</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 02 Sep 2025 19:54:59 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 16 Sep 2025 19:54:25 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Diffusion</title>
+      <link>https://hasithv.github.io/tags/diffusion/</link>
+      <pubDate>Tue, 16 Sep 2025 19:54:25 -0500</pubDate>
+      <guid>https://hasithv.github.io/tags/diffusion/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Probability</title>
+      <link>https://hasithv.github.io/tags/probability/</link>
+      <pubDate>Tue, 16 Sep 2025 19:54:25 -0500</pubDate>
+      <guid>https://hasithv.github.io/tags/probability/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Stochastics</title>
+      <link>https://hasithv.github.io/tags/stochastics/</link>
+      <pubDate>Tue, 16 Sep 2025 19:54:25 -0500</pubDate>
+      <guid>https://hasithv.github.io/tags/stochastics/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Adaptive Compute</title>
       <link>https://hasithv.github.io/tags/adaptive-compute/</link>
@@ -90,20 +111,6 @@
       <link>https://hasithv.github.io/tags/julia/</link>
       <pubDate>Sat, 17 Aug 2024 20:36:30 -0500</pubDate>
       <guid>https://hasithv.github.io/tags/julia/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Probability</title>
-      <link>https://hasithv.github.io/tags/probability/</link>
-      <pubDate>Sat, 17 Aug 2024 20:36:30 -0500</pubDate>
-      <guid>https://hasithv.github.io/tags/probability/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Stochastics</title>
-      <link>https://hasithv.github.io/tags/stochastics/</link>
-      <pubDate>Sat, 17 Aug 2024 20:36:30 -0500</pubDate>
-      <guid>https://hasithv.github.io/tags/stochastics/</guid>
       <description></description>
     </item>
     <item>

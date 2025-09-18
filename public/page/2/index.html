@@ -162,6 +162,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">6.2 - The Invariance Principle
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Let $\{\xi_m\}_{n \in \mathbb{N}}$ be a sequence of i.i.d. random variables such that $\mathbb{E}[\xi_n] = 0$ and $\mathbb{E}[\xi_n^2] = 1$. Then, define $$S_0 = 0, \quad S_N = \sum_{i=1}^N \xi_i$$and by the Central Limit Theorem, rescaling $S_N$ by $\sqrt{N}$, we get that $$\frac{S_N}{\sqrt{N}} \xrightarrow{d} \mathcal{N}(0,1)$$ (the $\xrightarrow{d}$ means convergence in distribution) as $N \rightarrow \infty$. Using this, we can define a continuous random function $W^N_t$ on $t \in [0,1]$ such that $W_0^N = 0$ and ...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-08-12 00:29:17 -0500 CDT'>August 12, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
+  <a class="entry-link" aria-label="post link to 6.2 - The Invariance Principle" href="https://hasithv.github.io/posts/eliasa/chap6/6-2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">A Simple Boarding Puzzle
     </h2>
   </header>
@@ -281,19 +293,6 @@ Chapter 1 - Generative effects: Orders and adjunctions Chapter 2 - Resource theo
   </div>
   <footer class="entry-footer"><span title='2024-08-02 00:47:08 -0700 -0700'>August 2, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
   <a class="entry-link" aria-label="post link to An Invitation to Appied Category Theory" href="https://hasithv.github.io/posts/fongspivakact/fongspivakact/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">That&#39;s not how Probability Works!
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>I was recently doing a probability puzzle that I can’t quite remember the context of, but I came across the answer that the probability would be $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat’s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-30 00:07:20 -0700 -0700'>July 30, 2024</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
-  <a class="entry-link" aria-label="post link to That&#39;s not how Probability Works!" href="https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
