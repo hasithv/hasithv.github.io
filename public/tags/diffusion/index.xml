@@ -6,8 +6,120 @@
     <description>Recent content in Diffusion on HasithAlted</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Sep 2025 19:54:25 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 22 Sep 2025 17:48:55 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/diffusion/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lecture 2 - Constructing the Training Target</title>
+      <link>https://hasithv.github.io/posts/flowdiffusion/lec2/</link>
+      <pubDate>Mon, 22 Sep 2025 17:48:55 -0500</pubDate>
+      <guid>https://hasithv.github.io/posts/flowdiffusion/lec2/</guid>
+      <description>&lt;p&gt;To summarize &lt;a href=&#34;https://hasithv.github.io/posts/flowdiffusion/lec1/&#34;&gt;Lecture 1&lt;/a&gt;, we (given an $X_0 \sim p_{init}$) a flow model and a diffusion model to obtain trajectories from by solving the ODE and SDE,
+&lt;/p&gt;
+$$
+\begin{align*}
+\text{d}X_t &amp;= u_t^\theta(X_t) \text{d}t \\
+X_t &amp;= u_t^\theta(X_t) \text{d}t + \sigma_t \text{d}W_t,
+\end{align*}
+$$&lt;p&gt;
+respectively. Now, our goal is to find the parameters $\theta$ that make $u_t^\theta$ a good approximation of our target vector field $u_t^\text{target}$. A simple loss function we could use is the mean squared error:
+&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>To summarize <a href="/posts/flowdiffusion/lec1/">Lecture 1</a>, we (given an $X_0 \sim p_{init}$) a flow model and a diffusion model to obtain trajectories from by solving the ODE and SDE,
+</p>
+$$
+\begin{align*}
+\text{d}X_t &= u_t^\theta(X_t) \text{d}t \\
+X_t &= u_t^\theta(X_t) \text{d}t + \sigma_t \text{d}W_t,
+\end{align*}
+$$<p>
+respectively. Now, our goal is to find the parameters $\theta$ that make $u_t^\theta$ a good approximation of our target vector field $u_t^\text{target}$. A simple loss function we could use is the mean squared error:
+</p>
+$$
+\mathcal{L} = \mathbb{E}_{X_0 \sim p_{init}} \left[ \| u_t^\theta(X_t) - u_t^\text{target}(X_t) \|^2 \right].
+$$<p>
+But to compute this loss, we need to know $u_t^\text{target}(X_t)$.</p>
+<h2 id="constructing-the-training-target">Constructing the Training Target</h2>
+<h3 id="odes">ODEs</h3>
+<p>The first insight in computing $u_t^\text{target}$ is to notice that the conditional probability path, $p_t(x|z)$ is much easier to find analytically than the marginal probability path. For example, with the Gaussian probability path, we can write
+</p>
+$$
+p_t(x|z) = \mathcal{N}(\alpha_t z; \beta_t^2 I_d),
+$$<p>
+for monotic noise schedulers $\alpha_t$ and $\beta_t$ that satisfy $\alpha_0 = \beta_1 = 0$ and $\alpha_1 = \beta_0 = 1$. Note that for an initial $X_0 \sim p_{init}$, we have $p_0(x) = p_{init}$ and $p_1(x) = p_{data}(z) = \delta_z$.</p>
+<p>Similarly, it is also easier to find the conditional vector field $u_t^\text{target}$ than the marginal vector field $u_t^\text{target}(x|z)$. The conditional vector field for the Gaussian probability path can be found with by first defining the conditional flow model
+</p>
+$$\psi_t^\text{target} = \alpha_t z + \beta_t x,$$<p>
+where $\alpha_t \rightarrow 1$ and $\beta_t \rightarrow 0$ as $t \rightarrow 1$. The only thing that $\psi_t^\text{target}$ needs to do is transform $p_{init}$ to $p_{data}(z)$, which is easy to verify that it does.</p>
+<p>Then, we can solve the ODE for $\psi_t^\text{target}$ to get $u_t^\text{target}$:
+</p>
+$$
+\begin{align*}
+\frac{\text{d}}{\text{d}t} \psi_t^\text{target}(x) &= u_t^\text{target}(\psi_t^\text{target}(x | z)| z) \\
+\dot{\alpha_t}z + \dot{\beta_t}x &= u_t^\text{target}(\alpha_t z + \beta_t x | z) \\
+\dot{\alpha_t} z + \dot{\beta_t} \left( \frac{x - \alpha_t z}{\beta_t} \right) &= u_t^\text{target}(x | z) \\
+\left( \dot{\alpha_t} - \frac{\dot{\beta_t}}{\beta_t} \right) z + \frac{\dot{\beta_t}}{\beta_t} x &= u_t^\text{target}(x | z).
+\end{align*}
+$$<p>So, now, we have analytical expressions for $p_t(x|z)$ and $u_t^\text{target}(x|z)$. Using these, we can use the continuity equation to find the target vector field $u_t^\text{target}(x)$:</p>
+<blockquote>
+<p><strong>Theorem 12:</strong> (Continuity Equation) Consider a flow model with vector field $u_t^\text{target}$ with $X_0 \sim p_{init}$. Then, $X_t \sim p_t$ if and only if
+</p>
+$$ \dot{p_t} = - \nabla \cdot (u_t^\text{target} p_t)(x) $$</blockquote>
+<p>Now, to construct $u_t^\text{target}$, we just need to find what vector field will satisfy the continuity equation:</p>
+$$
+\begin{align*}
+\dot{p_t} &= \partial_t \int p_t(x|z) p_{data}(z) \text{d}z \\
+&= \int \partial_t p_t(x|z) p_{data}(z) \text{d}z \\
+&= \int - \nabla \cdot \left(u_t^\text{target}(\cdot | z) p_t(\cdot |z)\right)(x) p_{data}(z) \text{d}z \\
+&= - \nabla \cdot \int u_t^\text{target}(x|z) p_t(x|z) p_{data}(z) \text{d}z \\
+&= - \nabla \cdot \left( p_t(x) \int u_t^\text{target}(x|z) \frac{p_t(x|z) p_{data}(z)}{p_t(x)} \text{d}z \right)
+\end{align*}
+$$<p>So, we have that $\dot{p_t} = - \nabla \cdot (u_t^\text{target} p_t)(x)$ if and only if
+</p>
+$$
+u_t^\text{target}(x) = \frac{p_t(x|z) p_{data}(z)}{p_t(x)}.
+$$<blockquote>
+<p><strong>Theorem 10:</strong> (Marginalization Trick) Let $u_t^\text{target}$ be a conditional vector field defined so that the ODE yields the conditional probability path $p_t(\cdot|z)$
+</p>
+$$
+X_0 \sim p_{init}, \quad \frac{\text{d}}{\text{d}t} X_t = u_t^\text{target}(X_t) \implies X_t \sim p_t(\cdot|z).
+$$<p>
+Then, the marginal vector field $u_t^\text{target}$ given by
+</p>
+$$
+u_t^\text{target}(x) = \int u_t^\text{target}(x|z) \frac{p_t(x|z) p_{data}(z)}{p_t(x)} \text{d}z
+$$<p>
+will yield the marginal probability path $p_t$:
+</p>
+$$
+X_0 \sim p_{init}, \quad \frac{\text{d}}{\text{d}t} X_t = u_t^\text{target}(X_t) \implies X_t \sim p_t.
+$$<p>
+In other words, $u_t^\text{target}$ converts $p_{init}$ to $p_data$.</p></blockquote>
+<h3 id="sdes">SDEs</h3>
+<p>For SDEs, we express the marginal score function in terms of the conditional score function:
+</p>
+$$\nabla \log p_t(x) = \frac{\nabla p_t(x)}{p_t(x)} = \int \frac{\nabla p_t(x|z)}{p_t(x|z)} p_{data}(z) \text{d}z = \int \nabla \log p_t(x|z) p_{data}(z) \text{d}z.$$<p>Then, using the Fokker-Planck equation:</p>
+<blockquote>
+<p><strong>Theorem 15:</strong> (Fokker-Planck Equation) Let $p_t$ be a probability path and consider the SDE
+</p>
+$$ X_0 \sim p_{init}, \quad \text{d}X_t = u_t^\text{target}(X_t) \text{d}t + \sigma_t \text{d}W_t. $$<p>
+Then, the score function $\nabla \log p_t(x)$ satisfies the Fokker-Planck equation:
+</p>
+$$
+\partial_t p_t(x) = - \nabla \cdot \left(u_t^\text{target} p_t\right)(x) + \frac{\sigma_t^2}{2} \Delta p_t(x).
+$$</blockquote>
+<p>we can prove in a similar way to the ODE case that the SDE given by
+</p>
+$$X_0 \sim p_{init}, \quad \text{d}X_t = \left[ u_t^\text{target}(X_t) + \frac{\sigma_t^2}{2} \nabla \log p_t(X_t) \right] \text{d}t + \sigma_t \text{d}W_t$$<p>
+will follow the probability path $p_t$.</p>
+<p>The proof will be skipped, but as a hint, we begin with the continuity equation, add and subtract $\frac{\sigma_t^2}{2} \Delta p_t(x)$, then use that $\Delta = \nabla \cdot \nabla$ to get it in the form of the Fokker-Planck equation.</p>
+<blockquote>
+<p><strong>Theorem 13:</strong> (SDE Extension Trick) Define the conditional and marginal vector fields $u_t^\text{target}(x|z)$ and $u_t^\text{target}(x)$ as in Theorem 10. Then, for a diffusion coefficient $\sigma_t \leq 0$ the SDE
+</p>
+$$
+X_0 \sim p_{init}, \quad \text{d}X_t = \left[ u_t^\text{target}(X_t) + \frac{\sigma_t^2}{2} \nabla \log p_t(X_t) \right] \text{d}t + \sigma_t \text{d}W_t \implies X_t \sim p_t.
+$$<p>
+will yield the same marginal probability path $p_t$.</p></blockquote>
+]]></content:encoded>
+    </item>
     <item>
       <title>Introduction to Flow Matching and Diffusion Models</title>
       <link>https://hasithv.github.io/posts/flowdiffusion/flowdiff/</link>
@@ -16,10 +128,12 @@
       <description>&lt;p&gt;Here are my notes for MIT CSAIL&amp;rsquo;s course titled &lt;a href=&#34;https://diffusion.csail.mit.edu/&#34;&gt;&lt;em&gt;Introduction to Flow Matching and Diffusion Models&lt;/em&gt;&lt;/a&gt;. While I am finding the labs very helpful and making sure I do them, I will not be documenting my progress on them here.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Lecture 1 - &lt;a href=&#34;https://hasithv.github.io/posts/flowdiffusion/lec1/&#34;&gt;Flow and Diffusion Models&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Lecture 2 - &lt;a href=&#34;https://hasithv.github.io/posts/flowdiffusion/lec2/&#34;&gt;Constructing the Training Target&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
       <content:encoded><![CDATA[<p>Here are my notes for MIT CSAIL&rsquo;s course titled <a href="https://diffusion.csail.mit.edu/"><em>Introduction to Flow Matching and Diffusion Models</em></a>. While I am finding the labs very helpful and making sure I do them, I will not be documenting my progress on them here.</p>
 <ul>
 <li>Lecture 1 - <a href="/posts/flowdiffusion/lec1/">Flow and Diffusion Models</a></li>
+<li>Lecture 2 - <a href="/posts/flowdiffusion/lec2/">Constructing the Training Target</a></li>
 </ul>
 ]]></content:encoded>
     </item>

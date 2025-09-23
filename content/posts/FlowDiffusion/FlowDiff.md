@@ -9,3 +9,4 @@ draft = false
 Here are my notes for MIT CSAIL's course titled [_Introduction to Flow Matching and Diffusion Models_](https://diffusion.csail.mit.edu/). While I am finding the labs very helpful and making sure I do them, I will not be documenting my progress on them here.
 
 - Lecture 1 - [Flow and Diffusion Models]({{< relref "lec1/" >}})
+- Lecture 2 - [Constructing the Training Target]({{< relref "lec2/" >}})
