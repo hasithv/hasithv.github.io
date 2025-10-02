@@ -35,8 +35,8 @@ And the training algorithm is even simpler:
 ### Implementation
 As you can see, it can't be very hard to hack nanoGPT to do this. All we will need to do is introduce a mask token to the vocab, and edit the training loop and the generate function. The full edits are given below:
 
-#### Adding the `<|MASK|>` Token```python
-```
+#### Adding the `<|MASK|>` Token
+```py
 # get all the unique characters that occur in this text
 chars = sorted(list(set(data)))+['<|MASK|>']
 vocab_size = len(chars)```

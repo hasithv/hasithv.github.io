@@ -7,6 +7,18 @@
 - Use `{{< relref "lec1/" >}}` for links to subdirectories
 - Use `({{< relref "../../posts/ELiASA/chap6/6-1#arcsine-law" >}})` to link to more global stuff
 
+### References section
+[1] GitHub repo - nanoDiffGPT: https://github.com/hasithv/nanoDiffGPT
+
+[2] Diffusion notes: [{{< ref "../FlowDiffusion/FlowDiff.md" >}}]({{< relref "../FlowDiffusion/FlowDiff.md" >}})
+
+[3] LLaDa paper: https://arxiv.org/abs/2502.09992
+
+[4] Block diffusion paper: https://arxiv.org/abs/2503.09573
+
+[5] MMaDa paper: https://arxiv.org/abs/2505.15809
+
+
 ## Math Theorems
 ### Theorem
 ```
