@@ -244,14 +244,14 @@ Clearly, the autoregressive implementation is better, and that is even reflected
 The training losses are much further apart because training includes samples that predict the original text from full noise (all masked tokens), which is not a feasible target. Compare this to the autoregressive implementation which only ever has to predict one token at a time given the previous context. 
 {{< figure src="./images/trainloss.png" width="800px" align="center" caption="Train loss between the autoregressive, default nanoGPT and the diffusion LLM implementation on shakespeare char. Computed per token for autoregressive and per masked token for diffusion. Note that the gap between final losses is wider in the train set vs the val set. This is due to the training objectivefor the diffusion LLM to be 'harder' in some cases, such as having to predict nearly the entire block from pure masked tokens.">}}
 
-### Conclusion and Final Thoughts
+## Conclusion and Final Thoughts
 I consider this experiment a success because I was able to replicate the LLaDa training and generation algorithm to produce comparable results to the autoregressive implementation.
 
 While I am happy that it works, I still am not convinced that using fixed mask tokens and gradually unmasking tokens during the generation process is the best way to construct an LLM using the foundations of diffusion. The part that I'm the most shaky on is how masking corresponds to adding and subtracting noise. Diffusion models have so much mathematical machinery backing them, and it seems to me that using the mask token haphazardly like this kind of strays from what we have guarantees for. I'm sure there must be better implementations that are closer to image diffusion model implementations.
 
 It was a fun little experiment to convert nanoGPT into a diffusion LLM. I've been thinking of other experiments on how to hijack architectures to make them do what I want, and so doing this was a good proof of concept as to how well it would work. Additionally, I got to explore diffusion LLMs, an area which I think holds tons of promise.
 
-### References
+## References
 
 [1] GitHub repo - nanoDiffGPT: https://github.com/hasithv/nanoDiffGPT
 

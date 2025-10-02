@@ -240,11 +240,11 @@ Hasting in a roseman.
         </figcaption>
 </figure>
 </p>
-<h3 id="conclusion-and-final-thoughts">Conclusion and Final Thoughts</h3>
+<h2 id="conclusion-and-final-thoughts">Conclusion and Final Thoughts</h2>
 <p>I consider this experiment a success because I was able to replicate the LLaDa training and generation algorithm to produce comparable results to the autoregressive implementation.</p>
 <p>While I am happy that it works, I still am not convinced that using fixed mask tokens and gradually unmasking tokens during the generation process is the best way to construct an LLM using the foundations of diffusion. The part that I&rsquo;m the most shaky on is how masking corresponds to adding and subtracting noise. Diffusion models have so much mathematical machinery backing them, and it seems to me that using the mask token haphazardly like this kind of strays from what we have guarantees for. I&rsquo;m sure there must be better implementations that are closer to image diffusion model implementations.</p>
 <p>It was a fun little experiment to convert nanoGPT into a diffusion LLM. I&rsquo;ve been thinking of other experiments on how to hijack architectures to make them do what I want, and so doing this was a good proof of concept as to how well it would work. Additionally, I got to explore diffusion LLMs, an area which I think holds tons of promise.</p>
-<h3 id="references">References</h3>
+<h2 id="references">References</h2>
 <p>[1] GitHub repo - nanoDiffGPT: <a href="https://github.com/hasithv/nanoDiffGPT">https://github.com/hasithv/nanoDiffGPT</a></p>
 <p>[2] LLaDa paper: <a href="https://arxiv.org/abs/2502.09992">https://arxiv.org/abs/2502.09992</a></p>
 <p>[3] Block diffusion paper: <a href="https://arxiv.org/abs/2503.09573">https://arxiv.org/abs/2503.09573</a></p>
