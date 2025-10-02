@@ -43,41 +43,39 @@
 </ol></blockquote>
 <h3 id="implementation">Implementation</h3>
 <p>As you can see, it can&rsquo;t be very hard to hack nanoGPT to do this. All we will need to do is introduce a mask token to the vocab, and edit the training loop and the generate function. The full edits are given below:</p>
-<h4 id="adding-the-mask-tokenpython">Adding the <code>&lt;|MASK|&gt;</code> Token```python</h4>
-<pre tabindex="0"><code># get all the unique characters that occur in this text
-chars = sorted(list(set(data)))+[&#39;&lt;|MASK|&gt;&#39;]
-vocab_size = len(chars)```
-
-#### Editing Training Loop
-Editing the training loop consisted of two steps. First, we need to edit the way we generate data to randomly mask tokens with some probability for each sample
-```python
-def get_batch(split):
-    # We recreate np.memmap every batch to avoid a memory leak, as per
-    # https://stackoverflow.com/questions/45132940/numpy-memmap-memory-usage-want-to-iterate-once/61472122#61472122
-    if split == &#39;train&#39;:
-        data = np.memmap(os.path.join(data_dir, &#39;train.bin&#39;), dtype=np.uint16, mode=&#39;r&#39;)
-    else:
-        data = np.memmap(os.path.join(data_dir, &#39;val.bin&#39;), dtype=np.uint16, mode=&#39;r&#39;)
-    ix = torch.randint(len(data) - block_size, (batch_size,))
-    x = torch.stack([torch.from_numpy((data[i:i+block_size]).astype(np.int64)) for i in ix])
-    
-    # &lt;---NEW CODE---&gt;
-    y = x.clone()
-    
-    tok_mask_prob = torch.rand(batch_size)
-    tok_mask_prob = tok_mask_prob.unsqueeze(1).repeat(1, block_size)
-    mask = torch.rand(batch_size, block_size) &lt; tok_mask_prob
-    
-    x = x.masked_fill(mask, meta_vocab_size - 1) # &lt;|MASK|&gt; (last token in the vocabulary)
-    # &lt;---NEW CODE---&gt;
-    
-    if device_type == &#39;cuda&#39;:
-        # pin arrays x,y, which allows us to move them to GPU asynchronously (non_blocking=True)
-        x, y = x.pin_memory().to(device, non_blocking=True), y.pin_memory().to(device, non_blocking=True)
-    else:
-        x, y = x.to(device), y.to(device)
-    return x, y
-</code></pre><p>Then, we need to edit the forward pass to predict the unmasked tokens and then compute the CE loss:</p>
+<h4 id="adding-the-mask-token">Adding the <code>&lt;|MASK|&gt;</code> Token</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#75715e"># get all the unique characters that occur in this text</span>
+</span></span><span style="display:flex;"><span>chars <span style="color:#f92672">=</span> sorted(list(set(data)))<span style="color:#f92672">+</span>[<span style="color:#e6db74">&#39;&lt;|MASK|&gt;&#39;</span>]
+</span></span><span style="display:flex;"><span>vocab_size <span style="color:#f92672">=</span> len(chars)
+</span></span></code></pre></div><h4 id="editing-training-loop">Editing Training Loop</h4>
+<p>Editing the training loop consisted of two steps. First, we need to edit the way we generate data to randomly mask tokens with some probability for each sample</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_batch</span>(split):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># We recreate np.memmap every batch to avoid a memory leak, as per</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># https://stackoverflow.com/questions/45132940/numpy-memmap-memory-usage-want-to-iterate-once/61472122#61472122</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> split <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;train&#39;</span>:
+</span></span><span style="display:flex;"><span>        data <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>memmap(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(data_dir, <span style="color:#e6db74">&#39;train.bin&#39;</span>), dtype<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>uint16, mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        data <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>memmap(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(data_dir, <span style="color:#e6db74">&#39;val.bin&#39;</span>), dtype<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>uint16, mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r&#39;</span>)
+</span></span><span style="display:flex;"><span>    ix <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>randint(len(data) <span style="color:#f92672">-</span> block_size, (batch_size,))
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>stack([torch<span style="color:#f92672">.</span>from_numpy((data[i:i<span style="color:#f92672">+</span>block_size])<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>int64)) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> ix])
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># &lt;---NEW CODE---&gt;</span>
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>clone()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    tok_mask_prob <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>rand(batch_size)
+</span></span><span style="display:flex;"><span>    tok_mask_prob <span style="color:#f92672">=</span> tok_mask_prob<span style="color:#f92672">.</span>unsqueeze(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>repeat(<span style="color:#ae81ff">1</span>, block_size)
+</span></span><span style="display:flex;"><span>    mask <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>rand(batch_size, block_size) <span style="color:#f92672">&lt;</span> tok_mask_prob
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>masked_fill(mask, meta_vocab_size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#75715e"># &lt;|MASK|&gt; (last token in the vocabulary)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># &lt;---NEW CODE---&gt;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> device_type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;cuda&#39;</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># pin arrays x,y, which allows us to move them to GPU asynchronously (non_blocking=True)</span>
+</span></span><span style="display:flex;"><span>        x, y <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>pin_memory()<span style="color:#f92672">.</span>to(device, non_blocking<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>), y<span style="color:#f92672">.</span>pin_memory()<span style="color:#f92672">.</span>to(device, non_blocking<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        x, y <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>to(device), y<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x, y
+</span></span></code></pre></div><p>Then, we need to edit the forward pass to predict the unmasked tokens and then compute the CE loss:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, idx, targets<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
 </span></span><span style="display:flex;"><span>    device <span style="color:#f92672">=</span> idx<span style="color:#f92672">.</span>device
 </span></span><span style="display:flex;"><span>    b, t <span style="color:#f92672">=</span> idx<span style="color:#f92672">.</span>size()

@@ -39,7 +39,8 @@ As you can see, it can't be very hard to hack nanoGPT to do this. All we will ne
 ```py
 # get all the unique characters that occur in this text
 chars = sorted(list(set(data)))+['<|MASK|>']
-vocab_size = len(chars)```
+vocab_size = len(chars)
+```
 
 #### Editing Training Loop
 Editing the training loop consisted of two steps. First, we need to edit the way we generate data to randomly mask tokens with some probability for each sample
