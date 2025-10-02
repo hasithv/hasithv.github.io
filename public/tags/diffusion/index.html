@@ -152,6 +152,20 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Making Nano-GPT a Diffusion LLM
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Note: Here, I hacked together a diffusion llm implementation on nanoGPT. All the code can be found in this github repo
+I’ve been really interested in diffusion models lately, and a really interesting application of them is in language modeling. Specifically, I am talking about diffusion LLMs, where an LM iteratively refines a text output. For example, the LLaDa paper outlines a method to start from a fixed number of masked tokens and refine that window to produce a coherent output. The advantage with this is that it is able to parallelize a large number of tokens all at once, whereas autoregressive LMs can really only produce one token at a time (when not batching, as in most inferece applications).
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-29 19:45:01 -0500 CDT'>September 29, 2025</span>&nbsp;·&nbsp;10 min</footer>
+  <a class="entry-link" aria-label="post link to Making Nano-GPT a Diffusion LLM" href="https://hasithv.github.io/posts/25-09-29-nanodiffgpt/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Lecture 2 - Constructing the Training Target
     </h2>
   </header>

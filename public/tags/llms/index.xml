@@ -6,8 +6,251 @@
     <description>Recent content in LLMs on HasithAlted</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 02 Sep 2025 19:54:59 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 29 Sep 2025 19:45:01 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/llms/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Making Nano-GPT a Diffusion LLM</title>
+      <link>https://hasithv.github.io/posts/25-09-29-nanodiffgpt/</link>
+      <pubDate>Mon, 29 Sep 2025 19:45:01 -0500</pubDate>
+      <guid>https://hasithv.github.io/posts/25-09-29-nanodiffgpt/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Here, I hacked together a diffusion llm implementation on nanoGPT. All the code can be found in this &lt;a href=&#34;https://github.com/hasithv/nanoDiffGPT&#34;&gt;github repo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been really interested in &lt;a href=&#34;https://hasithv.github.io/posts/flowdiffusion/flowdiff/&#34;&gt;diffusion models&lt;/a&gt; lately, and a really interesting application of them is in language modeling. Specifically, I am talking about diffusion LLMs, where an LM iteratively refines a text output. For example, the &lt;a href=&#34;https://arxiv.org/abs/2502.09992&#34;&gt;LLaDa&lt;/a&gt; paper outlines a method to start from a fixed number of masked tokens and refine that window to produce a coherent output. The advantage with this is that it is able to parallelize a large number of tokens all at once, whereas autoregressive LMs can really only produce one token at a time (when not batching, as in most inferece applications).&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p><strong>Note:</strong> Here, I hacked together a diffusion llm implementation on nanoGPT. All the code can be found in this <a href="https://github.com/hasithv/nanoDiffGPT">github repo</a></p>
+<p>I&rsquo;ve been really interested in <a href="/posts/flowdiffusion/flowdiff/">diffusion models</a> lately, and a really interesting application of them is in language modeling. Specifically, I am talking about diffusion LLMs, where an LM iteratively refines a text output. For example, the <a href="https://arxiv.org/abs/2502.09992">LLaDa</a> paper outlines a method to start from a fixed number of masked tokens and refine that window to produce a coherent output. The advantage with this is that it is able to parallelize a large number of tokens all at once, whereas autoregressive LMs can really only produce one token at a time (when not batching, as in most inferece applications).</p>
+<p>I really like this paradigm because diffusion models are able to pick up on coarse structures in the data, then refine down to finer-grained details. In images, this is very obvious as the overall structure of the image is traced out first and then the smaller details are then filled in; in language modeling, I believe that diffusion LLMs may be very primed to do long horizon tasks as can also outline the basic end-to-end structure of the task without having to learn to parse through long text ouputs that the model itself created.</p>
+<p>Anyways, LLaDa has been improved upon by <a href="https://arxiv.org/abs/2503.09573">block diffusion</a> to help bridge the gap between autoregressive models to produce more chat-bot like behavior (because a fixed length output is kind of difficult to make use of), and further descendents are still being researched such as with <a href="https://arxiv.org/abs/2505.15809">MMaDa</a>.</p>
+<h2 id="does-llada-work-at-the-nano-scale">Does LLaDa work at the nano scale?</h2>
+<p>Andrej Karpathy&rsquo;s nanoGPT implementation is very hackable, and I was wondering if I could alter it to simulate LLaDa on a GPT architecture.</p>
+<h3 id="the-llada-algorithm">The LLaDa Algorithm</h3>
+<p>The LLaDa generation algorithm is quite simple:</p>
+<blockquote>
+<ol>
+<li>Begin with a fixed input of $L$ mask tokens, $x_1$</li>
+<li>Start at time $t=1$ and fix some $N$ iterations</li>
+<li>Predict the output of your tokens $\hat{x}_0 = f(x_t)$</li>
+<li>Set $s=t-1/N$</li>
+<li>For any unmasked tokens in $x_t$, keep them the same</li>
+<li>For any masked tokens in $x_t$, replace them with the corresponding token in $\hat{x}_0$ with probability $1-s$</li>
+<li>Set t = s and repeat from step (3) again until $s=0$</li>
+</ol></blockquote>
+<p>And the training algorithm is even simpler:</p>
+<blockquote>
+<ol>
+<li>Each sample in a batch will be of some fixed size $L$</li>
+<li>For a sample, pick some probability $p$ to mask each token</li>
+<li>Predict the original, unmasked sample from the masked one.</li>
+<li>Compute CE loss between the predicted tokens that were masked and the actual tokens</li>
+</ol></blockquote>
+<h3 id="implementation">Implementation</h3>
+<p>As you can see, it can&rsquo;t be very hard to hack nanoGPT to do this. All we will need to do is introduce a mask token to the vocab, and edit the training loop and the generate function. The full edits are given below:</p>
+<h4 id="adding-the-mask-tokenpython">Adding the <code>&lt;|MASK|&gt;</code> Token```python</h4>
+<pre tabindex="0"><code># get all the unique characters that occur in this text
+chars = sorted(list(set(data)))+[&#39;&lt;|MASK|&gt;&#39;]
+vocab_size = len(chars)```
+
+#### Editing Training Loop
+Editing the training loop consisted of two steps. First, we need to edit the way we generate data to randomly mask tokens with some probability for each sample
+```python
+def get_batch(split):
+    # We recreate np.memmap every batch to avoid a memory leak, as per
+    # https://stackoverflow.com/questions/45132940/numpy-memmap-memory-usage-want-to-iterate-once/61472122#61472122
+    if split == &#39;train&#39;:
+        data = np.memmap(os.path.join(data_dir, &#39;train.bin&#39;), dtype=np.uint16, mode=&#39;r&#39;)
+    else:
+        data = np.memmap(os.path.join(data_dir, &#39;val.bin&#39;), dtype=np.uint16, mode=&#39;r&#39;)
+    ix = torch.randint(len(data) - block_size, (batch_size,))
+    x = torch.stack([torch.from_numpy((data[i:i+block_size]).astype(np.int64)) for i in ix])
+    
+    # &lt;---NEW CODE---&gt;
+    y = x.clone()
+    
+    tok_mask_prob = torch.rand(batch_size)
+    tok_mask_prob = tok_mask_prob.unsqueeze(1).repeat(1, block_size)
+    mask = torch.rand(batch_size, block_size) &lt; tok_mask_prob
+    
+    x = x.masked_fill(mask, meta_vocab_size - 1) # &lt;|MASK|&gt; (last token in the vocabulary)
+    # &lt;---NEW CODE---&gt;
+    
+    if device_type == &#39;cuda&#39;:
+        # pin arrays x,y, which allows us to move them to GPU asynchronously (non_blocking=True)
+        x, y = x.pin_memory().to(device, non_blocking=True), y.pin_memory().to(device, non_blocking=True)
+    else:
+        x, y = x.to(device), y.to(device)
+    return x, y
+</code></pre><p>Then, we need to edit the forward pass to predict the unmasked tokens and then compute the CE loss:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, idx, targets<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>    device <span style="color:#f92672">=</span> idx<span style="color:#f92672">.</span>device
+</span></span><span style="display:flex;"><span>    b, t <span style="color:#f92672">=</span> idx<span style="color:#f92672">.</span>size()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> t <span style="color:#f92672">&lt;=</span> self<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>block_size, <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Cannot forward sequence of length </span><span style="color:#e6db74">{</span>t<span style="color:#e6db74">}</span><span style="color:#e6db74">, block size is only </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>block_size<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    pos <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">0</span>, t, dtype<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>long, device<span style="color:#f92672">=</span>device) <span style="color:#75715e"># shape (t)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># forward the GPT model itself</span>
+</span></span><span style="display:flex;"><span>    tok_emb <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>transformer<span style="color:#f92672">.</span>wte(idx) <span style="color:#75715e"># token embeddings of shape (b, t, n_embd)</span>
+</span></span><span style="display:flex;"><span>    pos_emb <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>transformer<span style="color:#f92672">.</span>wpe(pos) <span style="color:#75715e"># position embeddings of shape (t, n_embd)</span>
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>transformer<span style="color:#f92672">.</span>drop(tok_emb <span style="color:#f92672">+</span> pos_emb)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> block <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>transformer<span style="color:#f92672">.</span>h:
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> block(x)
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>transformer<span style="color:#f92672">.</span>ln_f(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> targets <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># if we are given some desired targets also calculate the loss</span>
+</span></span><span style="display:flex;"><span>        logits <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>lm_head(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># &lt;---NEW CODE---&gt;</span>
+</span></span><span style="display:flex;"><span>        mask_id <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>vocab_size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        idx_masked <span style="color:#f92672">=</span> (idx <span style="color:#f92672">==</span> mask_id)
+</span></span><span style="display:flex;"><span>        idx_masked_tok_logits <span style="color:#f92672">=</span> logits[idx_masked, :]
+</span></span><span style="display:flex;"><span>        targets_masked <span style="color:#f92672">=</span> targets[idx_masked]
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># CE loss</span>
+</span></span><span style="display:flex;"><span>        loss <span style="color:#f92672">=</span> F<span style="color:#f92672">.</span>cross_entropy(idx_masked_tok_logits, targets_masked, reduction<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;mean&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># &lt;---NEW CODE---&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># inference-time mini-optimization: only forward the lm_head on the very last position</span>
+</span></span><span style="display:flex;"><span>        logits <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>lm_head(x) <span style="color:#75715e"># note: using list [-1] to preserve the time dim</span>
+</span></span><span style="display:flex;"><span>        loss <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> logits, loss
+</span></span></code></pre></div><h4 id="editing-the-generation-function">Editing the Generation Function</h4>
+<p>Out of everything, the generation function took the longest time to implement because it is very different from autoregressive generation. For that reason, practically the entire generate function had to be rewritten:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@torch.no_grad</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate</span>(self, max_new_tokens, iters<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span>, top_k<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># assert top_k==None or top_k==1</span>
+</span></span><span style="display:flex;"><span>    mask_id <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>vocab_size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    rt <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>full((<span style="color:#ae81ff">1</span>,max_new_tokens), mask_id)<span style="color:#f92672">.</span>to(<span style="color:#e6db74">&#34;cuda&#34;</span>)
+</span></span><span style="display:flex;"><span>    t <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(iters):
+</span></span><span style="display:flex;"><span>        s <span style="color:#f92672">=</span> t <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">/</span>iters
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># greedy sample an r0 prediction from a forward pass</span>
+</span></span><span style="display:flex;"><span>        logits, _ <span style="color:#f92672">=</span> self(rt)
+</span></span><span style="display:flex;"><span>        logits <span style="color:#f92672">=</span> logits<span style="color:#f92672">/</span>temperature
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> top_k <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>            r0 <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>argmax(logits, dim<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Get the top k logits and their indices</span>
+</span></span><span style="display:flex;"><span>            v_size <span style="color:#f92672">=</span> logits<span style="color:#f92672">.</span>size(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>            top_k_logits, top_k_indices <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>topk(logits, min(top_k, v_size), dim<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Create a new tensor with -inf everywhere</span>
+</span></span><span style="display:flex;"><span>            new_logits <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>full_like(logits, float(<span style="color:#e6db74">&#39;-inf&#39;</span>))
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Scatter the top k logits back to their original positions</span>
+</span></span><span style="display:flex;"><span>            new_logits<span style="color:#f92672">.</span>scatter_(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, top_k_indices, top_k_logits)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Replace the original logits with the filtered ones</span>
+</span></span><span style="display:flex;"><span>            logits <span style="color:#f92672">=</span> new_logits
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># apply softmax to convert logits to (normalized) probabilities</span>
+</span></span><span style="display:flex;"><span>            probs <span style="color:#f92672">=</span> F<span style="color:#f92672">.</span>softmax(logits, dim<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># sample from the distribution</span>
+</span></span><span style="display:flex;"><span>            idx <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>multinomial(probs<span style="color:#f92672">.</span>view(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, probs<span style="color:#f92672">.</span>size(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)), num_samples<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>            r0 <span style="color:#f92672">=</span> idx<span style="color:#f92672">.</span>view(probs<span style="color:#f92672">.</span>size(<span style="color:#ae81ff">0</span>), probs<span style="color:#f92672">.</span>size(<span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># if token is not previously masked, then it shouldn&#39;t be changed</span>
+</span></span><span style="display:flex;"><span>        was_masked <span style="color:#f92672">=</span> (rt <span style="color:#f92672">==</span> mask_id)
+</span></span><span style="display:flex;"><span>        r0[<span style="color:#f92672">~</span>was_masked] <span style="color:#f92672">=</span> rt[<span style="color:#f92672">~</span>was_masked]
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># for each previously masked token, with prob s/t mask it again</span>
+</span></span><span style="display:flex;"><span>        remask <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>full(was_masked<span style="color:#f92672">.</span>shape, s<span style="color:#f92672">/</span>t)<span style="color:#f92672">.</span>to(<span style="color:#e6db74">&#34;cuda&#34;</span>) <span style="color:#f92672">&gt;</span> torch<span style="color:#f92672">.</span>rand(was_masked<span style="color:#f92672">.</span>shape)<span style="color:#f92672">.</span>to(<span style="color:#e6db74">&#34;cuda&#34;</span>)
+</span></span><span style="display:flex;"><span>        remask <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>bitwise_and(remask, was_masked)
+</span></span><span style="display:flex;"><span>        r0[remask] <span style="color:#f92672">=</span> mask_id
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        t <span style="color:#f92672">=</span> s
+</span></span><span style="display:flex;"><span>        rt <span style="color:#f92672">=</span> r0<span style="color:#f92672">.</span>clone()<span style="color:#f92672">.</span>to(<span style="color:#e6db74">&#34;cuda&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> rt
+</span></span></code></pre></div><h3 id="training-details">Training Details</h3>
+<p>Due to compute+time restraints, I only trained nanogpt on shakespeare and treated individual characters as tokens. I wanted to edit as little things as possible from the out-of-the-box, autoregressive nanoGPT config for the shakespeare char dataset.</p>
+<p>The only things I ended up needing to edit was the batch size and the block size. The block size increase was needed because diffusion LLMs (at least LLaDa) can only generate a fixed size output, so to get comparable output lengths as nanoGPT I had to make that change. The batch size was increase I felt was also needed because for the model to learn the different denoising steps, we need more data at different noise levels.</p>
+<p>Because of this, I am getting the idea that diffusion LLMs just take longer to train in general, but this pays dividends during inference where it is much, much faster. Plus, implementations like block diffusion are able to make the best of both worlds.</p>
+<p>Relevant config parameters:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>gradient_accumulation_steps <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">256</span>
+</span></span><span style="display:flex;"><span>block_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1024</span> <span style="color:#75715e"># context of up to 256 previous characters</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># baby GPT model :)</span>
+</span></span><span style="display:flex;"><span>n_layer <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>n_head <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>n_embd <span style="color:#f92672">=</span> <span style="color:#ae81ff">384</span>
+</span></span><span style="display:flex;"><span>dropout <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>learning_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-3</span> <span style="color:#75715e"># with baby networks can afford to go a bit higher</span>
+</span></span><span style="display:flex;"><span>max_iters <span style="color:#f92672">=</span> <span style="color:#ae81ff">5000</span>
+</span></span><span style="display:flex;"><span>lr_decay_iters <span style="color:#f92672">=</span> <span style="color:#ae81ff">5000</span> <span style="color:#75715e"># make equal to max_iters usually</span>
+</span></span><span style="display:flex;"><span>min_lr <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-4</span> <span style="color:#75715e"># learning_rate / 10 usually</span>
+</span></span><span style="display:flex;"><span>beta2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.99</span> <span style="color:#75715e"># make a bit bigger because number of tokens per iter is small</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>warmup_iters <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span> <span style="color:#75715e"># not super necessary potentially</span>
+</span></span></code></pre></div><h3 id="results">Results</h3>
+<p>Considering that the dataset was so small and that each token was an individual character, I was pleasantly surprised that the diffusion LLM implementation was able to pick up on basic spelling and some very rudimentary dialogue structure.</p>
+<p>Here is some example output from the diffusion LLM</p>
+<pre tabindex="0"><code>lady, how doth sit not for ever young shame,
+give me set to the while and there are fled to your head?
+
+PARIS:
+The gods hath no more till entertain&#39;d you.
+
+JULIET:
+Hand, peace! ye how not! but she was a full for him!
+Now, marry, to see me, how she was some fear in sharp,
+That it will still report his that quite himself,
+Cold copes him to hear some but ransom.
+
+ROMEO:
+Proclaim me to fear, stay his love.
+I would be content for the burthen on him.
+
+JULIET:
+An if I would do me a lord which I can;
+Th
+</code></pre><p>And compared that to Karpath&rsquo;s example nanoGPT output (I reproduced similar results):</p>
+<pre tabindex="0"><code>ANGELO:
+And cowards it be strawn to my bed,
+And thrust the gates of my threats,
+Because he that ale away, and hang&#39;d
+An one with him.
+
+DUKE VINCENTIO:
+I thank your eyes against it.
+
+DUKE VINCENTIO:
+Then will answer him to save the malm:
+And what have you tyrannous shall do this?
+
+DUKE VINCENTIO:
+If you have done evils of all disposition
+To end his power, the day of thrust for a common men
+That I leave, to fight with over-liking
+Hasting in a roseman.
+</code></pre><p>Clearly, the autoregressive implementation is better, and that is even reflected in the per-token validation loss curves on wandb:
+<figure class="align-center ">
+    <img loading="lazy" src="./images/valloss.png#center"
+         alt="Validation loss between the autoregressive, default nanoGPT and the diffusion LLM implementation on shakespeare char. Computed per token for autoregressive and per masked token for diffusion." width="800px"/> <figcaption>
+            <p>Validation loss between the autoregressive, default nanoGPT and the diffusion LLM implementation on shakespeare char. Computed per token for autoregressive and per masked token for diffusion.</p>
+        </figcaption>
+</figure>
+</p>
+<p>The training losses are much further apart because training includes samples that predict the original text from full noise (all masked tokens), which is not a feasible target. Compare this to the autoregressive implementation which only ever has to predict one token at a time given the previous context.
+<figure class="align-center ">
+    <img loading="lazy" src="./images/trainloss.png#center"
+         alt="Train loss between the autoregressive, default nanoGPT and the diffusion LLM implementation on shakespeare char. Computed per token for autoregressive and per masked token for diffusion. Note that the gap between final losses is wider in the train set vs the val set. This is due to the training objectivefor the diffusion LLM to be &lsquo;harder&rsquo; in some cases, such as having to predict nearly the entire block from pure masked tokens." width="800px"/> <figcaption>
+            <p>Train loss between the autoregressive, default nanoGPT and the diffusion LLM implementation on shakespeare char. Computed per token for autoregressive and per masked token for diffusion. Note that the gap between final losses is wider in the train set vs the val set. This is due to the training objectivefor the diffusion LLM to be &lsquo;harder&rsquo; in some cases, such as having to predict nearly the entire block from pure masked tokens.</p>
+        </figcaption>
+</figure>
+</p>
+<h3 id="conclusion-and-final-thoughts">Conclusion and Final Thoughts</h3>
+<p>I consider this experiment a success because I was able to replicate the LLaDa training and generation algorithm to produce comparable results to the autoregressive implementation.</p>
+<p>While I am happy that it works, I still am not convinced that using fixed mask tokens and gradually unmasking tokens during the generation process is the best way to construct an LLM using the foundations of diffusion. The part that I&rsquo;m the most shaky on is how masking corresponds to adding and subtracting noise. Diffusion models have so much mathematical machinery backing them, and it seems to me that using the mask token haphazardly like this kind of strays from what we have guarantees for. I&rsquo;m sure there must be better implementations that are closer to image diffusion model implementations.</p>
+<p>It was a fun little experiment to convert nanoGPT into a diffusion LLM. I&rsquo;ve been thinking of other experiments on how to hijack architectures to make them do what I want, and so doing this was a good proof of concept as to how well it would work. Additionally, I got to explore diffusion LLMs, an area which I think holds tons of promise.</p>
+<h3 id="references">References</h3>
+<p>[1] GitHub repo - nanoDiffGPT: <a href="https://github.com/hasithv/nanoDiffGPT">https://github.com/hasithv/nanoDiffGPT</a></p>
+<p>[2] LLaDa paper: <a href="https://arxiv.org/abs/2502.09992">https://arxiv.org/abs/2502.09992</a></p>
+<p>[3] Block diffusion paper: <a href="https://arxiv.org/abs/2503.09573">https://arxiv.org/abs/2503.09573</a></p>
+<p>[4] MMaDa paper: <a href="https://arxiv.org/abs/2505.15809">https://arxiv.org/abs/2505.15809</a></p>
+]]></content:encoded>
+    </item>
     <item>
       <title>Thoughts on Tokenization, H-Nets, and Adaptive Compute</title>
       <link>https://hasithv.github.io/posts/25-09-02-tokenthoughts/</link>

@@ -219,6 +219,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Making Nano-GPT a Diffusion LLM
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Note: Here, I hacked together a diffusion llm implementation on nanoGPT. All the code can be found in this github repo
+I’ve been really interested in diffusion models lately, and a really interesting application of them is in language modeling. Specifically, I am talking about diffusion LLMs, where an LM iteratively refines a text output. For example, the LLaDa paper outlines a method to start from a fixed number of masked tokens and refine that window to produce a coherent output. The advantage with this is that it is able to parallelize a large number of tokens all at once, whereas autoregressive LMs can really only produce one token at a time (when not batching, as in most inferece applications).
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-29 19:45:01 -0500 CDT'>September 29, 2025</span>&nbsp;·&nbsp;10 min</footer>
+  <a class="entry-link" aria-label="post link to Making Nano-GPT a Diffusion LLM" href="https://hasithv.github.io/posts/25-09-29-nanodiffgpt/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Lecture 2 - Constructing the Training Target
     </h2>
   </header>
@@ -340,20 +354,6 @@ Introduction The goal of this project is to simulate the behavior of a bike-shar
   </div>
   <footer class="entry-footer"><span title='2024-12-10 18:47:40 -0600 CST'>December 10, 2024</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;Hasith Vattikuti, Eric Liang, Dev Desai, Viren Govin</footer>
   <a class="entry-link" aria-label="post link to Metrobike Optimization Around UT Austin" href="https://hasithv.github.io/posts/24-12-10-metrobike/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Review of &#34;Planting Undetectable Backdoors in Machine Learning Models&#34; paper by Goldwasser
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Notes on the paper Planting Undetectable Backdoors in Machine Learning Models by Shafi Goldwasser, Michael P. Kim, Vinod Vaikuntanathan, and Or Zamir.
-This paper was recommended to me by Scott Aaronson if I wanted to better understand some earlier, more cryptographic/theoretical work in backdooring neural networks. I am also reading through Anthropic’s Sleeper Agents paper, which is more recent and practical in its approach to backdooring current LLMs, those notes will be posted soon as well.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-11-04 14:44:14 -0600 CST'>November 4, 2024</span>&nbsp;·&nbsp;9 min&nbsp;·&nbsp;Hasith Vattikuti</footer>
-  <a class="entry-link" aria-label="post link to Review of &#34;Planting Undetectable Backdoors in Machine Learning Models&#34; paper by Goldwasser" href="https://hasithv.github.io/posts/24-11-04-plantingbackdoors/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

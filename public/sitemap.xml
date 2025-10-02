@@ -2,16 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://hasithv.github.io/tags/ai/</loc>
+    <lastmod>2025-09-29T19:45:01-05:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/categories/</loc>
+    <lastmod>2025-09-29T19:45:01-05:00</lastmod>
+  </url><url>
     <loc>https://hasithv.github.io/tags/diffusion/</loc>
-    <lastmod>2025-09-22T17:48:55-05:00</lastmod>
+    <lastmod>2025-09-29T19:45:01-05:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/</loc>
-    <lastmod>2025-09-22T17:48:55-05:00</lastmod>
+    <lastmod>2025-09-29T19:45:01-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/flowdiffusion/lec2/</loc>
-    <lastmod>2025-09-22T17:48:55-05:00</lastmod>
+    <loc>https://hasithv.github.io/tags/llms/</loc>
+    <lastmod>2025-09-29T19:45:01-05:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/posts/25-09-29-nanodiffgpt/</loc>
+    <lastmod>2025-09-29T19:45:01-05:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/posts/</loc>
+    <lastmod>2025-09-29T19:45:01-05:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/categories/projects/</loc>
+    <lastmod>2025-09-29T19:45:01-05:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/tags/</loc>
+    <lastmod>2025-09-29T19:45:01-05:00</lastmod>
+  </url><url>
+    <loc>https://hasithv.github.io/posts/flowdiffusion/lec2/</loc>
     <lastmod>2025-09-22T17:48:55-05:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/tags/probability/</loc>
@@ -20,14 +38,8 @@
     <loc>https://hasithv.github.io/tags/stochastics/</loc>
     <lastmod>2025-09-22T17:48:55-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/</loc>
-    <lastmod>2025-09-22T17:48:55-05:00</lastmod>
-  </url><url>
     <loc>https://hasithv.github.io/posts/flowdiffusion/lec1/</loc>
     <lastmod>2025-09-16T19:54:48-05:00</lastmod>
-  </url><url>
-    <loc>https://hasithv.github.io/categories/</loc>
-    <lastmod>2025-09-16T19:54:25-05:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/posts/flowdiffusion/flowdiff/</loc>
     <lastmod>2025-09-16T19:54:25-05:00</lastmod>
@@ -39,9 +51,6 @@
     <lastmod>2025-09-02T19:54:59-05:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/tags/h-nets/</loc>
-    <lastmod>2025-09-02T19:54:59-05:00</lastmod>
-  </url><url>
-    <loc>https://hasithv.github.io/tags/llms/</loc>
     <lastmod>2025-09-02T19:54:59-05:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/categories/thoughts/</loc>
@@ -87,9 +96,6 @@
     <lastmod>2024-12-10T18:47:40-06:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/tags/optimization/</loc>
-    <lastmod>2024-12-10T18:47:40-06:00</lastmod>
-  </url><url>
-    <loc>https://hasithv.github.io/categories/projects/</loc>
     <lastmod>2024-12-10T18:47:40-06:00</lastmod>
   </url><url>
     <loc>https://hasithv.github.io/tags/python/</loc>

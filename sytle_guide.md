@@ -5,6 +5,7 @@
 
 ## Links
 - Use `{{< relref "lec1/" >}}` for links to subdirectories
+- Use `({{< relref "../../posts/ELiASA/chap6/6-1#arcsine-law" >}})` to link to more global stuff
 
 ## Math Theorems
 ### Theorem
@@ -25,4 +26,4 @@ $$
 ```
 
 ## Images
-
+{{< figure src="./images/playrate.svg" width="400px" align="center" caption="">}}
