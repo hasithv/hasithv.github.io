@@ -1,5 +1,5 @@
 +++
-title = 'Making Nano-GPT a Diffusion LLM'
+title = 'Hacking Nano-GPT into a Diffusion LLM'
 date = 2025-09-29T19:45:01-05:00
 tags = ["diffusion", "LLMs", "AI"]
 categories = ["projects"]
