@@ -255,8 +255,10 @@ It was a fun little experiment to convert nanoGPT into a diffusion LLM. I've bee
 
 [1] GitHub repo - nanoDiffGPT: https://github.com/hasithv/nanoDiffGPT
 
-[2] LLaDa paper: https://arxiv.org/abs/2502.09992
+[2] Diffusion notes: [{{< ref "../FlowDiffusion/FlowDiff.md" >}}]({{< relref "../FlowDiffusion/FlowDiff.md" >}})
 
-[3] Block diffusion paper: https://arxiv.org/abs/2503.09573
+[3] LLaDa paper: https://arxiv.org/abs/2502.09992
 
-[4] MMaDa paper: https://arxiv.org/abs/2505.15809
+[4] Block diffusion paper: https://arxiv.org/abs/2503.09573
+
+[5] MMaDa paper: https://arxiv.org/abs/2505.15809

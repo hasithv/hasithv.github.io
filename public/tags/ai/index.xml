@@ -9,7 +9,7 @@
     <lastBuildDate>Mon, 29 Sep 2025 19:45:01 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Making Nano-GPT a Diffusion LLM</title>
+      <title>Hacking Nano-GPT into a Diffusion LLM</title>
       <link>https://hasithv.github.io/posts/25-09-29-nanodiffgpt/</link>
       <pubDate>Mon, 29 Sep 2025 19:45:01 -0500</pubDate>
       <guid>https://hasithv.github.io/posts/25-09-29-nanodiffgpt/</guid>
@@ -246,9 +246,10 @@ Hasting in a roseman.
 <p>It was a fun little experiment to convert nanoGPT into a diffusion LLM. I&rsquo;ve been thinking of other experiments on how to hijack architectures to make them do what I want, and so doing this was a good proof of concept as to how well it would work. Additionally, I got to explore diffusion LLMs, an area which I think holds tons of promise.</p>
 <h2 id="references">References</h2>
 <p>[1] GitHub repo - nanoDiffGPT: <a href="https://github.com/hasithv/nanoDiffGPT">https://github.com/hasithv/nanoDiffGPT</a></p>
-<p>[2] LLaDa paper: <a href="https://arxiv.org/abs/2502.09992">https://arxiv.org/abs/2502.09992</a></p>
-<p>[3] Block diffusion paper: <a href="https://arxiv.org/abs/2503.09573">https://arxiv.org/abs/2503.09573</a></p>
-<p>[4] MMaDa paper: <a href="https://arxiv.org/abs/2505.15809">https://arxiv.org/abs/2505.15809</a></p>
+<p>[2] Diffusion notes: <a href="/posts/flowdiffusion/flowdiff/">https://hasithv.github.io/posts/flowdiffusion/flowdiff/</a></p>
+<p>[3] LLaDa paper: <a href="https://arxiv.org/abs/2502.09992">https://arxiv.org/abs/2502.09992</a></p>
+<p>[4] Block diffusion paper: <a href="https://arxiv.org/abs/2503.09573">https://arxiv.org/abs/2503.09573</a></p>
+<p>[5] MMaDa paper: <a href="https://arxiv.org/abs/2505.15809">https://arxiv.org/abs/2505.15809</a></p>
 ]]></content:encoded>
     </item>
   </channel>
