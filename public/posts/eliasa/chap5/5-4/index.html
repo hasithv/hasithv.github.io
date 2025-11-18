@@ -9,13 +9,14 @@
 <meta name="keywords" content="stochastics, probability, lecture">
 <meta name="description" content="
 Definition 5.9: A stochasitc process $\{X_t\}_{t \geq 0}$ is a Gaussian Process if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.
+
 Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments
 
 $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$
 ">
 <meta name="author" content="Hasith Vattikuti">
 <link rel="canonical" href="https://hasithv.github.io/posts/eliasa/chap5/5-4/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.93f625d739f1d6a5c6f20c146bc6a8d26b233492b34b2220c54b12fd46a04ded.css" integrity="sha256-k/Yl1znx1qXG8gwUa8ao0msjNJKzSyIgxUsS/UagTe0=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://hasithv.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://hasithv.github.io/favicon-32x32.png">
@@ -77,6 +78,7 @@ Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is c
 <meta name="twitter:title" content="5.4 - Gaussian Processes">
 <meta name="twitter:description" content="
 Definition 5.9: A stochasitc process $\{X_t\}_{t \geq 0}$ is a Gaussian Process if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.
+
 Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments
 
 $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$
@@ -227,7 +229,8 @@ $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X}
 </div>
   </header> 
   <div class="post-content"><blockquote>
-<p><strong>Definition 5.9:</strong> A stochasitc process $\{X_t\}_{t \geq 0}$ is a <em>Gaussian Process</em> if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 < t_2 < \ldots < t_k$.</p></blockquote>
+<p><strong>Definition 5.9:</strong> A stochasitc process $\{X_t\}_{t \geq 0}$ is a <em>Gaussian Process</em> if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 < t_2 < \ldots < t_k$.</p>
+</blockquote>
 <p>Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments
 </p>
 $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$<p>Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$
@@ -242,7 +245,8 @@ $$\mathbb{E} \left[ \int_0^T X_t^2 dt \right] < \infty$$<p>
 then $m \in L^2_t$. Also, the operator
 </p>
 $$\mathcal{K} f(s) := \int_0^T K(s,t) f(t) dt$$<p>
-is nonnegative, compact on $L^2_t$</p></blockquote>
+is nonnegative, compact on $L^2_t$</p>
+</blockquote>
 <blockquote>
 <p><strong>Proof:</strong> For the first statement,
 </p>
@@ -260,7 +264,8 @@ which lets us conclude that $K \in L^2([0,T] \times [0,T])$, which tells us that
 <p>Furthermore, noting that $K$ is symmetric which means that $\mathcal{K}$ is self adjoint, and we can say
 </p>
 $$(\mathcal{K}f, f) = \int_0^T \int_0^T \mathbb{E}[(X_t - m(t))]\mathbb{E}[(X_s - m(s))]f(t)f(s) ds dt \geq 0$$<p>
-by symmetry of $s$ and $t$.</p></blockquote>
+by symmetry of $s$ and $t$.</p>
+</blockquote>
 <p>If we want to extend the characteristic to $L_t$ rather than the finite dimensional version, we can write
 </p>
 $$\mathbb{E}[e^{i(\xi,X)}] = e^{i(\xi,m) - \frac{1}{2} (\xi, \mathcal{K} \xi)}, \quad \xi \in L^2_t$$<p>
@@ -270,7 +275,8 @@ With $(\xi,m) = \int_a^b \xi(t) m(t) dt$ and $\mathcal{K}\xi (t) = \int_a^b K(t,
 </p>
 $$X_t = \sum_{k=1}^\infty \alpha_k \sqrt{\lambda_k} \phi_k(t)$$<p>
 Where $\alpha_k$ is a standard normal random variable $\mathscr{N}(0,1)$</p>
-<p>&#x26a0;&#xfe0f; I am omitting the proof because I feel the result is easy enough to intuitively grasp, and also it is a little theoretical, so maybe I should revisit it if I get more comfortable with proving covergence in probability.</p></blockquote>
+<p>&#x26a0;&#xfe0f; I am omitting the proof because I feel the result is easy enough to intuitively grasp, and also it is a little theoretical, so maybe I should revisit it if I get more comfortable with proving covergence in probability.</p>
+</blockquote>
 
 
   </div>

@@ -4,7 +4,7 @@
     <title>Optimization on HasithAlted</title>
     <link>https://hasithv.github.io/tags/optimization/</link>
     <description>Recent content in Optimization on HasithAlted</description>
-    <generator>Hugo -- 0.147.9</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 10 Dec 2024 18:47:40 -0600</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/optimization/index.xml" rel="self" type="application/rss+xml" />
@@ -41,7 +41,8 @@
 <li>The stations update their bike counts based on the agents&rsquo; decisions</li>
 <li>Agents who arrived at their destination pick a new destination and start moving towards it</li>
 <li>The way agents choose a particular destination is based on a probability distribution that we can set.</li>
-</ol></blockquote>
+</ol>
+</blockquote>
 <p>Using the previous graph as an example, we can set the probability distribution to be uniform for every destination, or we can set it so that agents favor certain destinations over others. This is done with the <code>weights</code> attribute in the <code>MyModel</code> class in <code>model.py</code>.</p>
 <h2 id="optimization">Optimization</h2>
 <p>The goal of the optimization is to find the best positions for the stations in the network. We can use two algorithms to do this: particle swarm optimization (PSO) and a genetic algorithm (GA). The optimization algorithms are implemented in the <code>optimize.py</code> file.</p>
@@ -194,7 +195,8 @@ where $B$ is the length of the maxiumum dimension of the search space, $p$ is th
 <li>Rise - 0.021</li>
 <li>Axis West - 0.077</li>
 <li>Rec - 0.056</li>
-</ol></blockquote>
+</ol>
+</blockquote>
 <p>Then, we were able to use our optimization algorithms to find the optimal positions of the stations. We optimized for 6 stations around campus and west campus, and the results can be seen in the following images:</p>
 <p><figure class="align-center ">
     <img loading="lazy" src="./images/genetic10x6.png#center"

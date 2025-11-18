@@ -12,7 +12,7 @@
 $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.">
 <meta name="author" content="Hasith Vattikuti">
 <link rel="canonical" href="https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.93f625d739f1d6a5c6f20c146bc6a8d26b233492b34b2220c54b12fd46a04ded.css" integrity="sha256-k/Yl1znx1qXG8gwUa8ao0msjNJKzSyIgxUsS/UagTe0=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://hasithv.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://hasithv.github.io/favicon-32x32.png">
@@ -223,7 +223,8 @@ $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$<p>But
 <p>So, what is this critical value that will help me save face?</p>
 <p>Well, the question we are trying to answer, phrased a bit more formally, is:</p>
 <blockquote>
-<p>find the largest $p \in [0,1]$ such that $np^n \leq 1$ for all $n \in \mathbb{N}.$</p></blockquote>
+<p>find the largest $p \in [0,1]$ such that $np^n \leq 1$ for all $n \in \mathbb{N}.$</p>
+</blockquote>
 <p>First, we rephrase the problem by stating
 </p>
 $$np^n \leq 1 \iff p^n \leq \frac{1}{n}.$$<p>Visually, this means that the exponential graph of $f_p(n) = p^n$ can never go above $g_p(n) = \frac{1}{n}$ for some fixed $p$. From this, we can deduce that the critical value of $p$, which we will denote as $p_0$, will satisfy the following relation:</p>
@@ -241,7 +242,8 @@ g_p(t)
 the critical $p_0$ value will be such that
 </p>
 $$F_{p_0}(t_0) = G_{p_0}(t_0),\text{ and } \dot{F}_{p_0}(t_0) = \lambda \dot{G}_{p_0}(t_0)$$<p>
-for some $\lambda \in \mathbb{R}, t_0 \in \mathbb{R}^+$. In other words, their velocities will point in the same direction (and, perhaps more intuitively, the outward normals of each curve will be parallel, so the graphs &lsquo;kiss&rsquo; at some $t_0$ with the choice of $p_0$).</p></blockquote>
+for some $\lambda \in \mathbb{R}, t_0 \in \mathbb{R}^+$. In other words, their velocities will point in the same direction (and, perhaps more intuitively, the outward normals of each curve will be parallel, so the graphs &lsquo;kiss&rsquo; at some $t_0$ with the choice of $p_0$).</p>
+</blockquote>
 <p>Now, we have a fairly simple problem to solve. Because the $x$ component of $F$ and $G$ are always equal, we immediately find that $\lambda = 1$ for their time derivatives to be equal to each other. Now, that leads us to solve for a $p_0$ and $n$ such that
 </p>
 $$

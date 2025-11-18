@@ -4,7 +4,7 @@
     <title>Lecture on HasithAlted</title>
     <link>https://hasithv.github.io/tags/lecture/</link>
     <description>Recent content in Lecture on HasithAlted</description>
-    <generator>Hugo -- 0.147.9</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 12 Aug 2024 00:29:17 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/lecture/index.xml" rel="self" type="application/rss+xml" />
@@ -33,7 +33,8 @@ $$W_t^N = \frac{1}{\sqrt{N}}(\theta S_k + (1-\theta)S_{k+1}), \quad Nt \in (k,k+
 <p><strong>Theorem 6.4:</strong><em>(Wiener Process)</em> As $N \rightarrow \infty$,
 </p>
 $$W^N \xrightarrow{d} W$$<p>
-where $W$ is the Wiener process and the distribution of $W$ on $\Omega \in C[0,1]$ is called the Wiener measure.</p></blockquote>
+where $W$ is the Wiener process and the distribution of $W$ on $\Omega \in C[0,1]$ is called the Wiener measure.</p>
+</blockquote>
 ]]></content:encoded>
     </item>
     <item>
@@ -71,7 +72,8 @@ $$D = \frac{\langle (X_N - X_0)^2 \rangle}{2N}$$<p>
 And for a general stochastic process it is
 </p>
 $$D = \lim_{t \rightarrow \infty} \frac{\langle (X_t - X_0)^2 \rangle}{2dt}$$<p>
-where $d$ is the space dimension.</p></blockquote>
+where $d$ is the space dimension.</p>
+</blockquote>
 <p>Intuitively, the diffusion coefficient tells us the rate at which variance changes [<a href="https://physics.stackexchange.com/a/52977/250863">1</a>]. For the random walk, $D = 1/2$.</p>
 <h2 id="continuum-limit-of-the-random-walk">Continuum limit of the random walk</h2>
 <p>Let&rsquo;s define the step length of the random walk to be $l$ and the timestep to be $\tau$. Now, fixing $(x,t)$ consider the following limit:
@@ -158,7 +160,8 @@ $$\begin{align}
 </p>
 $$ \mathbb{P}\left(\frac{\gamma (2n)}{2n} \leq x \right) = \frac{2}{\pi} \arcsin \sqrt{x} $$<p>
 The consequence of this theorem is that it is most likely for a radnom walk to spend either almost all of its time on the positive side, or for it to spend almost no time on the positive side.</p>
-<p>We can do this because there was no reason to limit the lower bound to $1/2$ rather than $0$ in the derivation</p></blockquote>
+<p>We can do this because there was no reason to limit the lower bound to $1/2$ rather than $0$ in the derivation</p>
+</blockquote>
 <h2 id="references">References</h2>
 <ol>
 <li>Helena (<a href="https://physics.stackexchange.com/users/12948/helena)">https://physics.stackexchange.com/users/12948/helena)</a>, What is the physical meaning of diffusion coefficient?, URL (version: 2014-12-03): <a href="https://physics.stackexchange.com/q/52977https://physics.stackexchange.com/a/52977/250863">https://physics.stackexchange.com/q/52977https://physics.stackexchange.com/a/52977/250863</a></li>
@@ -172,13 +175,15 @@ The consequence of this theorem is that it is most likely for a radnom walk to s
       <pubDate>Tue, 06 Aug 2024 21:17:49 -0700</pubDate>
       <guid>https://hasithv.github.io/posts/eliasa/chap5/5-4/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Definition 5.9:&lt;/strong&gt; A stochasitc process $\{X_t\}_{t \geq 0}$ is a &lt;em&gt;Gaussian Process&lt;/em&gt; if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Definition 5.9:&lt;/strong&gt; A stochasitc process $\{X_t\}_{t \geq 0}$ is a &lt;em&gt;Gaussian Process&lt;/em&gt; if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_k$.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments
 &lt;/p&gt;
 $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$&lt;p&gt;Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$
 &lt;/p&gt;</description>
       <content:encoded><![CDATA[<blockquote>
-<p><strong>Definition 5.9:</strong> A stochasitc process $\{X_t\}_{t \geq 0}$ is a <em>Gaussian Process</em> if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 < t_2 < \ldots < t_k$.</p></blockquote>
+<p><strong>Definition 5.9:</strong> A stochasitc process $\{X_t\}_{t \geq 0}$ is a <em>Gaussian Process</em> if its finite dimensional distributions are consistent Gaussian measures for any $0 \leq t_1 < t_2 < \ldots < t_k$.</p>
+</blockquote>
 <p>Recall that a Gaussian random vector $\mathbf{X} = (X_1, X_2,\ldots,X_n)^T$ is completely characterized by its first and second moments
 </p>
 $$\mathbf{m} = \mathbb{E}[\mathbf{X}], \quad \mathbf{K} = \mathbb{E}[(\mathbf{X} - \mathbf{m}) (\mathbf{X} - \mathbf{m})^T]$$<p>Meaning that the characteristic function is expressed only in terms of $\mathbf{m}$ and $\mathbf{K}$
@@ -193,7 +198,8 @@ $$\mathbb{E} \left[ \int_0^T X_t^2 dt \right] < \infty$$<p>
 then $m \in L^2_t$. Also, the operator
 </p>
 $$\mathcal{K} f(s) := \int_0^T K(s,t) f(t) dt$$<p>
-is nonnegative, compact on $L^2_t$</p></blockquote>
+is nonnegative, compact on $L^2_t$</p>
+</blockquote>
 <blockquote>
 <p><strong>Proof:</strong> For the first statement,
 </p>
@@ -211,7 +217,8 @@ which lets us conclude that $K \in L^2([0,T] \times [0,T])$, which tells us that
 <p>Furthermore, noting that $K$ is symmetric which means that $\mathcal{K}$ is self adjoint, and we can say
 </p>
 $$(\mathcal{K}f, f) = \int_0^T \int_0^T \mathbb{E}[(X_t - m(t))]\mathbb{E}[(X_s - m(s))]f(t)f(s) ds dt \geq 0$$<p>
-by symmetry of $s$ and $t$.</p></blockquote>
+by symmetry of $s$ and $t$.</p>
+</blockquote>
 <p>If we want to extend the characteristic to $L_t$ rather than the finite dimensional version, we can write
 </p>
 $$\mathbb{E}[e^{i(\xi,X)}] = e^{i(\xi,m) - \frac{1}{2} (\xi, \mathcal{K} \xi)}, \quad \xi \in L^2_t$$<p>
@@ -221,7 +228,8 @@ With $(\xi,m) = \int_a^b \xi(t) m(t) dt$ and $\mathcal{K}\xi (t) = \int_a^b K(t,
 </p>
 $$X_t = \sum_{k=1}^\infty \alpha_k \sqrt{\lambda_k} \phi_k(t)$$<p>
 Where $\alpha_k$ is a standard normal random variable $\mathscr{N}(0,1)$</p>
-<p>&#x26a0;&#xfe0f; I am omitting the proof because I feel the result is easy enough to intuitively grasp, and also it is a little theoretical, so maybe I should revisit it if I get more comfortable with proving covergence in probability.</p></blockquote>
+<p>&#x26a0;&#xfe0f; I am omitting the proof because I feel the result is easy enough to intuitively grasp, and also it is a little theoretical, so maybe I should revisit it if I get more comfortable with proving covergence in probability.</p>
+</blockquote>
 ]]></content:encoded>
     </item>
     <item>
@@ -342,7 +350,8 @@ $$(g, \mathcal{A}f) = (\mathcal{A}^* g, f), \quad \forall \; f\in \mathscr{B}, g
 And defining $f^\pm(n) := f(n \pm 1)$, then we require
 </p>
 $$(\mathcal{A}^*g, f) = \lambda(g,f^+) - \lambda(g,f)$$<p>
-Then if we note that $(g,f^+) = (g^-,f)$ (this is the part I cannot justify), then it follows that $\mathcal{A}^*f(n) = \lambda(f(n-1) - f(n))$</p></blockquote>
+Then if we note that $(g,f^+) = (g^-,f)$ (this is the part I cannot justify), then it follows that $\mathcal{A}^*f(n) = \lambda(f(n-1) - f(n))$</p>
+</blockquote>
 <p>Again, lets compute the time derivative of $u(t,n) = \mathbb{E}^n[f(X_t)]$
 </p>
 $$\begin{align}
@@ -369,11 +378,13 @@ $$\begin{align}
       <guid>https://hasithv.github.io/posts/eliasa/chap5/5-2/</guid>
       <description>&lt;h2 id=&#34;filtration&#34;&gt;Filtration&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Definition 5.3:&lt;/strong&gt; (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s &lt; t$.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Definition 5.3:&lt;/strong&gt; (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s &lt; t$.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Intuitively, the filtration is a sigma algebra of events that can be determined before time $t$ (we can&amp;rsquo;t lose information by foing forward in time). A stochastic process is called &lt;em&gt;$\mathcal{F}_t$-adapted&lt;/em&gt; if it is measurable with respect to $\mathcal{F}_t$; that is, for all $B \in \mathcal{R}$, $X_t^{-1}(B) \in \mathcal{F}_t$. We can always assume that the $\mathcal{F}_t$ contains $F_t^{X}$ and all sets of measure zero, where $F_t^{X} = \sigma(X_s, s \leq t)$ is the sigma algebra generated by the process $X$ up to time $t$.&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="filtration">Filtration</h2>
 <blockquote>
-<p><strong>Definition 5.3:</strong> (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s < t$.</p></blockquote>
+<p><strong>Definition 5.3:</strong> (Filtration). Given a probability space, the filtration is a nondecreaseing family of $\sigma$-algebras $\{\mathcal{F}_t\}_{t \leq 0}$ such that $\mathcal{F}_s \subset \mathcal{F}_t \subset \mathcal{F}$ for all $0 \leq s < t$.</p>
+</blockquote>
 <p>Intuitively, the filtration is a sigma algebra of events that can be determined before time $t$ (we can&rsquo;t lose information by foing forward in time). A stochastic process is called <em>$\mathcal{F}_t$-adapted</em> if it is measurable with respect to $\mathcal{F}_t$; that is, for all $B \in \mathcal{R}$, $X_t^{-1}(B) \in \mathcal{F}_t$. We can always assume that the $\mathcal{F}_t$ contains $F_t^{X}$ and all sets of measure zero, where $F_t^{X} = \sigma(X_s, s \leq t)$ is the sigma algebra generated by the process $X$ up to time $t$.</p>
 <p>As an example, in a series of coin flips, when $n=0$
 </p>
@@ -396,7 +407,8 @@ $$\{T \leq n\} \in \mathcal{F}_n$$</blockquote>
 <ul>
 <li>(1) if $T_1, T_2$ are stopping times, then $T_1 \wedge T_2, T_1 \vee T_2, T_1 + T_2$ are stopping times</li>
 <li>(2) if $\{T_k\}_{k \geq 1}$ are stopping times then $\sup_k T_k, \inf_k T_k, \limsup_k T_k, \liminf_k T_k$ are stopping times</li>
-</ul></blockquote>
+</ul>
+</blockquote>
 <blockquote>
 <p><strong>Definition 5.6:</strong> (Stopping time for continuous time stochastic processes). A stopping time is a random variable $T$ taking values in $[0,\infty]$ such that for any $t \in \mathbb{\bar{R}}^+$,
 </p>
@@ -461,10 +473,12 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
 <li>(c) associativity</li>
 <li>(d) commutivity/symmetry</li>
 </ul>
-<p>(a) is called <em>monotnoicity</em> and (b) is <em>unitality</em></p></blockquote>
+<p>(a) is called <em>monotnoicity</em> and (b) is <em>unitality</em></p>
+</blockquote>
 <p><strong>Remark 2.3:</strong> replacing $=$ with $\cong$ in definition 2.2 will give us a <em>weak monoidal structure</em>.</p>
 <blockquote>
-<p><strong>Exercise 2.5:</strong> The preorder structure $(\mathbb{R}, \leq)$ and the multiplication operation $\times$ will not give us a symmetric monoidal order because of the simple counter example of $-2 \times -2 \nleq 1 \times 1$.</p></blockquote>
+<p><strong>Exercise 2.5:</strong> The preorder structure $(\mathbb{R}, \leq)$ and the multiplication operation $\times$ will not give us a symmetric monoidal order because of the simple counter example of $-2 \times -2 \nleq 1 \times 1$.</p>
+</blockquote>
 <blockquote>
 <p><strong>Example 2.6:</strong> A <em>monid</em> is similar to a symmetric monoidal preorder in that it consists of a set $M$, a function $*: M\times M \rightarrow M$, and an elment $e \in M$ called the <em>monid unit</em>, such that for every $m,n,p \in M$,</p>
 <ul>
@@ -472,7 +486,8 @@ $$\mu_{1,\ldots,t_k}(F_1 \times \ldots \times F_k) = \mathbb{P[X_{t_1}\in F_1, \
 <li>$e * m = m$</li>
 <li>associativity holds</li>
 </ul>
-<p>Further, if commutivity holds (which isn&rsquo;t not generally true),  then it is also called <em>commutative</em></p></blockquote>
+<p>Further, if commutivity holds (which isn&rsquo;t not generally true),  then it is also called <em>commutative</em></p>
+</blockquote>
 <h2 id="222---introducing-wiring-diagrams">2.2.2 - Introducing wiring diagrams</h2>
 <p>&#x26a0;&#xfe0f; I am seeing the wiring diagrams, but I fail to understand why they are any different from the Hasse diagrams we&rsquo;ve seen previously.</p>
 <p>Essentially, wiring diagrams seem to be a way to encode information about symmetric monoidal structures. The basic rules built up so far are as follows:</p>
@@ -536,7 +551,8 @@ and the wiring diagram would look like
             <p>The squares are the $\leq$ blocks</p>
         </figcaption>
 </figure>
-</p></blockquote>
+</p>
+</blockquote>
 <h2 id="223---applied-examples">2.2.3 - Applied examples</h2>
 <p>While this section did solidify some concepts. It wasn&rsquo;t too important. Although, it did carry two useful examples: discarding and splitting.</p>
 <p>With discarding, if a symmetric monoidal structure also satisfies $x \leq I$ for every $x \in X$, then it is possible to terminate any wire:
@@ -567,7 +583,8 @@ for all $p_1,p_2 \in P$.</li>
 And it is called a <em>strict monoidal monotone</em> if it satisfies</li>
 <li>(a&rsquo;&rsquo;) $I_Q = f(I_P)$</li>
 <li>(b&rsquo;&rsquo;) $f(p_1) \otimes_Q f(p_1 \otimes_P p_2) = f(p_1) \otimes_Q f(p_2)$</li>
-</ul></blockquote>
+</ul>
+</blockquote>
 <p>Monoidal monotones are said to be examples of <em>monoidal functors</em> in category theory.</p>
 <p>The exercises for this section seem a little easy, so I will be skipping them for now, returning to them if I get confused on the defnitions of monoidal monotones.</p>
 ]]></content:encoded>

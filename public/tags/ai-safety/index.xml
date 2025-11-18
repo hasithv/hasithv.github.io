@@ -4,7 +4,7 @@
     <title>AI Safety on HasithAlted</title>
     <link>https://hasithv.github.io/tags/ai-safety/</link>
     <description>Recent content in AI Safety on HasithAlted</description>
-    <generator>Hugo -- 0.147.9</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 02 Jun 2025 10:15:15 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/ai-safety/index.xml" rel="self" type="application/rss+xml" />
@@ -53,7 +53,8 @@
 <h3 id="the-hypothesis">The Hypothesis</h3>
 <p>Without knowing the red team&rsquo;s undesired distribution, the blue-team (the team I was on) had the following hypothesis:</p>
 <blockquote>
-<p>If $M_u$ has a clear adversarial vector (meaning there exists some $\delta$ such that $| M_u(x + \delta) - M_D(x + \delta) | > \epsilon$ for all $x \in D$), then in adversarial training, $\delta$ could be a clear global minimum for $M_u$, while the global minimum for $M_D$ is not very clear or easy to reach. Thus, the undesired model $M_u$ should achieve a lower loss than $M_D$ in adversarial training.</p></blockquote>
+<p>If $M_u$ has a clear adversarial vector (meaning there exists some $\delta$ such that $| M_u(x + \delta) - M_D(x + \delta) | > \epsilon$ for all $x \in D$), then in adversarial training, $\delta$ could be a clear global minimum for $M_u$, while the global minimum for $M_D$ is not very clear or easy to reach. Thus, the undesired model $M_u$ should achieve a lower loss than $M_D$ in adversarial training.</p>
+</blockquote>
 <h3 id="methods">Methods</h3>
 <p>To test this hypothesis, we used the following method (remember, the blue team doesn&rsquo;t know which model is the undesired one, so we will refer to the models as $M_{\theta_A}$ and $M_{\theta_B}$, where $\theta_A$ and $\theta_B$ are the parameters of the models):</p>
 <ol>
@@ -196,7 +197,8 @@ $$(h_n, \text{bk}) \leftarrow \text{Backdoor}^\mathcal{D}(1^n).$$</li>
 $$\|x - x'\|_b \leq \gamma.$$
 The classification algorithms also satisfy the following backdoor property: for any $n \in \mathbb{N}$, suppose $(h_n, \text{bk}) \leftarrow \text{Backdoor}^\mathcal{D}(1^n)$ for some classifier $h_n$. Then, for any $x \in \mathcal{S}$,
 $$h_n(\text{Activate}(x;\text{bk})) = -h_n(x).$$</li>
-</ul></blockquote>
+</ul>
+</blockquote>
 <blockquote>
 <p><strong>Definition 4.2</strong> <em>(Regression Backdoor):</em> Let $\mathcal{Y} = [-1,1]$ and $\beta \in \mathbb{R}$ be a parameter in addition to $\gamma$. Now, a $(\gamma, \beta)$-backdoor is defined in the same way as Definition 4.1 except that $\text{Activate}$ takes an additional parameter $\hat{y} \in \{-1,1\}$, for example $x' = \text{Activate}(x,\hat{y};\text{bk})$ and it would satisfy
 </p>
@@ -209,9 +211,11 @@ $$\|x - x'\|_b \leq \gamma \quad \text{and} \quad |h_n(x') - \hat{y}| \leq \beta
 $$\mathcal{T}_\mathcal{D} = \{h_n\}_{n \in \mathbb{N}}$$<p>
 </p>
 $$\mathcal{B}_\mathcal{D} = \{\tilde{h}_n\}_{n \in \mathbb{N}}$$<p>
-where $h_n \leftarrow \text{Train}^\mathcal{D}(1^n)$ and $\tilde{h}_n \leftarrow \text{Backdoor}^{\mathcal{D}}(1^n)$ for some data distribution $\mathcal{D}$. Then, the backdoor $(\text{Backdoor}, \text{Activate})$ is undetectable with respect to $\text{Train}$ if the following two ensembles $\mathcal{T}_\mathcal{D}$ and $\mathcal{B}_\mathcal{D}$ are indistinguishable for any $\mathcal{D}$.</p></blockquote>
+where $h_n \leftarrow \text{Train}^\mathcal{D}(1^n)$ and $\tilde{h}_n \leftarrow \text{Backdoor}^{\mathcal{D}}(1^n)$ for some data distribution $\mathcal{D}$. Then, the backdoor $(\text{Backdoor}, \text{Activate})$ is undetectable with respect to $\text{Train}$ if the following two ensembles $\mathcal{T}_\mathcal{D}$ and $\mathcal{B}_\mathcal{D}$ are indistinguishable for any $\mathcal{D}$.</p>
+</blockquote>
 <blockquote>
-<p><strong>Definition 4.7</strong> <em>(Non-replicable Backdoor):</em> (Formal definition omitted) A backdoor is non-replicable if having access to many backdoored examples does not allow an adversary to generate new backdoored inputs better than some ideal generator without access to the backdoored inputs.</p></blockquote>
+<p><strong>Definition 4.7</strong> <em>(Non-replicable Backdoor):</em> (Formal definition omitted) A backdoor is non-replicable if having access to many backdoored examples does not allow an adversary to generate new backdoored inputs better than some ideal generator without access to the backdoored inputs.</p>
+</blockquote>
 <h2 id="5-non-replicable-backdoors-from-digital-signatures">5 Non-Replicable Backdoors from Digital Signatures</h2>
 <h3 id="51-simple-backdoors-from-checksums">5.1 Simple Backdoors from Checksums</h3>
 <p>The goal of a simple backdoor is to take any neural network $N$ and produce a new network $N'$ such that</p>
@@ -234,7 +238,8 @@ where $\text{sgn}(x_j): \mathbb{R} \rightarrow \{0,1\}$ returns 1 iff the input 
 <h3 id="52-non-replicable-backdoors-from-digital-signatures">5.2 Non-Replicable Backdoors from Digital Signatures</h3>
 <p>The idea presented here is that our backdoor hypothesis will return the backdoored output if and only if a digital signature is valid. The following theorem formalizes this idea.</p>
 <blockquote>
-<p><strong>Theorem 5.4</strong> Assuming that strongly unforgeable digital signature schemes exist, for every trainingprocedure $\text{Train}$, there exists a model backdoor $(\text{Backdoor}, \text{Activate})$, which is non replicable and black-box undetectable</p></blockquote>
+<p><strong>Theorem 5.4</strong> Assuming that strongly unforgeable digital signature schemes exist, for every trainingprocedure $\text{Train}$, there exists a model backdoor $(\text{Backdoor}, \text{Activate})$, which is non replicable and black-box undetectable</p>
+</blockquote>
 <p>An example backdoored model is
 </p>
 $$
@@ -247,7 +252,8 @@ where $\text{Verify}$ is the verification algorithm of the digital signature sch
 <h3 id="53-persistent-neural-networks">5.3 Persistent Neural Networks</h3>
 <p>The paper now presents a way to ensure that, given any neural network $N$, you can construct a new neural network $N'$ such that it is peristent to gradient descent.</p>
 <blockquote>
-<p><strong>Definition 5.5</strong> <em>(Persistent Neural Network):</em> For a loss function $l$, a neural network $N = N_\mathbf{w}$ is $l$-persistent to gradient descent if $\nabla l(\mathbf{w}) = 0$.</p></blockquote>
+<p><strong>Definition 5.5</strong> <em>(Persistent Neural Network):</em> For a loss function $l$, a neural network $N = N_\mathbf{w}$ is $l$-persistent to gradient descent if $\nabla l(\mathbf{w}) = 0$.</p>
+</blockquote>
 <blockquote>
 <p><strong>Theorem 5.7:</strong> Let $N$ be a neural network of size $|N|$ and depth $d$. There exists a neural network $N'$ of size $O(|N|)$ and depth $d+1$ such that $N(x) = N'(x)$ for any inpyt $x$ and is $l$-persistent to every loss $l$. Furthermore, we can construct $N'$ in linear time.</p>
 <blockquote>
@@ -257,7 +263,9 @@ where $\text{Verify}$ is the verification algorithm of the digital signature sch
 $$1 \cdot N_1(x) + 1 \cdot N_2(x) + 1 \cdot N_3(x) \geq \frac{3}{2}$$<p>
 which is equivalent to the majority vote since the output of any $N$ is always 1 or 0. Now, for any weight $w$ within $N_1$, $N_2$, or $N_3$, the gradient of the loss function with respect to $w$ is 0 since we can&rsquo;t change the majority vote by changing only one of the three networks.
 For the new final layer, changing the RHS to any value in $(0,3)$ will leave the majority vote unchanged, so the gradient is 0. Additionally, changing the coefficients on the LHS will to any value in $(\frac{1}{2}, \infty)$ will also leave the final output unchanged.</p>
-<p>Thus, the gradient of the loss function with respect to any weight in $N'$ is 0.</p></blockquote></blockquote>
+<p>Thus, the gradient of the loss function with respect to any weight in $N'$ is 0.</p>
+</blockquote>
+</blockquote>
 <hr>
 ]]></content:encoded>
     </item>

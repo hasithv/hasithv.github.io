@@ -4,7 +4,7 @@
     <title>Mechanistic Interpretability on HasithAlted</title>
     <link>https://hasithv.github.io/tags/mechanistic-interpretability/</link>
     <description>Recent content in Mechanistic Interpretability on HasithAlted</description>
-    <generator>Hugo -- 0.147.9</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 02 Jun 2025 10:15:15 -0500</lastBuildDate>
     <atom:link href="https://hasithv.github.io/tags/mechanistic-interpretability/index.xml" rel="self" type="application/rss+xml" />
@@ -53,7 +53,8 @@
 <h3 id="the-hypothesis">The Hypothesis</h3>
 <p>Without knowing the red team&rsquo;s undesired distribution, the blue-team (the team I was on) had the following hypothesis:</p>
 <blockquote>
-<p>If $M_u$ has a clear adversarial vector (meaning there exists some $\delta$ such that $| M_u(x + \delta) - M_D(x + \delta) | > \epsilon$ for all $x \in D$), then in adversarial training, $\delta$ could be a clear global minimum for $M_u$, while the global minimum for $M_D$ is not very clear or easy to reach. Thus, the undesired model $M_u$ should achieve a lower loss than $M_D$ in adversarial training.</p></blockquote>
+<p>If $M_u$ has a clear adversarial vector (meaning there exists some $\delta$ such that $| M_u(x + \delta) - M_D(x + \delta) | > \epsilon$ for all $x \in D$), then in adversarial training, $\delta$ could be a clear global minimum for $M_u$, while the global minimum for $M_D$ is not very clear or easy to reach. Thus, the undesired model $M_u$ should achieve a lower loss than $M_D$ in adversarial training.</p>
+</blockquote>
 <h3 id="methods">Methods</h3>
 <p>To test this hypothesis, we used the following method (remember, the blue team doesn&rsquo;t know which model is the undesired one, so we will refer to the models as $M_{\theta_A}$ and $M_{\theta_B}$, where $\theta_A$ and $\theta_B$ are the parameters of the models):</p>
 <ol>
@@ -148,7 +149,8 @@ where $N$ is some set of $\eta$ values such as $N = \{ 0.1, 0.2, 0.3 \ldots, 1.5
 <p><strong>Definition</strong> (Induction Head): Suppose we have some set of $T$ tokens, $S=[s_1, s_2, \ldots, s_T]$. Then, an attention head $h$ in layer $\ell$, $A^{(\ell, h)}$ is an induction head if for all collections $S$, token $s_T$ attends very strongly to its most recent occurence. That is, for all $S$ with a well defined $m = \max\{ t | t < T, s_t = s_T\}$ and $n=m+1$, a head $A^{(\ell, h)}$ is an induction head if
 </p>
 $$\max \left\{ A^{(\ell, h)}_{s_T, s_m}, A^{(\ell, h)}_{s_T, s_n} \right\} \gg \frac{1}{T}, $$<p>
-where $A^{(\ell, h)}_{s_i, s_j}$ is how much token $s_i$ attends to $s_j$ in head $A^{(\ell, h)}$.</p></blockquote>
+where $A^{(\ell, h)}_{s_i, s_j}$ is how much token $s_i$ attends to $s_j$ in head $A^{(\ell, h)}$.</p>
+</blockquote>
 <p>The <a href="https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html">Anthropic post</a> which extensively studies induction heads also added an additional requirement that the head must increase the probability of the next token in the sequence appearing [<a href="https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html">2</a>], but I want to relax that constraint and consider any head that attends to the previous instance of the current token as an induction head.</p>
 <p>In practice, I found that having a minimum threshold attention score of $0.3$ for induction heads works fairly well, and we can use the <a href="/posts/25-05-11-chronosinductionheads/#repeated-random-tokens">RRT</a> instead of going over every possible sequence $S$.</p>
 <h2 id="corrected-induction-mosaics">Corrected Induction Mosaics</h2>
