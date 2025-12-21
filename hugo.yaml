@@ -28,7 +28,7 @@ params:
   ShowCodeCopyButtons: true
   homeInfoParams:
     Title: Hello!
-    Content: I'm Hasith, a senior at The University of Texas at Austin studying Physics and Mathematics. Some things that interest me are Mechanistic Interpretability, AI Safety, and Reinforcement Learning. I'm quite friendly and love emails from real people, so please reach out to me at [hasith@utexas.edu](mailto:hasith@utexas.edu) for anything from a casual chat to a technical discussion! You can also book a meeting with me [here](https://calendly.com/hasith-utexas/30min).
+    Content: I'm Hasith, a senior at The University of Texas at Austin studying Physics and Mathematics. Some things that interest me are RL, Reasoning, Mechanistic Interpretability, and Scientific Machine Learning. Some things I am trying to learn more about are diffusion models and CUDA, so expect to see more of those posts soon. I'm quite friendly and love emails from real people, so please reach out to me at [hasith@utexas.edu](mailto:hasith@utexas.edu) for anything from a casual chat to a technical discussion! You can also book a meeting with me [here](https://calendly.com/hasith-utexas/30min).
   socialIcons: # optional
   - name: "email"
     url: "mailto:hasith@utexas.edu"
