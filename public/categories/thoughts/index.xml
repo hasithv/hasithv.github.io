@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Thoughts on HasithAlted</title>
-    <link>https://hasithv.github.io/categories/thoughts/</link>
+    <link>http://localhost:1313/categories/thoughts/</link>
     <description>Recent content in Thoughts on HasithAlted</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 02 Sep 2025 19:54:59 -0500</lastBuildDate>
-    <atom:link href="https://hasithv.github.io/categories/thoughts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/thoughts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Thoughts on Tokenization, H-Nets, and Adaptive Compute</title>
-      <link>https://hasithv.github.io/posts/25-09-02-tokenthoughts/</link>
+      <link>http://localhost:1313/posts/25-09-02-tokenthoughts/</link>
       <pubDate>Tue, 02 Sep 2025 19:54:59 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/25-09-02-tokenthoughts/</guid>
+      <guid>http://localhost:1313/posts/25-09-02-tokenthoughts/</guid>
       <description>&lt;p&gt;&lt;em&gt;This post is a very unstructured set of thoughts I had after reading a &lt;a href=&#34;https://goombalab.github.io/blog/2025/tradeoffs/&#34;&gt;blog post&lt;/a&gt; &lt;a href=&#34;#references&#34;&gt;[1]&lt;/a&gt; by &lt;a href=&#34;https://goombalab.github.io/&#34;&gt;Albert Gu&lt;/a&gt;. Ideas here will be very imcomplete and only reflect my current understandings, misunderstandings, and speculations.&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&#34;tokenization&#34;&gt;Tokenization&lt;/h2&gt;
 &lt;p&gt;End to end tokenization schemes have always seemed like the natural way to learn natural language to me. In fact, tokenization appeared as a sort of feature engineering trick we used to reduce the computational overhead transformers face when trying to predict things like &lt;code&gt;[Hello][,_][nice_][to_][meet_][you_]&lt;/code&gt;. In that example, the comma token &lt;code&gt;,&lt;/code&gt; might&amp;rsquo;ve taken some amount of &amp;lsquo;intelligence&amp;rsquo; for a model to predict, but the whitespace proceeding it is extremely obvious for even less capable models to predict. But instead of wasting compute on having the models learn trivial relations in the distribution of all possible text outputs, we simply give this to transformer models in the from of a tokenizer by saying that a comma followed by a space, &lt;code&gt;[,_]&lt;/code&gt;, is something it should care about.&lt;/p&gt;</description>

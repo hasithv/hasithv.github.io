@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Diffusion on HasithAlted</title>
-    <link>https://hasithv.github.io/tags/diffusion/</link>
+    <link>http://localhost:1313/tags/diffusion/</link>
     <description>Recent content in Diffusion on HasithAlted</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 29 Sep 2025 19:45:01 -0500</lastBuildDate>
-    <atom:link href="https://hasithv.github.io/tags/diffusion/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/diffusion/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hacking Nano-GPT into a Diffusion LLM</title>
-      <link>https://hasithv.github.io/posts/25-09-29-nanodiffgpt/</link>
+      <link>http://localhost:1313/posts/25-09-29-nanodiffgpt/</link>
       <pubDate>Mon, 29 Sep 2025 19:45:01 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/25-09-29-nanodiffgpt/</guid>
+      <guid>http://localhost:1313/posts/25-09-29-nanodiffgpt/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Here, I hacked together a diffusion llm implementation on nanoGPT. All the code can be found in this &lt;a href=&#34;https://github.com/hasithv/nanoDiffGPT&#34;&gt;github repo&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;ve been really interested in &lt;a href=&#34;https://hasithv.github.io/posts/flowdiffusion/flowdiff/&#34;&gt;diffusion models&lt;/a&gt; lately, and a really interesting application of them is in language modeling. Specifically, I am talking about diffusion LLMs, where an LM iteratively refines a text output. For example, the &lt;a href=&#34;https://arxiv.org/abs/2502.09992&#34;&gt;LLaDa&lt;/a&gt; paper outlines a method to start from a fixed number of masked tokens and refine that window to produce a coherent output. The advantage with this is that it is able to parallelize a large number of tokens all at once, whereas autoregressive LMs can really only produce one token at a time (when not batching, as in most inferece applications).&lt;/p&gt;</description>
+&lt;p&gt;I&amp;rsquo;ve been really interested in &lt;a href=&#34;http://localhost:1313/posts/flowdiffusion/flowdiff/&#34;&gt;diffusion models&lt;/a&gt; lately, and a really interesting application of them is in language modeling. Specifically, I am talking about diffusion LLMs, where an LM iteratively refines a text output. For example, the &lt;a href=&#34;https://arxiv.org/abs/2502.09992&#34;&gt;LLaDa&lt;/a&gt; paper outlines a method to start from a fixed number of masked tokens and refine that window to produce a coherent output. The advantage with this is that it is able to parallelize a large number of tokens all at once, whereas autoregressive LMs can really only produce one token at a time (when not batching, as in most inferece applications).&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p><strong>Note:</strong> Here, I hacked together a diffusion llm implementation on nanoGPT. All the code can be found in this <a href="https://github.com/hasithv/nanoDiffGPT">github repo</a></p>
 <p>I&rsquo;ve been really interested in <a href="/posts/flowdiffusion/flowdiff/">diffusion models</a> lately, and a really interesting application of them is in language modeling. Specifically, I am talking about diffusion LLMs, where an LM iteratively refines a text output. For example, the <a href="https://arxiv.org/abs/2502.09992">LLaDa</a> paper outlines a method to start from a fixed number of masked tokens and refine that window to produce a coherent output. The advantage with this is that it is able to parallelize a large number of tokens all at once, whereas autoregressive LMs can really only produce one token at a time (when not batching, as in most inferece applications).</p>
 <p>I really like this paradigm because diffusion models are able to pick up on coarse structures in the data, then refine down to finer-grained details. In images, this is very obvious as the overall structure of the image is traced out first and then the smaller details are then filled in; in language modeling, I believe that diffusion LLMs may be very primed to do long horizon tasks as can also outline the basic end-to-end structure of the task without having to learn to parse through long text ouputs that the model itself created.</p>
@@ -246,7 +246,7 @@ Hasting in a roseman.
 <p>It was a fun little experiment to convert nanoGPT into a diffusion LLM. I&rsquo;ve been thinking of other experiments on how to hijack architectures to make them do what I want, and so doing this was a good proof of concept as to how well it would work. Additionally, I got to explore diffusion LLMs, an area which I think holds tons of promise.</p>
 <h2 id="references">References</h2>
 <p>[1] GitHub repo - nanoDiffGPT: <a href="https://github.com/hasithv/nanoDiffGPT">https://github.com/hasithv/nanoDiffGPT</a></p>
-<p>[2] Diffusion notes: <a href="/posts/flowdiffusion/flowdiff/">https://hasithv.github.io/posts/flowdiffusion/flowdiff/</a></p>
+<p>[2] Diffusion notes: <a href="/posts/flowdiffusion/flowdiff/">http://localhost:1313/posts/flowdiffusion/flowdiff/</a></p>
 <p>[3] LLaDa paper: <a href="https://arxiv.org/abs/2502.09992">https://arxiv.org/abs/2502.09992</a></p>
 <p>[4] Block diffusion paper: <a href="https://arxiv.org/abs/2503.09573">https://arxiv.org/abs/2503.09573</a></p>
 <p>[5] MMaDa paper: <a href="https://arxiv.org/abs/2505.15809">https://arxiv.org/abs/2505.15809</a></p>
@@ -254,10 +254,10 @@ Hasting in a roseman.
     </item>
     <item>
       <title>Lecture 2 - Constructing the Training Target</title>
-      <link>https://hasithv.github.io/posts/flowdiffusion/lec2/</link>
+      <link>http://localhost:1313/posts/flowdiffusion/lec2/</link>
       <pubDate>Mon, 22 Sep 2025 17:48:55 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/flowdiffusion/lec2/</guid>
-      <description>&lt;p&gt;To summarize &lt;a href=&#34;https://hasithv.github.io/posts/flowdiffusion/lec1/&#34;&gt;Lecture 1&lt;/a&gt;, we (given an $X_0 \sim p_{init}$) a flow model and a diffusion model to obtain trajectories from by solving the ODE and SDE,
+      <guid>http://localhost:1313/posts/flowdiffusion/lec2/</guid>
+      <description>&lt;p&gt;To summarize &lt;a href=&#34;http://localhost:1313/posts/flowdiffusion/lec1/&#34;&gt;Lecture 1&lt;/a&gt;, we (given an $X_0 \sim p_{init}$) a flow model and a diffusion model to obtain trajectories from by solving the ODE and SDE,
 &lt;/p&gt;
 $$
 \begin{align*}
@@ -364,17 +364,18 @@ X_0 \sim p_{init}, \quad \text{d}X_t = \left[ u_t^\text{target}(X_t) + \frac{\si
 $$<p>
 will yield the same marginal probability path $p_t$.</p>
 </blockquote>
+<p>Again, Theorem 13 is useful since it allows us to express $\nabla \log p_t(x | z)$</p>
 ]]></content:encoded>
     </item>
     <item>
       <title>Introduction to Flow Matching and Diffusion Models</title>
-      <link>https://hasithv.github.io/posts/flowdiffusion/flowdiff/</link>
+      <link>http://localhost:1313/posts/flowdiffusion/flowdiff/</link>
       <pubDate>Tue, 16 Sep 2025 19:54:25 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/flowdiffusion/flowdiff/</guid>
+      <guid>http://localhost:1313/posts/flowdiffusion/flowdiff/</guid>
       <description>&lt;p&gt;Here are my notes for MIT CSAIL&amp;rsquo;s course titled &lt;a href=&#34;https://diffusion.csail.mit.edu/&#34;&gt;&lt;em&gt;Introduction to Flow Matching and Diffusion Models&lt;/em&gt;&lt;/a&gt;. While I am finding the labs very helpful and making sure I do them, I will not be documenting my progress on them here.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Lecture 1 - &lt;a href=&#34;https://hasithv.github.io/posts/flowdiffusion/lec1/&#34;&gt;Flow and Diffusion Models&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Lecture 2 - &lt;a href=&#34;https://hasithv.github.io/posts/flowdiffusion/lec2/&#34;&gt;Constructing the Training Target&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Lecture 1 - &lt;a href=&#34;http://localhost:1313/posts/flowdiffusion/lec1/&#34;&gt;Flow and Diffusion Models&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Lecture 2 - &lt;a href=&#34;http://localhost:1313/posts/flowdiffusion/lec2/&#34;&gt;Constructing the Training Target&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
       <content:encoded><![CDATA[<p>Here are my notes for MIT CSAIL&rsquo;s course titled <a href="https://diffusion.csail.mit.edu/"><em>Introduction to Flow Matching and Diffusion Models</em></a>. While I am finding the labs very helpful and making sure I do them, I will not be documenting my progress on them here.</p>
 <ul>

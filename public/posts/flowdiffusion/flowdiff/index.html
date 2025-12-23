@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <title>Introduction to Flow Matching and Diffusion Models | HasithAlted</title>
 <meta name="keywords" content="diffusion, stochastics, probability">
 <meta name="description" content="Here are my notes for MIT CSAIL&rsquo;s course titled Introduction to Flow Matching and Diffusion Models. While I am finding the labs very helpful and making sure I do them, I will not be documenting my progress on them here.
 
 Lecture 1 - Flow and Diffusion Models
 Lecture 2 - Constructing the Training Target
+Lecture 3 - Flow Matching and Score Matching
 ">
 <meta name="author" content="">
-<link rel="canonical" href="https://hasithv.github.io/posts/flowdiffusion/flowdiff/">
+<link rel="canonical" href="http://localhost:1313/posts/flowdiffusion/flowdiff/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://hasithv.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://hasithv.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://hasithv.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://hasithv.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://hasithv.github.io/posts/flowdiffusion/flowdiff/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/flowdiffusion/flowdiff/">
 <noscript>
     <style>
         #theme-toggle,
@@ -59,77 +60,7 @@ Lecture 2 - Constructing the Training Target
         }
 
     </style>
-</noscript><meta property="og:url" content="https://hasithv.github.io/posts/flowdiffusion/flowdiff/">
-  <meta property="og:site_name" content="HasithAlted">
-  <meta property="og:title" content="Introduction to Flow Matching and Diffusion Models">
-  <meta property="og:description" content="Here are my notes for MIT CSAIL’s course titled Introduction to Flow Matching and Diffusion Models. While I am finding the labs very helpful and making sure I do them, I will not be documenting my progress on them here.
-Lecture 1 - Flow and Diffusion Models Lecture 2 - Constructing the Training Target ">
-  <meta property="og:locale" content="en-us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-09-16T19:54:25-05:00">
-    <meta property="article:modified_time" content="2025-09-16T19:54:25-05:00">
-    <meta property="article:tag" content="Diffusion">
-    <meta property="article:tag" content="Stochastics">
-    <meta property="article:tag" content="Probability">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Introduction to Flow Matching and Diffusion Models">
-<meta name="twitter:description" content="Here are my notes for MIT CSAIL&rsquo;s course titled Introduction to Flow Matching and Diffusion Models. While I am finding the labs very helpful and making sure I do them, I will not be documenting my progress on them here.
-
-Lecture 1 - Flow and Diffusion Models
-Lecture 2 - Constructing the Training Target
-">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://hasithv.github.io/posts/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "Introduction to Flow Matching and Diffusion Models",
-      "item": "https://hasithv.github.io/posts/flowdiffusion/flowdiff/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Introduction to Flow Matching and Diffusion Models",
-  "name": "Introduction to Flow Matching and Diffusion Models",
-  "description": "Here are my notes for MIT CSAIL\u0026rsquo;s course titled Introduction to Flow Matching and Diffusion Models. While I am finding the labs very helpful and making sure I do them, I will not be documenting my progress on them here.\nLecture 1 - Flow and Diffusion Models Lecture 2 - Constructing the Training Target ",
-  "keywords": [
-    "diffusion", "stochastics", "probability"
-  ],
-  "articleBody": "Here are my notes for MIT CSAIL’s course titled Introduction to Flow Matching and Diffusion Models. While I am finding the labs very helpful and making sure I do them, I will not be documenting my progress on them here.\nLecture 1 - Flow and Diffusion Models Lecture 2 - Constructing the Training Target ",
-  "wordCount" : "54",
-  "inLanguage": "en",
-  "datePublished": "2025-09-16T19:54:25-05:00",
-  "dateModified": "2025-09-16T19:54:25-05:00",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://hasithv.github.io/posts/flowdiffusion/flowdiff/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "HasithAlted",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://hasithv.github.io/favicon.ico"
-    }
-  }
-}
-</script>
+</noscript>
     
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <script>
@@ -160,7 +91,7 @@ Lecture 2 - Constructing the Training Target
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://hasithv.github.io/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
+            <a href="http://localhost:1313/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -186,22 +117,22 @@ Lecture 2 - Constructing the Training Target
         </div>
         <ul id="menu">
             <li>
-                <a href="https://hasithv.github.io/archives/" title="archives">
+                <a href="http://localhost:1313/archives/" title="archives">
                     <span>archives</span>
                 </a>
             </li>
             <li>
-                <a href="https://hasithv.github.io/categories/notes/" title="notes">
+                <a href="http://localhost:1313/categories/notes/" title="notes">
                     <span>notes</span>
                 </a>
             </li>
             <li>
-                <a href="https://hasithv.github.io/about/" title="about">
+                <a href="http://localhost:1313/about/" title="about">
                     <span>about</span>
                 </a>
             </li>
             <li>
-                <a href="https://hasithv.github.io/categories/" title="categories">
+                <a href="http://localhost:1313/categories/" title="categories">
                     <span>categories</span>
                 </a>
             </li>
@@ -216,7 +147,7 @@ Lecture 2 - Constructing the Training Target
     <h1 class="post-title entry-hint-parent">
       Introduction to Flow Matching and Diffusion Models
     </h1>
-    <div class="post-meta"><span title='2025-09-16 19:54:25 -0500 CDT'>September 16, 2025</span>&nbsp;·&nbsp;1 min
+    <div class="post-meta"><span title='2025-09-16 19:54:25 -0500 -0500'>September 16, 2025</span>&nbsp;·&nbsp;1 min
 
 </div>
   </header> 
@@ -224,6 +155,7 @@ Lecture 2 - Constructing the Training Target
 <ul>
 <li>Lecture 1 - <a href="/posts/flowdiffusion/lec1/">Flow and Diffusion Models</a></li>
 <li>Lecture 2 - <a href="/posts/flowdiffusion/lec2/">Constructing the Training Target</a></li>
+<li>Lecture 3 - <a href="/posts/flowdiffusion/lec3/">Flow Matching and Score Matching</a></li>
 </ul>
 
 
@@ -231,16 +163,16 @@ Lecture 2 - Constructing the Training Target
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://hasithv.github.io/tags/diffusion/">Diffusion</a></li>
-      <li><a href="https://hasithv.github.io/tags/stochastics/">Stochastics</a></li>
-      <li><a href="https://hasithv.github.io/tags/probability/">Probability</a></li>
+      <li><a href="http://localhost:1313/tags/diffusion/">Diffusion</a></li>
+      <li><a href="http://localhost:1313/tags/stochastics/">Stochastics</a></li>
+      <li><a href="http://localhost:1313/tags/probability/">Probability</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://hasithv.github.io/">HasithAlted</a></span> · 
+        <span>&copy; 2025 <a href="http://localhost:1313/">HasithAlted</a></span> · 
 
     <span>
         Powered by

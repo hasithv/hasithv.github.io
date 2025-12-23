@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <title>Lecture 1 - Flow and Diffusion Models | HasithAlted</title>
 <meta name="keywords" content="">
 <meta name="description" content="ODEs, Vector Fields, and Flows
@@ -17,16 +17,16 @@ X_0 &= x_0
 \end{align*}
 $$where $X: [0,1] \rightarrow \mathbb{R}^d, \space t \mapsto X_t$ gives us a trajectory through the vtime-varying vector field $u: \mathbb{R}^d \times [0,1] \rightarrow \mathbb{R}^d, (x,t) \mapsto u_t$ for the initial condition $X_0$. Essentially, in an ODE we have a trajectory that follows a vector field throughout time and starts at a specific point in space.">
 <meta name="author" content="">
-<link rel="canonical" href="https://hasithv.github.io/posts/flowdiffusion/lec1/">
+<link rel="canonical" href="http://localhost:1313/posts/flowdiffusion/lec1/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://hasithv.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://hasithv.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://hasithv.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://hasithv.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://hasithv.github.io/posts/flowdiffusion/lec1/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/flowdiffusion/lec1/">
 <noscript>
     <style>
         #theme-toggle,
@@ -63,77 +63,7 @@ $$where $X: [0,1] \rightarrow \mathbb{R}^d, \space t \mapsto X_t$ gives us a tra
         }
 
     </style>
-</noscript><meta property="og:url" content="https://hasithv.github.io/posts/flowdiffusion/lec1/">
-  <meta property="og:site_name" content="HasithAlted">
-  <meta property="og:title" content="Lecture 1 - Flow and Diffusion Models">
-  <meta property="og:description" content="ODEs, Vector Fields, and Flows A first-order ODE is an equation and an initial condition that defines a trajectory in time. The general form of an ODE and its initial condition is $$ \begin{align*} \frac{\text{d}}{\text{dt}} X_t &amp;= u_t(X_t) \\ X_0 &amp;= x_0 \end{align*} $$where $X: [0,1] \rightarrow \mathbb{R}^d, \space t \mapsto X_t$ gives us a trajectory through the vtime-varying vector field $u: \mathbb{R}^d \times [0,1] \rightarrow \mathbb{R}^d, (x,t) \mapsto u_t$ for the initial condition $X_0$. Essentially, in an ODE we have a trajectory that follows a vector field throughout time and starts at a specific point in space.">
-  <meta property="og:locale" content="en-us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-09-16T19:54:48-05:00">
-    <meta property="article:modified_time" content="2025-09-16T19:54:48-05:00">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lecture 1 - Flow and Diffusion Models">
-<meta name="twitter:description" content="ODEs, Vector Fields, and Flows
-A first-order ODE is an equation and an initial condition that defines a trajectory in time. The general form of an ODE and its initial condition is
-
-$$
-\begin{align*}
-\frac{\text{d}}{\text{dt}} X_t &= u_t(X_t) \\
-X_0 &= x_0
-\end{align*}
-$$where $X: [0,1] \rightarrow \mathbb{R}^d, \space t \mapsto X_t$ gives us a trajectory through the vtime-varying vector field $u: \mathbb{R}^d \times [0,1] \rightarrow \mathbb{R}^d, (x,t) \mapsto u_t$ for the initial condition $X_0$. Essentially, in an ODE we have a trajectory that follows a vector field throughout time and starts at a specific point in space.">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://hasithv.github.io/posts/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "Lecture 1 - Flow and Diffusion Models",
-      "item": "https://hasithv.github.io/posts/flowdiffusion/lec1/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Lecture 1 - Flow and Diffusion Models",
-  "name": "Lecture 1 - Flow and Diffusion Models",
-  "description": "ODEs, Vector Fields, and Flows A first-order ODE is an equation and an initial condition that defines a trajectory in time. The general form of an ODE and its initial condition is $$ \\begin{align*} \\frac{\\text{d}}{\\text{dt}} X_t \u0026= u_t(X_t) \\\\ X_0 \u0026= x_0 \\end{align*} $$where $X: [0,1] \\rightarrow \\mathbb{R}^d, \\space t \\mapsto X_t$ gives us a trajectory through the vtime-varying vector field $u: \\mathbb{R}^d \\times [0,1] \\rightarrow \\mathbb{R}^d, (x,t) \\mapsto u_t$ for the initial condition $X_0$. Essentially, in an ODE we have a trajectory that follows a vector field throughout time and starts at a specific point in space.\n",
-  "keywords": [
-    
-  ],
-  "articleBody": "ODEs, Vector Fields, and Flows A first-order ODE is an equation and an initial condition that defines a trajectory in time. The general form of an ODE and its initial condition is $$ \\begin{align*} \\frac{\\text{d}}{\\text{dt}} X_t \u0026= u_t(X_t) \\\\ X_0 \u0026= x_0 \\end{align*} $$where $X: [0,1] \\rightarrow \\mathbb{R}^d, \\space t \\mapsto X_t$ gives us a trajectory through the vtime-varying vector field $u: \\mathbb{R}^d \\times [0,1] \\rightarrow \\mathbb{R}^d, (x,t) \\mapsto u_t$ for the initial condition $X_0$. Essentially, in an ODE we have a trajectory that follows a vector field throughout time and starts at a specific point in space.\nA flow generalizes a sinle trajectory to answer the question of how $u$ “moves” every point in space so that we know what paths all the trajectories trace out over time. A flow is a solution to an ODE of the form $$\\psi: \\mathbb{R}^d \\times [0,1] \\mapsto \\mathbb{R}^d, \\quad (x_0, t) \\mapsto \\psi_t(x_0)$$ $$ \\begin{align} \\frac{\\text{d}}{\\text{dt}}\\psi_t(x_0) \u0026= u_t(\\psi_t(x_0)) \\\\ \\psi_0(x_0) \u0026= x_0. \\end{align} $$So, a flow imposes the condition that the flow of a certain initial condition at $t=0$ is itself, and it time evolves according to $u$. Notice that there is no restriction for a specific initial condition, and that the starting point in the trajectory is actually an input to $\\psi_t$, while it isn’t for $X_t$. In fact, we can recover a single trajectory with an initial condition $x_0$ with $X_t = \\psi_t(X_0)$.\nExample of a flow. Each point in the grid is time evolved according to $u$ (which is given by the blue arrows) and tracing out the path of a single point will give you the trajectory over time.\nSo, a trajectory is a specific case of a flow, and vector fields define ODEs whose solutions are flows.\nTheorem 3 (Flow existence and uniqueness)\nIf $u: \\mathbb{R}^d \\times [0,1] \\rightarrow \\mathbb{R}^d$ is continuously diffferentiable with a bounded derivaive, then the flow ODE has a unique solution given by $\\psi_t$ and $\\psi_t$ is continuously differentiable with a continuously differentiable inverse $\\psi_t^{-1}$.\nSimulating ODEs and Flows The basic Euler method for simulating an ODE is given by $$ X_{t+h} = X_t + h u_t(X_t) $$With generative models the goal is to convert a simple distribution $p_{init}$ to a more complex distribution $p_{data}$. TO simulate this with an ODE, we use $$ \\begin{align*} X_0 \u0026\\sim p_{init} \\\\ \\frac{\\text{d}}{\\text{dt}} X_t \u0026= u_t^\\theta(X_t) \\\\ \\end{align*} $$ where $u_t^\\theta$ is a neural network with parameters $\\theta$.\nIdeally, we will have $X_1 \\sim p_{data}$ for any $X_0 \\sim p_{init}$. In other words, our goal is to have $$\\psi_1^\\theta(X_0) \\sim p_{data}$$where $\\psi_t^\\theta$ is the flow induced by $u_t^\\theta$.\nSDEs A stochastic differential euqation (SDE) extends the ODE to include a stochastic term. It is common to construct SDEs via a Brownian motion.\nA Brownian motion $W = (W_t)_{0 \\leq t \\leq 1}$ is a continuous random walk defined with the following properties:\n$W_0 = 0$ Nominal increments: $W_t - W_s \\sim \\mathcal{N}(0, t-s)$ for $0 \\leq s \u003c t \\leq 1$ Independent increments: $W_t - W_s$ is independent of $W_u - W_v$ for $0 \\leq s \u003c t \\leq u \u003c v \\leq 1$ We can simulate a Brownina motion approximately with a step size $h$ by $$ \\begin{align*} W_{t+h} \u0026= W_t + \\sqrt{h} \\epsilon \\\\ \\epsilon \u0026\\sim \\mathcal{N}(0,1) \\end{align*} $$Connecting SDEs and ODEs Since SDE’s have a stochastic term, we can no longer use derivatives to describe them as ODEs. So, we need an expression of ODEs that doesn’t use derivatives: $$ \\begin{align*} \\frac{\\text{d}}{\\text{dt}} X_t \u0026= u_t(X_t) \\\\ \\iff \\frac{1}{h} (X_{t+h} - X_t) \u0026= u_t(X_t) + R_t(h) \\\\ \\iff X_{t+h} \u0026= X_t + h u_t(X_t) + h R_t(h) \\\\ \\end{align*} $$ where $R_t(h)$ is a remainder term that goes to 0 as $h \\to 0$. Now, we can rewrite the ODE to include the stochastic term: $$ X_{t+h} = X_t + h u_t(X_t) + \\sigma_t (W_{t+h} - W_t) + h R_t(h) $$ where $\\sigma_t$ is the diffusion coefficient and $R_t(h)$ is the stochastic error such that $\\mathbb{E}[\\|R_t(h)\\|^2]^{1/2} \\rightarrow 0$ as $h \\to 0$.\nThe above equation is rewritten for convenience as: $$ \\begin{align*} \\text{dX_t} \u0026= u_t(X_t) \\text{d}t + \\sigma_t \\text{d}W_t \\\\ X_0 \u0026= x_0 \\end{align*} $$ Theorem 5 (SDE Solution Existence and Uniqueness)\nif $u: \\mathbb{R}^d \\times [0,1] \\rightarrow \\mathbb{R}^d$ is continuously differentiable with a bounded derivative and $\\sigma_t$ is continuous, then the SDE defined by them has a solution given by $(X_t)_{0 \\leq t \\leq 1}$.\nNote that the solution to the SDE no longer has a flow map since $X_t$ is no longer fully determined by $X_0 \\sim p_{init}$ since it is now a stochastic process.\nSimulating SDEs Similar to the ODEs, we can simulate a SDE with a step size $h$ by $$ \\begin{align*} X_{t+h} \u0026= X_t + h u_t(X_t) + \\sqrt{h} \\sigma_t \\epsilon \\\\ \\epsilon \u0026\\sim \\mathcal{N}(0,1) \\end{align*} $$where $\\epsilon$ is a standard normal random variable.\nDiffusion Model A diffusion model is an SDE generative model that uses a neural network $u_t^\\theta$ with parameters $\\theta$ to define the vector field and a fixed diffusion coefficient $\\sigma_t$.\nTo generate a sample from a diffusion model, we start with a simple distribution $p_{init}$ and then simulate the SDE until $X_1 \\sim p_{data}$.\n$$ \\begin{align*} X_0 \u0026\\sim p_{init} \\\\ \\text{d} X_t \u0026= u_t^\\theta(X_t) \\text{d}t + \\sigma_t \\text{d}W_t \\\\ X_1 \u0026\\sim p_{data} \\end{align*} $$A diffusion model with $\\sigma_t = 0$ is a flow model.\nLangevin Dynamics Langevin dynamics is a method for sampling from a distribution $p_{data}$ by solving the SDE:\n$$ \\begin{align*} \\text{d} X_t \u0026= \\frac{1}{2} \\sigma^2 \\nabla \\log p_{data}(X_t) \\text{d}t + \\sigma \\text{d}W_t \\\\ X_0 \u0026\\sim p_{init} \\end{align*} $$It’s a good way to transform a simple distribution $p_{init}$ to a more complex distribution $p_{data}$ and the intuition for it is rooted in statistical mechanics. Imagine our $p_{data}$ is a distribution in the form of $$p_{data}(x) \\propto \\exp(-E(x))$$ where $E(x)$ is a suffcieintly nice function that describes the energy of the system with configuration $x$. Then, to search for the modes of the distribution it is very natural to use the gradient of the log-likelihood because it corresponds to $-\\nabla E(x)$, which is of course simply the force given by the potential energy $E(x)$\n",
-  "wordCount" : "1020",
-  "inLanguage": "en",
-  "datePublished": "2025-09-16T19:54:48-05:00",
-  "dateModified": "2025-09-16T19:54:48-05:00",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://hasithv.github.io/posts/flowdiffusion/lec1/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "HasithAlted",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://hasithv.github.io/favicon.ico"
-    }
-  }
-}
-</script>
+</noscript>
     
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <script>
@@ -164,7 +94,7 @@ $$where $X: [0,1] \rightarrow \mathbb{R}^d, \space t \mapsto X_t$ gives us a tra
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://hasithv.github.io/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
+            <a href="http://localhost:1313/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -190,22 +120,22 @@ $$where $X: [0,1] \rightarrow \mathbb{R}^d, \space t \mapsto X_t$ gives us a tra
         </div>
         <ul id="menu">
             <li>
-                <a href="https://hasithv.github.io/archives/" title="archives">
+                <a href="http://localhost:1313/archives/" title="archives">
                     <span>archives</span>
                 </a>
             </li>
             <li>
-                <a href="https://hasithv.github.io/categories/notes/" title="notes">
+                <a href="http://localhost:1313/categories/notes/" title="notes">
                     <span>notes</span>
                 </a>
             </li>
             <li>
-                <a href="https://hasithv.github.io/about/" title="about">
+                <a href="http://localhost:1313/about/" title="about">
                     <span>about</span>
                 </a>
             </li>
             <li>
-                <a href="https://hasithv.github.io/categories/" title="categories">
+                <a href="http://localhost:1313/categories/" title="categories">
                     <span>categories</span>
                 </a>
             </li>
@@ -220,7 +150,7 @@ $$where $X: [0,1] \rightarrow \mathbb{R}^d, \space t \mapsto X_t$ gives us a tra
     <h1 class="post-title entry-hint-parent">
       Lecture 1 - Flow and Diffusion Models
     </h1>
-    <div class="post-meta"><span title='2025-09-16 19:54:48 -0500 CDT'>September 16, 2025</span>&nbsp;·&nbsp;5 min
+    <div class="post-meta"><span title='2025-09-16 19:54:48 -0500 -0500'>September 16, 2025</span>&nbsp;·&nbsp;5 min
 
 </div>
   </header> 
@@ -357,7 +287,7 @@ where $E(x)$ is a suffcieintly nice function that describes the energy of the sy
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://hasithv.github.io/">HasithAlted</a></span> · 
+        <span>&copy; 2025 <a href="http://localhost:1313/">HasithAlted</a></span> · 
 
     <span>
         Powered by

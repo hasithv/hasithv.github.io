@@ -99,6 +99,10 @@ X_0 \sim p_{init}, \quad \text{d}X_t = \left[ u_t^\text{target}(X_t) + \frac{\si
 $$
 > will yield the same marginal probability path $p_t$.
 
+Again, Theorem 13 is useful since it allows us to express $\nabla \log p_t(x)$ in terms of $\nabla \log p_t(x|z)$.
 
+Finally, I'd like to connect the SDE above to Langevin dynamics. In the case where the probability path is static ($p_t = p$) and $u_t^{\text{target}} = 0$, we obtain the SDE
+$$dX_t = \frac{\sigma^2_t}{2} \nabla \log p(X_t) dt + \sigma_t dW_t.$$
+This special case is known as Langevin dynamics, and you can kind of get an idea of how the SDE evolves since it satisifes the Fokker-Planck equation--meaning if $X_0 \sim p_{init}$, then $X_t \sim p$ for $t \geq 0$.
 
  

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Puzzles on HasithAlted</title>
-    <link>https://hasithv.github.io/categories/puzzles/</link>
+    <link>http://localhost:1313/categories/puzzles/</link>
     <description>Recent content in Puzzles on HasithAlted</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 31 Dec 2024 12:33:33 -0500</lastBuildDate>
-    <atom:link href="https://hasithv.github.io/categories/puzzles/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/puzzles/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A Clock Hand Puzzle</title>
-      <link>https://hasithv.github.io/posts/24-12-31-aclockhandpuzzle/</link>
+      <link>http://localhost:1313/posts/24-12-31-aclockhandpuzzle/</link>
       <pubDate>Tue, 31 Dec 2024 12:33:33 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/24-12-31-aclockhandpuzzle/</guid>
+      <guid>http://localhost:1313/posts/24-12-31-aclockhandpuzzle/</guid>
       <description>&lt;p&gt;I used to not like analog clocks because they unecessarily made it harder to tell time in a world where digital clocks are a reality. Now, I appreciate them a lot more for all the mathematical fun that they present.&lt;/p&gt;
 &lt;p&gt;So, here&amp;rsquo;s a very simple puzzle I thought of while looking at one.&lt;/p&gt;
 &lt;h2 id=&#34;the-puzzle&#34;&gt;The Puzzle&lt;/h2&gt;
@@ -41,9 +41,9 @@ $$$$\implies x = 16.\overline{36}$$<p>Thus, we will see them cross for the first
     </item>
     <item>
       <title>A Simple Boarding Puzzle</title>
-      <link>https://hasithv.github.io/posts/24-01-11-asimpleboardingpuzzle/</link>
+      <link>http://localhost:1313/posts/24-01-11-asimpleboardingpuzzle/</link>
       <pubDate>Mon, 12 Aug 2024 00:00:38 -0500</pubDate>
-      <guid>https://hasithv.github.io/posts/24-01-11-asimpleboardingpuzzle/</guid>
+      <guid>http://localhost:1313/posts/24-01-11-asimpleboardingpuzzle/</guid>
       <description>&lt;h2 id=&#34;the-puzzle&#34;&gt;The Puzzle&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;Inspired by true events&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Alice is assigned to be the 56th passenger to board a full plane with 60 seats. However, a panic causes all the passengers&amp;ndash;including Alice&amp;ndash;to arrange themselves radomly in line to board.&lt;/p&gt;
@@ -59,9 +59,9 @@ $$ 4!/5! = 1/5$$]]></content:encoded>
     </item>
     <item>
       <title>That&#39;s not how Probability Works!</title>
-      <link>https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/</link>
+      <link>http://localhost:1313/posts/24-07-29-nothowprobabilityworks/</link>
       <pubDate>Tue, 30 Jul 2024 00:07:20 -0700</pubDate>
-      <guid>https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/</guid>
+      <guid>http://localhost:1313/posts/24-07-29-nothowprobabilityworks/</guid>
       <description>&lt;p&gt;I was recently doing a probability puzzle that I can&amp;rsquo;t quite remember the context of, but I came across the answer that the probability would be
 &lt;/p&gt;
 $$\mathbb{P}(X) = n p^n \; \quad \forall \: n\in\mathbb{N}, p \in [0,1].$$&lt;p&gt;But this is obviously wrong! Plug in $p=.9, n=2$, and you get that $\mathbb{P}(X) = 1.62$. Thaat&amp;rsquo;s not how probability works! However, for $p=0.5$, $\mathbb{P}(X)$ will remain $\leq 1$ for all $n \in \mathbb{N}$. So, somewhere in the interval $(0.5,0.9)$, we reach a critical value where any $p$ greater than that will result in a probability greater than one, and any value less than it will be a bit more reasonable.&lt;/p&gt;</description>

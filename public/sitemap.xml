@@ -2,162 +2,168 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://hasithv.github.io/tags/ai/</loc>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-12-22T05:52:20+05:30</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/flowdiffusion/lec3/</loc>
+    <lastmod>2025-12-22T05:52:20+05:30</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2025-12-22T05:52:20+05:30</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/ai/</loc>
     <lastmod>2025-09-29T19:45:01-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
     <lastmod>2025-09-29T19:45:01-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/diffusion/</loc>
+    <loc>http://localhost:1313/tags/diffusion/</loc>
     <lastmod>2025-09-29T19:45:01-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/25-09-29-nanodiffgpt/</loc>
+    <loc>http://localhost:1313/posts/25-09-29-nanodiffgpt/</loc>
     <lastmod>2025-09-29T19:45:01-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/</loc>
+    <loc>http://localhost:1313/tags/llms/</loc>
     <lastmod>2025-09-29T19:45:01-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/llms/</loc>
+    <loc>http://localhost:1313/categories/projects/</loc>
     <lastmod>2025-09-29T19:45:01-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2025-09-29T19:45:01-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/categories/projects/</loc>
-    <lastmod>2025-09-29T19:45:01-05:00</lastmod>
-  </url><url>
-    <loc>https://hasithv.github.io/tags/</loc>
-    <lastmod>2025-09-29T19:45:01-05:00</lastmod>
-  </url><url>
-    <loc>https://hasithv.github.io/posts/flowdiffusion/lec2/</loc>
+    <loc>http://localhost:1313/posts/flowdiffusion/lec2/</loc>
     <lastmod>2025-09-22T17:48:55-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/probability/</loc>
+    <loc>http://localhost:1313/tags/probability/</loc>
     <lastmod>2025-09-22T17:48:55-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/stochastics/</loc>
+    <loc>http://localhost:1313/tags/stochastics/</loc>
     <lastmod>2025-09-22T17:48:55-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/flowdiffusion/lec1/</loc>
+    <loc>http://localhost:1313/posts/flowdiffusion/lec1/</loc>
     <lastmod>2025-09-16T19:54:48-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/flowdiffusion/flowdiff/</loc>
+    <loc>http://localhost:1313/posts/flowdiffusion/flowdiff/</loc>
     <lastmod>2025-09-16T19:54:25-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/categories/notes/</loc>
+    <loc>http://localhost:1313/categories/notes/</loc>
     <lastmod>2025-09-16T19:54:25-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/adaptive-compute/</loc>
+    <loc>http://localhost:1313/tags/adaptive-compute/</loc>
     <lastmod>2025-09-02T19:54:59-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/h-nets/</loc>
+    <loc>http://localhost:1313/tags/h-nets/</loc>
     <lastmod>2025-09-02T19:54:59-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/categories/thoughts/</loc>
+    <loc>http://localhost:1313/categories/thoughts/</loc>
     <lastmod>2025-09-02T19:54:59-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/25-09-02-tokenthoughts/</loc>
+    <loc>http://localhost:1313/posts/25-09-02-tokenthoughts/</loc>
     <lastmod>2025-09-02T19:54:59-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/tokenization/</loc>
+    <loc>http://localhost:1313/tags/tokenization/</loc>
     <lastmod>2025-09-02T19:54:59-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/ai-safety/</loc>
+    <loc>http://localhost:1313/tags/ai-safety/</loc>
     <lastmod>2025-06-02T10:15:15-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/25-06-02-cnnadversarialvuln/</loc>
+    <loc>http://localhost:1313/posts/25-06-02-cnnadversarialvuln/</loc>
     <lastmod>2025-06-02T10:15:15-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/mechanistic-interpretability/</loc>
+    <loc>http://localhost:1313/tags/mechanistic-interpretability/</loc>
     <lastmod>2025-06-02T10:15:15-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/categories/research/</loc>
+    <loc>http://localhost:1313/categories/research/</loc>
     <lastmod>2025-06-02T10:15:15-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/25-05-28-chronosinduction2/</loc>
+    <loc>http://localhost:1313/posts/25-05-28-chronosinduction2/</loc>
     <lastmod>2025-05-28T12:31:44-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/transformers/</loc>
+    <loc>http://localhost:1313/tags/transformers/</loc>
     <lastmod>2025-05-28T12:31:44-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/25-05-11-chronosinductionheads/</loc>
+    <loc>http://localhost:1313/posts/25-05-11-chronosinductionheads/</loc>
     <lastmod>2025-05-11T10:50:18-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/24-12-31-aclockhandpuzzle/</loc>
+    <loc>http://localhost:1313/posts/24-12-31-aclockhandpuzzle/</loc>
     <lastmod>2024-12-31T12:33:33-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/categories/puzzles/</loc>
+    <loc>http://localhost:1313/categories/puzzles/</loc>
     <lastmod>2024-12-31T12:33:33-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/agent-based-modeling/</loc>
+    <loc>http://localhost:1313/tags/agent-based-modeling/</loc>
     <lastmod>2024-12-10T18:47:40-06:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/24-12-10-metrobike/</loc>
+    <loc>http://localhost:1313/posts/24-12-10-metrobike/</loc>
     <lastmod>2024-12-10T18:47:40-06:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/optimization/</loc>
+    <loc>http://localhost:1313/tags/optimization/</loc>
     <lastmod>2024-12-10T18:47:40-06:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/python/</loc>
+    <loc>http://localhost:1313/tags/python/</loc>
     <lastmod>2024-12-10T18:47:40-06:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/paper-review/</loc>
+    <loc>http://localhost:1313/tags/paper-review/</loc>
     <lastmod>2024-11-04T14:44:14-06:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/24-11-04-plantingbackdoors/</loc>
+    <loc>http://localhost:1313/posts/24-11-04-plantingbackdoors/</loc>
     <lastmod>2024-11-04T14:44:14-06:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/24-08-17-basketballrandomwalk/</loc>
+    <loc>http://localhost:1313/posts/sleeperagents/</loc>
+    <lastmod>2024-10-22T23:06:45-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/24-08-17-basketballrandomwalk/</loc>
     <lastmod>2024-08-17T20:36:30-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/julia/</loc>
+    <loc>http://localhost:1313/tags/julia/</loc>
     <lastmod>2024-08-17T20:36:30-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/eliasa/chap6/6-2/</loc>
+    <loc>http://localhost:1313/posts/eliasa/chap6/6-2/</loc>
     <lastmod>2024-08-12T00:29:17-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/lecture/</loc>
+    <loc>http://localhost:1313/tags/lecture/</loc>
     <lastmod>2024-08-12T00:29:17-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/24-01-11-asimpleboardingpuzzle/</loc>
+    <loc>http://localhost:1313/posts/24-01-11-asimpleboardingpuzzle/</loc>
     <lastmod>2024-08-12T00:00:38-05:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/eliasa/chap6/6-1/</loc>
+    <loc>http://localhost:1313/posts/eliasa/chap6/6-1/</loc>
     <lastmod>2024-08-10T15:41:44-07:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/eliasa/chap5/5-4/</loc>
+    <loc>http://localhost:1313/posts/eliasa/chap5/5-4/</loc>
     <lastmod>2024-08-06T21:17:49-07:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/eliasa/chap5/5-3/</loc>
+    <loc>http://localhost:1313/posts/eliasa/chap5/5-3/</loc>
     <lastmod>2024-08-03T23:22:06-07:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/eliasa/chap5/5-2/</loc>
+    <loc>http://localhost:1313/posts/eliasa/chap5/5-2/</loc>
     <lastmod>2024-08-03T18:57:02-07:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/eliasa/chap5/5-1/</loc>
+    <loc>http://localhost:1313/posts/eliasa/chap5/5-1/</loc>
     <lastmod>2024-08-03T16:45:46-07:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/eliasa/eliasa/</loc>
+    <loc>http://localhost:1313/posts/eliasa/eliasa/</loc>
     <lastmod>2024-08-03T16:43:39-07:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/fongspivakact/chap2/2-2/</loc>
+    <loc>http://localhost:1313/posts/fongspivakact/chap2/2-2/</loc>
     <lastmod>2024-08-02T01:26:30-07:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/tags/category-theory/</loc>
+    <loc>http://localhost:1313/tags/category-theory/</loc>
     <lastmod>2024-08-02T01:26:30-07:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/fongspivakact/fongspivakact/</loc>
+    <loc>http://localhost:1313/posts/fongspivakact/fongspivakact/</loc>
     <lastmod>2024-08-02T00:47:08-07:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/about/</loc>
+    <loc>http://localhost:1313/about/</loc>
     <lastmod>2024-07-30T02:42:23-07:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/24-07-29-nothowprobabilityworks/</loc>
+    <loc>http://localhost:1313/posts/24-07-29-nothowprobabilityworks/</loc>
     <lastmod>2024-07-30T00:07:20-07:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/posts/introduction/</loc>
+    <loc>http://localhost:1313/posts/introduction/</loc>
     <lastmod>2024-07-29T00:07:20-07:00</lastmod>
   </url><url>
-    <loc>https://hasithv.github.io/archives/</loc>
+    <loc>http://localhost:1313/archives/</loc>
   </url>
 </urlset>

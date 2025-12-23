@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <title>Lecture 2 - Constructing the Training Target | HasithAlted</title>
 <meta name="keywords" content="diffusion, stochastics, probability">
 <meta name="description" content="To summarize Lecture 1, we (given an $X_0 \sim p_{init}$) a flow model and a diffusion model to obtain trajectories from by solving the ODE and SDE,
@@ -18,16 +18,16 @@ $$
 respectively. Now, our goal is to find the parameters $\theta$ that make $u_t^\theta$ a good approximation of our target vector field $u_t^\text{target}$. A simple loss function we could use is the mean squared error:
 ">
 <meta name="author" content="">
-<link rel="canonical" href="https://hasithv.github.io/posts/flowdiffusion/lec2/">
+<link rel="canonical" href="http://localhost:1313/posts/flowdiffusion/lec2/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://hasithv.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://hasithv.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://hasithv.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://hasithv.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://hasithv.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://hasithv.github.io/posts/flowdiffusion/lec2/">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/flowdiffusion/lec2/">
 <noscript>
     <style>
         #theme-toggle,
@@ -64,81 +64,7 @@ respectively. Now, our goal is to find the parameters $\theta$ that make $u_t^\t
         }
 
     </style>
-</noscript><meta property="og:url" content="https://hasithv.github.io/posts/flowdiffusion/lec2/">
-  <meta property="og:site_name" content="HasithAlted">
-  <meta property="og:title" content="Lecture 2 - Constructing the Training Target">
-  <meta property="og:description" content="To summarize Lecture 1, we (given an $X_0 \sim p_{init}$) a flow model and a diffusion model to obtain trajectories from by solving the ODE and SDE, $$ \begin{align*} \text{d}X_t &amp;= u_t^\theta(X_t) \text{d}t \\ X_t &amp;= u_t^\theta(X_t) \text{d}t &#43; \sigma_t \text{d}W_t, \end{align*} $$ respectively. Now, our goal is to find the parameters $\theta$ that make $u_t^\theta$ a good approximation of our target vector field $u_t^\text{target}$. A simple loss function we could use is the mean squared error: ">
-  <meta property="og:locale" content="en-us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-09-22T17:48:55-05:00">
-    <meta property="article:modified_time" content="2025-09-22T17:48:55-05:00">
-    <meta property="article:tag" content="Diffusion">
-    <meta property="article:tag" content="Stochastics">
-    <meta property="article:tag" content="Probability">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lecture 2 - Constructing the Training Target">
-<meta name="twitter:description" content="To summarize Lecture 1, we (given an $X_0 \sim p_{init}$) a flow model and a diffusion model to obtain trajectories from by solving the ODE and SDE,
-
-$$
-\begin{align*}
-\text{d}X_t &= u_t^\theta(X_t) \text{d}t \\
-X_t &= u_t^\theta(X_t) \text{d}t &#43; \sigma_t \text{d}W_t,
-\end{align*}
-$$
-respectively. Now, our goal is to find the parameters $\theta$ that make $u_t^\theta$ a good approximation of our target vector field $u_t^\text{target}$. A simple loss function we could use is the mean squared error:
-">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://hasithv.github.io/posts/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "Lecture 2 - Constructing the Training Target",
-      "item": "https://hasithv.github.io/posts/flowdiffusion/lec2/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Lecture 2 - Constructing the Training Target",
-  "name": "Lecture 2 - Constructing the Training Target",
-  "description": "To summarize Lecture 1, we (given an $X_0 \\sim p_{init}$) a flow model and a diffusion model to obtain trajectories from by solving the ODE and SDE, $$ \\begin{align*} \\text{d}X_t \u0026= u_t^\\theta(X_t) \\text{d}t \\\\ X_t \u0026= u_t^\\theta(X_t) \\text{d}t + \\sigma_t \\text{d}W_t, \\end{align*} $$ respectively. Now, our goal is to find the parameters $\\theta$ that make $u_t^\\theta$ a good approximation of our target vector field $u_t^\\text{target}$. A simple loss function we could use is the mean squared error: ",
-  "keywords": [
-    "diffusion", "stochastics", "probability"
-  ],
-  "articleBody": "To summarize Lecture 1, we (given an $X_0 \\sim p_{init}$) a flow model and a diffusion model to obtain trajectories from by solving the ODE and SDE, $$ \\begin{align*} \\text{d}X_t \u0026= u_t^\\theta(X_t) \\text{d}t \\\\ X_t \u0026= u_t^\\theta(X_t) \\text{d}t + \\sigma_t \\text{d}W_t, \\end{align*} $$ respectively. Now, our goal is to find the parameters $\\theta$ that make $u_t^\\theta$ a good approximation of our target vector field $u_t^\\text{target}$. A simple loss function we could use is the mean squared error: $$ \\mathcal{L} = \\mathbb{E}_{X_0 \\sim p_{init}} \\left[ \\| u_t^\\theta(X_t) - u_t^\\text{target}(X_t) \\|^2 \\right]. $$ But to compute this loss, we need to know $u_t^\\text{target}(X_t)$.\nConstructing the Training Target ODEs The first insight in computing $u_t^\\text{target}$ is to notice that the conditional probability path, $p_t(x|z)$ is much easier to find analytically than the marginal probability path. For example, with the Gaussian probability path, we can write $$ p_t(x|z) = \\mathcal{N}(\\alpha_t z; \\beta_t^2 I_d), $$ for monotic noise schedulers $\\alpha_t$ and $\\beta_t$ that satisfy $\\alpha_0 = \\beta_1 = 0$ and $\\alpha_1 = \\beta_0 = 1$. Note that for an initial $X_0 \\sim p_{init}$, we have $p_0(x) = p_{init}$ and $p_1(x) = p_{data}(z) = \\delta_z$.\nSimilarly, it is also easier to find the conditional vector field $u_t^\\text{target}$ than the marginal vector field $u_t^\\text{target}(x|z)$. The conditional vector field for the Gaussian probability path can be found with by first defining the conditional flow model $$\\psi_t^\\text{target} = \\alpha_t z + \\beta_t x,$$ where $\\alpha_t \\rightarrow 1$ and $\\beta_t \\rightarrow 0$ as $t \\rightarrow 1$. The only thing that $\\psi_t^\\text{target}$ needs to do is transform $p_{init}$ to $p_{data}(z)$, which is easy to verify that it does.\nThen, we can solve the ODE for $\\psi_t^\\text{target}$ to get $u_t^\\text{target}$: $$ \\begin{align*} \\frac{\\text{d}}{\\text{d}t} \\psi_t^\\text{target}(x) \u0026= u_t^\\text{target}(\\psi_t^\\text{target}(x | z)| z) \\\\ \\dot{\\alpha_t}z + \\dot{\\beta_t}x \u0026= u_t^\\text{target}(\\alpha_t z + \\beta_t x | z) \\\\ \\dot{\\alpha_t} z + \\dot{\\beta_t} \\left( \\frac{x - \\alpha_t z}{\\beta_t} \\right) \u0026= u_t^\\text{target}(x | z) \\\\ \\left( \\dot{\\alpha_t} - \\frac{\\dot{\\beta_t}}{\\beta_t} \\right) z + \\frac{\\dot{\\beta_t}}{\\beta_t} x \u0026= u_t^\\text{target}(x | z). \\end{align*} $$So, now, we have analytical expressions for $p_t(x|z)$ and $u_t^\\text{target}(x|z)$. Using these, we can use the continuity equation to find the target vector field $u_t^\\text{target}(x)$:\nTheorem 12: (Continuity Equation) Consider a flow model with vector field $u_t^\\text{target}$ with $X_0 \\sim p_{init}$. Then, $X_t \\sim p_t$ if and only if $$ \\dot{p_t} = - \\nabla \\cdot (u_t^\\text{target} p_t)(x) $$ Now, to construct $u_t^\\text{target}$, we just need to find what vector field will satisfy the continuity equation:\n$$ \\begin{align*} \\dot{p_t} \u0026= \\partial_t \\int p_t(x|z) p_{data}(z) \\text{d}z \\\\ \u0026= \\int \\partial_t p_t(x|z) p_{data}(z) \\text{d}z \\\\ \u0026= \\int - \\nabla \\cdot \\left(u_t^\\text{target}(\\cdot | z) p_t(\\cdot |z)\\right)(x) p_{data}(z) \\text{d}z \\\\ \u0026= - \\nabla \\cdot \\int u_t^\\text{target}(x|z) p_t(x|z) p_{data}(z) \\text{d}z \\\\ \u0026= - \\nabla \\cdot \\left( p_t(x) \\int u_t^\\text{target}(x|z) \\frac{p_t(x|z) p_{data}(z)}{p_t(x)} \\text{d}z \\right) \\end{align*} $$So, we have that $\\dot{p_t} = - \\nabla \\cdot (u_t^\\text{target} p_t)(x)$ if and only if $$ u_t^\\text{target}(x) = \\frac{p_t(x|z) p_{data}(z)}{p_t(x)}. $$ Theorem 10: (Marginalization Trick) Let $u_t^\\text{target}$ be a conditional vector field defined so that the ODE yields the conditional probability path $p_t(\\cdot|z)$ $$ X_0 \\sim p_{init}, \\quad \\frac{\\text{d}}{\\text{d}t} X_t = u_t^\\text{target}(X_t) \\implies X_t \\sim p_t(\\cdot|z). $$ Then, the marginal vector field $u_t^\\text{target}$ given by $$ u_t^\\text{target}(x) = \\int u_t^\\text{target}(x|z) \\frac{p_t(x|z) p_{data}(z)}{p_t(x)} \\text{d}z $$ will yield the marginal probability path $p_t$: $$ X_0 \\sim p_{init}, \\quad \\frac{\\text{d}}{\\text{d}t} X_t = u_t^\\text{target}(X_t) \\implies X_t \\sim p_t. $$ In other words, $u_t^\\text{target}$ converts $p_{init}$ to $p_data$.\nSDEs For SDEs, we express the marginal score function in terms of the conditional score function: $$\\nabla \\log p_t(x) = \\frac{\\nabla p_t(x)}{p_t(x)} = \\int \\frac{\\nabla p_t(x|z)}{p_t(x|z)} p_{data}(z) \\text{d}z = \\int \\nabla \\log p_t(x|z) p_{data}(z) \\text{d}z.$$Then, using the Fokker-Planck equation:\nTheorem 15: (Fokker-Planck Equation) Let $p_t$ be a probability path and consider the SDE $$ X_0 \\sim p_{init}, \\quad \\text{d}X_t = u_t^\\text{target}(X_t) \\text{d}t + \\sigma_t \\text{d}W_t. $$ Then, the score function $\\nabla \\log p_t(x)$ satisfies the Fokker-Planck equation: $$ \\partial_t p_t(x) = - \\nabla \\cdot \\left(u_t^\\text{target} p_t\\right)(x) + \\frac{\\sigma_t^2}{2} \\Delta p_t(x). $$ we can prove in a similar way to the ODE case that the SDE given by $$X_0 \\sim p_{init}, \\quad \\text{d}X_t = \\left[ u_t^\\text{target}(X_t) + \\frac{\\sigma_t^2}{2} \\nabla \\log p_t(X_t) \\right] \\text{d}t + \\sigma_t \\text{d}W_t$$ will follow the probability path $p_t$.\nThe proof will be skipped, but as a hint, we begin with the continuity equation, add and subtract $\\frac{\\sigma_t^2}{2} \\Delta p_t(x)$, then use that $\\Delta = \\nabla \\cdot \\nabla$ to get it in the form of the Fokker-Planck equation.\nTheorem 13: (SDE Extension Trick) Define the conditional and marginal vector fields $u_t^\\text{target}(x|z)$ and $u_t^\\text{target}(x)$ as in Theorem 10. Then, for a diffusion coefficient $\\sigma_t \\leq 0$ the SDE $$ X_0 \\sim p_{init}, \\quad \\text{d}X_t = \\left[ u_t^\\text{target}(X_t) + \\frac{\\sigma_t^2}{2} \\nabla \\log p_t(X_t) \\right] \\text{d}t + \\sigma_t \\text{d}W_t \\implies X_t \\sim p_t. $$ will yield the same marginal probability path $p_t$.\n",
-  "wordCount" : "791",
-  "inLanguage": "en",
-  "datePublished": "2025-09-22T17:48:55-05:00",
-  "dateModified": "2025-09-22T17:48:55-05:00",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://hasithv.github.io/posts/flowdiffusion/lec2/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "HasithAlted",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://hasithv.github.io/favicon.ico"
-    }
-  }
-}
-</script>
+</noscript>
     
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <script>
@@ -169,7 +95,7 @@ respectively. Now, our goal is to find the parameters $\theta$ that make $u_t^\t
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://hasithv.github.io/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
+            <a href="http://localhost:1313/" accesskey="h" title="HasithAlted (Alt + H)">HasithAlted</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -195,22 +121,22 @@ respectively. Now, our goal is to find the parameters $\theta$ that make $u_t^\t
         </div>
         <ul id="menu">
             <li>
-                <a href="https://hasithv.github.io/archives/" title="archives">
+                <a href="http://localhost:1313/archives/" title="archives">
                     <span>archives</span>
                 </a>
             </li>
             <li>
-                <a href="https://hasithv.github.io/categories/notes/" title="notes">
+                <a href="http://localhost:1313/categories/notes/" title="notes">
                     <span>notes</span>
                 </a>
             </li>
             <li>
-                <a href="https://hasithv.github.io/about/" title="about">
+                <a href="http://localhost:1313/about/" title="about">
                     <span>about</span>
                 </a>
             </li>
             <li>
-                <a href="https://hasithv.github.io/categories/" title="categories">
+                <a href="http://localhost:1313/categories/" title="categories">
                     <span>categories</span>
                 </a>
             </li>
@@ -225,7 +151,7 @@ respectively. Now, our goal is to find the parameters $\theta$ that make $u_t^\t
     <h1 class="post-title entry-hint-parent">
       Lecture 2 - Constructing the Training Target
     </h1>
-    <div class="post-meta"><span title='2025-09-22 17:48:55 -0500 CDT'>September 22, 2025</span>&nbsp;·&nbsp;4 min
+    <div class="post-meta"><span title='2025-09-22 17:48:55 -0500 -0500'>September 22, 2025</span>&nbsp;·&nbsp;5 min
 
 </div>
   </header> 
@@ -326,22 +252,27 @@ X_0 \sim p_{init}, \quad \text{d}X_t = \left[ u_t^\text{target}(X_t) + \frac{\si
 $$<p>
 will yield the same marginal probability path $p_t$.</p>
 </blockquote>
+<p>Again, Theorem 13 is useful since it allows us to express $\nabla \log p_t(x)$ in terms of $\nabla \log p_t(x|z)$.</p>
+<p>Finally, I&rsquo;d like to connect the SDE above to Langevin dynamics. In the case where the probability path is static ($p_t = p$) and $u_t^{\text{target}} = 0$, we obtain the SDE
+</p>
+$$dX_t = \frac{\sigma^2_t}{2} \nabla \log p(X_t) dt + \sigma_t dW_t.$$<p>
+This special case is known as Langevin dynamics, and you can kind of get an idea of how the SDE evolves since it satisifes the Fokker-Planck equation&ndash;meaning if $X_0 \sim p_{init}$, then $X_t \sim p$ for $t \geq 0$.</p>
 
 
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://hasithv.github.io/tags/diffusion/">Diffusion</a></li>
-      <li><a href="https://hasithv.github.io/tags/stochastics/">Stochastics</a></li>
-      <li><a href="https://hasithv.github.io/tags/probability/">Probability</a></li>
+      <li><a href="http://localhost:1313/tags/diffusion/">Diffusion</a></li>
+      <li><a href="http://localhost:1313/tags/stochastics/">Stochastics</a></li>
+      <li><a href="http://localhost:1313/tags/probability/">Probability</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://hasithv.github.io/">HasithAlted</a></span> · 
+        <span>&copy; 2025 <a href="http://localhost:1313/">HasithAlted</a></span> · 
 
     <span>
         Powered by

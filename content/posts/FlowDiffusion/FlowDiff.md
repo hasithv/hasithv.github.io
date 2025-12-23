@@ -10,3 +10,4 @@ Here are my notes for MIT CSAIL's course titled [_Introduction to Flow Matching 
 
 - Lecture 1 - [Flow and Diffusion Models]({{< relref "lec1/" >}})
 - Lecture 2 - [Constructing the Training Target]({{< relref "lec2/" >}})
+- Lecture 3 - [Flow Matching and Score Matching]({{< relref "lec3/" >}})
