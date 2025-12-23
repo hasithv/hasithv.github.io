@@ -1,5 +1,5 @@
 +++
-title = 'Guided Diffusion Models'
+title = 'Lecture 4 - Guided Diffusion Models'
 date = 2025-12-23T08:45:16+05:30
 tags = ["diffusion", "stochastics", "probability"]
 draft = false
