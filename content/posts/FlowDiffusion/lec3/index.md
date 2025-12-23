@@ -1,7 +1,8 @@
 +++
 title = 'Lecture 3 - Flow Matching and Score Matching'
 date = 2025-12-22T05:52:20+05:30
-draft = true
+tags = ["diffusion", "stochastics", "probability"]
+draft = false
 +++
 
 From [Lecture 2]({{< relref "lec2/" >}}), we constructed $u_t^\text{target}(x)$ and $\nabla \log p_t(x)$. So, we can try to train a model to learn them for in the ODE and SDE cases, respectively.
