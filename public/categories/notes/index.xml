@@ -17,11 +17,13 @@
 &lt;ul&gt;
 &lt;li&gt;Lecture 1 - &lt;a href=&#34;http://localhost:1313/posts/flowdiffusion/lec1/&#34;&gt;Flow and Diffusion Models&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Lecture 2 - &lt;a href=&#34;http://localhost:1313/posts/flowdiffusion/lec2/&#34;&gt;Constructing the Training Target&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Lecture 3 - &lt;a href=&#34;http://localhost:1313/posts/flowdiffusion/lec3/&#34;&gt;Flow Matching and Score Matching&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
       <content:encoded><![CDATA[<p>Here are my notes for MIT CSAIL&rsquo;s course titled <a href="https://diffusion.csail.mit.edu/"><em>Introduction to Flow Matching and Diffusion Models</em></a>. While I am finding the labs very helpful and making sure I do them, I will not be documenting my progress on them here.</p>
 <ul>
 <li>Lecture 1 - <a href="/posts/flowdiffusion/lec1/">Flow and Diffusion Models</a></li>
 <li>Lecture 2 - <a href="/posts/flowdiffusion/lec2/">Constructing the Training Target</a></li>
+<li>Lecture 3 - <a href="/posts/flowdiffusion/lec3/">Flow Matching and Score Matching</a></li>
 </ul>
 ]]></content:encoded>
     </item>

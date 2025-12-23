@@ -6,8 +6,109 @@
     <description>Recent content on HasithAlted</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 22 Dec 2025 05:52:20 +0530</lastBuildDate>
+    <lastBuildDate>Tue, 23 Dec 2025 08:45:16 +0530</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lec4</title>
+      <link>http://localhost:1313/posts/flowdiffusion/lec4/</link>
+      <pubDate>Tue, 23 Dec 2025 08:45:16 +0530</pubDate>
+      <guid>http://localhost:1313/posts/flowdiffusion/lec4/</guid>
+      <description>&lt;p&gt;In &lt;a href=&#34;http://localhost:1313/posts/flowdiffusion/lec3/&#34;&gt;Lecture 3&lt;/a&gt;, we were able to develop training schemes to have a model generate samples from the data distribution. However, this is not too useful. Instead, we want to be able to condition the generation on some context, such as a class label.&lt;/p&gt;
+&lt;p&gt;On the MNIST dataset, this would be like asking a model to generate an image of a specific digit, say 3, as opposed to just sampling anything from MNIST.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>In <a href="/posts/flowdiffusion/lec3/">Lecture 3</a>, we were able to develop training schemes to have a model generate samples from the data distribution. However, this is not too useful. Instead, we want to be able to condition the generation on some context, such as a class label.</p>
+<p>On the MNIST dataset, this would be like asking a model to generate an image of a specific digit, say 3, as opposed to just sampling anything from MNIST.</p>
+<p>Our new problem is now to learn a guided diffusion model
+</p>
+$$u^\theta_t: \mathbb{R}^d \times \mathcal{Y} \times [0,1] \to \mathbb{R}^d, \quad (x,y,t) \mapsto u_t^\theta(x|y)$$<p>
+for the SDE
+</p>
+$$X_0 \sim p_{init}$$<p>
+</p>
+$$\text{d}X_t = u_t^\theta(X_t | y) \text{d}t + \sigma_t \text{d}W_t,$$<p>
+where $y \in \mathcal{Y}$ is the context variable, and $\sigma_t = 0$ gives us a special case of a guided flow model.</p>
+<h2 id="flow-model-guidance">Flow Model Guidance</h2>
+<p>To guide flow models, we can expand upon the conditional flow matching objective in a very natural way:
+</p>
+$$
+\mathcal{L}_{CFM}^\text{guided}(\theta) = \underset{(z,y)\sim p_{data}(z,y), t \sim U, x \sim p_t(\cdot | z)}{\mathbb{E}} \left[ 
+    \| u_t^\theta(x | y) - u_t^\text{target}(x | z) \|^2
+\right].
+$$<p>
+While this does allow us to generate samples from $p_{data}(\cdot | y)$ in theory, empirically, it has been found to generate images that don&rsquo;t match $y$ very well. A simple way to overcome this issue is to artifically increase the effect of guidance, which is incorporated in a technique called classifier-free guidance.</p>
+<h3 id="classifier-free-guidance">Classifier-Free Guidance</h3>
+<p>To illustrate classifier-free guidance, we will consider Gaussian probability paths, in which
+</p>
+$$u_t^\text{target} = a_t x + b_t \nabla \log p_t(x | y)$$<p>
+according to <a href="/posts/flowdiffusion/lec3/">proposition 1</a>, where
+</p>
+$$(a_t, b_t) = \left( \frac{\dot{\alpha}_t}{\alpha_t}, \frac{\dot{\alpha}_t \beta_t^2 - \dot{\beta}_t \beta_t \alpha_t}{\alpha_t} \right).$$<p>Now, note that (by Bayes&rsquo; rule) we can decompose the score function as
+</p>
+$$
+\nabla \log p_t(x | y) = \nabla \log p_t(x) + \nabla \log p_t(y | x), \qquad (67)
+$$<p>
+since $\nabla_x \log p_t(y) = 0$. This allows us to rewrite the target vector field as
+</p>
+$$
+u_t^\text{target}(x | y) = u_t^\text{target}(x) + b_t \nabla \log p_t(y | x),
+$$<p>
+and we can artificially scale the effect of guidance by introducing a guidance $w \geq 1$:
+</p>
+$$
+\tilde{u}_t^\text{target}(x | y) = u_t^\text{target}(x) + w b_t \nabla \log p_t(y | x).
+$$<p>We can make the form of $\tilde{u}_t^\text{target}$ more intuitive by re-using Equation (67):
+</p>
+$$
+\begin{align*}
+\tilde{u}_t^\text{target}(x) &= u_t^\text{target}(x) + w b_t \nabla \log p_t(y | x) \\
+&= u_t^\text{target}(x) + w b_t \left( \nabla \log p_t(x | y) - \nabla \log p_t(x) \right) \\
+&= u_t^\text{target}(x) - (w a_t x + w b_t \nabla \log p_t(x)) + (w a_t x + w b_t \nabla \log p_t(x | y)) \\
+&= (1 - w) u_t^\text{target}(x) + w u_t^\text{target}(x | y). 
+\end{align*}
+$$<p>With this new formulation, we can see that $\tilde{u}_t^\text{target}$ is just a linear combination of the unguided and guided vector fields. And, now, when we say unguided vector field, we really mean
+</p>
+$$u_t^\text{target}(x) = u_t^\text{target}(x | y = \varnothing),$$<p>
+so that we don&rsquo;t need to learn two networks separately. When we account for the possibility of not conditioning on $y$, we rewrite the conditional flow matching loss as
+</p>
+$$
+\mathcal{L}_{CFM}^\text{CFG}(\theta) = \mathbb{E}_\square \left[ 
+    \| u_t^\theta(x | \tilde{y}) - u_t^\text{target}(x | z) \|^2
+\right],
+$$<p>
+</p>
+$$ \square =  (z,y)\sim p_{data}(z,y), t \sim U, x \sim p_t(\cdot | z), \text{ replace } y \text{ with } \varnothing \text{ with probability } \eta.$$<p>And then we sample by doing
+</p>
+$$ X_0 \sim p_{init}(x) $$<p>
+</p>
+$$ \text{d}X_t = \tilde{u}_t^\theta(X_t | y) \text{d}t. $$<h2 id="guidance-for-diffusion-models">Guidance for Diffusion Models</h2>
+<p>Similar to flow models, we can define a guided score matching loss as
+</p>
+$$
+\mathcal{L}_{SM}^\text{guided}(\theta) = \underset{(z,y), t, x}{\mathbb{E}} \left[ 
+    \| s_t^\theta(x | y) - \nabla \log p_t(x | z) \|^2
+\right].
+$$<p>
+And we derive the classifier-free guidance score function in a similar way as well using Equation (67):
+</p>
+$$
+\begin{align*}
+\tilde{s}_t^\text{target}(x | y) &= \nabla \log p_t(x) + w \nabla \log p_t(y | x) \\
+&= \nabla \log p_t(x) + w \left( \nabla \log p_t(x | y) - \nabla \log p_t(x) \right) \\
+&= (1 - w) \nabla \log p_t(x) + w \nabla \log p_t(x | y).
+\end{align*}
+$$<p>Which gives us the CFG-compatible objective
+</p>
+$$
+\mathcal{L}_{SM}^\text{CFG}(\theta) = \mathbb{E}_\square \left[ 
+    \| s_t^\theta(x | y) - \nabla \log p_t(x | z) \|^2
+\right],
+$$<p>
+</p>
+$$ \square =  (z,y)\sim p_{data}(z,y), t \sim U, x \sim p_t(\cdot | z), \text{ replace } y \text{ with } \varnothing \text{ with probability } \eta.$$<p>And we generate $X_1$ by simulating the SDE
+</p>
+$$ X_0 \sim p_{init}(x) $$<p>
+</p>
+$$ \text{d}X_t = \left[ \tilde{u}_t^\theta (x_t | y) + \frac{\sigma_t^2}{2} \tilde{s}_t^\theta(x_t | y) \right] \text{d}t + \sigma_t \text{d}W_t. $$]]></content:encoded>
+    </item>
     <item>
       <title>Lecture 3 - Flow Matching and Score Matching</title>
       <link>http://localhost:1313/posts/flowdiffusion/lec3/</link>

@@ -144,6 +144,33 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Lec4
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>In Lecture 3, we were able to develop training schemes to have a model generate samples from the data distribution. However, this is not too useful. Instead, we want to be able to condition the generation on some context, such as a class label.
+On the MNIST dataset, this would be like asking a model to generate an image of a specific digit, say 3, as opposed to just sampling anything from MNIST.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-12-23 08:45:16 +0530 IST'>December 23, 2025</span>&nbsp;·&nbsp;1 min</footer>
+  <a class="entry-link" aria-label="post link to Lec4" href="http://localhost:1313/posts/flowdiffusion/lec4/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Lecture 3 - Flow Matching and Score Matching
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>From Lecture 2, we constructed $u_t^\text{target}(x)$ and $\nabla \log p_t(x)$. So, we can try to train a model to learn them for in the ODE and SDE cases, respectively.
+Flow Matching To begin with, we will consider the case of ODEs, where we need to learn the flow. A natural choice is the MSE loss with respect to the target marginal vector field. We will denote this as the flow matching loss: ...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-12-22 05:52:20 +0530 IST'>December 22, 2025</span>&nbsp;·&nbsp;6 min</footer>
+  <a class="entry-link" aria-label="post link to Lecture 3 - Flow Matching and Score Matching" href="http://localhost:1313/posts/flowdiffusion/lec3/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Hacking Nano-GPT into a Diffusion LLM
     </h2>
   </header>
@@ -164,7 +191,7 @@ I’ve been really interested in diffusion models lately, and a really interesti
   <div class="entry-content">
     <p>To summarize Lecture 1, we (given an $X_0 \sim p_{init}$) a flow model and a diffusion model to obtain trajectories from by solving the ODE and SDE, $$ \begin{align*} \text{d}X_t &amp;= u_t^\theta(X_t) \text{d}t \\ X_t &amp;= u_t^\theta(X_t) \text{d}t &#43; \sigma_t \text{d}W_t, \end{align*} $$ respectively. Now, our goal is to find the parameters $\theta$ that make $u_t^\theta$ a good approximation of our target vector field $u_t^\text{target}$. A simple loss function we could use is the mean squared error: ...</p>
   </div>
-  <footer class="entry-footer"><span title='2025-09-22 17:48:55 -0500 -0500'>September 22, 2025</span>&nbsp;·&nbsp;4 min</footer>
+  <footer class="entry-footer"><span title='2025-09-22 17:48:55 -0500 -0500'>September 22, 2025</span>&nbsp;·&nbsp;5 min</footer>
   <a class="entry-link" aria-label="post link to Lecture 2 - Constructing the Training Target" href="http://localhost:1313/posts/flowdiffusion/lec2/"></a>
 </article>
 
@@ -175,7 +202,7 @@ I’ve been really interested in diffusion models lately, and a really interesti
   </header>
   <div class="entry-content">
     <p>Here are my notes for MIT CSAIL’s course titled Introduction to Flow Matching and Diffusion Models. While I am finding the labs very helpful and making sure I do them, I will not be documenting my progress on them here.
-Lecture 1 - Flow and Diffusion Models Lecture 2 - Constructing the Training Target </p>
+Lecture 1 - Flow and Diffusion Models Lecture 2 - Constructing the Training Target Lecture 3 - Flow Matching and Score Matching </p>
   </div>
   <footer class="entry-footer"><span title='2025-09-16 19:54:25 -0500 -0500'>September 16, 2025</span>&nbsp;·&nbsp;1 min</footer>
   <a class="entry-link" aria-label="post link to Introduction to Flow Matching and Diffusion Models" href="http://localhost:1313/posts/flowdiffusion/flowdiff/"></a>

@@ -6,8 +6,173 @@
     <description>Recent content in Diffusion on HasithAlted</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Sep 2025 19:45:01 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 23 Dec 2025 08:45:16 +0530</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/diffusion/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lec4</title>
+      <link>http://localhost:1313/posts/flowdiffusion/lec4/</link>
+      <pubDate>Tue, 23 Dec 2025 08:45:16 +0530</pubDate>
+      <guid>http://localhost:1313/posts/flowdiffusion/lec4/</guid>
+      <description>&lt;p&gt;In &lt;a href=&#34;http://localhost:1313/posts/flowdiffusion/lec3/&#34;&gt;Lecture 3&lt;/a&gt;, we were able to develop training schemes to have a model generate samples from the data distribution. However, this is not too useful. Instead, we want to be able to condition the generation on some context, such as a class label.&lt;/p&gt;
+&lt;p&gt;On the MNIST dataset, this would be like asking a model to generate an image of a specific digit, say 3, as opposed to just sampling anything from MNIST.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>In <a href="/posts/flowdiffusion/lec3/">Lecture 3</a>, we were able to develop training schemes to have a model generate samples from the data distribution. However, this is not too useful. Instead, we want to be able to condition the generation on some context, such as a class label.</p>
+<p>On the MNIST dataset, this would be like asking a model to generate an image of a specific digit, say 3, as opposed to just sampling anything from MNIST.</p>
+<p>Our new problem is now to learn a guided diffusion model
+</p>
+$$u^\theta_t: \mathbb{R}^d \times \mathcal{y}$$]]></content:encoded>
+    </item>
+    <item>
+      <title>Lecture 3 - Flow Matching and Score Matching</title>
+      <link>http://localhost:1313/posts/flowdiffusion/lec3/</link>
+      <pubDate>Mon, 22 Dec 2025 05:52:20 +0530</pubDate>
+      <guid>http://localhost:1313/posts/flowdiffusion/lec3/</guid>
+      <description>&lt;p&gt;From &lt;a href=&#34;http://localhost:1313/posts/flowdiffusion/lec2/&#34;&gt;Lecture 2&lt;/a&gt;, we constructed $u_t^\text{target}(x)$ and $\nabla \log p_t(x)$. So, we can try to train a model to learn them for in the ODE and SDE cases, respectively.&lt;/p&gt;
+&lt;h2 id=&#34;flow-matching&#34;&gt;Flow Matching&lt;/h2&gt;
+&lt;p&gt;To begin with, we will consider the case of ODEs, where we need to learn the flow. A natural choice is the MSE loss with respect to the target marginal vector field. We will denote this as the flow matching loss:
+&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>From <a href="/posts/flowdiffusion/lec2/">Lecture 2</a>, we constructed $u_t^\text{target}(x)$ and $\nabla \log p_t(x)$. So, we can try to train a model to learn them for in the ODE and SDE cases, respectively.</p>
+<h2 id="flow-matching">Flow Matching</h2>
+<p>To begin with, we will consider the case of ODEs, where we need to learn the flow. A natural choice is the MSE loss with respect to the target marginal vector field. We will denote this as the flow matching loss:
+</p>
+$$
+\begin{align}
+\mathcal{L}_{FM}(\theta) &= \underset{t \sim U,x\sim p_t}{\mathbb{E}} \left[ 
+    \| u_t^\theta(x) - u_t^\text{target}(x) \|^2
+\right] \\
+&= \underset{t \sim U, z \sim p_{data}, x \sim p_t(\cdot | z)}{\mathbb{E}} \left[ 
+    \| u_t^\theta(x) - u_t^\text{target}(x) \|^2
+\right],
+\end{align}
+$$<p>
+where $U$ denotes a uniform distribution on $[0,1]$. Though we know the form of $u_t^\text{target}$, it is still very intractable to compute. So, let&rsquo;s instead consider the much more approachable $u_t^\text{target}(x|z)$, which gives us the conditional flow matching loss:
+</p>
+$$
+\mathcal{L}_{CFM}(\theta) = \underset{t, z, x}{\mathbb{E}} \left[ 
+    \| u_t^\theta(x) - u_t^\text{target}(x | z) \|^2
+\right].
+$$<p>
+The nice thing about $\mathcal{L}_{CFM}$ is revealed in Theorem 18, which shows that it differs from $\mathcal{L}_{FM}$ by just a constant.</p>
+<blockquote>
+<p><strong>Theorem 18:</strong> The marginal flow matching loss equals the conditional flow matching loss up to a constant.
+</p>
+$$\mathcal{L}_{FM}(\theta) = \mathcal{L}_{CFM}(\theta) + C$$<p>
+Thus, we also have
+</p>
+$$\nabla_\theta \mathcal{L}_{FM}(\theta) = \nabla_\theta \mathcal{L}_{CFM} (\theta).$$</blockquote>
+<p><strong>Proof:</strong> To show this, we begin with the definition of $\mathcal{L}_{FM}$:
+</p>
+$$
+\begin{align*}
+\mathcal{L}_{FM}(\theta) &= \underset{t, x}{\mathbb{E}} \left[ 
+    \| u_t^\theta(x) - u_t^\text{target}(x) \|^2
+\right] \\
+&= \underset{t, x}{\mathbb{E}} \left[
+    \| u_t^\theta(x) \|^2 - 2 u_t^\theta(x)^\top u_t^\text{target}(x) + \| u_t^\text{target}(x) \|^2
+\right] \\
+&= \underset{t, x}{\mathbb{E}} \left[ \| u_t^\theta(x) \|^2 \right] - 2 \underset{t, x}{\mathbb{E}} \left[ u_t^\theta(x)^\top u_t^\text{target}(x) \right] + C_1.
+\end{align*}.
+$$<p>
+Where we were able to collect the last term into a constant since it doesn&rsquo;t depend on $\theta$. Now, we can rewrite the second term using the definition of $u_t^\text{target}(x)$:</p>
+$$
+\begin{align*}
+\underset{t, x}{\mathbb{E}} \left[ u_t^\theta(x)^\top u_t^\text{target}(x) \right] &= \underset{t, x}{\mathbb{E}} \left[ u_t^\theta(x)^\top \int u_t^\text{target}(x|z) \frac{p_t(x|z) p_{data}(z)}{p_t(x)} \text{d}z \right] \\
+&= \int_0^1 \int \int p_t(x) u_t^\theta(x)^\top u_t^\text{target}(x|z) \frac{p_t(x|z) p_{data}(z)}{p_t(x)} \text{d}z \text{d}x \text{d}t \\
+&= \int_0^1 \int \int u_t^\theta(x)^\top u_t^\text{target}(x|z) p_t(x|z) p_{data}(z) \text{d}z \text{d}x \text{d}t \\
+&= \underset{t, z, x}{\mathbb{E}} \left[ u_t^\theta(x)^\top u_t^\text{target}(x|z) \right].
+\end{align*}
+$$<p>Now that we have an equivalence of
+</p>
+$$
+\underset{t, x}{\mathbb{E}} \left[ u_t^\theta(x)^\top u_t^\text{target}(x) \right] = \underset{t, z, x}{\mathbb{E}} \left[ u_t^\theta(x)^\top u_t^\text{target}(x|z) \right],
+$$<p>
+the rest of the proof follows trivially.</p>
+<h3 id="flow-matchinf-for-gaussian-conditional-probability-paths">Flow Matchinf for Gaussian Conditional Probability Paths</h3>
+<p>Recall that a Gaussian conditional probaibility path is defined as
+</p>
+$$p_t(\cdot, z) = \mathcal{N}(\cdot ; \alpha_t z, \beta_t^2)$$<p>
+and the corresponding conditional vector field is given by
+</p>
+$$u_t^\text{target}(x|z) = \left( \dot{\alpha}_t - \frac{\dot{\beta}_t}{\beta_t}\alpha_t \right) z + \frac{\dot{\beta}_t}{\beta_t}x.$$<p>
+Then, the conditional flow matching loss is
+</p>
+$$
+\begin{align*}
+\mathcal{L}_{CFM}(\theta) &= \underset{t, z, x}{\mathbb{E}} \left[ 
+\| u_t^\theta(x) - \left( \dot{\alpha}_t - \frac{\dot{\beta}_t}{\beta_t}\alpha_t \right) z - \frac{\dot{\beta}_t}{\beta_t}x \|^2 \right] \\
+&= \underset{t, z, \epsilon} {\mathbb{E}} \left[ 
+\| u_t^\theta(\alpha_t z + \beta_t \epsilon) - (\dot{\alpha}_t z + \dot{\beta}_t \epsilon) \|^2
+\right]
+\end{align*}
+$$<p>For the case when $\alpha_t = t$ and $\beta_t = 1 - t$ (referred to as the CondOT probability path), we have
+</p>
+$$
+\mathcal{L}_{CFM}(\theta) = \underset{t, z, \epsilon} {\mathbb{E}} \left[ 
+\| u_t^\theta(t z + (1 - t) \epsilon) - (z - \epsilon) \|^2
+\right].
+$$<h2 id="score-matching">Score Matching</h2>
+<p>In the SDE case, we want to learn the score function $\nabla \log p_t(x)$. Similar to the flow matching loss, we can define the score matching loss and the more tractable conditional score matching loss as
+</p>
+$$
+\begin{align}
+\mathcal{L}_{SM}(\theta) &= \underset{t, z, x}{\mathbb{E}} \left[ 
+    \| s_t^\theta(x) - \nabla \log p_t(x) \|^2
+\right] \\
+&= \underset{t, z, x}{\mathbb{E}} \left[ 
+    \| s_t^\theta(x) - \nabla \log p_t(x | z) \|^2
+\right],
+\end{align}
+$$<p>
+where $s_t^\theta$ is the score network. With an identical proof to Theorem 18, we can show that the gradients of $\mathcal{L}_{SM}$ and $\mathcal{L}_{CSM}$ are equal.</p>
+<p>One thing to note is that training the score netwrork is independent of the choice of $\sigma$ in</p>
+$$
+\text{d}X_t = \left[ u_t^\text{target}(X_t) + \frac{\sigma_t^2}{2} s^\theta_t(X_t) \right]\text{d}t + \sigma_t \text{d}W_t.
+$$<p>In other words, during inference we can use any $\sigma_t$ we want and sample from $X_t$ correctly. Though, in practice we accumlate errors by simulating the SDE imperfectly and training errors, so there is an optimal $\sigma_t$.</p>
+<h3 id="denoising-diffusion-models">Denoising Diffusion Models</h3>
+<p>Denoising diffusion models (DDPMs) are diffusion models for the case of Gaussian conditional probability paths.</p>
+<p>Since
+</p>
+$$\nabla \log p_t(x|z) = -\frac{x - \alpha_t z}{\beta_t^2},$$<p>The conditional score matching loss (after reparameterizing $x = \alpha_t z + \beta_t \epsilon$) becomes
+</p>
+$$
+\mathcal{L}_{CSM}(\theta) = \underset{t, z, \epsilon}{\mathbb{E}} \left[ \frac{1}{\beta_t^2} 
+    \left\| \beta_t s_t^\theta(\alpha_t z + \beta_t \epsilon) + \epsilon \right\|^2
+\right].
+$$<p>You may notice from the SDE that the diffusion model requires learning both $u_t^\text{target}$ and $\nabla \log p_t$ as opposed to a flow model which only requires learning $u_t^\text{target}$. However, with Gaussian probability paths, we can actually recover $u_t^\text{target}$ from $\nabla \log p_t$ using the following relationship:</p>
+<p><strong>Proposition 1: (Conversion formula for Gaussian probability paths)</strong>
+For a Gaussian probability path $p_t(x|z) = \mathcal{N}(x; \alpha_t z, \beta_t^2)$, it holds that the conditional vector field can be converted to the conditional score (and their respective marginals) using the formulas
+</p>
+$$
+\begin{align*}
+u_t^\text{target}(x|z) &= \left( \beta_t^2 \frac{\dot{\alpha}_t}{\alpha_t} - \dot{\beta}_t \beta_t \right) \nabla \log p_t(x|z) + \frac{\dot{\alpha}_t}{\alpha_t} x \\
+u_t^\text{target}(x) &= \left( \beta_t^2 \frac{\dot{\alpha}_t}{\alpha_t} - \dot{\beta}_t \beta_t \right) \nabla \log p_t(x) + \frac{\dot{\alpha}_t}{\alpha_t} x
+\end{align*}
+$$<p><strong>Proof:</strong> The proof is mostly algebraic manipulation so here are the basic details:</p>
+<ol>
+<li>For the conditional vectori field, use the fact that $\nabla \log p_t(x|z) = \frac{\alpha_t z - x}{\beta_t^2}$. Then, it&rsquo;s fairly simple to rewrite $u_t^\text{target}(x|z)$ in terms of $\nabla \log p_t(x|z)$ rather than $z$</li>
+<li>For the marginal vectr field, we use
+$$
+\begin{align*}
+u_t^\text{target}(x) &= \int u_t^\text{target}(x|z) \frac{p_t(x|z) p_{data}(z)}{p_t(x)} \text{d}z \\
+&= \int \left( \left( \beta_t^2 \frac{\dot{\alpha}_t}{\alpha_t} - \dot{\beta}_t \beta_t \right) \nabla \log p_t(x|z) + \frac{\dot{\alpha}_t}{\alpha_t} x \right) \frac{p_t(x|z) p_{data}(z)}{p_t(x)} \text{d}z
+\end{align*}
+$$
+And then we use the definition of the marginal score function to complete the proof:
+$$
+\int \nabla \log p_t(x|z) \frac{p_t(x|z) p_{data}(z)}{p_t(x)} \text{d}z = \nabla \log p_t(x).
+$$</li>
+</ol>
+<p>Using Proposition 1, we get the follwing conversions:
+</p>
+$$
+\begin{align*}
+u_t^\theta(x) &= \left( \beta_t^2 \frac{\dot{\alpha}_t}{\alpha_t} - \dot{\beta}_t \beta_t \right) s_t^\theta(x) + \frac{\dot{\alpha}_t}{\alpha_t} x \\
+s_t^\theta(x) &= \frac{\alpha_t u_t^\theta(x) - \dot{\alpha}_t x }{\beta_t^2 \dot{\alpha}_t - \alpha_t \dot{\beta}_t \beta_t}
+\end{align*}
+$$<p>
+(for the expression for $s_t^\theta(x)$, we assume that $\beta_t^2 \dot{\alpha}_t - \alpha_t \dot{\beta}_t \beta_t \neq 0$).</p>
+<p>Thus, for Gaussian probability paths, we can train either a flow model or a score model and convert between the two using the above conversion formulas.</p>
+]]></content:encoded>
+    </item>
     <item>
       <title>Hacking Nano-GPT into a Diffusion LLM</title>
       <link>http://localhost:1313/posts/25-09-29-nanodiffgpt/</link>
@@ -364,7 +529,11 @@ X_0 \sim p_{init}, \quad \text{d}X_t = \left[ u_t^\text{target}(X_t) + \frac{\si
 $$<p>
 will yield the same marginal probability path $p_t$.</p>
 </blockquote>
-<p>Again, Theorem 13 is useful since it allows us to express $\nabla \log p_t(x | z)$</p>
+<p>Again, Theorem 13 is useful since it allows us to express $\nabla \log p_t(x)$ in terms of $\nabla \log p_t(x|z)$.</p>
+<p>Finally, I&rsquo;d like to connect the SDE above to Langevin dynamics. In the case where the probability path is static ($p_t = p$) and $u_t^{\text{target}} = 0$, we obtain the SDE
+</p>
+$$dX_t = \frac{\sigma^2_t}{2} \nabla \log p(X_t) dt + \sigma_t dW_t.$$<p>
+This special case is known as Langevin dynamics, and you can kind of get an idea of how the SDE evolves since it satisifes the Fokker-Planck equation&ndash;meaning if $X_0 \sim p_{init}$, then $X_t \sim p$ for $t \geq 0$.</p>
 ]]></content:encoded>
     </item>
     <item>
@@ -376,11 +545,13 @@ will yield the same marginal probability path $p_t$.</p>
 &lt;ul&gt;
 &lt;li&gt;Lecture 1 - &lt;a href=&#34;http://localhost:1313/posts/flowdiffusion/lec1/&#34;&gt;Flow and Diffusion Models&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Lecture 2 - &lt;a href=&#34;http://localhost:1313/posts/flowdiffusion/lec2/&#34;&gt;Constructing the Training Target&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Lecture 3 - &lt;a href=&#34;http://localhost:1313/posts/flowdiffusion/lec3/&#34;&gt;Flow Matching and Score Matching&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
       <content:encoded><![CDATA[<p>Here are my notes for MIT CSAIL&rsquo;s course titled <a href="https://diffusion.csail.mit.edu/"><em>Introduction to Flow Matching and Diffusion Models</em></a>. While I am finding the labs very helpful and making sure I do them, I will not be documenting my progress on them here.</p>
 <ul>
 <li>Lecture 1 - <a href="/posts/flowdiffusion/lec1/">Flow and Diffusion Models</a></li>
 <li>Lecture 2 - <a href="/posts/flowdiffusion/lec2/">Constructing the Training Target</a></li>
+<li>Lecture 3 - <a href="/posts/flowdiffusion/lec3/">Flow Matching and Score Matching</a></li>
 </ul>
 ]]></content:encoded>
     </item>
